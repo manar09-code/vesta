@@ -1,0 +1,47 @@
+﻿Jira key,Task,Sprint,Assignee (do the work),Reviewer
+VST-22,React Native environment and hello world,Sprint 0,Ahmed,Manar
+VST-24,"Figma mockups: login, listings, details",Sprint 0,Ahmed,Manar
+VST-19,Enable Google Maps SDK and restrict API key,Sprint 0,Eya,Manar
+VST-21,Flutter environment and hello world,Sprint 0,Eya,Manar
+VST-20,Start Google Play developer account,Sprint 0,Mahmoud,Manar
+VST-23,Write user stories,Sprint 0,Mahmoud,Manar
+VST-16,"Create GitHub monorepo, branches and protection",Sprint 0,Manar,Eya
+VST-17,Create Jira project and import backlog,Sprint 0,Manar,Eya
+VST-18,"Create Firebase project (Auth, Firestore, Storage, FCM)",Sprint 0,Manar,Eya
+VST-25,C4 level 1: System context,Sprint 0,Manar,Eya
+VST-26,C4 level 2: Containers,Sprint 0,Manar,Eya
+VST-27,C4 level 3: Auth and Profile components,Sprint 1,Ahmed,Manar
+VST-34,Review Auth rules and Firebase emulator tests,Sprint 1,Ahmed,Manar
+VST-29,"C4 level 3: Search, Map and Chat components",Sprint 1,Eya,Manar
+VST-33,Firestore data model and security rules,Sprint 1,Eya,Manar
+VST-35,Storage security rules,Sprint 1,Eya,Manar
+VST-38,"Flutter: Listings (create, view, photos)",Sprint 1,Eya,Manar
+VST-28,C4 level 3: Listings and Favorites components,Sprint 1,Mahmoud,Manar
+VST-52,Write test plan,Sprint 1,Mahmoud,Manar
+VST-30,C4 level 4: Key classes and Firestore data model,Sprint 1,Manar,Eya
+VST-31,Flutter initiation session (Manar with Eya),Sprint 1,Manar,Eya
+VST-32,Configure Firebase Auth (email/password),Sprint 1,Manar,Eya
+VST-36,Flutter: Authentication,Sprint 1,Manar,Eya
+VST-46,Flutter: Favorites,Sprint 2,Ahmed,Manar
+VST-37,React Native: Authentication,Sprint 2,Eya,Manar
+VST-40,Flutter: Search and filters,Sprint 2,Eya,Manar
+VST-53,Flutter release build and Google Play closed test,Sprint 2,Eya,Manar
+VST-48,Flutter: Profile,Sprint 2,Mahmoud,Manar
+VST-50,Flutter: Push notifications,Sprint 2,Mahmoud,Manar
+VST-39,"React Native: Listings (create, view, photos)",Sprint 2,Manar,Eya
+VST-42,Flutter: Map and geolocation,Sprint 2,Manar,Eya
+VST-44,Flutter: Chat,Sprint 2,Manar,Eya
+VST-49,React Native: Profile,Sprint 3,Ahmed,Manar
+VST-51,React Native: Push notifications,Sprint 3,Ahmed,Manar
+VST-54,Real-phone testing and bug fixing (A),Sprint 3,Ahmed,Manar
+VST-43,React Native: Map and geolocation,Sprint 3,Eya,Manar
+VST-45,React Native: Chat,Sprint 3,Eya,Manar
+VST-47,React Native: Favorites,Sprint 3,Mahmoud,Manar
+VST-55,Real-phone testing and bug fixing (B),Sprint 3,Mahmoud,Manar
+VST-41,React Native: Search and filters,Sprint 3,Manar,Eya
+VST-56,Code freeze 17 November,Sprint 3,Manar,Eya
+VST-58,Demo preparation,Buffer,Ahmed,Manar
+VST-59,Final tests,Buffer,Ahmed,Manar
+VST-60,Google Play follow-up,Buffer,Mahmoud,Manar
+VST-61,"Documentation, screenshots and store visuals",Buffer,Mahmoud,Manar
+VST-57,Final report,Buffer,Manar,Eya
