@@ -1,0 +1,242 @@
+﻿Issue Id,Issue Type,Summary,Description,Epic Name,Epic Link,Assignee,Reviewer,Sprint,Labels,Priority
+1,Epic,Setup & Infrastructure,"GitHub, Jira, Firebase, Maps, Google Play account, dev environments",Setup & Infrastructure,,,,,,
+2,Epic,Design & C4,"User stories, mockups and C4 levels 1-4",Design & C4,,,,,,
+3,Epic,Firebase Backend,"Auth config, Firestore data model, security rules, emulator tests",Firebase Backend,,,,,,
+4,Epic,Authentication,"Sign up, log in, log out",Authentication,,,,,,
+5,Epic,Listings,"Create, view and photo upload for listings (sale/rent)",Listings,,,,,,
+6,Epic,Search & Filters,"Listing list with price, location, type, sale/rent filters",Search & Filters,,,,,,
+7,Epic,Map & Geolocation,"Show listings on a map, pick a location when publishing",Map & Geolocation,,,,,,
+8,Epic,Chat,One conversation per listing between buyer and owner,Chat,,,,,,
+9,Epic,Favorites & Profile,"Favorite listings, edit profile, see own listings",Favorites & Profile,,,,,,
+10,Epic,Notifications,Push notification on each new message (FCM),Notifications,,,,,,
+11,Epic,"Testing, Release & Docs","Test plan, release build, Google Play, real-phone tests, report, demo","Testing, Release & Docs",,,,,,
+12,Task,"Create GitHub monorepo, branches and protection","Repo 'vesta' with flutter-app, react-native-app, firebase, docs. Branches main/develop. PR + 1 approval required. Invite all members.
+
+Assignee: Manar
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Setup & Infrastructure,Manar,Ahmed,Sprint 0,git,High
+13,Task,Create Jira project and import backlog,"Scrum project VST, Sprints 0-3 + Buffer, connect GitHub to Jira.
+
+Assignee: Manar
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Setup & Infrastructure,Manar,Eya,Sprint 0,jira,High
+14,Task,"Create Firebase project (Auth, Firestore, Storage, FCM)","Register the Android app twice (Flutter package, React Native package). Add all members.
+
+Assignee: Manar
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Setup & Infrastructure,Manar,Ahmed,Sprint 0,firebase,High
+15,Task,Enable Google Maps SDK and restrict API key,"Enable Maps SDK for Android in Google Cloud and restrict the key by package name + SHA-1.
+
+Assignee: Manar
+Reviewer: Mahmoud
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Setup & Infrastructure,Manar,Mahmoud,Sprint 0,firebase,High
+16,Task,Start Google Play developer account,"One-time fee and identity verification. New personal accounts may need a closed test with minimum testers for ~2 weeks: check current Play Console rules.
+
+Assignee: Manar
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Setup & Infrastructure,Manar,Eya,Sprint 0,release,High
+17,Task,Flutter environment and hello world,"Own Flutter setup, hello world running on a real phone, pushed to flutter-app/.
+
+Assignee: Eya
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Setup & Infrastructure,Eya,Manar,Sprint 0,flutter,High
+18,Task,React Native environment and hello world,"Own RN setup, hello world running on a real phone, pushed to react-native-app/.
+
+Assignee: Ahmed
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Setup & Infrastructure,Ahmed,Manar,Sprint 0,react-native,High
+19,Task,Write user stories,"User stories for buyer/tenant and owner/agent covering all MVP features.
+
+Assignee: Mahmoud
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Design & C4,Mahmoud,Manar,Sprint 0,docs,High
+20,Task,"Figma mockups: login, listings, details","Mockups for login/sign up, listings list, listing details.
+
+Assignee: Mahmoud
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Design & C4,Mahmoud,Eya,Sprint 0,design,Medium
+21,Task,C4 level 1: System context,"Buyer, owner, Vesta, Firebase, Google Maps, Google Play. Export to docs/c4/.
+
+Assignee: Manar
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Design & C4,Manar,Ahmed,Sprint 0,c4,High
+22,Task,C4 level 2: Containers,"Flutter app, React Native app, Firebase Auth, Firestore, Storage, FCM, Google Maps.
+
+Assignee: Manar
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Design & C4,Manar,Ahmed,Sprint 0,c4,High
+23,Task,C4 level 3: Auth and Profile components,"Components, responsibilities and relations for Auth and Profile.
+
+Assignee: Ahmed
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Design & C4,Ahmed,Manar,Sprint 1,c4,Medium
+24,Task,C4 level 3: Listings and Favorites components,"Components, responsibilities and relations for Listings and Favorites.
+
+Assignee: Mahmoud
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Design & C4,Mahmoud,Eya,Sprint 1,c4,Medium
+25,Task,"C4 level 3: Search, Map and Chat components","Components, responsibilities and relations for Search, Map and Chat.
+
+Assignee: Eya
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Design & C4,Eya,Manar,Sprint 1,c4,Medium
+26,Task,C4 level 4: Key classes and Firestore data model,"Class diagram of the Search module and Firestore collections.
+
+Assignee: Manar
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Design & C4,Manar,Ahmed,Sprint 1,c4,Medium
+27,Task,Flutter initiation session (Manar with Eya),"Pair session so Eya can work independently in Flutter.
+
+Assignee: Manar
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Design & C4,Manar,Eya,Sprint 1,flutter,Medium
+28,Task,Configure Firebase Auth (email/password),"Enable provider, test accounts, password rules.
+
+Assignee: Manar
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Firebase Backend,Manar,Ahmed,Sprint 1,firebase,High
+29,Task,Firestore data model and security rules,"Collections: users, listings, favorites, conversations, messages. Rules replace the deny-all placeholder in firebase/firestore.rules.
+
+Assignee: Eya
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Firebase Backend,Eya,Ahmed,Sprint 1,firebase,High
+30,Task,Review Auth rules and Firebase emulator tests,"Review auth-related rules and write emulator tests.
+
+Assignee: Ahmed
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Firebase Backend,Ahmed,Eya,Sprint 1,firebase,Medium
+31,Task,Storage security rules,"Rules for listing photos and profile pictures: size/type limits, owner-only writes.
+
+Assignee: Mahmoud
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Firebase Backend,Mahmoud,Ahmed,Sprint 1,firebase,Medium
+32,Task,Flutter: Authentication,"Sign up, log in, log out, session persistence.
+
+Assignee: Manar
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Authentication,Manar,Eya,Sprint 1,flutter,High
+33,Task,React Native: Authentication,"Port of Flutter auth, same module names and layers.
+
+Assignee: Ahmed
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Authentication,Ahmed,Eya,Sprint 2,react-native,High
+34,Task,"Flutter: Listings (create, view, photos)","Publish sale/rent listing with photos, listing details with photo gallery. Started Sprint 1, finishes Sprint 2.
+
+Assignee: Eya
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Listings,Eya,Manar,Sprint 1,flutter,High
+35,Task,"React Native: Listings (create, view, photos)","Port of Flutter listings.
+
+Assignee: Mahmoud
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Listings,Mahmoud,Manar,Sprint 2,react-native,High
+36,Task,Flutter: Search and filters,"Price range, location, type, sale/rent. Layers: SearchScreen, SearchController, SearchFilters, ListingRepository.
+
+Assignee: Eya
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Search & Filters,Eya,Ahmed,Sprint 2,flutter,High
+37,Task,React Native: Search and filters,"Port of Flutter search, same class/file names.
+
+Assignee: Manar
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Search & Filters,Manar,Ahmed,Sprint 3,react-native,High
+38,Task,Flutter: Map and geolocation,"Listings on map, pick location when publishing, user location.
+
+Assignee: Manar
+Reviewer: Mahmoud
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Map & Geolocation,Manar,Mahmoud,Sprint 2,flutter,High
+39,Task,React Native: Map and geolocation,"Port of Flutter map.
+
+Assignee: Eya
+Reviewer: Mahmoud
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Map & Geolocation,Eya,Mahmoud,Sprint 3,react-native,High
+40,Task,Flutter: Chat,"One conversation per listing, realtime messages. Eya pairs if behind.
+
+Assignee: Manar
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Chat,Manar,Ahmed,Sprint 2,flutter,High
+41,Task,React Native: Chat,"Port of Flutter chat.
+
+Assignee: Eya
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Chat,Eya,Ahmed,Sprint 3,react-native,High
+42,Task,Flutter: Favorites,"Add/remove favorites, favorites list.
+
+Assignee: Ahmed
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Favorites & Profile,Ahmed,Eya,Sprint 2,flutter,Medium
+43,Task,React Native: Favorites,"Port of Flutter favorites.
+
+Assignee: Mahmoud
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Favorites & Profile,Mahmoud,Eya,Sprint 3,react-native,Medium
+44,Task,Flutter: Profile,"Edit name and photo, see own listings.
+
+Assignee: Ahmed
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Favorites & Profile,Ahmed,Manar,Sprint 2,flutter,Medium
+45,Task,React Native: Profile,"Port of Flutter profile.
+
+Assignee: Mahmoud
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Favorites & Profile,Mahmoud,Manar,Sprint 3,react-native,Medium
+46,Task,Flutter: Push notifications,"FCM notification on each new message.
+
+Assignee: Mahmoud
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Notifications,Mahmoud,Manar,Sprint 2,flutter,Medium
+47,Task,React Native: Push notifications,"Port of Flutter notifications.
+
+Assignee: Ahmed
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,Notifications,Ahmed,Manar,Sprint 3,react-native,Medium
+48,Task,Write test plan,"Test cases per feature, real-phone checklist.
+
+Assignee: Mahmoud
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,"Testing, Release & Docs",Mahmoud,Ahmed,Sprint 1,docs,Medium
+49,Task,Flutter release build and Google Play closed test,"Signed release build, upload to Play Console closed test around 1 Nov.
+
+Assignee: Eya
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,"Testing, Release & Docs",Eya,Manar,Sprint 2,release,High
+50,Task,Real-phone testing and bug fixing (A),"Test Flutter + RN on real phones, fix bugs. Bug fixes only.
+
+Assignee: Ahmed
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,"Testing, Release & Docs",Ahmed,Eya,Sprint 3,testing,High
+51,Task,Real-phone testing and bug fixing (B),"Test Flutter + RN on real phones, fix bugs. Bug fixes only.
+
+Assignee: Mahmoud
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,"Testing, Release & Docs",Mahmoud,Manar,Sprint 3,testing,High
+52,Task,Code freeze 17 November,"No new features after this date, bug fixes only.
+
+Assignee: Manar
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,"Testing, Release & Docs",Manar,Eya,Sprint 3,release,High
+53,Task,Final report,"Final report for the teacher, including C4 and screenshots.
+
+Assignee: Manar
+Reviewer: Eya
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,"Testing, Release & Docs",Manar,Eya,Buffer,docs,High
+54,Task,Demo preparation,"Demo script and rehearsal.
+
+Assignee: Eya
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,"Testing, Release & Docs",Eya,Ahmed,Buffer,docs,High
+55,Task,Final tests,"Final regression pass on both apps.
+
+Assignee: Ahmed
+Reviewer: Mahmoud
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,"Testing, Release & Docs",Ahmed,Mahmoud,Buffer,testing,High
+56,Task,Google Play follow-up,"Track review/production status, answer Play Console requests.
+
+Assignee: Eya
+Reviewer: Ahmed
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,"Testing, Release & Docs",Eya,Ahmed,Buffer,release,High
+57,Task,"Documentation, screenshots and store visuals","Store listing screenshots, graphics, descriptions.
+
+Assignee: Mahmoud
+Reviewer: Manar
+Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",,"Testing, Release & Docs",Mahmoud,Manar,Buffer,docs,Medium

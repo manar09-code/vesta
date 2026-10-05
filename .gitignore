@@ -1,0 +1,46 @@
+# --- Secrets (NEVER commit) ---
+google-services.json
+GoogleService-Info.plist
+firebase-adminsdk*.json
+.env
+.env.*
+*.keystore
+*.jks
+key.properties
+local.properties
+**/secrets.*
+# Maps API keys live in local config only
+**/google_maps_api.xml
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.iml
+
+# --- Flutter / Dart ---
+flutter-app/.dart_tool/
+flutter-app/.flutter-plugins
+flutter-app/.flutter-plugins-dependencies
+flutter-app/build/
+flutter-app/.pub-cache/
+flutter-app/android/.gradle/
+flutter-app/ios/Pods/
+
+# --- React Native / Node ---
+react-native-app/node_modules/
+react-native-app/.expo/
+react-native-app/android/.gradle/
+react-native-app/android/app/build/
+react-native-app/ios/Pods/
+react-native-app/ios/build/
+*.log
+npm-debug.log*
+
+# --- Firebase local ---
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
