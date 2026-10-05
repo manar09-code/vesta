@@ -28,12 +28,12 @@ Definition of Done: PR reviewed and merged, tested on a real phone, ticket updat
 15,Task,Enable Google Maps SDK and restrict API key,"Enable Maps SDK for Android in Google Cloud and restrict the key by package name + SHA-1.
 
 Assignee: Mahmoud
-Reviewer: Manar
+Reviewer: Ahmed
 Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",1,Sprint 0,firebase mahmoud,High
 16,Task,Start Google Play developer account,"One-time fee and identity verification. New personal accounts may need a closed test with minimum testers for ~2 weeks: check current Play Console rules.
 
 Assignee: Eya
-Reviewer: Manar
+Reviewer: Ahmed
 Definition of Done: PR reviewed and merged, tested on a real phone, ticket updated.",1,Sprint 0,release eya,High
 17,Task,Flutter environment and hello world,"Own Flutter setup, hello world running on a real phone, pushed to flutter-app/.
 
