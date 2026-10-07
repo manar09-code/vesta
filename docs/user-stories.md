@@ -12,6 +12,8 @@ Personas: \*\*Buyer/Tenant\*\* (searches and contacts) and \*\*Owner/Agent\*\* (
 
 \- As a registered user, I want to log in and stay logged in, so that I don't have to re-enter my details every time.
 
+\- As a registered user, I want to log out, so that I can securely end my session.
+
 
 
 \## Search and filters
@@ -26,7 +28,7 @@ Personas: \*\*Buyer/Tenant\*\* (searches and contacts) and \*\*Owner/Agent\*\* (
 
 \- As a buyer, I want to browse photos of a listing, so that I can judge the property.
 
-\- As a tenant, I want to see price, size, rooms and description, so that I can compare properties.
+\- As a tenant, I want to see price and description, so that I can compare properties.
 
 
 
@@ -35,6 +37,10 @@ Personas: \*\*Buyer/Tenant\*\* (searches and contacts) and \*\*Owner/Agent\*\* (
 \- As an owner, I want to publish a sale or rental listing with photos, so that buyers and tenants can find it.
 
 \- As an agent, I want to set price, type and location, so that my listing appears in the right searches.
+
+\- As an owner, I want to edit my own listing, so that I can keep its information up to date.
+
+\- As an owner, I want to delete my own listing, so that I can remove a property I no longer want to publish.
 
 
 
@@ -73,6 +79,4 @@ Personas: \*\*Buyer/Tenant\*\* (searches and contacts) and \*\*Owner/Agent\*\* (
 \## Push notifications
 
 \- As a user, I want to receive a notification when I get a new message, so that I don't miss a buyer or an owner.
-
-\- As a user, I want to enable or disable notifications, so that I control what I receive.
 
