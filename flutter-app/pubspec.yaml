@@ -1,0 +1,41 @@
+name: vesta
+description: "Vesta — recherche et publication d'annonces immobilières en Tunisie (version Flutter)."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: DM Sans
+      fonts:
+        - asset: assets/fonts/DMSans.ttf
+          weight: 400
+        - asset: assets/fonts/DMSans.ttf
+          weight: 500
+        - asset: assets/fonts/DMSans.ttf
+          weight: 600
+        - asset: assets/fonts/DMSans.ttf
+          weight: 700
+    - family: DM Serif Display
+      fonts:
+        - asset: assets/fonts/DMSerifDisplay.ttf

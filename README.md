@@ -26,10 +26,28 @@ Auth · Search with filters · Listing details with photos · Publish listings �
 ## Architecture (see `docs/c4/`)
 Both apps share the same module structure: Auth, Search, Listing details, Publish, Map, Chat, Favorites, Profile, Notifications, and a single data layer in front of Firebase (Auth, Firestore, Storage, FCM) and Google Maps. No module talks to Firebase directly.
 
+## Design mockups
+Mobile mockups for login, sign-up, listing list and listing details: [interactive prototype and test guide](docs/mockups/README.md). For step-by-step launch instructions, see [etapes.md](etapes.md).
+
 ## Getting started
 1. Clone: `git clone <repo-url> && cd vesta && git checkout develop`
 2. Ask Manar for the Firebase project access, then download **your own copy** of `google-services.json` (Android) into the app's `android/app/` folder. It is git-ignored, never commit it.
 3. Flutter: see `flutter-app/README.md` · React Native: see `react-native-app/README.md`.
+
+## Current status (demo mode)
+Both apps are complete and mirror the web mockup (same screens, theme, and
+data) but run **without Firebase**: repositories are in-memory, so nothing is
+persisted and no config file is needed.
+
+```sh
+node docs/mockups/server.js   # mockup web, http://localhost:8000
+
+cd flutter-app && flutter pub get && flutter run -d windows   # ou -d android
+cd react-native-app && npm install && npm start               # puis npm run android
+```
+
+Checks: `flutter analyze` / `flutter test` (3 tests) and
+`npx tsc --noEmit` / `npm test` (3 tests) / `npm run lint` — all green.
 
 ## Workflow
 Read [CONTRIBUTING.md](CONTRIBUTING.md). Tasks live in Jira (project key **VST**).

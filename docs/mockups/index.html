@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f4ef">
+  <meta name="description" content="Maquettes mobiles Vesta : connexion, inscription, annonces et détail d'un bien.">
+  <title>Vesta — Maquettes mobiles</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <main id="main-content">
+      <section id="auth-screen" class="screen auth-screen" aria-labelledby="auth-heading">
+        <div class="auth-visual" aria-hidden="true">
+          <div class="brand brand-light"><span class="brand-mark">V</span> vesta<span class="brand-dot">.</span></div>
+          <div class="auth-visual-copy"><span class="eyebrow">Votre prochain chez-vous</span><h1>Un lieu à vous,<br>une histoire à écrire.</h1></div>
+          <div class="building building-one"></div><div class="building building-two"></div><div class="building building-three"></div>
+        </div>
+        <div class="auth-content">
+          <div class="auth-intro"><span class="eyebrow">Bienvenue sur Vesta</span><h2 id="auth-heading">Trouvons votre place.</h2><p>Explorez les biens qui vous ressemblent, partout en Tunisie.</p></div>
+          <div class="auth-tabs" role="tablist" aria-label="Accès au compte">
+            <button type="button" class="auth-tab is-active" id="login-tab" role="tab" aria-selected="true" aria-controls="login-panel">Connexion</button>
+            <button type="button" class="auth-tab" id="signup-tab" role="tab" aria-selected="false" aria-controls="signup-panel" tabindex="-1">Inscription</button>
+          </div>
+          <div id="login-panel" role="tabpanel" aria-labelledby="login-tab">
+            <form id="login-form" novalidate>
+              <label for="login-email">Adresse e-mail</label><input id="login-email" name="email" type="email" autocomplete="email" placeholder="nom@exemple.com" required>
+              <label for="login-password">Mot de passe</label><div class="password-field"><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Votre mot de passe" required minlength="6"><button class="password-toggle" type="button" data-toggle-password="login-password" aria-label="Afficher le mot de passe">Afficher</button></div>
+              <p id="login-error" class="form-error" role="alert" hidden></p>
+              <button type="submit" class="button button-primary">Se connecter <span aria-hidden="true">→</span></button>
+            </form>
+          </div>
+          <div id="signup-panel" role="tabpanel" aria-labelledby="signup-tab" hidden>
+            <form id="signup-form" novalidate>
+              <label for="signup-name">Nom complet</label><input id="signup-name" name="name" type="text" autocomplete="name" placeholder="Votre nom" required>
+              <label for="signup-email">Adresse e-mail</label><input id="signup-email" name="email" type="email" autocomplete="email" placeholder="nom@exemple.com" required>
+              <label for="signup-password">Mot de passe</label><div class="password-field"><input id="signup-password" name="password" type="password" autocomplete="new-password" placeholder="6 caractères minimum" required minlength="6"><button class="password-toggle" type="button" data-toggle-password="signup-password" aria-label="Afficher le mot de passe">Afficher</button></div>
+              <label for="signup-confirm">Confirmer le mot de passe</label><input id="signup-confirm" name="confirm" type="password" autocomplete="new-password" placeholder="Répétez le mot de passe" required>
+              <p id="signup-error" class="form-error" role="alert" hidden></p>
+              <button type="submit" class="button button-primary">Créer mon compte <span aria-hidden="true">→</span></button>
+            </form>
+          </div>
+          <p class="demo-note">Prototype de navigation uniquement : aucun compte n'est créé. <button type="button" id="demo-entry" class="text-link">Explorer sans compte</button></p>
+        </div>
+      </section>
+
+      <section id="list-screen" class="screen list-screen" aria-labelledby="list-heading" hidden>
+        <header class="list-header">
+          <div class="header-top"><div class="brand"><span class="brand-mark">V</span> vesta<span class="brand-dot">.</span></div><span class="location-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12Z"/><circle cx="12" cy="9" r="2.3"/></svg>Tunisie</span></div>
+          <span class="eyebrow">Votre prochain chapitre commence ici</span><h1 id="list-heading">Le bon endroit<br>pour <em>vivre mieux.</em></h1>
+          <label class="search-box" for="search-input"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg><input id="search-input" type="search" placeholder="Ville, quartier ou type de bien" autocomplete="off"></label>
+        </header>
+        <div class="listing-content">
+          <div class="section-head"><div><span class="eyebrow">Découvrez</span><h2>Biens à explorer</h2></div><button id="filters-toggle" type="button" class="filter-button" aria-expanded="false" aria-controls="filter-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></svg> Filtres</button></div>
+          <div class="filter-chips" role="group" aria-label="Type de transaction"><button type="button" class="chip is-active" data-transaction="all" aria-pressed="true">Tous les biens</button><button type="button" class="chip" data-transaction="vente" aria-pressed="false">À acheter</button><button type="button" class="chip" data-transaction="location" aria-pressed="false">À louer</button></div>
+          <div id="filter-panel" class="filter-panel" hidden>
+            <div class="filter-grid"><div><label for="type-filter">Type de bien</label><select id="type-filter"><option value="all">Tous</option><option value="Appartement">Appartement</option><option value="Villa">Villa</option></select></div><div><label for="price-filter">Prix maximum (TND)</label><input id="price-filter" type="number" min="0" step="100" inputmode="numeric" placeholder="Sans limite"></div></div>
+            <button id="reset-filters" type="button" class="text-link">Réinitialiser les filtres</button>
+          </div>
+          <div class="results-row"><p id="result-count" aria-live="polite"></p><span>Choisis pour vous ✦</span></div>
+          <div id="listing-cards" class="listing-cards"></div>
+          <div id="empty-state" class="empty-state" hidden><span aria-hidden="true">⌕</span><h3>Aucun bien trouvé</h3><p>Essayez une autre ville ou élargissez vos filtres.</p><button type="button" id="empty-reset" class="button button-outline">Effacer les filtres</button></div>
+        </div>
+        <nav class="bottom-nav" aria-label="Navigation principale"><button type="button" class="nav-item is-active" data-nav="explore" aria-current="page"><span aria-hidden="true">⌂</span>Explorer</button><button type="button" class="nav-item" data-nav="favorites"><span aria-hidden="true">♡</span>Favoris</button><button type="button" class="nav-item" data-nav="account"><span aria-hidden="true">♙</span>Compte</button></nav>
+      </section>
+
+      <section id="detail-screen" class="screen detail-screen" aria-labelledby="detail-title" hidden>
+        <div class="detail-hero"><img id="detail-image" src="assets/apartment.svg" alt="Illustration du bien"><div class="detail-top"><button type="button" id="back-to-list" class="round-button" aria-label="Retour aux annonces">←</button><button type="button" id="detail-favorite" class="round-button favorite-button" aria-label="Ajouter aux favoris" aria-pressed="false">♡</button></div><span id="detail-counter" class="photo-counter">Illustration 1 / 3</span></div>
+        <div class="detail-body"><div class="detail-meta"><span id="detail-transaction" class="badge badge-accent"></span><span id="detail-type" class="detail-type"></span></div><h1 id="detail-title"></h1><p id="detail-location" class="muted detail-location"></p><div class="price-row"><strong id="detail-price"></strong><span id="detail-period"></span></div><div class="spec-row"><span id="detail-area"></span><span id="detail-rooms"></span><span id="detail-baths"></span></div><div class="detail-section"><h2>À propos de ce bien</h2><p id="detail-description"></p></div><div class="detail-section"><h2>Aperçu des visuels</h2><p class="muted image-disclaimer">Illustrations temporaires pour la maquette ; les photos réelles seront chargées depuis Firebase Storage dans l'application.</p><div id="detail-gallery" class="detail-gallery" role="group" aria-label="Choisir un visuel du bien"></div></div><div class="detail-section"><h2>Localisation</h2><div class="map-placeholder" role="img" aria-label="Emplacement approximatif, carte non disponible dans la maquette"><span aria-hidden="true">⌖</span><span id="detail-map-location"></span><small>Carte interactive dans l'application finale</small></div></div></div>
+        <div class="detail-footer"><div><small>Prix affiché</small><strong id="footer-price"></strong></div><button id="contact-button" type="button" class="button button-primary">Contacter <span aria-hidden="true">↗</span></button></div>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </div>
+</body>
+</html>
