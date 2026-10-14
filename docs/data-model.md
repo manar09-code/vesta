@@ -24,3 +24,7 @@ Prices are stored as a number with the currency code `AED`.
 - `listingType` + `price`
 - `listingType` + `createdAt` (descending)
 - `propertyType` + `createdAt` (descending)
+
+## Class diagram
+
+See `docs/c4/level4-classes.png` (source: `docs/c4/level4-classes.mmd`).
