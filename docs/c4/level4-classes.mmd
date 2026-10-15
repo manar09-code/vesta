@@ -2,11 +2,13 @@ classDiagram
   class AppUser {
     +String uid
     +String displayName
-    +String email
-    +String? phone
     +DateTime createdAt
     +fromMap(Map map) AppUser
     +toMap() Map
+  }
+  class UserContact {
+    +String email
+    +String? phone
   }
   class Listing {
     +String id
@@ -19,11 +21,11 @@ classDiagram
     +String listingType
     +String propertyType
     +String city
-    +double latitude
-    +double longitude
-    +int bedrooms
-    +int bathrooms
-    +num areaSqft
+    +double? latitude
+    +double? longitude
+    +int? bedrooms
+    +int? bathrooms
+    +num? areaSqm
     +int photoCount
     +DateTime createdAt
     +DateTime updatedAt
@@ -33,7 +35,6 @@ classDiagram
   class Photo {
     +String id
     +String base64
-    +int order
     +DateTime createdAt
   }
   class Favorite {
@@ -66,7 +67,7 @@ classDiagram
     +addPhoto(String listingId, Photo photo)
     +getPhotos(String listingId) List~Photo~
   }
-  class FavoriteRepository {
+  class FavoritesRepository {
     +addFavorite(Favorite favorite)
     +removeFavorite(String userId, String listingId)
   }
@@ -81,9 +82,10 @@ classDiagram
   UserRepository ..> AppUser
   ListingRepository ..> Listing
   PhotoRepository ..> Photo
-  FavoriteRepository ..> Favorite
+  FavoritesRepository ..> Favorite
   ConversationRepository ..> Conversation
   MessageRepository ..> Message
+  AppUser "1" --> "1" UserContact : private
   AppUser "1" --> "*" Listing : owns
   Listing "1" --> "0..5" Photo : has
   AppUser "1" --> "*" Favorite : saves
