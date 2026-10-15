@@ -1,29 +1,40 @@
-# Vesta Firestore data model (v1)
+# Vesta Firestore data model (v2 draft, after Manar's and Eya's feedback)
 
 Single reference for the Firestore collections used by both apps (Flutter and React Native).
-Prices are stored as a number with the currency code `AED`.
+Prices are stored as a number with a currency code. The currency code is read from the app config (TND) and is never hardcoded in the apps or in the rules.
 
 | Collection | Document id | Fields (type) | Rules summary |
 |---|---|---|---|
-| `users` | Auth `uid` | `displayName` (string), `email` (string), `phone` (string, optional), `createdAt` (timestamp) | Create/update/delete: the user only. Read: any signed-in user. |
-| `listings` | auto-id | `ownerId` (string), `title` (string), `description` (string), `price` (number), `currency` (string, always `"AED"`), `rentPeriod` (`"year"` or `"month"`, only for rent), `listingType` (`"sale"` or `"rent"`), `propertyType` (string), `city` (string), `latitude` (number), `longitude` (number), `bedrooms` (number), `bathrooms` (number), `areaSqft` (number), `photoCount` (number), `createdAt` (timestamp), `updatedAt` (timestamp) | Read: any signed-in user. Create: signed-in user with `ownerId == uid`. Update/delete: owner only. |
-| `listings/{id}/photos` | auto-id | `base64` (string, compressed, under 200 KB), `order` (number), `createdAt` (timestamp) | Read: signed-in user. Create/delete: listing owner only. Maximum 5 photos per listing. |
-| `favorites` | `{uid}_{listingId}` | `userId` (string), `listingId` (string), `createdAt` (timestamp) | Read/create/delete: the user only. |
-| `conversations` | auto-id | `participantIds` (array of 2 uids), `listingId` (string), `lastMessage` (string), `lastMessageAt` (timestamp) | Read/create/update: participants only. |
-| `conversations/{id}/messages` | auto-id | `senderId` (string), `text` (string), `createdAt` (timestamp) | Read: participants. Create: participant with `senderId == uid`. No edit or delete. |
+| `users` | Auth `uid` | `displayName` (string), `createdAt` (server timestamp) | Create/update/delete: the user only. Read: any signed-in user. |
+| `users/{uid}/private/contact` | `contact` | `email` (string), `phone` (string, optional) | Read/write: the user only. |
+| `listings` | auto-id | `ownerId` (string), `title` (string), `description` (string), `price` (number), `currency` (string, from the app config, TND), `rentPeriod` (`"night"`, `"month"` or `"year"`, required only when `listingType` is `"rent"`), `listingType` (`"sale"` or `"rent"`), `propertyType` (string, see values below), `city` (string), `latitude` (number, optional), `longitude` (number, optional), `bedrooms` (number, optional), `bathrooms` (number, optional), `areaSqm` (number, optional, square meters), `photoCount` (number), `createdAt` (server timestamp), `updatedAt` (server timestamp) | Read: any signed-in user. Create: signed-in user with `ownerId == uid`. Update/delete: owner only. Optional numbers must be numbers when present. |
+| `listings/{id}/photos` | fixed ids `p0` to `p4` | `base64` (string, compressed, under 200 KB), `createdAt` (server timestamp) | Read: signed-in user. Create/update/delete: listing owner only. The 5 fixed ids enforce the maximum of 5 photos. The id gives the display order. |
+| `favorites` | `{uid}_{listingId}` | `userId` (string), `listingId` (string), `createdAt` (server timestamp) | Read/create/delete: the user only. |
+| `conversations` | `{listingId}_{buyerId}` | `participantIds` (array of exactly 2 uids), `listingId` (string), `lastMessage` (string), `lastMessageAt` (server timestamp) | Read/create/update: participants only. |
+| `conversations/{id}/messages` | auto-id | `senderId` (string), `text` (string), `createdAt` (server timestamp) | Read: participants (rules read the parent conversation). Create: participant with `senderId == uid`. No edit or delete. |
+
+## `propertyType` values (proposal, to confirm)
+
+`apartment`, `house`, `villa`, `riad`, `guest_house`, `land`, `commercial`
 
 ## Decisions
 
 - `messages` is a subcollection of `conversations` (simpler for realtime and rules).
-- Price is a number plus `currency: "AED"`, never a string.
-- Photos are stored as compressed base64 in `listings/{id}/photos` (max 5, decision of 8 Oct).
-- Search fields (`listingType`, `propertyType`, `price`, `city`, `latitude`, `longitude`, `createdAt`) are top-level fields of `listings`.
+- `currency` is a string filled from the app config (TND). The rules only check that it is a string.
+- Photos are stored as compressed base64 in `listings/{id}/photos` with fixed ids `p0` to `p4`, because rules cannot count documents (max 5, decision of 8 Oct). The field `order` is removed: the id gives the order.
+- Search fields (`listingType`, `propertyType`, `price`, `city`, `createdAt`) are top-level fields of `listings`.
+- `latitude`, `longitude`, `bedrooms`, `bathrooms` and `areaSqm` are optional. The map only shows listings that have coordinates.
+- A conversation id is `{listingId}_{buyerId}`, so there is one conversation per buyer and per listing. `participantIds` always holds exactly 2 uids.
+- `email` and `phone` are private: they live in `users/{uid}/private/contact`, not in the public profile.
+- `createdAt` and `updatedAt` are server timestamps.
 
-## Indexes needed
+## Indexes (start, final list comes from the Search queries, VST-40)
 
 - `listingType` + `price`
 - `listingType` + `createdAt` (descending)
 - `propertyType` + `createdAt` (descending)
+- `city` + `price`
+- `city` + `createdAt` (descending)
 
 ## Class diagram
 
