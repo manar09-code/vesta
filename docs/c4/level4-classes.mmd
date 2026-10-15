@@ -59,6 +59,8 @@ classDiagram
   class UserRepository {
     +getUser(String uid) AppUser
     +saveUser(AppUser user)
+    +getContact(String uid) UserContact
+    +saveContact(String uid, UserContact contact)
   }
   class ListingRepository {
     +createListing(Listing listing)
@@ -66,6 +68,7 @@ classDiagram
   }
   class PhotoRepository {
     +addPhoto(String listingId, Photo photo)
+    +deletePhoto(String listingId, String photoId)
     +getPhotos(String listingId) List~Photo~
   }
   class FavoritesRepository {
@@ -81,6 +84,7 @@ classDiagram
     +watchMessages(String conversationId)
   }
   UserRepository ..> AppUser
+  UserRepository ..> UserContact
   ListingRepository ..> Listing
   PhotoRepository ..> Photo
   FavoritesRepository ..> Favorite
@@ -91,3 +95,4 @@ classDiagram
   Listing "1" --> "0..5" Photo : has
   AppUser "1" --> "*" Favorite : saves
   Conversation "1" --> "*" Message : contains
+  note for PhotoRepository "Each add or delete is one batch write with the photoCount update on the listing"
