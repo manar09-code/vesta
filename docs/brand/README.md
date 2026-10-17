@@ -32,8 +32,9 @@ Generated with an online logo maker (logomaker.com), then cleaned up: background
 
 ## License status
 
-**To confirm before the Google Play upload:** the logo maker's terms for the free plan regarding commercial use have not been checked yet. If they do not allow commercial use, replace these files with an original design under the same file names.
+**Academic use only.** The logo comes from the free preview of an online logo maker (logomaker.com). Its commercial-use license was not purchased or confirmed, so these files are for the academic app and the demo only.
 
+Before publishing on Google Play, replace them with an original design under the same file names (`logo.png`, `app-icon-1024.png`, `play-icon-512.png`, `feature-graphic-1024x500.png`) so no code change is needed.
 ## Still missing
 
 - `logo.svg` (a clean vector export was not available).
