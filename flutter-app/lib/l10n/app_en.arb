@@ -1,0 +1,14 @@
+{
+  "@@locale": "en",
+  "appName": "Vesta",
+  "tabExplore": "Explore",
+  "tabSearch": "Search",
+  "tabMap": "Map",
+  "tabFavorites": "Favorites",
+  "tabProfile": "Profile",
+  "notificationsTitle": "Notifications",
+  "chatTitle": "Messages",
+  "loginTitle": "Sign in",
+  "comingSoon": "Coming soon",
+  "languageLabel": "Language"
+}
