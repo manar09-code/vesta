@@ -1,66 +1,38 @@
-# Vesta — React Native app (VST-22)
+# Vesta React Native app (VST-63)
 
-Point de départ React Native de Vesta : une application « hello world »
-qui démarre sur Expo (SDK 57) et s'ouvre dans **Expo Go**.
+The React Native app uses Expo SDK 57, TypeScript, and the Firebase JavaScript SDK so it can run in Expo Go.
 
-- **Package Android / bundle iOS** : `com.vesta.rnapp` (celui enregistré
-  dans Firebase).
-- Aucun écran ni contrôleur pour l'instant : ils arrivent en Sprint 2
-  avec la structure commune `screen → controller → repository → service`
-  (voir C4 niveau 4).
-
-## Démarrer
+## Run the app
 
 ```sh
 npm install
-
-npm start          # Metro / serveur Expo (clear cache : npm start -- -c)
+Copy-Item .env.example .env
+# Fill the EXPO_PUBLIC_FIREBASE_* values in .env when connecting to a Firebase project.
+npm start
 ```
 
-Scanne le QR code affiché avec **Expo Go** (même Wi-Fi que le PC), ou saisis
-`exp://<IP-du-pc>:8081` manuellement dans l'application.
+Open the QR code with Expo Go on the same network as the development computer. Firebase credentials are read from `.env`; never commit `.env`, real keys, `google-services.json`, or signing keystores.
 
-Build natif classique (sans Expo Go) : `npm run android` / `npm run ios`.
+## Project structure and screen rules
 
-## Tests
+- `src/core/` contains the theme, configuration, translations, and shared components.
+- `src/data/` contains Firebase initialization, models, and repositories.
+- `src/features/` contains one module per product area: auth, listings, search, map, chat, favorites, profile, and notifications.
+- `src/navigation/` contains the native stack navigators and the authentication guard.
+
+Use this call flow: **Screen → Controller (hook or context) → Repository → Firebase**. A screen must never call Firebase directly. Keep visual colors in `src/core/theme.ts` and display all screen text with translation keys.
+
+React Navigation native stack is used because it provides native stack transitions and supports separate auth and main flows. The root guard selects the auth stack when signed out and the main stack when signed in. The current auth controller is a signed-in placeholder so the home skeleton is visible; replace that value when authentication is implemented.
+
+## Translations and language switching
+
+Translations live in `src/core/translations/en.ts`, `fr.ts`, and `ar.ts`. To add a translation key, add the same key to all three files, then use it through `AppText`'s `translationKey` or `useTranslation()` in a screen. Do not add user-facing strings directly to screens or components. The initial language follows the phone language when it is English, French, or Arabic; other phone languages fall back to English.
+
+Arabic uses right-to-left layout. The language selector saves the selected language. Changing between Arabic and a left-to-right language updates the native layout direction and reloads the app to apply it; this reload is required on Android. The selected language is restored after reload.
+
+## Checks
 
 ```sh
-npm test     # Jest
 npx tsc --noEmit
+npm test
 ```
-## Test carte OSM dans Expo Go (VST-19)
-
-**Date :** 12/10/2026
-**Appareil :** Redmi (Android), Expo Go, SDK 57
-**Paquet testé :** react-native-maps 1.27.2
-
-### Résultat
-
-La carte ne s'affiche pas sur Android dans Expo Go. Le journal Android
-(`adb logcat`) montre une erreur « Authorization failure » du Google
-Android Maps SDK pour le package `host.exp.exponent` (Expo Go).
-
-### Explication
-
-Sur Android, react-native-maps utilise le SDK Google Maps, même avec
-`mapType="none"` et des tuiles OSM (`UrlTile`). Expo Go embarque une clé
-restreinte à son propre package, qui ne peut pas être utilisée par Vesta.
-
-### Ce que ce test ne prouve pas
-
-Il ne dit rien sur une version compilée de l'app avec une clé Vesta
-restreinte (package + SHA-1). Ce test reste à faire en Sprint 1.
-
-### Options pour la suite
-
-1. Compilation native + clé Google restreinte (plan initial VST-19).
-2. Carte OSM avec Leaflet dans une WebView (devrait fonctionner dans Expo Go (non testé)).
-3. MapLibre (OSM sans Google), qui demande une compilation native.
-
-### Dépannage rencontré
-
-Si Expo Go affiche « Cannot connect to Expo CLI » (téléphone en 4G ou
-Wi-Fi partagé) : lancer `adb reverse tcp:8081 tcp:8081`, puis ouvrir
-`exp://localhost:8081` dans Expo Go.
-
-Aucune clé API n'est stockée dans le dépôt.
