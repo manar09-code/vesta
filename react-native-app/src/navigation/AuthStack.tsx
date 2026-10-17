@@ -6,5 +6,9 @@ export type AuthStackParamList = { Auth: undefined };
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 export function AuthStack(): React.JSX.Element {
-  return <Stack.Navigator screenOptions={{ headerShown: false }}><Stack.Screen name="Auth" component={AuthScreen} /></Stack.Navigator>;
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Auth" component={AuthScreen} />
+    </Stack.Navigator>
+  );
 }

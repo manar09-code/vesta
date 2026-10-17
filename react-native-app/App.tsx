@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider, useAuth } from './src/features/auth/authController';
 import { AppText } from './src/core/components/AppText';
@@ -11,7 +11,11 @@ import { MainStack } from './src/navigation/MainStack';
 
 function RootNavigation(): React.JSX.Element {
   const { isSignedIn } = useAuth();
-  return <NavigationContainer>{isSignedIn ? <MainStack /> : <AuthStack />}</NavigationContainer>;
+  return (
+    <NavigationContainer>
+      {isSignedIn ? <MainStack /> : <AuthStack />}
+    </NavigationContainer>
+  );
 }
 
 export default function App(): React.JSX.Element {
@@ -26,7 +30,7 @@ export default function App(): React.JSX.Element {
         {ready ? (
           <RootNavigation />
         ) : (
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: theme.colors.background }}>
+          <View style={styles.loading}>
             <ActivityIndicator color={theme.colors.primary} />
             <AppText translationKey="loading" />
           </View>
@@ -35,3 +39,12 @@ export default function App(): React.JSX.Element {
     </I18nextProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  loading: {
+    alignItems: 'center',
+    backgroundColor: theme.colors.background,
+    flex: 1,
+    justifyContent: 'center',
+  },
+});

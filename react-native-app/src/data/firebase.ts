@@ -20,4 +20,6 @@ const firebaseConfig = {
   appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID ?? '',
 };
 
-export const firebaseApp: FirebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
+export const firebaseApp: FirebaseApp = getApps().length
+  ? getApp()
+  : initializeApp(firebaseConfig);

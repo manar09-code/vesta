@@ -12,14 +12,38 @@ export function HomeScreen(): React.JSX.Element {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <AppText translationKey="appName" style={styles.title} />
-      <AppText translationKey="homePriceExample" values={{ price: formatPrice(450000) }} />
+      <AppText
+        translationKey="homePriceExample"
+        values={{ price: formatPrice(450000) }}
+      />
       <AppText translationKey="language" style={styles.languageLabel} />
       <View style={styles.languages}>
         {appConfig.supportedLanguages.map(language => (
-          <PrimaryButton key={language} labelKey={`language${language.toUpperCase()}`} onPress={() => void changeAppLanguage(language)} accessibilityLabel={t('language')} />
+          <PrimaryButton
+            key={language}
+            labelKey={`language${language.toUpperCase()}`}
+            onPress={() => changeAppLanguage(language)}
+            accessibilityLabel={t('language')}
+          />
         ))}
       </View>
     </ScrollView>
   );
 }
-const styles = StyleSheet.create({ container: { alignItems: 'center', backgroundColor: theme.colors.background, flexGrow: 1, gap: theme.spacing.lg, justifyContent: 'center', padding: theme.spacing.lg }, title: { color: theme.colors.primary, fontSize: theme.fontSizes.heading, fontWeight: '700' }, languageLabel: { marginTop: theme.spacing.lg }, languages: { flexDirection: 'row', gap: theme.spacing.sm } });
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    backgroundColor: theme.colors.background,
+    flexGrow: 1,
+    gap: theme.spacing.lg,
+    justifyContent: 'center',
+    padding: theme.spacing.lg,
+  },
+  title: {
+    color: theme.colors.primary,
+    fontSize: theme.fontSizes.heading,
+    fontWeight: '700',
+  },
+  languageLabel: { marginTop: theme.spacing.lg },
+  languages: { flexDirection: 'row', gap: theme.spacing.sm },
+});

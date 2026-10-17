@@ -11,12 +11,20 @@ import ar from './translations/ar';
 
 export { i18n };
 const savedLanguageKey = 'vesta.language';
-const resources = { en: { translation: en }, fr: { translation: fr }, ar: { translation: ar } };
+const resources = {
+  en: { translation: en },
+  fr: { translation: fr },
+  ar: { translation: ar },
+};
 const phoneLanguage = Localization.getLocales()[0]?.languageCode ?? 'en';
 
-void i18n.use(initReactI18next).init({
+i18n.use(initReactI18next).init({
   resources,
-  lng: appConfig.supportedLanguages.includes(phoneLanguage as (typeof appConfig.supportedLanguages)[number]) ? phoneLanguage : 'en',
+  lng: appConfig.supportedLanguages.includes(
+    phoneLanguage as (typeof appConfig.supportedLanguages)[number],
+  )
+    ? phoneLanguage
+    : 'en',
   fallbackLng: 'en',
   interpolation: { escapeValue: false },
   compatibilityJSON: 'v4',
@@ -24,9 +32,17 @@ void i18n.use(initReactI18next).init({
 
 export async function initializeLanguage(): Promise<void> {
   const savedLanguage = await AsyncStorage.getItem(savedLanguageKey);
-  const language = savedLanguage && appConfig.supportedLanguages.includes(savedLanguage as (typeof appConfig.supportedLanguages)[number])
-    ? savedLanguage
-    : (appConfig.supportedLanguages.includes(phoneLanguage as (typeof appConfig.supportedLanguages)[number]) ? phoneLanguage : 'en');
+  const language =
+    savedLanguage &&
+    appConfig.supportedLanguages.includes(
+      savedLanguage as (typeof appConfig.supportedLanguages)[number],
+    )
+      ? savedLanguage
+      : appConfig.supportedLanguages.includes(
+          phoneLanguage as (typeof appConfig.supportedLanguages)[number],
+        )
+      ? phoneLanguage
+      : 'en';
   await i18n.changeLanguage(language);
   const shouldUseRTL = language === 'ar';
   if (I18nManager.isRTL !== shouldUseRTL) {
@@ -36,7 +52,9 @@ export async function initializeLanguage(): Promise<void> {
   }
 }
 
-export async function changeAppLanguage(language: (typeof appConfig.supportedLanguages)[number]): Promise<void> {
+export async function changeAppLanguage(
+  language: (typeof appConfig.supportedLanguages)[number],
+): Promise<void> {
   const directionChanged = (i18n.language === 'ar') !== (language === 'ar');
   await AsyncStorage.setItem(savedLanguageKey, language);
   await i18n.changeLanguage(language);
