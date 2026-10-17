@@ -7,32 +7,34 @@ class AppTheme {
 
   static ThemeData get light {
     final scheme = ColorScheme.fromSeed(
-      seedColor: AppColors.doorBlue,
+      seedColor: AppColors.primary,
       brightness: Brightness.light,
     ).copyWith(
-      primary: AppColors.doorBlue,
+      primary: AppColors.primary,
       onPrimary: Colors.white,
-      secondary: AppColors.sky,
+      secondary: AppColors.terracotta,
       tertiary: AppColors.navy,
+      onSurfaceVariant: AppColors.grey,
+      outlineVariant: AppColors.border,
     );
 
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
-      scaffoldBackgroundColor: AppColors.cream,
+      scaffoldBackgroundColor: AppColors.background,
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.cream,
+        backgroundColor: AppColors.background,
         foregroundColor: AppColors.navy,
         elevation: 0,
         centerTitle: true,
       ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: Colors.white,
-        indicatorColor: AppColors.doorBlue.withValues(alpha: 0.15),
+        indicatorColor: AppColors.primary.withValues(alpha: 0.15),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          backgroundColor: AppColors.doorBlue,
+          backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
         ),
       ),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-/// Brand colors taken from the Vesta logo (Tunisian blue door).
-/// Draft values: update here only when the final palette is validated (VST-65).
+/// Brand colors from the approved Figma mockups (Vesta mockups file).
 class AppColors {
   AppColors._();
 
-  static const Color doorBlue = Color(0xFF326494); // primary
-  static const Color navy = Color(0xFF182850); // dark text and shadows
-  static const Color sky = Color(0xFF40A0D8); // accent
-  static const Color cream = Color(0xFFF7F3EB); // app background
+  static const Color primary = Color(0xFF176AAB);
+  static const Color navy = Color(0xFF20394A);
+  static const Color terracotta = Color(0xFFA65D42);
+  static const Color sand = Color(0xFFF0E7DA);
+  static const Color background = Color(0xFFF7F3EB);
+  static const Color grey = Color(0xFF6B777B);
+  static const Color border = Color(0xFFE5E5DF);
 }
