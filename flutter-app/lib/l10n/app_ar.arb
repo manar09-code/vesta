@@ -1,0 +1,14 @@
+{
+  "@@locale": "ar",
+  "appName": "Vesta",
+  "tabExplore": "اكتشف",
+  "tabSearch": "بحث",
+  "tabMap": "الخريطة",
+  "tabFavorites": "المفضلة",
+  "tabProfile": "حسابي",
+  "notificationsTitle": "الإشعارات",
+  "chatTitle": "الرسائل",
+  "loginTitle": "تسجيل الدخول",
+  "comingSoon": "قريبا",
+  "languageLabel": "اللغة"
+}
