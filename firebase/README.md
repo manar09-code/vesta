@@ -17,6 +17,10 @@ The Emulator UI ignores the rules when you write data by hand: use the tests to 
 ### What the tests cover (45 tests)
 Listings (3-letter currency, rentPeriod only for rent, propertyType list, photoCount 0 to 5), photos (ids p0 to p4, any free id, owner only, size limit, batch with the listing), private contact, favorites, conversations (id {listingId}_{buyerId}, other participant = listing owner, participantIds and listingId immutable), messages (no edit or delete).
 
+### Auth and users tests (VST-34)
+`tests/auth.test.js` (24 tests) covers the sign-in and `users` rules: a signed-out user can do nothing, a signed-in user can read public profiles, sign-up creates only `users/{uid}` and `users/{uid}/private/contact` for the user's own uid, nobody can update or delete another user's data, `displayName` and `photoBase64` are validated, and any collection not described in the data model is refused.
+`npm test` runs both test files one after the other (same emulator, same project id).
+
 ### Known limits
 - Rules check that photoCount is between 0 and 5, not that it equals the real number of photos.
 - Deleting a listing without deleting its photos in the same batch leaves orphan photos (the app must delete them).
