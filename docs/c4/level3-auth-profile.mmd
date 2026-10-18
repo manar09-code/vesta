@@ -1,0 +1,53 @@
+%% C4 level 3: Auth and Profile components of the Flutter app (VST-27)
+%% Rule: Screen -> Controller -> Repository -> Firebase. A screen never talks to Firebase directly.
+flowchart TB
+  subgraph APP["Vesta Flutter app: Auth and Profile modules"]
+    direction TB
+    subgraph SCREENS["Screens"]
+      direction LR
+      Login["<b>LoginScreen</b><br/>Email and password form"]
+      SignUp["<b>SignUpScreen</b><br/>Name, email and password form"]
+      Profile["<b>ProfileScreen</b><br/>Shows the profile, language selector, log out"]
+      EditProfile["<b>EditProfileScreen</b><br/>Form to change name, photo and phone"]
+    end
+    subgraph CONTROLLERS["Controllers"]
+      direction LR
+      AuthC["<b>AuthController</b><br/>Sign-in state, input checks, sign up, log in, log out"]
+      ProfileC["<b>ProfileController</b><br/>Loads and saves the profile, loading and error states"]
+    end
+    subgraph REPOSITORIES["Repositories"]
+      direction LR
+      AuthR["<b>AuthRepository</b><br/>Wraps Firebase Auth: sign up, log in, log out, session"]
+      UserR["<b>UserRepository</b><br/>Reads and writes the users collection"]
+    end
+  end
+
+  subgraph FIREBASE["Firebase (shared backend)"]
+    direction LR
+    FAuth["<b>Firebase Auth</b><br/>Accounts and sessions"]
+    FStore["<b>Firestore</b><br/>users/{uid}<br/>users/{uid}/private/contact"]
+  end
+
+  Login -->|"log in"| AuthC
+  SignUp -->|"sign up"| AuthC
+  Profile -->|"log out"| AuthC
+  Profile -->|"load profile"| ProfileC
+  EditProfile -->|"save profile"| ProfileC
+
+  AuthC -->|"sign up, log in, log out"| AuthR
+  AuthC -->|"create profile after sign up"| UserR
+  ProfileC -->|"read and update profile"| UserR
+  ProfileC -->|"current user id"| AuthR
+
+  AuthR -->|"Firebase Auth SDK"| FAuth
+  UserR -->|"Firestore SDK"| FStore
+
+  classDef component fill:#e8e8fb,stroke:#5b5bd6,stroke-width:1.5px,color:#1c1c4a;
+  classDef external fill:#f1eee8,stroke:#8a8578,stroke-width:1.5px,color:#2a2a2a;
+  class Login,SignUp,Profile,EditProfile,AuthC,ProfileC,AuthR,UserR component;
+  class FAuth,FStore external;
+  style APP fill:#ffffff,stroke:#5b5bd6,stroke-width:1.5px,stroke-dasharray:6 4;
+  style FIREBASE fill:#ffffff,stroke:#8a8578,stroke-width:1.5px,stroke-dasharray:6 4;
+  style SCREENS fill:#fbfbff,stroke:#b9b9ea,stroke-dasharray:3 3;
+  style CONTROLLERS fill:#fbfbff,stroke:#b9b9ea,stroke-dasharray:3 3;
+  style REPOSITORIES fill:#fbfbff,stroke:#b9b9ea,stroke-dasharray:3 3;
