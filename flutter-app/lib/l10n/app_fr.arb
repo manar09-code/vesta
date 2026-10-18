@@ -10,5 +10,21 @@
   "chatTitle": "Messages",
   "loginTitle": "Connexion",
   "comingSoon": "Bientôt disponible",
-  "languageLabel": "Langue"
+  "languageLabel": "Langue",
+  "authEmailLabel": "Email",
+  "authPasswordLabel": "Mot de passe",
+  "authDisplayNameLabel": "Nom complet",
+  "authLoginButton": "Se connecter",
+  "authSignUpTitle": "Créer un compte",
+  "authSignUpButton": "Inscription",
+  "authGoToSignUp": "Pas de compte ? Inscrivez-vous",
+  "authGoToLogin": "Déjà un compte ? Connectez-vous",
+  "authLogoutButton": "Se déconnecter",
+  "authErrorInvalidEmail": "Entrez une adresse email valide",
+  "authErrorPasswordShort": "Le mot de passe doit contenir au moins 8 caractères",
+  "authErrorNameRequired": "Entrez votre nom",
+  "authErrorEmailInUse": "Cet email est déjà utilisé",
+  "authErrorWrongPassword": "Email ou mot de passe incorrect",
+  "authErrorNoNetwork": "Pas de connexion internet",
+  "authErrorUnknown": "Une erreur est survenue, réessayez"
 }

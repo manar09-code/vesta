@@ -165,6 +165,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language'**
   String get languageLabel;
+
+  /// No description provided for @authEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get authEmailLabel;
+
+  /// No description provided for @authPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get authPasswordLabel;
+
+  /// No description provided for @authDisplayNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get authDisplayNameLabel;
+
+  /// No description provided for @authLoginButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get authLoginButton;
+
+  /// No description provided for @authSignUpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get authSignUpTitle;
+
+  /// No description provided for @authSignUpButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get authSignUpButton;
+
+  /// No description provided for @authGoToSignUp.
+  ///
+  /// In en, this message translates to:
+  /// **'No account yet? Sign up'**
+  String get authGoToSignUp;
+
+  /// No description provided for @authGoToLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Log in'**
+  String get authGoToLogin;
+
+  /// No description provided for @authLogoutButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get authLogoutButton;
+
+  /// No description provided for @authErrorInvalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email address'**
+  String get authErrorInvalidEmail;
+
+  /// No description provided for @authErrorPasswordShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must have at least 8 characters'**
+  String get authErrorPasswordShort;
+
+  /// No description provided for @authErrorNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get authErrorNameRequired;
+
+  /// No description provided for @authErrorEmailInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'This email is already used'**
+  String get authErrorEmailInUse;
+
+  /// No description provided for @authErrorWrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong email or password'**
+  String get authErrorWrongPassword;
+
+  /// No description provided for @authErrorNoNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection'**
+  String get authErrorNoNetwork;
+
+  /// No description provided for @authErrorUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong, please try again'**
+  String get authErrorUnknown;
 }
 
 class _AppLocalizationsDelegate

@@ -10,5 +10,21 @@
   "chatTitle": "Messages",
   "loginTitle": "Sign in",
   "comingSoon": "Coming soon",
-  "languageLabel": "Language"
+  "languageLabel": "Language",
+  "authEmailLabel": "Email",
+  "authPasswordLabel": "Password",
+  "authDisplayNameLabel": "Full name",
+  "authLoginButton": "Log in",
+  "authSignUpTitle": "Create account",
+  "authSignUpButton": "Sign up",
+  "authGoToSignUp": "No account yet? Sign up",
+  "authGoToLogin": "Already have an account? Log in",
+  "authLogoutButton": "Log out",
+  "authErrorInvalidEmail": "Enter a valid email address",
+  "authErrorPasswordShort": "Password must have at least 8 characters",
+  "authErrorNameRequired": "Enter your name",
+  "authErrorEmailInUse": "This email is already used",
+  "authErrorWrongPassword": "Wrong email or password",
+  "authErrorNoNetwork": "No internet connection",
+  "authErrorUnknown": "Something went wrong, please try again"
 }

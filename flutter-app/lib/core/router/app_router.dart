@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/auth/auth_controller.dart';
 import '../../features/auth/login_screen.dart';
+import '../../features/auth/sign_up_screen.dart';
 import '../../features/chat/chat_screen.dart';
 import '../../features/favorites/favorites_screen.dart';
 import '../../features/listings/listings_screen.dart';
@@ -18,63 +21,88 @@ abstract class AppRoutes {
   static const favorites = '/favorites';
   static const profile = '/profile';
   static const login = '/login';
+  static const signup = '/signup';
   static const chat = '/chat';
   static const notifications = '/notifications';
 }
 
-final GoRouter appRouter = GoRouter(
-  initialLocation: AppRoutes.explore,
-  routes: [
-    StatefulShellRoute.indexedStack(
-      builder: (context, state, shell) => _MainShell(shell: shell),
-      branches: [
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: AppRoutes.explore,
-            builder: (context, state) => const ListingsScreen(),
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: AppRoutes.search,
-            builder: (context, state) => const SearchScreen(),
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: AppRoutes.map,
-            builder: (context, state) => const MapScreen(),
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: AppRoutes.favorites,
-            builder: (context, state) => const FavoritesScreen(),
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: AppRoutes.profile,
-            builder: (context, state) => const ProfileScreen(),
-          ),
-        ]),
-      ],
-    ),
-    GoRoute(
-      path: AppRoutes.login,
-      builder: (context, state) => const _SubPage(child: LoginScreen()),
-    ),
-    GoRoute(
-      path: AppRoutes.chat,
-      builder: (context, state) => const _SubPage(child: ChatScreen()),
-    ),
-    GoRoute(
-      path: AppRoutes.notifications,
-      builder: (context, state) =>
-          const _SubPage(child: NotificationsScreen()),
-    ),
-  ],
-);
+/// Router with the auth guard: signed-out users go to Login,
+/// signed-in users are kept away from Login and Sign up.
+final appRouterProvider = Provider<GoRouter>((ref) {
+  final refresh = ValueNotifier<int>(0);
+  ref.listen(authStateProvider, (previous, next) => refresh.value++);
+  ref.onDispose(refresh.dispose);
+
+  return GoRouter(
+    initialLocation: AppRoutes.explore,
+    refreshListenable: refresh,
+    redirect: (context, state) {
+      final auth = ref.read(authStateProvider);
+      if (auth.isLoading) return null; // wait for the first auth state
+      final signedIn = auth.value != null;
+      final location = state.matchedLocation;
+      final onAuthPage =
+          location == AppRoutes.login || location == AppRoutes.signup;
+      if (!signedIn && !onAuthPage) return AppRoutes.login;
+      if (signedIn && onAuthPage) return AppRoutes.explore;
+      return null;
+    },
+    routes: [
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, shell) => _MainShell(shell: shell),
+        branches: [
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.explore,
+              builder: (context, state) => const ListingsScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.search,
+              builder: (context, state) => const SearchScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.map,
+              builder: (context, state) => const MapScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.favorites,
+              builder: (context, state) => const FavoritesScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.profile,
+              builder: (context, state) => const ProfileScreen(),
+            ),
+          ]),
+        ],
+      ),
+      GoRoute(
+        path: AppRoutes.login,
+        builder: (context, state) => const _SubPage(child: LoginScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.signup,
+        builder: (context, state) => const _SubPage(child: SignUpScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.chat,
+        builder: (context, state) => const _SubPage(child: ChatScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.notifications,
+        builder: (context, state) =>
+            const _SubPage(child: NotificationsScreen()),
+      ),
+    ],
+  );
+});
 
 /// Bottom navigation shared by the 5 main tabs.
 class _MainShell extends StatelessWidget {
