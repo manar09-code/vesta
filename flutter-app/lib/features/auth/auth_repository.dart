@@ -36,16 +36,17 @@ class AuthRepository {
     required String password,
     required String displayName,
   }) async {
+    User? created;
     try {
       final credential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      final user = credential.user!;
-      await user.updateDisplayName(displayName);
+      created = credential.user!;
+      await created.updateDisplayName(displayName);
 
       // Data model v3: public profile + private contact, one batch write.
-      final userRef = _db.collection('users').doc(user.uid);
+      final userRef = _db.collection('users').doc(created.uid);
       final batch = _db.batch();
       batch.set(userRef, {
         'displayName': displayName,
@@ -56,13 +57,24 @@ class AuthRepository {
       });
       await batch.commit();
     } on FirebaseAuthException catch (e) {
+      await _rollback(created);
       throw AuthFailure(_mapAuthCode(e.code));
     } on FirebaseException catch (e) {
       // Firestore error (for example no network or rules not deployed yet).
+      // The Auth account would stay without a profile, so remove it.
+      await _rollback(created);
       throw AuthFailure(
         e.code == 'unavailable' ? AuthError.noNetwork : AuthError.unknown,
       );
     }
+  }
+
+  /// Deletes the just-created Auth account so a retry does not fail with
+  /// "email already in use". Never hides the original error.
+  Future<void> _rollback(User? user) async {
+    try {
+      await user?.delete();
+    } catch (_) {}
   }
 
   Future<void> signIn(String email, String password) async {
