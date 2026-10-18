@@ -3,8 +3,13 @@
     "name": "Vesta",
     "slug": "vesta",
     "version": "0.0.1",
-    "plugins": [
-      "expo-localization"
-    ]
+    "icon": "./assets/icon.png",
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#176AAB"
+      }
+    },
+    "plugins": ["expo-localization"]
   }
 }
