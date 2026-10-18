@@ -10,5 +10,21 @@
   "chatTitle": "الرسائل",
   "loginTitle": "تسجيل الدخول",
   "comingSoon": "قريبا",
-  "languageLabel": "اللغة"
+  "languageLabel": "اللغة",
+  "authEmailLabel": "البريد الإلكتروني",
+  "authPasswordLabel": "كلمة السر",
+  "authDisplayNameLabel": "الاسم الكامل",
+  "authLoginButton": "دخول",
+  "authSignUpTitle": "إنشاء حساب",
+  "authSignUpButton": "تسجيل",
+  "authGoToSignUp": "ما عندكش حساب؟ سجّل",
+  "authGoToLogin": "عندك حساب؟ ادخل",
+  "authLogoutButton": "خروج",
+  "authErrorInvalidEmail": "أدخل بريد إلكتروني صحيح",
+  "authErrorPasswordShort": "كلمة السر لازم تكون 8 حروف على الأقل",
+  "authErrorNameRequired": "أدخل اسمك",
+  "authErrorEmailInUse": "البريد هذا مستعمل من قبل",
+  "authErrorWrongPassword": "البريد الإلكتروني أو كلمة السر غالطين",
+  "authErrorNoNetwork": "ما فماش اتصال بالإنترنت",
+  "authErrorUnknown": "صار مشكل، عاود جرّب"
 }

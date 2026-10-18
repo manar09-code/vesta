@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/config/locale_provider.dart';
 import '../../l10n/generated/app_localizations.dart';
+import '../auth/auth_controller.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -31,6 +32,11 @@ class ProfileScreen extends ConsumerWidget {
             onSelectionChanged: (selection) => ref
                 .read(localeProvider.notifier)
                 .setLocale(Locale(selection.first)),
+          ),
+          const SizedBox(height: 32),
+          FilledButton.tonal(
+            onPressed: () => ref.read(authControllerProvider.notifier).signOut(),
+            child: Text(l10n.authLogoutButton),
           ),
         ],
       ),
