@@ -1,9 +1,106 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Placeholder: deny everything until real rules are written (Sprint 1).
-    match /{document=**} {
-      allow read, write: if false;
+
+    function signedIn() { return request.auth != null; }
+    function isUser(uid) { return signedIn() && request.auth.uid == uid; }
+    function listingPath(id) {
+      return /databases/$(database)/documents/listings/$(id);
+    }
+    function convPath(id) {
+      return /databases/$(database)/documents/conversations/$(id);
+    }
+    function optNum(d, f) { return !(f in d) || d[f] is number; }
+
+    function validListing(d) {
+      return d.ownerId is string
+        && d.title is string
+        && d.description is string
+        && d.price is number
+        && d.currency is string && d.currency.size() == 3
+        && d.listingType in ['sale', 'rent']
+        && (d.listingType != 'rent' || d.rentPeriod in ['night', 'month', 'year'])
+        && d.propertyType in ['apartment', 'house', 'villa', 'studio', 'riad', 'guest_house']
+        && d.city is string
+        && d.photoCount is int && d.photoCount >= 0 && d.photoCount <= 5
+        && optNum(d, 'latitude') && optNum(d, 'longitude')
+        && optNum(d, 'bedrooms') && optNum(d, 'bathrooms')
+        && optNum(d, 'areaSqm');
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn();
+      allow create, update: if isUser(uid)
+        && request.resource.data.displayName is string
+        && (!('photoBase64' in request.resource.data)
+            || (request.resource.data.photoBase64 is string
+                && request.resource.data.photoBase64.size() < 280000));
+      allow delete: if isUser(uid);
+
+      match /private/contact {
+        allow read, write: if isUser(uid);
+      }
+    }
+
+    match /listings/{listingId} {
+      allow read: if signedIn();
+      allow create: if isUser(request.resource.data.ownerId)
+        && validListing(request.resource.data);
+      allow update: if isUser(resource.data.ownerId)
+        && request.resource.data.ownerId == resource.data.ownerId
+        && validListing(request.resource.data);
+      allow delete: if isUser(resource.data.ownerId);
+
+      match /photos/{photoId} {
+        allow read: if signedIn();
+        allow create: if photoId.matches('p[0-4]')
+          && isUser(getAfter(listingPath(listingId)).data.ownerId)
+          && request.resource.data.base64 is string
+          && request.resource.data.base64.size() < 280000;
+        allow update: if photoId.matches('p[0-4]')
+          && isUser(get(listingPath(listingId)).data.ownerId)
+          && request.resource.data.base64 is string
+          && request.resource.data.base64.size() < 280000;
+        allow delete: if photoId.matches('p[0-4]')
+          && isUser(get(listingPath(listingId)).data.ownerId);
+      }
+    }
+
+    match /favorites/{favId} {
+      allow read: if signedIn()
+        && (resource == null || resource.data.userId == request.auth.uid);
+      allow delete: if isUser(resource.data.userId);
+      allow create: if request.resource.data.listingId is string
+        && isUser(request.resource.data.userId)
+        && favId == request.auth.uid + '_' + request.resource.data.listingId;
+    }
+
+    match /conversations/{convId} {
+      allow read: if signedIn()
+        && (resource == null || request.auth.uid in resource.data.participantIds);
+
+      allow create: if signedIn()
+        && request.resource.data.listingId is string
+        && convId == request.resource.data.listingId + '_' + request.auth.uid
+        && request.resource.data.participantIds.size() == 2
+        && get(listingPath(request.resource.data.listingId)).data.ownerId != request.auth.uid
+        && request.resource.data.participantIds.hasAll(
+             [request.auth.uid, get(listingPath(request.resource.data.listingId)).data.ownerId]);
+
+      allow update: if signedIn()
+        && request.auth.uid in resource.data.participantIds
+        && request.resource.data.participantIds == resource.data.participantIds
+        && request.resource.data.listingId == resource.data.listingId;
+
+      match /messages/{msgId} {
+        allow read: if signedIn()
+          && request.auth.uid in get(convPath(convId)).data.participantIds;
+        allow create: if signedIn()
+          && request.auth.uid in getAfter(convPath(convId)).data.participantIds
+          && request.resource.data.senderId == request.auth.uid
+          && request.resource.data.text is string;
+        allow update, delete: if false;
+      }
     }
   }
 }
