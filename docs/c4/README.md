@@ -12,19 +12,20 @@ Sources are Mermaid files. To redraw a PNG: `npx -p @mermaid-js/mermaid-cli mmdc
 
 How to read the diagram:
 
-- The big dashed frame is the Flutter app. It has three layers, from top to bottom: screens, controllers, repositories.
+- The big dashed frame is the Flutter app. Screens are at the top, then controllers, then repositories. The Firebase services are outside the frame.
+- Every box shows its type between brackets: `[Component: Flutter screen]`, `[Component: Riverpod controller]`, `[Component: Repository]`, `[External system]`. A small legend at the bottom explains the colors.
 - Arrows show who calls whom. The rule is Screen -> Controller -> Repository -> Firebase. A screen never talks to Firebase directly.
-- The beige boxes are external systems we do not build: Firebase Auth and Firestore.
-- Component names are the names we use in the code. The React Native app uses the same names (same modules, same layers).
-- Data names come from `docs/data-model.md`: `users/{uid}` (public profile) and `users/{uid}/private/contact` (email and phone).
+- Component names are the names we use in the code. The React Native app uses the same names and layers (its controllers are hooks or contexts).
+- Data names come from the data model (`docs/data-model.md`, VST-30): `users/{uid}` (public profile) and `users/{uid}/private/contact` (email and phone).
+- One arrow crossing remains on purpose: both controllers use both repositories (`AuthController` and `ProfileController` call `AuthRepository` and `UserRepository`), so the arrows cannot all be drawn without a crossing while keeping the layers.
 
-| Component | Responsibility |
-|---|---|
-| `LoginScreen` | Email and password form. |
-| `SignUpScreen` | Name, email and password form. |
-| `ProfileScreen` | Shows the profile, the language selector and the log out button. |
-| `EditProfileScreen` | Form to change name, photo and phone. |
-| `AuthController` | Keeps the sign-in state, checks the input, runs sign up, log in and log out. |
-| `ProfileController` | Loads and saves the profile, handles loading and error states. |
-| `AuthRepository` | Wraps Firebase Auth: sign up, log in, log out, session. |
-| `UserRepository` | Reads and writes `users/{uid}` and `users/{uid}/private/contact` in Firestore. |
+| Component | Type | Responsibility |
+|---|---|---|
+| `LoginScreen` | Flutter screen | Email and password form. |
+| `SignUpScreen` | Flutter screen | Name, email and password form. |
+| `ProfileScreen` | Flutter screen | Shows the profile, the language selector and the log out button. |
+| `EditProfileScreen` | Flutter screen | Form to change name, photo and phone. |
+| `AuthController` | Riverpod controller | Keeps the sign-in state, checks the input, runs sign up, log in and log out, and asks `UserRepository` to create the profile after sign up. |
+| `ProfileController` | Riverpod controller | Loads and saves the profile, handles loading and error states, gets the current user id from `AuthRepository`. |
+| `AuthRepository` | Repository | Wraps Firebase Auth: sign up, log in, log out, session. |
+| `UserRepository` | Repository | Reads and writes `users/{uid}` and `users/{uid}/private/contact` in Firestore. |
