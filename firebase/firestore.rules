@@ -12,6 +12,11 @@ service cloud.firestore {
     }
     function optNum(d, f) { return !(f in d) || d[f] is number; }
 
+    // VST-71 : createdAt ne doit pas changer lors d'une modification
+    function createdAtUnchanged() {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(['createdAt']);
+    }
+
     function validListing(d) {
       return d.ownerId is string
         && d.title is string
@@ -28,17 +33,32 @@ service cloud.firestore {
         && optNum(d, 'areaSqm');
     }
 
+    function validProfile(d) {
+      return d.displayName is string
+        && (!('photoBase64' in d)
+            || (d.photoBase64 is string
+                && d.photoBase64.size() < 280000));
+    }
+
+    // VST-71 : email obligatoire en texte, phone en texte s'il est present
+    function validContact(d) {
+      return d.email is string
+        && (!('phone' in d) || d.phone is string);
+    }
+
     match /users/{uid} {
       allow read: if signedIn();
-      allow create, update: if isUser(uid)
-        && request.resource.data.displayName is string
-        && (!('photoBase64' in request.resource.data)
-            || (request.resource.data.photoBase64 is string
-                && request.resource.data.photoBase64.size() < 280000));
+      allow create: if isUser(uid)
+        && validProfile(request.resource.data);
+      allow update: if isUser(uid)
+        && validProfile(request.resource.data)
+        && createdAtUnchanged();
       allow delete: if isUser(uid);
 
       match /private/contact {
-        allow read, write: if isUser(uid);
+        allow read, delete: if isUser(uid);
+        allow create, update: if isUser(uid)
+          && validContact(request.resource.data);
       }
     }
 
@@ -48,7 +68,8 @@ service cloud.firestore {
         && validListing(request.resource.data);
       allow update: if isUser(resource.data.ownerId)
         && request.resource.data.ownerId == resource.data.ownerId
-        && validListing(request.resource.data);
+        && validListing(request.resource.data)
+        && createdAtUnchanged();
       allow delete: if isUser(resource.data.ownerId);
 
       match /photos/{photoId} {
@@ -100,7 +121,8 @@ service cloud.firestore {
         allow create: if signedIn()
           && request.auth.uid in getAfter(convPath(convId)).data.participantIds
           && request.resource.data.senderId == request.auth.uid
-          && request.resource.data.text is string;
+          && request.resource.data.text is string
+          && request.resource.data.text.size() <= 2000;
         allow update, delete: if false;
       }
     }

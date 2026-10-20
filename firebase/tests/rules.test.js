@@ -239,6 +239,41 @@ test('message modifie : refuse', async () => {
 test('message supprime : refuse', async () => {
   await assertFails(deleteDoc(doc(as('bob'), 'conversations/l1_bob/messages/m0')));
 });
+
+// ---------- hardening (VST-71) ----------
+test('message de 2000 caracteres : OK', async () => {
+  await assertSucceeds(setDoc(doc(as('bob'), 'conversations/l1_bob/messages/m1'),
+    { senderId: 'bob', text: 'a'.repeat(2000), createdAt: new Date() }));
+});
+test('message de 2001 caracteres : refuse', async () => {
+  await assertFails(setDoc(doc(as('bob'), 'conversations/l1_bob/messages/m1'),
+    { senderId: 'bob', text: 'a'.repeat(2001), createdAt: new Date() }));
+});
+test('profil : createdAt non modifiable', async () => {
+  await assertFails(updateDoc(doc(as('alice'), 'users/alice'), { createdAt: new Date() }));
+});
+test('contact : email qui n est pas un texte : refuse', async () => {
+  await assertFails(setDoc(doc(as('alice'), 'users/alice/private/contact'), { email: 12345 }));
+});
+test('contact : phone qui n est pas un texte : refuse', async () => {
+  await assertFails(setDoc(doc(as('alice'), 'users/alice/private/contact'),
+    { email: 'a@x.tn', phone: 12345 }));
+});
+test('contact : email seul : OK', async () => {
+  await assertSucceeds(setDoc(doc(as('alice'), 'users/alice/private/contact'),
+    { email: 'b@x.tn' }));
+});
+test('contact : email et phone en texte : OK', async () => {
+  await assertSucceeds(setDoc(doc(as('alice'), 'users/alice/private/contact'),
+    { email: 'b@x.tn', phone: '+21612345678' }));
+});
+test('annonce : createdAt non modifiable', async () => {
+  await assertFails(updateDoc(doc(as('alice'), 'listings/l1'), { createdAt: new Date() }));
+});
+test('annonce : le proprietaire modifie le titre : OK', async () => {
+  await assertSucceeds(updateDoc(doc(as('alice'), 'listings/l1'), { title: 'Nouveau titre' }));
+});
+
 // ---------- photos (VST-35) ----------
 test('photo lue par un utilisateur connecte : OK', async () => {
   await assertSucceeds(getDoc(doc(as('bob'), 'listings/l1/photos/p0')));
