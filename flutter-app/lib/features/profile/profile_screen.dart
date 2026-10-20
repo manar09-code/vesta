@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/config/locale_provider.dart';
+import '../../core/router/app_router.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../auth/auth_controller.dart';
 
@@ -34,6 +36,12 @@ class ProfileScreen extends ConsumerWidget {
                 .setLocale(Locale(selection.first)),
           ),
           const SizedBox(height: 32),
+          FilledButton.icon(
+            onPressed: () => context.push(AppRoutes.publish),
+            icon: const Icon(Icons.add_home_work_outlined),
+            label: Text(l10n.publishButton),
+          ),
+          const SizedBox(height: 12),
           FilledButton.tonal(
             onPressed: () => ref.read(authControllerProvider.notifier).signOut(),
             child: Text(l10n.authLogoutButton),
