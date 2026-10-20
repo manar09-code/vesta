@@ -239,3 +239,54 @@ test('message modifie : refuse', async () => {
 test('message supprime : refuse', async () => {
   await assertFails(deleteDoc(doc(as('bob'), 'conversations/l1_bob/messages/m0')));
 });
+// ---------- photos (VST-35) ----------
+test('photo lue par un utilisateur connecte : OK', async () => {
+  await assertSucceeds(getDoc(doc(as('bob'), 'listings/l1/photos/p0')));
+});
+test('photo lue sans etre connecte : refuse', async () => {
+  await assertFails(getDoc(doc(anon(), 'listings/l1/photos/p0')));
+});
+test('proprietaire ajoute la photo p1 : OK', async () => {
+  await assertSucceeds(setDoc(doc(as('alice'), 'listings/l1/photos/p1'),
+    { base64: 'abc', createdAt: new Date() }));
+});
+test('les cinq photos p0 a p4 avec photoCount 5 dans un lot : OK', async () => {
+  const db = as('alice');
+  const b = writeBatch(db);
+  for (const id of ['p1', 'p2', 'p3', 'p4']) {
+    b.set(doc(db, `listings/l1/photos/${id}`), { base64: 'abc', createdAt: new Date() });
+  }
+  b.update(doc(db, 'listings/l1'), { photoCount: 5 });
+  await assertSucceeds(b.commit());
+});
+test('photo p10 : refuse', async () => {
+  await assertFails(setDoc(doc(as('alice'), 'listings/l1/photos/p10'),
+    { base64: 'abc', createdAt: new Date() }));
+});
+test('photo avec un id libre (photo1) : refuse', async () => {
+  await assertFails(setDoc(doc(as('alice'), 'listings/l1/photos/photo1'),
+    { base64: 'abc', createdAt: new Date() }));
+});
+test('photo de 280000 caracteres exactement : OK', async () => {
+  await assertSucceeds(setDoc(doc(as('alice'), 'listings/l1/photos/p2'),
+    { base64: 'a'.repeat(280000), createdAt: new Date() }));
+});
+test('photo de 280001 caracteres : refuse', async () => {
+  await assertFails(setDoc(doc(as('alice'), 'listings/l1/photos/p2'),
+    { base64: 'a'.repeat(280001), createdAt: new Date() }));
+});
+test('photo sans champ base64 : refuse', async () => {
+  await assertFails(setDoc(doc(as('alice'), 'listings/l1/photos/p2'),
+    { createdAt: new Date() }));
+});
+test('photo avec un base64 qui n est pas un texte : refuse', async () => {
+  await assertFails(setDoc(doc(as('alice'), 'listings/l1/photos/p2'),
+    { base64: 12345, createdAt: new Date() }));
+});
+test('mise a jour d une photo par un autre utilisateur : refuse', async () => {
+  await assertFails(updateDoc(doc(as('bob'), 'listings/l1/photos/p0'), { base64: 'xyz' }));
+});
+test('photo avec un champ supplementaire volumineux : refuse', async () => {
+  await assertFails(setDoc(doc(as('alice'), 'listings/l1/photos/p2'),
+    { base64: 'abc', createdAt: new Date(), junk: 'a'.repeat(500000) }));
+});
