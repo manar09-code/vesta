@@ -90,4 +90,137 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get authErrorUnknown => 'Une erreur est survenue, réessayez';
+
+  @override
+  String get publishTitle => 'Publier une annonce';
+
+  @override
+  String get publishButton => 'Publier une annonce';
+
+  @override
+  String get publishSubmit => 'Publier';
+
+  @override
+  String get publishSuccess => 'Votre annonce a été publiée';
+
+  @override
+  String get publishFieldTitle => 'Titre';
+
+  @override
+  String get publishFieldDescription => 'Description';
+
+  @override
+  String get publishFieldPrice => 'Prix (TND)';
+
+  @override
+  String get publishFieldCity => 'Ville';
+
+  @override
+  String get publishFieldBedrooms => 'Chambres (facultatif)';
+
+  @override
+  String get publishFieldBathrooms => 'Salles de bain (facultatif)';
+
+  @override
+  String get publishFieldArea => 'Surface en m² (facultatif)';
+
+  @override
+  String get publishListingType => 'Type d\'annonce';
+
+  @override
+  String get publishTypeSale => 'À vendre';
+
+  @override
+  String get publishTypeRent => 'À louer';
+
+  @override
+  String get publishRentPeriod => 'Période de location';
+
+  @override
+  String get publishPeriodNight => 'Par nuit';
+
+  @override
+  String get publishPeriodMonth => 'Par mois';
+
+  @override
+  String get publishPeriodYear => 'Par an';
+
+  @override
+  String get publishPropertyType => 'Type de bien';
+
+  @override
+  String get propertyApartment => 'Appartement';
+
+  @override
+  String get propertyHouse => 'Maison';
+
+  @override
+  String get propertyVilla => 'Villa';
+
+  @override
+  String get propertyStudio => 'Studio';
+
+  @override
+  String get propertyRiad => 'Riad';
+
+  @override
+  String get propertyGuestHouse => 'Maison d\'hôtes';
+
+  @override
+  String get publishPhotosTitle => 'Photos (jusqu\'à 5)';
+
+  @override
+  String get publishAddFromGallery => 'Galerie';
+
+  @override
+  String get publishAddFromCamera => 'Appareil photo';
+
+  @override
+  String get publishRemovePhoto => 'Supprimer la photo';
+
+  @override
+  String get listingErrorTitleRequired => 'Entrez un titre';
+
+  @override
+  String get listingErrorDescriptionRequired => 'Entrez une description';
+
+  @override
+  String get listingErrorPriceInvalid => 'Entrez un prix supérieur ou égal à 0';
+
+  @override
+  String get listingErrorCityRequired => 'Entrez une ville';
+
+  @override
+  String get listingErrorRentPeriodRequired =>
+      'Choisissez une période de location';
+
+  @override
+  String get listingErrorNumberInvalid => 'Entrez un nombre valide';
+
+  @override
+  String get listingErrorNotSignedIn => 'Connectez-vous d\'abord';
+
+  @override
+  String get listingErrorNoPhotos => 'Ajoutez au moins une photo';
+
+  @override
+  String get listingErrorTooManyPhotos =>
+      'Vous pouvez ajouter 5 photos au maximum';
+
+  @override
+  String get listingErrorNoNetwork => 'Pas de connexion internet';
+
+  @override
+  String get listingErrorPermissionDenied =>
+      'Vous n\'avez pas le droit de faire cela';
+
+  @override
+  String get listingErrorUnknown => 'Une erreur est survenue, réessayez';
+
+  @override
+  String get photoErrorTooLarge =>
+      'Cette photo est trop lourde, choisissez-en une autre';
+
+  @override
+  String get photoErrorReadFailed => 'Impossible de lire cette photo';
 }

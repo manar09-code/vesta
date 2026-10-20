@@ -89,4 +89,133 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get authErrorUnknown => 'صار مشكل، عاود جرّب';
+
+  @override
+  String get publishTitle => 'انشر إعلان';
+
+  @override
+  String get publishButton => 'انشر إعلان';
+
+  @override
+  String get publishSubmit => 'نشر';
+
+  @override
+  String get publishSuccess => 'تم نشر الإعلان متاعك';
+
+  @override
+  String get publishFieldTitle => 'العنوان';
+
+  @override
+  String get publishFieldDescription => 'الوصف';
+
+  @override
+  String get publishFieldPrice => 'السوم (دينار)';
+
+  @override
+  String get publishFieldCity => 'المدينة';
+
+  @override
+  String get publishFieldBedrooms => 'عدد البيوت (اختياري)';
+
+  @override
+  String get publishFieldBathrooms => 'عدد بيوت الماء (اختياري)';
+
+  @override
+  String get publishFieldArea => 'المساحة بالمتر مربع (اختياري)';
+
+  @override
+  String get publishListingType => 'نوع الإعلان';
+
+  @override
+  String get publishTypeSale => 'للبيع';
+
+  @override
+  String get publishTypeRent => 'للكراء';
+
+  @override
+  String get publishRentPeriod => 'مدة الكراء';
+
+  @override
+  String get publishPeriodNight => 'في الليلة';
+
+  @override
+  String get publishPeriodMonth => 'في الشهر';
+
+  @override
+  String get publishPeriodYear => 'في العام';
+
+  @override
+  String get publishPropertyType => 'نوع العقار';
+
+  @override
+  String get propertyApartment => 'شقة';
+
+  @override
+  String get propertyHouse => 'دار';
+
+  @override
+  String get propertyVilla => 'فيلا';
+
+  @override
+  String get propertyStudio => 'ستوديو';
+
+  @override
+  String get propertyRiad => 'رياض';
+
+  @override
+  String get propertyGuestHouse => 'دار ضيافة';
+
+  @override
+  String get publishPhotosTitle => 'الصور (حتى 5)';
+
+  @override
+  String get publishAddFromGallery => 'المعرض';
+
+  @override
+  String get publishAddFromCamera => 'الكاميرا';
+
+  @override
+  String get publishRemovePhoto => 'احذف الصورة';
+
+  @override
+  String get listingErrorTitleRequired => 'أدخل العنوان';
+
+  @override
+  String get listingErrorDescriptionRequired => 'أدخل الوصف';
+
+  @override
+  String get listingErrorPriceInvalid => 'أدخل سوم يساوي 0 أو أكثر';
+
+  @override
+  String get listingErrorCityRequired => 'أدخل المدينة';
+
+  @override
+  String get listingErrorRentPeriodRequired => 'اختار مدة الكراء';
+
+  @override
+  String get listingErrorNumberInvalid => 'أدخل رقم صحيح';
+
+  @override
+  String get listingErrorNotSignedIn => 'سجّل الدخول قبل';
+
+  @override
+  String get listingErrorNoPhotos => 'زيد صورة على الأقل';
+
+  @override
+  String get listingErrorTooManyPhotos => 'تنجم تزيد 5 صور كحد أقصى';
+
+  @override
+  String get listingErrorNoNetwork => 'ما فماش اتصال بالإنترنت';
+
+  @override
+  String get listingErrorPermissionDenied => 'ما عندكش الصلاحية باش تعمل هذا';
+
+  @override
+  String get listingErrorUnknown => 'صار مشكل، عاود جرّب';
+
+  @override
+  String get photoErrorTooLarge => 'الصورة هذي كبيرة برشا، اختار وحدة أخرى';
+
+  @override
+  String get photoErrorReadFailed => 'ما نجمناش نقراو الصورة';
 }
