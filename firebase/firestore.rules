@@ -73,15 +73,17 @@ service cloud.firestore {
       allow delete: if isUser(resource.data.ownerId);
 
       match /photos/{photoId} {
+        function validPhoto(d) {
+          return d.keys().hasOnly(['base64', 'createdAt'])
+            && d.base64 is string
+            && d.base64.size() > 0
+            && d.base64.size() <= 280000;
+        }
+
         allow read: if signedIn();
-        allow create: if photoId.matches('p[0-4]')
+        allow create, update: if photoId.matches('p[0-4]')
           && isUser(getAfter(listingPath(listingId)).data.ownerId)
-          && request.resource.data.base64 is string
-          && request.resource.data.base64.size() < 280000;
-        allow update: if photoId.matches('p[0-4]')
-          && isUser(get(listingPath(listingId)).data.ownerId)
-          && request.resource.data.base64 is string
-          && request.resource.data.base64.size() < 280000;
+          && validPhoto(request.resource.data);
         allow delete: if photoId.matches('p[0-4]')
           && isUser(get(listingPath(listingId)).data.ownerId);
       }

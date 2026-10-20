@@ -26,3 +26,14 @@ Listings (3-letter currency, rentPeriod only for rent, propertyType list, photoC
 - Deleting a listing without deleting its photos in the same batch leaves orphan photos (the app must delete them).
 - The photo size limit is 280000 characters (about 200 KB once encoded in base64).
 - Search indexes are added with VST-40 (`firestore.indexes.json` is empty for now).
+
+## Photo contract for the app (VST-35)
+
+Photos of a listing live in `listings/{listingId}/photos/{photoId}`.
+
+- `photoId` must be `p0`, `p1`, `p2`, `p3` or `p4`. This enforces the maximum of 5 photos per listing. The id gives the display order (`p0` first). After a delete, a free id can be reused: the new photo then takes the position of that id.
+- Fields: `base64` (a string of 1 to 280000 characters, without the `data:image/...` prefix) and `createdAt`. No other field is accepted.
+- Compress on the phone before upload: about 800 px wide, JPEG, under 200 KB (about 273000 base64 characters).
+- Adding or deleting a photo and updating `photoCount` on the listing must be done in the same batch.
+- Deleting a listing: delete its photos in the same batch, otherwise they stay orphaned and nobody can delete them afterwards.
+- Only the owner of the listing writes photos. Any signed-in user can read them.
