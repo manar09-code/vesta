@@ -261,6 +261,264 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong, please try again'**
   String get authErrorUnknown;
+
+  /// No description provided for @publishTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish a listing'**
+  String get publishTitle;
+
+  /// No description provided for @publishButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish a listing'**
+  String get publishButton;
+
+  /// No description provided for @publishSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish'**
+  String get publishSubmit;
+
+  /// No description provided for @publishSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your listing has been published'**
+  String get publishSuccess;
+
+  /// No description provided for @publishFieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get publishFieldTitle;
+
+  /// No description provided for @publishFieldDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get publishFieldDescription;
+
+  /// No description provided for @publishFieldPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price (TND)'**
+  String get publishFieldPrice;
+
+  /// No description provided for @publishFieldCity.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get publishFieldCity;
+
+  /// No description provided for @publishFieldBedrooms.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedrooms (optional)'**
+  String get publishFieldBedrooms;
+
+  /// No description provided for @publishFieldBathrooms.
+  ///
+  /// In en, this message translates to:
+  /// **'Bathrooms (optional)'**
+  String get publishFieldBathrooms;
+
+  /// No description provided for @publishFieldArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Area in m² (optional)'**
+  String get publishFieldArea;
+
+  /// No description provided for @publishListingType.
+  ///
+  /// In en, this message translates to:
+  /// **'Listing type'**
+  String get publishListingType;
+
+  /// No description provided for @publishTypeSale.
+  ///
+  /// In en, this message translates to:
+  /// **'For sale'**
+  String get publishTypeSale;
+
+  /// No description provided for @publishTypeRent.
+  ///
+  /// In en, this message translates to:
+  /// **'For rent'**
+  String get publishTypeRent;
+
+  /// No description provided for @publishRentPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'Rent period'**
+  String get publishRentPeriod;
+
+  /// No description provided for @publishPeriodNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Per night'**
+  String get publishPeriodNight;
+
+  /// No description provided for @publishPeriodMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Per month'**
+  String get publishPeriodMonth;
+
+  /// No description provided for @publishPeriodYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Per year'**
+  String get publishPeriodYear;
+
+  /// No description provided for @publishPropertyType.
+  ///
+  /// In en, this message translates to:
+  /// **'Property type'**
+  String get publishPropertyType;
+
+  /// No description provided for @propertyApartment.
+  ///
+  /// In en, this message translates to:
+  /// **'Apartment'**
+  String get propertyApartment;
+
+  /// No description provided for @propertyHouse.
+  ///
+  /// In en, this message translates to:
+  /// **'House'**
+  String get propertyHouse;
+
+  /// No description provided for @propertyVilla.
+  ///
+  /// In en, this message translates to:
+  /// **'Villa'**
+  String get propertyVilla;
+
+  /// No description provided for @propertyStudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Studio'**
+  String get propertyStudio;
+
+  /// No description provided for @propertyRiad.
+  ///
+  /// In en, this message translates to:
+  /// **'Riad'**
+  String get propertyRiad;
+
+  /// No description provided for @propertyGuestHouse.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest house'**
+  String get propertyGuestHouse;
+
+  /// No description provided for @publishPhotosTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos (up to 5)'**
+  String get publishPhotosTitle;
+
+  /// No description provided for @publishAddFromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get publishAddFromGallery;
+
+  /// No description provided for @publishAddFromCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get publishAddFromCamera;
+
+  /// No description provided for @publishRemovePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get publishRemovePhoto;
+
+  /// No description provided for @listingErrorTitleRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a title'**
+  String get listingErrorTitleRequired;
+
+  /// No description provided for @listingErrorDescriptionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a description'**
+  String get listingErrorDescriptionRequired;
+
+  /// No description provided for @listingErrorPriceInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a price of 0 or more'**
+  String get listingErrorPriceInvalid;
+
+  /// No description provided for @listingErrorCityRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a city'**
+  String get listingErrorCityRequired;
+
+  /// No description provided for @listingErrorRentPeriodRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a rent period'**
+  String get listingErrorRentPeriodRequired;
+
+  /// No description provided for @listingErrorNumberInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid number'**
+  String get listingErrorNumberInvalid;
+
+  /// No description provided for @listingErrorNotSignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in first'**
+  String get listingErrorNotSignedIn;
+
+  /// No description provided for @listingErrorNoPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one photo'**
+  String get listingErrorNoPhotos;
+
+  /// No description provided for @listingErrorTooManyPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add up to 5 photos'**
+  String get listingErrorTooManyPhotos;
+
+  /// No description provided for @listingErrorNoNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection'**
+  String get listingErrorNoNetwork;
+
+  /// No description provided for @listingErrorPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'You are not allowed to do this'**
+  String get listingErrorPermissionDenied;
+
+  /// No description provided for @listingErrorUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong, please try again'**
+  String get listingErrorUnknown;
+
+  /// No description provided for @photoErrorTooLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'This photo is too large, choose another one'**
+  String get photoErrorTooLarge;
+
+  /// No description provided for @photoErrorReadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not read this photo'**
+  String get photoErrorReadFailed;
 }
 
 class _AppLocalizationsDelegate
