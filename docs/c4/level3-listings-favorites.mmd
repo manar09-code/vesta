@@ -1,0 +1,46 @@
+%% C4 level 3: Listings and Favorites components of the Flutter app (VST-28)
+%% Rule: Screen -> Controller -> Repository -> Firebase. A screen never talks to Firebase directly.
+flowchart TB
+  subgraph APP["Vesta Flutter app: Listings and Favorites modules"]
+    direction TB
+    PublishScreen["<b>PublishListingScreen</b><br/>[Component: Flutter screen]<br/>Form to publish a listing with photos"]
+    ListScreen["<b>ListingListScreen</b><br/>[Component: Flutter screen]<br/>Lists the listings with photo and price"]
+    DetailScreen["<b>ListingDetailScreen</b><br/>[Component: Flutter screen]<br/>Shows one listing, its photos and a favorite button"]
+    FavScreen["<b>FavoritesScreen</b><br/>[Component: Flutter screen]<br/>Lists the favorite listings"]
+    Shared["<b>Shared helpers</b><br/>[Component: Shared helper]<br/>formatPrice (TND) and the translation layer (en, fr, ar), used by every screen"]
+
+    Photo["<b>PhotoService</b><br/>[Component: Phone-side helper]<br/>Picks a photo, resizes to about 800 px wide, JPEG, under 200 KB, max 5 photos"]
+    ListC["<b>ListingController</b><br/>[Component: Riverpod controller]<br/>Runs the publish flow, loads the listings, loading and error states"]
+    FavC["<b>FavoritesController</b><br/>[Component: Riverpod controller]<br/>Adds, removes and loads the favorites"]
+
+    ListR["<b>ListingRepository</b><br/>[Component: Repository]<br/>Reads and writes the listings and their photos (one batch write)"]
+    FavR["<b>FavoritesRepository</b><br/>[Component: Repository]<br/>Reads and writes the favorites collection"]
+  end
+
+  FStore["<b>Firestore</b><br/>[External system, Firebase free plan]<br/>listings<br/>listings/{id}/photos (base64, not Firebase Storage)<br/>favorites"]
+
+  Legend["<b>Legend</b><br/>Blue box: [Component: ...] part of the Flutter app<br/>Beige box: [External system] we do not build<br/>Arrow: who calls whom"]
+
+  PublishScreen -->|"pick and compress photos"| Photo
+  PublishScreen -->|"publish listing"| ListC
+  ListScreen -->|"load listings"| ListC
+  DetailScreen -->|"load one listing"| ListC
+  DetailScreen -->|"add or remove favorite"| FavC
+  FavScreen -->|"load and remove favorites"| FavC
+
+  ListC -->|"create and read listings"| ListR
+  FavC -->|"load favorite listings"| ListR
+  FavC -->|"read and write favorites"| FavR
+
+  ListR -->|"Firestore SDK"| FStore
+  FavR -->|"Firestore SDK"| FStore
+
+  FStore ~~~ Legend
+
+  classDef component fill:#e8e8fb,stroke:#5b5bd6,stroke-width:1.5px,color:#1c1c4a;
+  classDef external fill:#f1eee8,stroke:#8a8578,stroke-width:1.5px,color:#2a2a2a;
+  classDef legend fill:#ffffff,stroke:#999999,stroke-width:1px,color:#333333;
+  class ListScreen,DetailScreen,PublishScreen,FavScreen,Photo,ListC,FavC,ListR,FavR,Shared component;
+  class FStore external;
+  class Legend legend;
+  style APP fill:#ffffff,stroke:#5b5bd6,stroke-width:1.5px,stroke-dasharray:6 4;
