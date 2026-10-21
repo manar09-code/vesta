@@ -11,6 +11,8 @@ flowchart TB
     AuthC["<b>AuthController</b><br/>[Component: Riverpod controller]<br/>Sign-in state, input checks, sign up, log in, log out"]
     ProfileC["<b>ProfileController</b><br/>[Component: Riverpod controller]<br/>Loads and saves the profile, loading and error states"]
 
+    Photo["<b>PhotoService</b><br/>[Component: Phone-side helper]<br/>Picks a photo, resizes it, JPEG under 200 KB (photoBase64)"]
+
     AuthR["<b>AuthRepository</b><br/>[Component: Repository]<br/>Wraps Firebase Auth: sign up, log in, log out, session"]
     UserR["<b>UserRepository</b><br/>[Component: Repository]<br/>Reads and writes the users collection"]
   end
@@ -28,6 +30,7 @@ flowchart TB
   Profile -->|"log out"| AuthC
   Profile -->|"load profile"| ProfileC
   EditProfile -->|"save profile"| ProfileC
+  EditProfile -->|"choose and compress photo"| Photo
 
   AuthC -->|"create profile after sign up"| UserR
   AuthC -->|"sign up, log in, log out"| AuthR
@@ -43,7 +46,7 @@ flowchart TB
   classDef component fill:#e8e8fb,stroke:#5b5bd6,stroke-width:1.5px,color:#1c1c4a;
   classDef external fill:#f1eee8,stroke:#8a8578,stroke-width:1.5px,color:#2a2a2a;
   classDef legend fill:#ffffff,stroke:#999999,stroke-width:1px,color:#333333;
-  class Login,SignUp,Profile,EditProfile,AuthC,ProfileC,AuthR,UserR component;
+  class Login,SignUp,Profile,EditProfile,Photo,AuthC,ProfileC,AuthR,UserR component;
   class FAuth,FStore external;
   class Legend legend;
   style APP fill:#ffffff,stroke:#5b5bd6,stroke-width:1.5px,stroke-dasharray:6 4;

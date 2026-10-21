@@ -3,13 +3,13 @@
 flowchart TB
   subgraph APP["Vesta Flutter app: Listings and Favorites modules"]
     direction TB
-    PublishScreen["<b>PublishListingScreen</b><br/>[Component: Flutter screen]<br/>Form to publish a listing with photos"]
-    ListScreen["<b>ListingListScreen</b><br/>[Component: Flutter screen]<br/>Lists the listings with photo and price"]
+    PublishScreen["<b>PublishListingScreen</b><br/>[Component: Flutter screen]<br/>Form to create a listing with photos"]
+    ListScreen["<b>ListingsScreen</b><br/>[Component: Flutter screen]<br/>Lists the listings with photo and price"]
     DetailScreen["<b>ListingDetailScreen</b><br/>[Component: Flutter screen]<br/>Shows one listing, its photos and a favorite button"]
     FavScreen["<b>FavoritesScreen</b><br/>[Component: Flutter screen]<br/>Lists the favorite listings"]
     Shared["<b>Shared helpers</b><br/>[Component: Shared helper]<br/>formatPrice (TND) and the translation layer (en, fr, ar), used by every screen"]
 
-    Photo["<b>PhotoService</b><br/>[Component: Phone-side helper]<br/>Picks a photo, resizes to about 800 px wide, JPEG, under 200 KB, max 5 photos"]
+    Photo["<b>PhotoService</b><br/>[Component: Phone-side helper]<br/>Picks a photo, resizes to about 800 px wide, JPEG under 200 KB, max 5 photos"]
     ListC["<b>ListingController</b><br/>[Component: Riverpod controller]<br/>Runs the publish flow, loads the listings, loading and error states"]
     FavC["<b>FavoritesController</b><br/>[Component: Riverpod controller]<br/>Adds, removes and loads the favorites"]
 
@@ -21,14 +21,14 @@ flowchart TB
 
   Legend["<b>Legend</b><br/>Blue box: [Component: ...] part of the Flutter app<br/>Beige box: [External system] we do not build<br/>Arrow: who calls whom"]
 
-  PublishScreen -->|"pick and compress photos"| Photo
+  PublishScreen -->|"choose and compress photos"| Photo
   PublishScreen -->|"publish listing"| ListC
   ListScreen -->|"load listings"| ListC
   DetailScreen -->|"load one listing"| ListC
   DetailScreen -->|"add or remove favorite"| FavC
   FavScreen -->|"load and remove favorites"| FavC
 
-  ListC -->|"create and read listings"| ListR
+  ListC -->|"read and write listings and photos"| ListR
   FavC -->|"load favorite listings"| ListR
   FavC -->|"read and write favorites"| FavR
 
