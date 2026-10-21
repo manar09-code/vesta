@@ -312,7 +312,7 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
               ],
               const SizedBox(height: 8),
               Text(
-                l.publishPhotosTitle,
+                '${l.publishPhotosTitle}  ${_photos.length}/$maxListingPhotos',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 8),
