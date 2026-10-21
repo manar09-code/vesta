@@ -15,15 +15,15 @@ flowchart TB
       direction TB
       SearchScreen["<b>SearchScreen</b><br/>[Component: Flutter screen]<br/>Search box and list of results"]
       Filters["<b>SearchFilters</b><br/>[Component: Flutter widget]<br/>Price range, location, property type, sale or rent"]
-      SearchC["<b>SearchController</b><br/>[Component: Riverpod controller]<br/>Keeps the filters and loads the results"]
+      SearchC["<b>SearchFiltersController</b><br/>[Component: Riverpod controller]<br/>Keeps the filters and loads the results"]
     end
     subgraph CHATM["Chat"]
       direction TB
       ChatListScreen["<b>ChatListScreen</b><br/>[Component: Flutter screen]<br/>Lists my conversations"]
       ChatScreen["<b>ChatScreen</b><br/>[Component: Flutter screen]<br/>Messages of one conversation"]
       ChatC["<b>ChatController</b><br/>[Component: Riverpod controller]<br/>Loads conversations and messages, sends a message"]
-      ChatR["<b>ChatRepository</b><br/>[Component: Repository]<br/>Reads and writes conversations and messages"]
-      Notif["<b>NotificationService</b><br/>[Component: Phone-side service]<br/>Shows the new message alert"]
+      ChatR["<b>ChatRepository</b><br/>[Component: Repository]<br/>Reads and writes conversations and messages, listens to Firestore in real time"]
+      Notif["<b>NotificationService</b><br/>[Component: Phone-side service]<br/>Shows a badge and a local notification for each new message (app open or in background)"]
     end
     ListR["<b>ListingRepository</b><br/>[Component: Repository]<br/>Reads the listings collection (search and map)"]
     Shared["<b>Shared helpers</b><br/>[Component: Shared helper]<br/>formatPrice (TND), app config (map center: Tunis) and the translation layer (en, fr, ar)"]
@@ -31,7 +31,7 @@ flowchart TB
 
   GPS["<b>Phone GPS</b><br/>[External system]<br/>Position and permission"]
   FStore["<b>Firestore</b><br/>[External system, Firebase free plan]<br/>listings<br/>conversations<br/>conversations/{id}/messages"]
-  FCM["<b>FCM</b><br/>[External system]<br/>Push notifications"]
+  PhoneNotif["<b>Phone notifications</b><br/>[External system]<br/>Local notification and badge (no server push in the MVP)"]
 
   Legend["<b>Legend</b><br/>Blue box: [Component: ...] part of the Flutter app<br/>Beige box: [External system] we do not build<br/>Arrow: who calls whom"]
 
@@ -46,13 +46,13 @@ flowchart TB
 
   MapC -->|"read listings with coordinates"| ListR
   SearchC -->|"search listings"| ListR
-  ChatC -->|"read and write chat"| ChatR
+  ChatC -->|"read and write chat, real-time listener"| ChatR
   ChatC -->|"new message"| Notif
 
   Location -->|"GPS permission and position"| GPS
   ListR -->|"Firestore SDK"| FStore
   ChatR -->|"Firestore SDK"| FStore
-  Notif -->|"push alerts"| FCM
+  Notif -->|"local notification and badge"| PhoneNotif
 
   FStore ~~~ Legend
 
@@ -60,7 +60,7 @@ flowchart TB
   classDef external fill:#f1eee8,stroke:#8a8578,stroke-width:1.5px,color:#2a2a2a;
   classDef legend fill:#ffffff,stroke:#999999,stroke-width:1px,color:#333333;
   class SearchScreen,MapScreen,ChatListScreen,ChatScreen,Shared,Filters,SearchC,MapC,ChatC,Location,ListR,ChatR,Notif component;
-  class OSM,GPS,FStore,FCM external;
+  class OSM,GPS,FStore,PhoneNotif external;
   class Legend legend;
   style APP fill:#ffffff,stroke:#5b5bd6,stroke-width:1.5px,stroke-dasharray:6 4;
   style MAPM fill:#fbfbff,stroke:#b9b9ea,stroke-dasharray:3 3;
