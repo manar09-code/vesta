@@ -5,6 +5,7 @@
 | 1 and 2 | `Vesta_C4_Niveau1_Contexte.pdf`, `Vesta_C4_Niveau2_Containers.pdf` | Context and containers |
 | 3 | `level3-auth-profile.png` (source: `level3-auth-profile.mmd`) | Auth and Profile components of the Flutter app (VST-27) |
 | 3 | `level3-listings-favorites.png` (source: `level3-listings-favorites.mmd`) | Listings and Favorites components of the Flutter app (VST-28) |
+| 3 | `level3-search-map-chat.png` (source: `level3-search-map-chat.mmd`) | Search, Map and Chat components of the Flutter app (VST-29) |
 | 4 | `level4-classes.png` (source: `level4-classes.mmd`) | Data classes (see `docs/data-model.md`) |
 
 Sources are Mermaid files. To redraw a PNG: `npx -p @mermaid-js/mermaid-cli mmdc -i level3-auth-profile.mmd -o level3-auth-profile.png -s 2 -b white`, or paste the `.mmd` file in https://mermaid.live and export the PNG.
@@ -56,3 +57,37 @@ Read it like the Auth and Profile diagram (types between brackets, legend at the
 | `FavoritesRepository` | Repository | Reads and writes the `favorites` collection. |
 | `PhotoService` | Phone-side helper | Picks a photo, resizes to about 800 px wide, JPEG, under 200 KB, max 5 photos. |
 | `formatPrice` and translation layer | Shared helper | Same price format and texts in every screen. |
+
+## Level 3: Search, Map and Chat
+
+Read it like the other level 3 diagrams (types between brackets, legend at the bottom, Screen -> Controller -> Repository -> Firebase). The three modules are grouped in a frame each. Data names come from `docs/data-model.md`: `listings`, `conversations` and `conversations/{id}/messages`.
+
+- The map uses OpenStreetMap tiles, NOT Google Maps (decision of 8 Oct). `MapScreen` loads the tiles directly from OpenStreetMap (the "never talk to Firebase directly" rule is about Firebase) and shows the attribution `© OpenStreetMap contributors`.
+- The map only shows listings that have `latitude` and `longitude` (optional in the data model). The default map center (Tunis) comes from the app config.
+- `LocationService` asks the GPS permission and gets the position of the phone. `MapController` is the only caller.
+- The controller is named `SearchFiltersController` (not `SearchController`) because Flutter Material already has a `SearchController` class, so the name would clash in the code.
+- `SearchFilters` (price range, location, property type, sale or rent) is a widget used by `SearchScreen`. `SearchFiltersController` keeps the filters and asks `ListingRepository`, which is shared with the map and with the Listings module.
+- A conversation id is `{listingId}_{buyerId}` and its messages are a subcollection. `ChatController` serves both chat screens through `ChatRepository`.
+- New message alert (MVP): there is no server push, because Cloud Functions are not available on the Firebase free plan. `ChatRepository` listens to Firestore in real time, `ChatController` sends each new message to `NotificationService`, and `NotificationService` shows a badge and a local notification, when the app is open or in the background.
+- Not in the MVP: the real FCM push (app closed). It needs the Firebase Blaze plan or a small external server. It is a future ticket (see "Future work" below).
+- `formatPrice`, the app config and the translation layer are shared helpers used by the screens. They are drawn once, without arrows.
+
+| Component | Type | Responsibility |
+|---|---|---|
+| `SearchScreen` | Flutter screen | Search box and list of results. |
+| `SearchFilters` | Flutter widget | Price range, location, property type, sale or rent. |
+| `SearchFiltersController` | Riverpod controller | Keeps the filters and loads the results. |
+| `MapScreen` | Flutter screen | Map with the listings, shows the OpenStreetMap attribution. |
+| `MapController` | Riverpod controller | Loads the listings with coordinates and the user position. |
+| `LocationService` | Phone-side service | Asks the GPS permission and gets the position. |
+| `ChatListScreen` | Flutter screen | Lists my conversations. |
+| `ChatScreen` | Flutter screen | Messages of one conversation. |
+| `ChatController` | Riverpod controller | Loads conversations and messages, sends a message, and passes each new message to `NotificationService`. |
+| `ChatRepository` | Repository | Reads and writes `conversations` and `conversations/{id}/messages`, and listens to Firestore in real time. |
+| `NotificationService` | Phone-side service | Shows a badge and a local notification for a new message (app open or in the background). |
+| `ListingRepository` | Repository | Reads the `listings` collection (search and map). |
+| `formatPrice`, app config, translation layer | Shared helper | Same price format, map center and texts in every screen. |
+
+### Future work
+
+- Real push notifications with FCM, so the alert also arrives when the app is closed. FCM itself is free, but sending a push to another user needs a server: Firebase Blaze plan (Cloud Functions) or a small external server. Not in the MVP, to be created as a Jira ticket.
