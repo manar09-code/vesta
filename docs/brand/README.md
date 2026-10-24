@@ -13,9 +13,9 @@ The same files are used by the Flutter app (`flutter-app/assets/images/`) and th
 
 ## Design
 
-- Mark: a thin-line arched door with the wordmark "Vesta".
-- App icon: the door in white on the brand blue, lines slightly thickened so it stays readable at 48 px.
-- Logo and feature graphic: the door and wordmark in blue on cream.
+- Mark: a pointed-arch studded door with the wordmark "Vesta".
+- App icon: the cream door on the brand blue.
+- Logo and feature graphic: the blue door and the navy wordmark on cream (feature graphic) or transparent (logo).
 
 ## Colors
 
@@ -23,18 +23,18 @@ The same files are used by the Flutter app (`flutter-app/assets/images/`) and th
 |---|---|
 | Primary blue | `#176AAB` |
 | Background cream | `#F7F3EB` |
+| Navy | `#20394A` |
+| Terracotta | `#A65D42` |
 
 These are the Figma palette values, also used in `app_colors.dart` (Flutter) and `theme.ts` (React Native).
 
 ## How the logo was made
 
-Generated with an online logo maker (logomaker.com), then cleaned up: background removed, recolored to the brand blue, and resized into the files above.
+**Updated 24 Oct 2026 (VST-94):** the four PNG files were replaced by an original design drawn in SVG (sources in `docs/brand/src/`, door mark alone in `logo-mark.svg`): a pointed-arch Tunisian studded door, in the Figma palette only (blue `#176AAB`, cream `#F7F3EB`, navy `#20394A`, terracotta `#A65D42`). Re-generate the PNGs from the SVG sources if the design changes. The first version came from logomaker.com and is no longer used.
 
 ## License status
 
-**Academic use only.** The logo comes from the free preview of an online logo maker (logomaker.com). Its commercial-use license was not purchased or confirmed, so these files are for the academic app and the demo only.
-
-Before publishing on Google Play, replace them with an original design under the same file names (`logo.png`, `app-icon-1024.png`, `play-icon-512.png`, `feature-graphic-1024x500.png`) so no code change is needed.
+The files in this folder are an original design made for the project, so they can be used on Google Play. The in-app copies (`flutter-app/assets/images/`, `react-native-app/assets/`) and the Android launcher icon still need the same swap; this is tracked separately.
 ## Still missing
 
-- `logo.svg` (a clean vector export was not available).
+- Launcher icons in the apps (run `flutter_launcher_icons` with the new `app-icon-1024.png`).
