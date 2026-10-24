@@ -1,10 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500"><rect width="1024" height="500" fill="#F7F3EB"/>
-<rect x="0" y="440" width="1024" height="60" fill="#F0E7DA"/>
-<g transform="translate(-62,-20) scale(1.1)"><path d="M176 396V230Q176 170 256 128Q336 170 336 230V396Z" fill="#176AAB"/>
-<path d="M256 150V396" stroke="#F7F3EB" stroke-width="4"/><circle cx="206" cy="250" r="5.5" fill="#F7F3EB"/><circle cx="206" cy="285" r="5.5" fill="#F7F3EB"/><circle cx="206" cy="320" r="5.5" fill="#F7F3EB"/><circle cx="206" cy="355" r="5.5" fill="#F7F3EB"/><circle cx="232" cy="250" r="5.5" fill="#F7F3EB"/><circle cx="232" cy="285" r="5.5" fill="#F7F3EB"/><circle cx="232" cy="355" r="5.5" fill="#F7F3EB"/><circle cx="280" cy="250" r="5.5" fill="#F7F3EB"/><circle cx="280" cy="285" r="5.5" fill="#F7F3EB"/><circle cx="280" cy="355" r="5.5" fill="#F7F3EB"/><circle cx="306" cy="250" r="5.5" fill="#F7F3EB"/><circle cx="306" cy="285" r="5.5" fill="#F7F3EB"/><circle cx="306" cy="320" r="5.5" fill="#F7F3EB"/><circle cx="306" cy="355" r="5.5" fill="#F7F3EB"/><circle cx="218" cy="215" r="5.5" fill="#F7F3EB"/><circle cx="294" cy="215" r="5.5" fill="#F7F3EB"/>
-<circle cx="243" cy="322" r="9" fill="none" stroke="#A65D42" stroke-width="4.5"/><circle cx="269" cy="322" r="9" fill="none" stroke="#A65D42" stroke-width="4.5"/>
-<rect x="150" y="402" width="212" height="7" rx="3.5" fill="#176AAB"/></g>
-<text x="400" y="235" font-family="DejaVu Serif, Georgia, serif" font-weight="700" font-size="128" letter-spacing="4" fill="#20394A">Vesta</text>
-<rect x="406" y="262" width="96" height="6" rx="3" fill="#A65D42"/>
-<text x="406" y="325" font-family="DejaVu Sans, Arial, sans-serif" font-size="38" fill="#176AAB">Guest houses &amp; Airbnbs</text>
-<text x="406" y="372" font-family="DejaVu Sans, Arial, sans-serif" font-size="38" fill="#176AAB">across Tunisia</text></svg>
+<rect x="0" y="446" width="1024" height="54" fill="#F0E7DA"/>
+<path d="M50 500V232Q50 108 215 34Q380 108 380 232V500Z" fill="#176AAB"/>
+<path d="M74 500V234Q74 126 215 62Q356 126 356 234V500Z" fill="none" stroke="#F0E7DA" stroke-width="3"/>
+<g transform="translate(-41,48) scale(1.0)"><path d="M176 396V230Q176 170 256 128Q336 170 336 230V396Z" fill="#F7F3EB"/>
+<path d="M256 150V396" stroke="#176AAB" stroke-width="4"/><circle cx="206" cy="250" r="5.5" fill="#176AAB"/><circle cx="206" cy="285" r="5.5" fill="#176AAB"/><circle cx="206" cy="320" r="5.5" fill="#176AAB"/><circle cx="206" cy="355" r="5.5" fill="#176AAB"/><circle cx="232" cy="250" r="5.5" fill="#176AAB"/><circle cx="232" cy="285" r="5.5" fill="#176AAB"/><circle cx="232" cy="355" r="5.5" fill="#176AAB"/><circle cx="280" cy="250" r="5.5" fill="#176AAB"/><circle cx="280" cy="285" r="5.5" fill="#176AAB"/><circle cx="280" cy="355" r="5.5" fill="#176AAB"/><circle cx="306" cy="250" r="5.5" fill="#176AAB"/><circle cx="306" cy="285" r="5.5" fill="#176AAB"/><circle cx="306" cy="320" r="5.5" fill="#176AAB"/><circle cx="306" cy="355" r="5.5" fill="#176AAB"/><circle cx="218" cy="215" r="5.5" fill="#176AAB"/><circle cx="294" cy="215" r="5.5" fill="#176AAB"/>
+<circle cx="243" cy="322" r="9" fill="none" stroke="#A65D42" stroke-width="4.5"/><circle cx="269" cy="322" r="9" fill="none" stroke="#A65D42" stroke-width="4.5"/></g>
+<rect x="150" y="446" width="130" height="6" fill="#176AAB"/>
+<text x="440" y="190" font-family="DejaVu Serif, Georgia, serif" font-weight="700" font-size="124" letter-spacing="4" fill="#20394A">Vesta</text>
+<rect x="446" y="214" width="100" height="6" rx="3" fill="#A65D42"/>
+<text x="446" y="272" font-family="DejaVu Sans, Arial, sans-serif" font-size="40" font-weight="700" fill="#176AAB">Stay like a local</text>
+<text x="446" y="318" font-family="DejaVu Sans, Arial, sans-serif" font-size="40" font-weight="700" fill="#176AAB">in Tunisia</text>
+<text x="446" y="358" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#6B777B">Maisons d’hôtes · دور ضيافة · Airbnbs</text>
+
+<rect x="446" y="384" width="200" height="46" rx="23" fill="none" stroke="#176AAB" stroke-width="2.5"/><text x="546.0" y="415" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="700" fill="#176AAB">Guest houses</text><rect x="662" y="384" width="116" height="46" rx="23" fill="none" stroke="#176AAB" stroke-width="2.5"/><text x="720.0" y="415" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="700" fill="#176AAB">Riads</text><rect x="794" y="384" width="136" height="46" rx="23" fill="none" stroke="#176AAB" stroke-width="2.5"/><text x="862.0" y="415" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="700" fill="#176AAB">Airbnbs</text></svg>
