@@ -30,7 +30,7 @@ These are the Figma palette values, also used in `app_colors.dart` (Flutter) and
 
 ## How the logo was made
 
-**Updated 24 Oct 2026 (VST-94):** the four PNG files were replaced by an original design drawn in SVG (sources in `docs/brand/src/`, door mark alone in `logo-mark.svg`): a pointed-arch Tunisian studded door, in the Figma palette only (blue `#176AAB`, cream `#F7F3EB`, navy `#20394A`, terracotta `#A65D42`). Re-generate the PNGs from the SVG sources if the design changes. The first version came from logomaker.com and is no longer used.
+**Updated 24 Oct 2026 (VST-94):** the four PNG files were replaced by an original design drawn in SVG (sources in `docs/brand/src/`, door mark alone in `logo-mark.svg`): a pointed-arch Tunisian studded door, in the Figma palette only (blue `#176AAB`, cream `#F7F3EB`, navy `#20394A`, terracotta `#A65D42`). Fonts of the feature graphic: Playfair Display, Lato and Cairo (SIL Open Font License, free for commercial use, embedded in `src/feature.svg`). Re-generate the PNGs from the SVG sources if the design changes. The first version came from logomaker.com and is no longer used.
 
 ## License status
 
