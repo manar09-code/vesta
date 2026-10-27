@@ -36,8 +36,8 @@ R = required, O = optional, - = not used. Existing fields are in **bold**.
 | **latitude, longitude** | O | O | O | map shows only listings with coordinates |
 | **bedrooms, bathrooms, areaSqm** | R (area) | R (area) | O | |
 | 1 to 5 photos | R | R | R | at least 1 |
-| `contactPhone` (E.164 `+216XXXXXXXX`) | R | R | R | shown only to signed-in users |
-| `whatsappEnabled` (bool) | O | O | O | default false |
+| `contactPhone` (`+216XXXXXXXX`) | R | R | R | **stored in `listings/{id}/contact/info`**, readable by signed-in users only |
+| `whatsappEnabled` (bool) | O | O | O | default false, same contact document |
 | `status` | `available`, `reserved`, `sold`, `hidden` | `available`, `reserved`, `rented`, `hidden` | `available`, `unavailable`, `hidden` | default `available` |
 | `negotiable` (bool) | O | - | - | |
 | `yearBuilt` (number) | O | - | - | |
@@ -54,7 +54,7 @@ R = required, O = optional, - = not used. Existing fields are in **bold**.
 | `viewCount` (number) | O | O | O | dashboard, Sprint 3, +1 per user per day |
 | `verified` (bool) | O | O | O | set only by Manar in the console, "Verified" badge |
 
-The phone is stored **on the listing** (`contactPhone`), not in `users/{uid}/private/contact`, because other users must read it. The rules let any **signed-in** user read it; guests never get it from the app. The number is prefilled from the profile when publishing and the owner can change it per listing.
+The phone is **not** in the listing document. Listings are readable by guests (no account needed, VST-72), so a phone inside would be public. It is stored in `listings/{id}/contact/info`, which only signed-in users can read (decided in VST-74). The number is prefilled from the profile when publishing and the owner can change it per listing. The app writes the listing and its contact in one batch, and reads the contact only when a signed-in user opens the details screen.
 
 ## 4. Behaviour rules (both apps)
 
