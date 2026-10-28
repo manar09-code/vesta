@@ -33,3 +33,8 @@ Both apps share the same module structure: Auth, Search, Listing details, Publis
 
 ## Workflow
 Read [CONTRIBUTING.md](CONTRIBUTING.md). Tasks live in Jira (project key **VST**).
+
+## Future work (out of the MVP)
+- **Real server push notifications (FCM).** They need Cloud Functions or a small external server, so they need the Blaze plan. The MVP uses an in-app notification center instead (VST-99).
+- **Firebase Storage for photos.** Storage also needs the Blaze plan. Photos are stored as compressed base64 in `listings/{id}/photos` (max 5, decision of 8 Oct).
+- **Automatic booking-overlap check.** Firestore rules cannot check that two accepted bookings do not overlap. The app checks before a request is sent and the owner accepts manually.
