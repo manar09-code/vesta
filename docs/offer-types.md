@@ -56,6 +56,8 @@ R = required, O = optional, - = not used. Existing fields are in **bold**.
 
 The phone is **not** in the listing document. Listings are readable by guests (no account needed, VST-72), so a phone inside would be public. It is stored in `listings/{id}/contact/info`, which only signed-in users can read (decided in VST-74). The number is prefilled from the profile when publishing and the owner can change it per listing. The app writes the listing and its contact in one batch, and reads the contact only when a signed-in user opens the details screen.
 
+**Who enforces what.** The Firestore rules (VST-74) check only the **types** of the new fields, the allowed `status` values per offer type, the phone format, and that `land` and `commercial` are never offered per night. Every new field is optional in the rules, so listings published before v4 stay valid. The **required fields (R) and the property-type table of section 2 are enforced by the apps** in the publish form (for example description of at least 40 characters, area, guests and beds for a stay). Both apps must apply the same checks.
+
 ## 4. Behaviour rules (both apps)
 
 1. **Publish:** the first step is "What do you want to do?" with three choices: Sell / Rent out / Offer a stay. The next fields depend on the choice. Changing the choice clears the fields that no longer apply.
@@ -67,6 +69,7 @@ The phone is **not** in the listing document. Listings are readable by guests (n
 7. **Booking (stay) and visit request (sale, rent):** Sprint 3 (VST-92).
 8. **Guests** can browse, search and read details. Favorite, chat, contact numbers, publish and requests ask to sign in and come back to the same screen.
 9. **Every user can publish.** There is no buyer/owner role.
+10. **Home:** three entry tiles **Buy / Rent / Stay** (same labels and offer colors as section 5). Tapping a tile opens Search on that tab. The tiles are built in the Explore home ticket (Sprint 3).
 
 ## 5. Colors (Figma theme only)
 
