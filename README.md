@@ -24,7 +24,7 @@ vesta/
 Auth · Search with filters · Listing details with photos · Publish listings · Map and geolocation · Chat · Favorites · Profile · Push notifications.
 
 ## Architecture (see `docs/c4/`)
-Both apps share the same module structure: Auth, Search, Listing details, Publish, Map, Chat, Favorites, Profile, Notifications, and a single data layer in front of Firebase (Auth, Firestore, Storage, FCM) and Google Maps. No module talks to Firebase directly.
+Both apps share the same module structure: Auth, Search, Listing details, Publish, Map, Chat, Favorites, Profile, Notifications, and a single data layer in front of Firebase (Auth, Firestore, FCM) and OpenStreetMap. Photos are stored as compressed base64 in Firestore (no Firebase Storage, no Google Maps: no billing account needed). No module talks to Firebase directly.
 
 ## Getting started
 1. Clone: `git clone <repo-url> && cd vesta && git checkout develop`
