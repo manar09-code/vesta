@@ -70,6 +70,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get authLogoutButton => 'Se déconnecter';
 
   @override
+  String get signInToContinueTitle => 'Connectez-vous pour continuer';
+
+  @override
+  String get signInToContinueBody =>
+      'Connectez-vous ou créez un compte pour ajouter des favoris, écrire aux propriétaires et publier des annonces.';
+
+  @override
   String get authErrorInvalidEmail => 'Entrez une adresse email valide';
 
   @override

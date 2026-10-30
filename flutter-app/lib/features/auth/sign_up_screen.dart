@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/router/app_router.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'auth_controller.dart';
 import 'auth_messages.dart';
+import 'require_sign_in.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
@@ -30,12 +32,18 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   Future<void> _submit() async {
     if (ref.read(authControllerProvider).isLoading) return;
     if (!_formKey.currentState!.validate()) return;
-    // On success the router guard moves the user to the home screen.
-    await ref.read(authControllerProvider.notifier).signUp(
+    final ok = await ref.read(authControllerProvider.notifier).signUp(
           email: _email.text,
           password: _password.text,
           displayName: _name.text,
         );
+    // Back to the screen that asked for the account (see requireSignIn).
+    if (ok && mounted) finishSignIn(context);
+  }
+
+  Future<void> _goToLogin() async {
+    final signedIn = await context.push<bool>(AppRoutes.login);
+    if (signedIn == true && mounted) finishSignIn(context);
   }
 
   @override
@@ -111,7 +119,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 ),
                 const SizedBox(height: 8),
                 TextButton(
-                  onPressed: auth.isLoading ? null : () => context.pop(),
+                  onPressed: auth.isLoading ? null : _goToLogin,
                   child: Text(l10n.authGoToLogin),
                 ),
               ],

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/auth_controller.dart';
 import '../../features/auth/login_screen.dart';
+import '../../features/auth/require_sign_in.dart';
 import '../../features/auth/sign_up_screen.dart';
 import '../../features/chat/chat_screen.dart';
 import '../../features/favorites/favorites_screen.dart';
@@ -28,8 +29,18 @@ abstract class AppRoutes {
   static const publish = '/publish';
 }
 
-/// Router with the auth guard: signed-out users go to Login,
-/// signed-in users are kept away from Login and Sign up.
+/// Pages that need an account. A guest never reaches them from the UI (the
+/// buttons use `requireSignIn`); this is the safety net for a direct link.
+const _accountOnlyRoutes = {
+  AppRoutes.publish,
+  AppRoutes.chat,
+  AppRoutes.notifications,
+};
+
+/// Router for guest browsing (VST-72): everybody opens the app on the home
+/// screen and can use the tabs. Login and Sign up are pushed on top of the
+/// current screen by `requireSignIn`, so after signing in the user is back
+/// where he was.
 final appRouterProvider = Provider<GoRouter>((ref) {
   final refresh = ValueNotifier<int>(0);
   ref.listen(authStateProvider, (previous, next) => refresh.value++);
@@ -42,11 +53,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       final auth = ref.read(authStateProvider);
       if (auth.isLoading) return null; // wait for the first auth state
       final signedIn = auth.value != null;
-      final location = state.matchedLocation;
-      final onAuthPage =
-          location == AppRoutes.login || location == AppRoutes.signup;
-      if (!signedIn && !onAuthPage) return AppRoutes.login;
-      if (signedIn && onAuthPage) return AppRoutes.explore;
+      if (!signedIn && _accountOnlyRoutes.contains(state.matchedLocation)) {
+        return AppRoutes.explore;
+      }
       return null;
     },
     routes: [
@@ -111,13 +120,21 @@ final appRouterProvider = Provider<GoRouter>((ref) {
 });
 
 /// Bottom navigation shared by the 5 main tabs.
-class _MainShell extends StatelessWidget {
+class _MainShell extends ConsumerWidget {
   const _MainShell({required this.shell});
 
   final StatefulNavigationShell shell;
 
+  /// Chat and notifications need an account: a guest gets the sign-in sheet,
+  /// then the screen opens once he is signed in.
+  Future<void> _openAccountPage(
+      BuildContext context, WidgetRef ref, String route) async {
+    if (!await requireSignIn(context, ref)) return;
+    if (context.mounted) context.push(route);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final titles = [
       l10n.tabExplore,
@@ -134,12 +151,13 @@ class _MainShell extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.chat_bubble_outline),
             tooltip: l10n.chatTitle,
-            onPressed: () => context.push(AppRoutes.chat),
+            onPressed: () => _openAccountPage(context, ref, AppRoutes.chat),
           ),
           IconButton(
             icon: const Icon(Icons.notifications_none),
             tooltip: l10n.notificationsTitle,
-            onPressed: () => context.push(AppRoutes.notifications),
+            onPressed: () =>
+                _openAccountPage(context, ref, AppRoutes.notifications),
           ),
         ],
       ),

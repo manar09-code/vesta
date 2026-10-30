@@ -220,6 +220,18 @@ abstract class AppLocalizations {
   /// **'Log out'**
   String get authLogoutButton;
 
+  /// No description provided for @signInToContinueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to continue'**
+  String get signInToContinueTitle;
+
+  /// No description provided for @signInToContinueBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in or create an account to save favorites, message owners and publish listings.'**
+  String get signInToContinueBody;
+
   /// No description provided for @authErrorInvalidEmail.
   ///
   /// In en, this message translates to:

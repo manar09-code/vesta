@@ -6,6 +6,7 @@ import '../../core/router/app_router.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'auth_controller.dart';
 import 'auth_messages.dart';
+import 'require_sign_in.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -29,10 +30,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Future<void> _submit() async {
     if (ref.read(authControllerProvider).isLoading) return;
     if (!_formKey.currentState!.validate()) return;
-    // On success the router guard moves the user to the home screen.
-    await ref
+    final ok = await ref
         .read(authControllerProvider.notifier)
         .signIn(_email.text, _password.text);
+    // Back to the screen that asked for the account (see requireSignIn).
+    if (ok && mounted) finishSignIn(context);
+  }
+
+  Future<void> _goToSignUp() async {
+    final signedUp = await context.push<bool>(AppRoutes.signup);
+    if (signedUp == true && mounted) finishSignIn(context);
   }
 
   @override
@@ -98,9 +105,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 const SizedBox(height: 8),
                 TextButton(
-                  onPressed: auth.isLoading
-                      ? null
-                      : () => context.push(AppRoutes.signup),
+                  onPressed: auth.isLoading ? null : _goToSignUp,
                   child: Text(l10n.authGoToSignUp),
                 ),
               ],
