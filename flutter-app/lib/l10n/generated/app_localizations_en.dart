@@ -70,6 +70,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authLogoutButton => 'Log out';
 
   @override
+  String get signInToContinueTitle => 'Sign in to continue';
+
+  @override
+  String get signInToContinueBody =>
+      'Log in or create an account to save favorites, message owners and publish listings.';
+
+  @override
   String get authErrorInvalidEmail => 'Enter a valid email address';
 
   @override

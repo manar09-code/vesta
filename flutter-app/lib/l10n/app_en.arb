@@ -20,6 +20,8 @@
   "authGoToSignUp": "No account yet? Sign up",
   "authGoToLogin": "Already have an account? Log in",
   "authLogoutButton": "Log out",
+  "signInToContinueTitle": "Sign in to continue",
+  "signInToContinueBody": "Log in or create an account to save favorites, message owners and publish listings.",
   "authErrorInvalidEmail": "Enter a valid email address",
   "authErrorPasswordShort": "Password must have at least 8 characters",
   "authErrorNameRequired": "Enter your name",

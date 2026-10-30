@@ -70,6 +70,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authLogoutButton => 'خروج';
 
   @override
+  String get signInToContinueTitle => 'ادخل باش تكمل';
+
+  @override
+  String get signInToContinueBody =>
+      'ادخل لحسابك ولا اعمل حساب جديد باش تزيد في المفضلة، تبعث رسالة للمالك وتنشر إعلان.';
+
+  @override
   String get authErrorInvalidEmail => 'أدخل بريد إلكتروني صحيح';
 
   @override
