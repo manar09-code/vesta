@@ -253,4 +253,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get favoritesErrorUnknown => 'حدث خطأ. حاول مرة أخرى.';
+
+  @override
+  String get listingsEmpty => 'لا توجد إعلانات بعد';
 }

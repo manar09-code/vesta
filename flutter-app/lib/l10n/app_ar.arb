@@ -80,5 +80,6 @@
   "favoritesErrorNoNetwork": "لا يوجد اتصال. تحقق من الإنترنت وحاول مجددًا.",
   "favoritesErrorPermission": "غير مسموح لك بهذا الإجراء.",
   "favoritesErrorNotSignedIn": "سجّل الدخول لحفظ المفضلة.",
-  "favoritesErrorUnknown": "حدث خطأ. حاول مرة أخرى."
+  "favoritesErrorUnknown": "حدث خطأ. حاول مرة أخرى.",
+  "listingsEmpty": "لا توجد إعلانات بعد"
 }

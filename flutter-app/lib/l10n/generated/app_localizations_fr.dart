@@ -260,4 +260,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get favoritesErrorUnknown => 'Une erreur est survenue. Réessaie.';
+
+  @override
+  String get listingsEmpty => 'Aucune annonce pour l\'instant';
 }

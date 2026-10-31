@@ -585,6 +585,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong. Please try again.'**
   String get favoritesErrorUnknown;
+
+  /// No description provided for @listingsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No listings yet'**
+  String get listingsEmpty;
 }
 
 class _AppLocalizationsDelegate

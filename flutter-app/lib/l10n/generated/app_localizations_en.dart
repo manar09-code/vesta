@@ -256,4 +256,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get favoritesErrorUnknown => 'Something went wrong. Please try again.';
+
+  @override
+  String get listingsEmpty => 'No listings yet';
 }

@@ -80,5 +80,6 @@
   "favoritesErrorNoNetwork": "No connection. Check your internet and try again.",
   "favoritesErrorPermission": "You are not allowed to do this.",
   "favoritesErrorNotSignedIn": "Sign in to save favorites.",
-  "favoritesErrorUnknown": "Something went wrong. Please try again."
+  "favoritesErrorUnknown": "Something went wrong. Please try again.",
+  "listingsEmpty": "No listings yet"
 }
