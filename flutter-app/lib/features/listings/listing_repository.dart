@@ -157,6 +157,26 @@ class ListingRepository {
     }
   }
 
+  /// Newest listings first, for the Explore tab. Hidden listings are skipped:
+  /// the rules let everybody read them, so the app must filter them.
+  /// Sorting only on createdAt needs no Firestore index.
+  Future<List<Listing>> getLatestListings({int limit = 20}) async {
+    try {
+      final snapshot = await _db
+          .collection('listings')
+          .orderBy('createdAt', descending: true)
+          .limit(limit)
+          .get();
+      return [
+        for (final doc in snapshot.docs)
+          if ((doc.data()['status'] as String?) != 'hidden')
+            Listing.fromDoc(doc),
+      ];
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
   ListingError _mapCode(String code) {
     switch (code) {
       case 'unavailable':
