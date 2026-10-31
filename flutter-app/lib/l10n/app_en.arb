@@ -71,5 +71,18 @@
   "listingErrorPermissionDenied": "You are not allowed to do this",
   "listingErrorUnknown": "Something went wrong, please try again",
   "photoErrorTooLarge": "This photo is too large, choose another one",
-  "photoErrorReadFailed": "Could not read this photo"
+  "photoErrorReadFailed": "Could not read this photo",
+  "settingsTitle": "Settings",
+  "settingsAbout": "About Vesta",
+  "settingsVersion": "Version",
+  "settingsPrivacy": "Privacy and account deletion",
+  "settingsContact": "Contact us",
+  "settingsDeleteAccount": "Delete my account",
+  "settingsLinkError": "Could not open the link",
+  "authForgotPassword": "Forgot password?",
+  "forgotPasswordTitle": "Reset your password",
+  "forgotPasswordBody": "Enter your email. If an account exists, we send you a link to choose a new password.",
+  "forgotPasswordSend": "Send link",
+  "forgotPasswordSent": "If an account exists for this email, a reset link has been sent.",
+  "commonCancel": "Cancel"
 }

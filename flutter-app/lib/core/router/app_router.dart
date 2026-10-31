@@ -14,6 +14,7 @@ import '../../features/map/map_screen.dart';
 import '../../features/notifications/notifications_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/search/search_screen.dart';
+import '../../features/settings/settings_screen.dart';
 import '../../l10n/generated/app_localizations.dart';
 
 abstract class AppRoutes {
@@ -27,6 +28,7 @@ abstract class AppRoutes {
   static const chat = '/chat';
   static const notifications = '/notifications';
   static const publish = '/publish';
+  static const settings = '/settings';
 }
 
 /// Pages that need an account. A guest never reaches them from the UI (the
@@ -112,6 +114,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             const _SubPage(child: NotificationsScreen()),
       ),
       GoRoute(
+        path: AppRoutes.settings,
+        builder: (context, state) => _SubPage(
+          title: AppLocalizations.of(context).settingsTitle,
+          child: const SettingsScreen(),
+        ),
+      ),
+      GoRoute(
         path: AppRoutes.publish,
         builder: (context, state) => const PublishListingScreen(),
       ),
@@ -185,12 +194,16 @@ class _MainShell extends ConsumerWidget {
 
 /// Simple page with a back button, used for screens outside the tabs.
 class _SubPage extends StatelessWidget {
-  const _SubPage({required this.child});
+  const _SubPage({required this.child, this.title});
 
   final Widget child;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: child);
+    return Scaffold(
+      appBar: AppBar(title: title == null ? null : Text(title!)),
+      body: child,
+    );
   }
 }

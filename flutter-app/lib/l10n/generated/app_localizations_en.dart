@@ -227,4 +227,45 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'Could not read this photo';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsAbout => 'About Vesta';
+
+  @override
+  String get settingsVersion => 'Version';
+
+  @override
+  String get settingsPrivacy => 'Privacy and account deletion';
+
+  @override
+  String get settingsContact => 'Contact us';
+
+  @override
+  String get settingsDeleteAccount => 'Delete my account';
+
+  @override
+  String get settingsLinkError => 'Could not open the link';
+
+  @override
+  String get authForgotPassword => 'Forgot password?';
+
+  @override
+  String get forgotPasswordTitle => 'Reset your password';
+
+  @override
+  String get forgotPasswordBody =>
+      'Enter your email. If an account exists, we send you a link to choose a new password.';
+
+  @override
+  String get forgotPasswordSend => 'Send link';
+
+  @override
+  String get forgotPasswordSent =>
+      'If an account exists for this email, a reset link has been sent.';
+
+  @override
+  String get commonCancel => 'Cancel';
 }

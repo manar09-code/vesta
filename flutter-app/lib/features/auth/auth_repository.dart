@@ -87,6 +87,17 @@ class AuthRepository {
 
   Future<void> signOut() => _auth.signOut();
 
+  /// Sends the reset mail. An unknown email gives the same result as a known
+  /// one, so nobody can find out which emails have an account.
+  Future<void> sendPasswordReset(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') return;
+      throw AuthFailure(_mapAuthCode(e.code));
+    }
+  }
+
   AuthError _mapAuthCode(String code) {
     switch (code) {
       case 'invalid-email':
