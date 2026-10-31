@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../core/config/app_config.dart';
+import 'listing_summary.dart';
 
 /// Errors the UI can show. Screens turn them into translated messages.
 enum ListingError {
@@ -116,6 +117,39 @@ class ListingRepository {
 
       await batch.commit();
       return ref.id;
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Live list of the signed-in user's own listings, newest first.
+  /// Needs the index (ownerId, createdAt desc) from firestore.indexes.json.
+  Stream<List<ListingSummary>> watchMyListings() {
+    final user = _auth.currentUser;
+    if (user == null) return Stream.value(const []);
+    return _db
+        .collection('listings')
+        .where('ownerId', isEqualTo: user.uid)
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map((snap) => snap.docs.map(ListingSummary.fromDoc).toList());
+  }
+
+  /// Deletes the listing, its photos and its contact in ONE batch
+  /// (otherwise they stay orphaned, see docs/data-model.md).
+  Future<void> deleteListing(ListingSummary listing) async {
+    final user = _auth.currentUser;
+    if (user == null) throw const ListingFailure(ListingError.notSignedIn);
+
+    try {
+      final ref = _db.collection('listings').doc(listing.id);
+      final batch = _db.batch();
+      for (var i = 0; i < listing.photoCount; i++) {
+        batch.delete(ref.collection('photos').doc('p$i'));
+      }
+      batch.delete(ref.collection('contact').doc('info'));
+      batch.delete(ref);
+      await batch.commit();
     } on FirebaseException catch (e) {
       throw ListingFailure(_mapCode(e.code));
     }
