@@ -79,8 +79,8 @@ test('annonce creee au nom d un autre : refuse', async () => {
 test('modification par un autre utilisateur : refuse', async () => {
   await assertFails(updateDoc(doc(as('bob'), 'listings/l1'), { title: 'Hack' }));
 });
-test('lecture sans etre connecte : refuse', async () => {
-  await assertFails(getDoc(doc(anon(), 'listings/l1')));
+test('lecture sans etre connecte : OK (navigation en invite, VST-72)', async () => {
+  await assertSucceeds(getDoc(doc(anon(), 'listings/l1')));
 });
 test('lecture par un utilisateur connecte : OK', async () => {
   await assertSucceeds(getDoc(doc(as('bob'), 'listings/l1')));
@@ -278,8 +278,8 @@ test('annonce : le proprietaire modifie le titre : OK', async () => {
 test('photo lue par un utilisateur connecte : OK', async () => {
   await assertSucceeds(getDoc(doc(as('bob'), 'listings/l1/photos/p0')));
 });
-test('photo lue sans etre connecte : refuse', async () => {
-  await assertFails(getDoc(doc(anon(), 'listings/l1/photos/p0')));
+test('photo lue sans etre connecte : OK (navigation en invite, VST-72)', async () => {
+  await assertSucceeds(getDoc(doc(anon(), 'listings/l1/photos/p0')));
 });
 test('proprietaire ajoute la photo p1 : OK', async () => {
   await assertSucceeds(setDoc(doc(as('alice'), 'listings/l1/photos/p1'),
@@ -324,4 +324,278 @@ test('mise a jour d une photo par un autre utilisateur : refuse', async () => {
 test('photo avec un champ supplementaire volumineux : refuse', async () => {
   await assertFails(setDoc(doc(as('alice'), 'listings/l1/photos/p2'),
     { base64: 'abc', createdAt: new Date(), junk: 'a'.repeat(500000) }));
+});
+// ---------- VST-74 : types d'offre, statuts, nouveaux champs ----------
+const create = (over) => setDoc(doc(as('alice'), 'listings/l2'), makeListing('alice', over));
+const stay = { listingType: 'rent', rentPeriod: 'night', propertyType: 'guest_house' };
+const longRent = { listingType: 'rent', rentPeriod: 'month' };
+
+test('terrain a vendre (land) : OK', async () => {
+  await assertSucceeds(create({ propertyType: 'land' }));
+});
+test('local commercial a louer au mois : OK', async () => {
+  await assertSucceeds(create({ ...longRent, propertyType: 'commercial' }));
+});
+test('terrain loue a la nuit : refuse', async () => {
+  await assertFails(create({ listingType: 'rent', rentPeriod: 'night', propertyType: 'land' }));
+});
+test('local commercial loue a la nuit : refuse', async () => {
+  await assertFails(create({ listingType: 'rent', rentPeriod: 'night', propertyType: 'commercial' }));
+});
+test('sejour (location a la nuit) maison d hotes : OK', async () => {
+  await assertSucceeds(create(stay));
+});
+test('prix a 0 : refuse', async () => {
+  await assertFails(create({ price: 0 }));
+});
+test('prix negatif : refuse', async () => {
+  await assertFails(create({ price: -5 }));
+});
+
+// statuts selon le type d'offre
+test('statut absent : OK (traite comme available)', async () => {
+  await assertSucceeds(create({}));
+});
+test('vente avec statut sold : OK', async () => {
+  await assertSucceeds(create({ status: 'sold' }));
+});
+test('vente avec statut rented : refuse', async () => {
+  await assertFails(create({ status: 'rented' }));
+});
+test('vente avec statut unavailable : refuse', async () => {
+  await assertFails(create({ status: 'unavailable' }));
+});
+test('location au mois avec statut rented : OK', async () => {
+  await assertSucceeds(create({ ...longRent, status: 'rented' }));
+});
+test('location au mois avec statut sold : refuse', async () => {
+  await assertFails(create({ ...longRent, status: 'sold' }));
+});
+test('sejour avec statut unavailable : OK', async () => {
+  await assertSucceeds(create({ ...stay, status: 'unavailable' }));
+});
+test('sejour avec statut sold : refuse', async () => {
+  await assertFails(create({ ...stay, status: 'sold' }));
+});
+test('sejour avec statut rented : refuse', async () => {
+  await assertFails(create({ ...stay, status: 'rented' }));
+});
+test('statut inconnu : refuse', async () => {
+  await assertFails(create({ status: 'banana' }));
+});
+test('proprietaire passe son annonce en reserved : OK', async () => {
+  await assertSucceeds(updateDoc(doc(as('alice'), 'listings/l1'), { status: 'reserved' }));
+});
+test('un autre utilisateur change le statut : refuse', async () => {
+  await assertFails(updateDoc(doc(as('bob'), 'listings/l1'), { status: 'sold' }));
+});
+test('proprietaire passe en vente sold puis en a la nuit : refuse (statut incompatible)', async () => {
+  await assertSucceeds(updateDoc(doc(as('alice'), 'listings/l1'), { status: 'sold' }));
+  await assertFails(updateDoc(doc(as('alice'), 'listings/l1'),
+    { listingType: 'rent', rentPeriod: 'night' }));
+});
+
+// badge verified : jamais pose par l'app
+test('creation avec verified true : refuse', async () => {
+  await assertFails(create({ verified: true }));
+});
+test('creation avec verified false : OK', async () => {
+  await assertSucceeds(create({ verified: false }));
+});
+test('proprietaire se met verified true : refuse', async () => {
+  await assertFails(updateDoc(doc(as('alice'), 'listings/l1'), { verified: true }));
+});
+test('annonce verified par la console, le proprietaire modifie le titre : OK', async () => {
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    await updateDoc(doc(ctx.firestore(), 'listings/l1'), { verified: true });
+  });
+  await assertSucceeds(updateDoc(doc(as('alice'), 'listings/l1'), { title: 'Nouveau titre' }));
+});
+test('annonce verified par la console, le proprietaire retire le badge : refuse', async () => {
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    await updateDoc(doc(ctx.firestore(), 'listings/l1'), { verified: true });
+  });
+  await assertFails(updateDoc(doc(as('alice'), 'listings/l1'), { verified: false }));
+});
+
+// nouveaux champs optionnels
+test('furnished booleen : OK', async () => {
+  await assertSucceeds(create({ ...longRent, furnished: true }));
+});
+test('furnished en texte : refuse', async () => {
+  await assertFails(create({ ...longRent, furnished: 'oui' }));
+});
+test('negotiable en nombre : refuse', async () => {
+  await assertFails(create({ negotiable: 1 }));
+});
+test('amenities valides : OK', async () => {
+  await assertSucceeds(create({ ...stay, amenities: ['wifi', 'ac', 'pool'] }));
+});
+test('amenity inconnue : refuse', async () => {
+  await assertFails(create({ ...stay, amenities: ['wifi', 'jacuzzi'] }));
+});
+test('amenities en texte au lieu d une liste : refuse', async () => {
+  await assertFails(create({ ...stay, amenities: 'wifi' }));
+});
+test('11 amenities : refuse', async () => {
+  await assertFails(create({ ...stay, amenities: Array(11).fill('wifi') }));
+});
+test('houseRules valides : OK', async () => {
+  await assertSucceeds(create({ ...stay, houseRules: ['no_smoking', 'no_pets'] }));
+});
+test('houseRule inconnue : refuse', async () => {
+  await assertFails(create({ ...stay, houseRules: ['no_dancing'] }));
+});
+test('checkIn 14:00 : OK', async () => {
+  await assertSucceeds(create({ ...stay, checkIn: '14:00', checkOut: '11:30' }));
+});
+test('checkIn 25:99 : refuse', async () => {
+  await assertFails(create({ ...stay, checkIn: '25:99' }));
+});
+test('checkIn sans les deux points : refuse', async () => {
+  await assertFails(create({ ...stay, checkIn: '1400' }));
+});
+test('availableFrom en date : OK', async () => {
+  await assertSucceeds(create({ ...longRent, availableFrom: new Date() }));
+});
+test('availableFrom en texte : refuse', async () => {
+  await assertFails(create({ ...longRent, availableFrom: '2026-12-01' }));
+});
+test('maxGuests a 0 : refuse', async () => {
+  await assertFails(create({ ...stay, maxGuests: 0 }));
+});
+test('maxGuests 4 et minNights 2 : OK', async () => {
+  await assertSucceeds(create({ ...stay, maxGuests: 4, minNights: 2, beds: 3 }));
+});
+test('yearBuilt 1700 : refuse', async () => {
+  await assertFails(create({ yearBuilt: 1700 }));
+});
+test('yearBuilt 2015 : OK', async () => {
+  await assertSucceeds(create({ yearBuilt: 2015 }));
+});
+test('documentsNote de 201 caracteres : refuse', async () => {
+  await assertFails(create({ documentsNote: 'a'.repeat(201) }));
+});
+test('documentsNote de 200 caracteres : OK', async () => {
+  await assertSucceeds(create({ documentsNote: 'a'.repeat(200) }));
+});
+test('viewCount negatif : refuse', async () => {
+  await assertFails(create({ viewCount: -1 }));
+});
+test('annonce existante sans nouveaux champs : le proprietaire peut encore la modifier', async () => {
+  await assertSucceeds(updateDoc(doc(as('alice'), 'listings/l1'), { price: 120000 }));
+});
+
+// ---------- VST-74 : contact de l'annonce (listings/{id}/contact/info) ----------
+const contactRef = (db, id = 'l1') => doc(db, `listings/${id}/contact/info`);
+const seedContact = async () => {
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    await setDoc(contactRef(ctx.firestore()), { contactPhone: '+21620123456', whatsappEnabled: true });
+  });
+};
+test('contact : lu par un utilisateur connecte : OK', async () => {
+  await seedContact();
+  await assertSucceeds(getDoc(contactRef(as('bob'))));
+});
+test('contact : lu sans etre connecte (invite) : refuse', async () => {
+  await seedContact();
+  await assertFails(getDoc(contactRef(anon())));
+});
+test('contact : cree par le proprietaire avec un bon numero : OK', async () => {
+  await assertSucceeds(setDoc(contactRef(as('alice')),
+    { contactPhone: '+21620123456', whatsappEnabled: true }));
+});
+test('contact : numero qui commence par 9 : OK', async () => {
+  await assertSucceeds(setDoc(contactRef(as('alice')), { contactPhone: '+21698123456' }));
+});
+test('contact : sans +216 : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('alice')), { contactPhone: '20123456' }));
+});
+test('contact : autre pays (+33) : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('alice')), { contactPhone: '+33612345678' }));
+});
+test('contact : 7 chiffres seulement : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('alice')), { contactPhone: '+2162012345' }));
+});
+test('contact : 9 chiffres : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('alice')), { contactPhone: '+216201234567' }));
+});
+test('contact : premier chiffre 1 : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('alice')), { contactPhone: '+21610123456' }));
+});
+test('contact : lettres dans le numero : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('alice')), { contactPhone: '+2162012345a' }));
+});
+test('contact : numero en nombre : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('alice')), { contactPhone: 21620123456 }));
+});
+test('contact : champ inconnu : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('alice')),
+    { contactPhone: '+21620123456', email: 'x@y.tn' }));
+});
+test('contact : whatsappEnabled en texte : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('alice')),
+    { contactPhone: '+21620123456', whatsappEnabled: 'oui' }));
+});
+test('contact : cree par un autre utilisateur : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('bob')), { contactPhone: '+21620123456' }));
+});
+test('contact : cree sans etre connecte : refuse', async () => {
+  await assertFails(setDoc(contactRef(anon()), { contactPhone: '+21620123456' }));
+});
+test('contact d une annonce qui n existe pas : refuse', async () => {
+  await assertFails(setDoc(contactRef(as('alice'), 'nope'), { contactPhone: '+21620123456' }));
+});
+test('contact : modifie par le proprietaire : OK', async () => {
+  await seedContact();
+  await assertSucceeds(updateDoc(contactRef(as('alice')), { whatsappEnabled: false }));
+});
+test('contact : modifie par un autre : refuse', async () => {
+  await seedContact();
+  await assertFails(updateDoc(contactRef(as('bob')), { contactPhone: '+21620999999' }));
+});
+test('contact : supprime par le proprietaire : OK', async () => {
+  await seedContact();
+  await assertSucceeds(deleteDoc(contactRef(as('alice'))));
+});
+test('contact : supprime par un autre : refuse', async () => {
+  await seedContact();
+  await assertFails(deleteDoc(contactRef(as('bob'))));
+});
+test('creation annonce + contact dans le meme lot : OK', async () => {
+  const db = as('alice');
+  const b = writeBatch(db);
+  b.set(doc(db, 'listings/l2'), makeListing('alice'));
+  b.set(contactRef(db, 'l2'), { contactPhone: '+21620123456', whatsappEnabled: true });
+  await assertSucceeds(b.commit());
+});
+test('suppression annonce + photo + contact dans le meme lot : OK', async () => {
+  await seedContact();
+  const db = as('alice');
+  const b = writeBatch(db);
+  b.delete(doc(db, 'listings/l1/photos/p0'));
+  b.delete(contactRef(db));
+  b.delete(doc(db, 'listings/l1'));
+  await assertSucceeds(b.commit());
+});
+
+// ---------- VST-72 : navigation en invite ----------
+test('invite : ne peut pas creer d annonce', async () => {
+  await assertFails(setDoc(doc(anon(), 'listings/l2'), makeListing('alice')));
+});
+test('invite : ne peut pas modifier une annonce', async () => {
+  await assertFails(updateDoc(doc(anon(), 'listings/l1'), { title: 'Hack' }));
+});
+test('invite : ne peut pas supprimer une annonce', async () => {
+  await assertFails(deleteDoc(doc(anon(), 'listings/l1')));
+});
+test('invite : ne peut pas ajouter de photo', async () => {
+  await assertFails(setDoc(doc(anon(), 'listings/l1/photos/p1'),
+    { base64: 'abc', createdAt: new Date() }));
+});
+test('invite : ne peut pas lire une conversation', async () => {
+  await assertFails(getDoc(doc(anon(), 'conversations/l1_bob')));
+});
+test('invite : ne peut pas lire les favoris', async () => {
+  await assertFails(getDoc(doc(anon(), 'favorites/alice_l1')));
 });
