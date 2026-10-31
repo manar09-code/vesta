@@ -27,7 +27,7 @@ android {
         // flag during build.
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        resValue("string", "app_name", "Vesta")
+        manifestPlaceholders["appLabel"] = "Vesta"
     }
 
     buildTypes {
@@ -36,7 +36,7 @@ android {
             // Play Store (closed test) version installed on the same phone.
             applicationIdSuffix = ".debug"
             // Different name under the icon, to tell it apart from the Play Store version.
-            resValue("string", "app_name", "Vesta Debug")
+            manifestPlaceholders["appLabel"] = "Vesta Debug"
         }
         release {
             // TODO: Add your own signing config for the release build.
