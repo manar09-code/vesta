@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../core/config/app_config.dart';
+import 'listing.dart';
 
 /// Errors the UI can show. Screens turn them into translated messages.
 enum ListingError {
@@ -117,6 +118,41 @@ class ListingRepository {
       await batch.commit();
       return ref.id;
     } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Reads listings by id, in the same order as [ids].
+  /// An entry is null when the listing no longer exists (deleted by its
+  /// owner) or cannot be read (for example hidden): the caller skips it
+  /// or shows "no longer available".
+  Future<List<Listing?>> getListingsByIds(List<String> ids) {
+    return Future.wait(ids.map(_getListingOrNull));
+  }
+
+  Future<Listing?> _getListingOrNull(String id) async {
+    try {
+      final doc = await _db.collection('listings').doc(id).get();
+      if (!doc.exists) return null;
+      return Listing.fromDoc(doc);
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') return null;
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Cover photo (id p0) of a listing, as base64. Null if there is none.
+  Future<String?> getCoverPhotoBase64(String listingId) async {
+    try {
+      final doc = await _db
+          .collection('listings')
+          .doc(listingId)
+          .collection('photos')
+          .doc('p0')
+          .get();
+      return doc.data()?['base64'] as String?;
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') return null;
       throw ListingFailure(_mapCode(e.code));
     }
   }
