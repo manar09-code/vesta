@@ -20,6 +20,8 @@
   "authGoToSignUp": "ما عندكش حساب؟ سجّل",
   "authGoToLogin": "عندك حساب؟ ادخل",
   "authLogoutButton": "خروج",
+  "signInToContinueTitle": "ادخل باش تكمل",
+  "signInToContinueBody": "ادخل لحسابك ولا اعمل حساب جديد باش تزيد في المفضلة، تبعث رسالة للمالك وتنشر إعلان.",
   "authErrorInvalidEmail": "أدخل بريد إلكتروني صحيح",
   "authErrorPasswordShort": "كلمة السر لازم تكون 8 حروف على الأقل",
   "authErrorNameRequired": "أدخل اسمك",

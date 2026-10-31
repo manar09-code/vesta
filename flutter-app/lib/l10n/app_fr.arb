@@ -20,6 +20,8 @@
   "authGoToSignUp": "Pas de compte ? Inscrivez-vous",
   "authGoToLogin": "Déjà un compte ? Connectez-vous",
   "authLogoutButton": "Se déconnecter",
+  "signInToContinueTitle": "Connectez-vous pour continuer",
+  "signInToContinueBody": "Connectez-vous ou créez un compte pour ajouter des favoris, écrire aux propriétaires et publier des annonces.",
   "authErrorInvalidEmail": "Entrez une adresse email valide",
   "authErrorPasswordShort": "Le mot de passe doit contenir au moins 8 caractères",
   "authErrorNameRequired": "Entrez votre nom",
