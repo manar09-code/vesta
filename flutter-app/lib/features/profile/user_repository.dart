@@ -66,7 +66,7 @@ class UserRepository {
     try {
       await _db.collection('users').doc(user.uid).update({
         'displayName': name,
-        if (photoBase64 != null) 'photoBase64': photoBase64,
+        'photoBase64': ?photoBase64,
       });
       // Same name in Auth, like AuthRepository.signUp does.
       await user.updateDisplayName(name);
