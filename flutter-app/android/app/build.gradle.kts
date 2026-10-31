@@ -30,6 +30,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Own app id for debug builds, so `flutter run` never removes the
+            // Play Store (closed test) version installed on the same phone.
+            applicationIdSuffix = ".debug"
+        }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
