@@ -225,4 +225,80 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'ما نجمناش نقراو الصورة';
+
+  @override
+  String get profileEditTitle => 'عدّل حسابي';
+
+  @override
+  String get profileNameLabel => 'الاسم';
+
+  @override
+  String get profileEmailLabel => 'البريد الإلكتروني';
+
+  @override
+  String get profileSaveButton => 'احفظ';
+
+  @override
+  String get profileChangePhoto => 'بدّل الصورة';
+
+  @override
+  String get profilePhotoGallery => 'اختار من المعرض';
+
+  @override
+  String get profilePhotoCamera => 'خوذ صورة';
+
+  @override
+  String get profileSaved => 'تم حفظ التغييرات';
+
+  @override
+  String get profileMyListings => 'إعلاناتي';
+
+  @override
+  String get profileNoListings => 'ما عندكش إعلانات توّا';
+
+  @override
+  String get profileListingsLoadError => 'ما نجمناش نحمّلو إعلاناتك';
+
+  @override
+  String get profileEditListing => 'عدّل الإعلان هذا';
+
+  @override
+  String get profileDeleteListing => 'احذف الإعلان هذا';
+
+  @override
+  String get profileDeleteConfirmTitle => 'تحذف الإعلان هذا؟';
+
+  @override
+  String get profileDeleteConfirmBody =>
+      'الصور متاعو يتحذفو زادة. ما تنجمش ترجع في هذا.';
+
+  @override
+  String get profileDeleteConfirm => 'احذف';
+
+  @override
+  String get profileCancel => 'إلغاء';
+
+  @override
+  String get profileListingDeleted => 'تم حذف الإعلان';
+
+  @override
+  String get profileErrorNameRequired => 'أدخل اسمك';
+
+  @override
+  String get profileErrorNoNetwork => 'ما فماش اتصال، عاود جرّب';
+
+  @override
+  String get profileErrorPermission => 'ما عندكش الصلاحية باش تعمل هذا';
+
+  @override
+  String get profileErrorNotSignedIn => 'سجّل الدخول قبل';
+
+  @override
+  String get profileErrorUnknown => 'صار مشكل، عاود جرّب';
+
+  @override
+  String get profilePhotoErrorTooLarge => 'الصورة هذي كبيرة برشا';
+
+  @override
+  String get profilePhotoErrorRead => 'ما نجمناش نقراو الصورة';
 }

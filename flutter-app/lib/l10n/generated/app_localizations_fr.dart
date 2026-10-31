@@ -230,4 +230,81 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'Impossible de lire cette photo';
+
+  @override
+  String get profileEditTitle => 'Modifier le profil';
+
+  @override
+  String get profileNameLabel => 'Nom';
+
+  @override
+  String get profileEmailLabel => 'Email';
+
+  @override
+  String get profileSaveButton => 'Enregistrer';
+
+  @override
+  String get profileChangePhoto => 'Changer la photo';
+
+  @override
+  String get profilePhotoGallery => 'Choisir dans la galerie';
+
+  @override
+  String get profilePhotoCamera => 'Prendre une photo';
+
+  @override
+  String get profileSaved => 'Profil enregistré';
+
+  @override
+  String get profileMyListings => 'Mes annonces';
+
+  @override
+  String get profileNoListings => 'Aucune annonce pour le moment';
+
+  @override
+  String get profileListingsLoadError => 'Impossible de charger vos annonces';
+
+  @override
+  String get profileEditListing => 'Modifier cette annonce';
+
+  @override
+  String get profileDeleteListing => 'Supprimer cette annonce';
+
+  @override
+  String get profileDeleteConfirmTitle => 'Supprimer cette annonce ?';
+
+  @override
+  String get profileDeleteConfirmBody =>
+      'Ses photos seront aussi supprimées. Cette action est irréversible.';
+
+  @override
+  String get profileDeleteConfirm => 'Supprimer';
+
+  @override
+  String get profileCancel => 'Annuler';
+
+  @override
+  String get profileListingDeleted => 'Annonce supprimée';
+
+  @override
+  String get profileErrorNameRequired => 'Le nom est obligatoire';
+
+  @override
+  String get profileErrorNoNetwork => 'Pas de connexion. Veuillez réessayer.';
+
+  @override
+  String get profileErrorPermission => 'Action non autorisée';
+
+  @override
+  String get profileErrorNotSignedIn => 'Veuillez vous connecter';
+
+  @override
+  String get profileErrorUnknown =>
+      'Une erreur est survenue. Veuillez réessayer.';
+
+  @override
+  String get profilePhotoErrorTooLarge => 'Cette photo est trop lourde';
+
+  @override
+  String get profilePhotoErrorRead => 'Impossible de lire cette photo';
 }

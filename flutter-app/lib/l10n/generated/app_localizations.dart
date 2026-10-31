@@ -531,6 +531,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not read this photo'**
   String get photoErrorReadFailed;
+
+  /// No description provided for @profileEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get profileEditTitle;
+
+  /// No description provided for @profileNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get profileNameLabel;
+
+  /// No description provided for @profileEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get profileEmailLabel;
+
+  /// No description provided for @profileSaveButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get profileSaveButton;
+
+  /// No description provided for @profileChangePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Change photo'**
+  String get profileChangePhoto;
+
+  /// No description provided for @profilePhotoGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get profilePhotoGallery;
+
+  /// No description provided for @profilePhotoCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get profilePhotoCamera;
+
+  /// No description provided for @profileSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile saved'**
+  String get profileSaved;
+
+  /// No description provided for @profileMyListings.
+  ///
+  /// In en, this message translates to:
+  /// **'My listings'**
+  String get profileMyListings;
+
+  /// No description provided for @profileNoListings.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no listings yet'**
+  String get profileNoListings;
+
+  /// No description provided for @profileListingsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load your listings'**
+  String get profileListingsLoadError;
+
+  /// No description provided for @profileEditListing.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit this listing'**
+  String get profileEditListing;
+
+  /// No description provided for @profileDeleteListing.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this listing'**
+  String get profileDeleteListing;
+
+  /// No description provided for @profileDeleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this listing?'**
+  String get profileDeleteConfirmTitle;
+
+  /// No description provided for @profileDeleteConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Its photos will be deleted too. This cannot be undone.'**
+  String get profileDeleteConfirmBody;
+
+  /// No description provided for @profileDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get profileDeleteConfirm;
+
+  /// No description provided for @profileCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get profileCancel;
+
+  /// No description provided for @profileListingDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Listing deleted'**
+  String get profileListingDeleted;
+
+  /// No description provided for @profileErrorNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required'**
+  String get profileErrorNameRequired;
+
+  /// No description provided for @profileErrorNoNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection. Please try again.'**
+  String get profileErrorNoNetwork;
+
+  /// No description provided for @profileErrorPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'You are not allowed to do this'**
+  String get profileErrorPermission;
+
+  /// No description provided for @profileErrorNotSignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in'**
+  String get profileErrorNotSignedIn;
+
+  /// No description provided for @profileErrorUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get profileErrorUnknown;
+
+  /// No description provided for @profilePhotoErrorTooLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'This photo is too large'**
+  String get profilePhotoErrorTooLarge;
+
+  /// No description provided for @profilePhotoErrorRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not read this photo'**
+  String get profilePhotoErrorRead;
 }
 
 class _AppLocalizationsDelegate
