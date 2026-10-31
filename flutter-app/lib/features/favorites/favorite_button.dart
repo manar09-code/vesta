@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../auth/require_sign_in.dart';
 import 'favorites_controller.dart';
 
 /// Heart button: tap to save the listing, tap again to remove it.
@@ -24,8 +25,12 @@ class FavoriteButton extends ConsumerWidget {
         isFavorite ? Icons.favorite : Icons.favorite_border,
         color: isFavorite ? Colors.redAccent : null,
       ),
-      onPressed: () =>
-          ref.read(favoritesControllerProvider.notifier).toggle(listingId),
+      onPressed: () async {
+        // A guest first signs in (VST-72), then the heart is toggled.
+        if (!await requireSignIn(context, ref)) return;
+        if (!context.mounted) return;
+        ref.read(favoritesControllerProvider.notifier).toggle(listingId);
+      },
     );
   }
 }
