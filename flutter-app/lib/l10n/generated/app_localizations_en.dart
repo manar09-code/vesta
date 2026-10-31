@@ -227,4 +227,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'Could not read this photo';
+
+  @override
+  String get favoritesEmptyTitle => 'No favorites yet';
+
+  @override
+  String get favoritesEmptyBody =>
+      'Tap the heart on a listing to save it here.';
+
+  @override
+  String get favoritesUnavailable => 'This listing is no longer available';
+
+  @override
+  String get favoritesRemove => 'Remove';
+
+  @override
+  String get favoritesRetry => 'Try again';
+
+  @override
+  String get favoritesErrorNoNetwork =>
+      'No connection. Check your internet and try again.';
+
+  @override
+  String get favoritesErrorPermission => 'You are not allowed to do this.';
+
+  @override
+  String get favoritesErrorNotSignedIn => 'Sign in to save favorites.';
+
+  @override
+  String get favoritesErrorUnknown => 'Something went wrong. Please try again.';
 }
