@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../core/utils/phone_utils.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'listing_controller.dart';
 import 'listing_repository.dart';
@@ -24,6 +25,7 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
   final _description = TextEditingController();
   final _price = TextEditingController();
   final _city = TextEditingController();
+  final _phone = TextEditingController();
   final _bedrooms = TextEditingController();
   final _bathrooms = TextEditingController();
   final _area = TextEditingController();
@@ -35,6 +37,7 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
   final List<String> _photos = []; // base64 strings, index 0 = cover
   String? _photoMessage;
   bool _rentPeriodMissing = false;
+  bool _whatsappEnabled = false;
 
   @override
   void dispose() {
@@ -43,6 +46,7 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
       _description,
       _price,
       _city,
+      _phone,
       _bedrooms,
       _bathrooms,
       _area,
@@ -67,6 +71,8 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
         return l.listingErrorRentPeriodRequired;
       case ListingFieldError.numberInvalid:
         return l.listingErrorNumberInvalid;
+      case ListingFieldError.phoneInvalid:
+        return l.contactErrorPhoneInvalid;
     }
   }
 
@@ -160,12 +166,15 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
     final messenger = ScaffoldMessenger.of(context);
 
     final formOk = _formKey.currentState!.validate();
+    final contactPhone = normalizeTunisianPhone(_phone.text.trim());
     final periodMissing = validateRentPeriod(_listingType, _rentPeriod) != null;
     setState(() {
       _rentPeriodMissing = periodMissing;
       if (_photos.isEmpty) _photoMessage = l.listingErrorNoPhotos;
     });
-    if (!formOk || periodMissing || _photos.isEmpty) return;
+    if (!formOk || contactPhone == null || periodMissing || _photos.isEmpty) {
+      return;
+    }
 
     final listing = NewListing(
       title: _title.text.trim(),
@@ -175,6 +184,8 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
       rentPeriod: _listingType == 'rent' ? _rentPeriod : null,
       propertyType: _propertyType,
       city: _city.text.trim(),
+      contactPhone: contactPhone,
+      whatsappEnabled: _whatsappEnabled,
       bedrooms: _optional(_bedrooms),
       bathrooms: _optional(_bathrooms),
       areaSqm: _optional(_area),
@@ -293,6 +304,23 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
                 controller: _city,
                 decoration: InputDecoration(labelText: l.publishFieldCity),
                 validator: (v) => fieldValidator(v, validateCity),
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                controller: _phone,
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                  labelText: l.contactPhoneLabel,
+                  hintText: l.contactPhoneHint,
+                  prefixText: '+216 ',
+                ),
+                validator: (v) => fieldValidator(v, validatePhone),
+              ),
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l.contactWhatsappSwitch),
+                value: _whatsappEnabled,
+                onChanged: (value) => setState(() => _whatsappEnabled = value),
               ),
               const SizedBox(height: 12),
               for (final entry in [

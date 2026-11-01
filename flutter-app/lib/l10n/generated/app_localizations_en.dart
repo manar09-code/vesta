@@ -227,4 +227,116 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'Could not read this photo';
+
+  @override
+  String get contactPhoneLabel => 'Phone number';
+
+  @override
+  String get contactPhoneHint => '20 123 456';
+
+  @override
+  String get contactWhatsappSwitch => 'I accept WhatsApp messages';
+
+  @override
+  String get contactErrorPhoneInvalid =>
+      'Enter 8 digits starting with 2, 3, 4, 5, 7 or 9';
+
+  @override
+  String get contactCallButton => 'Call';
+
+  @override
+  String get contactWhatsappButton => 'WhatsApp';
+
+  @override
+  String get contactSignInToSee => 'Sign in to see the contact';
+
+  @override
+  String get contactNotAvailable => 'Contact not available';
+
+  @override
+  String get contactNoWhatsapp => 'WhatsApp is not installed on this phone';
+
+  @override
+  String get contactCallFailed => 'Cannot open the phone dialer';
+
+  @override
+  String contactWhatsappMessage(String title) {
+    return 'Hello, I am interested in your listing $title on Vesta';
+  }
+
+  @override
+  String get profileEditTitle => 'Edit profile';
+
+  @override
+  String get profileNameLabel => 'Name';
+
+  @override
+  String get profileEmailLabel => 'Email';
+
+  @override
+  String get profileSaveButton => 'Save';
+
+  @override
+  String get profileChangePhoto => 'Change photo';
+
+  @override
+  String get profilePhotoGallery => 'Choose from gallery';
+
+  @override
+  String get profilePhotoCamera => 'Take a photo';
+
+  @override
+  String get profileSaved => 'Profile saved';
+
+  @override
+  String get profileMyListings => 'My listings';
+
+  @override
+  String get profileNoListings => 'You have no listings yet';
+
+  @override
+  String get profileListingsLoadError => 'Could not load your listings';
+
+  @override
+  String get profileEditListing => 'Edit this listing';
+
+  @override
+  String get profileDeleteListing => 'Delete this listing';
+
+  @override
+  String get profileDeleteConfirmTitle => 'Delete this listing?';
+
+  @override
+  String get profileDeleteConfirmBody =>
+      'Its photos will be deleted too. This cannot be undone.';
+
+  @override
+  String get profileDeleteConfirm => 'Delete';
+
+  @override
+  String get profileCancel => 'Cancel';
+
+  @override
+  String get profileListingDeleted => 'Listing deleted';
+
+  @override
+  String get profileErrorNameRequired => 'Name is required';
+
+  @override
+  String get profileErrorNoNetwork => 'No connection. Please try again.';
+
+  @override
+  String get profileErrorPermission => 'You are not allowed to do this';
+
+  @override
+  String get profileErrorNotSignedIn => 'Please sign in';
+
+  @override
+  String get profileErrorUnknown => 'Something went wrong. Please try again.';
+
+  @override
+  String get profilePhotoErrorTooLarge => 'This photo is too large';
+
+  @override
+  String get profilePhotoErrorRead => 'Could not read this photo';
 }
