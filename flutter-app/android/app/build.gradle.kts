@@ -36,6 +36,7 @@ android {
         // flag during build.
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders["appLabel"] = "Vesta"
     }
 
     signingConfigs {
@@ -50,6 +51,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Own app id for debug builds, so `flutter run` never removes the
+            // Play Store (closed test) version installed on the same phone.
+            applicationIdSuffix = ".debug"
+            // Different name under the icon, to tell it apart from the Play Store version.
+            manifestPlaceholders["appLabel"] = "Vesta Debug"
+        }
         release {
             // Use the upload key when key.properties exists; otherwise fall back to
             // debug signing so teammates can still run `flutter run --release`.

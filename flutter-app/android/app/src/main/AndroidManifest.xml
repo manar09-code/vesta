@@ -2,7 +2,7 @@
     <!-- Required in release builds for Firebase (Auth, Firestore, Storage). -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="Vesta"
+        android:label="${appLabel}"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -23,6 +23,9 @@ Example: `feat(auth): add email login screen [VST-21]`
 - Tested on a **real phone**
 - Jira ticket updated and moved to Done
 
+## Running the app on a phone that has the Play Store version
+Debug builds use the app id `com.vesta.flutterapp.debug`, so `flutter run` installs next to the Play Store version (`com.vesta.flutterapp`) and does not remove it. Testers in the Google Play closed test must keep the Play version installed and never uninstall it before 11 Nov.
+
 ## Secrets
 Never commit `google-services.json`, `GoogleService-Info.plist`, `.env`, keystores or API keys. If one leaks, tell Manar immediately so the key can be rotated.
 
