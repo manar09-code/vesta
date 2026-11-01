@@ -79,6 +79,7 @@
   "contactCallButton": "Call",
   "contactWhatsappButton": "WhatsApp",
   "contactSignInToSee": "Sign in to see the contact",
+  "contactNotAvailable": "Contact not available",
   "contactNoWhatsapp": "WhatsApp is not installed on this phone",
   "contactCallFailed": "Cannot open the phone dialer",
   "contactWhatsappMessage": "Hello, I am interested in your listing {title} on Vesta",

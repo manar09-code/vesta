@@ -574,6 +574,12 @@ abstract class AppLocalizations {
   /// **'Sign in to see the contact'**
   String get contactSignInToSee;
 
+  /// No description provided for @contactNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact not available'**
+  String get contactNotAvailable;
+
   /// No description provided for @contactNoWhatsapp.
   ///
   /// In en, this message translates to:

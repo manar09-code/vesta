@@ -254,6 +254,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get contactSignInToSee => 'Connectez-vous pour voir le contact';
 
   @override
+  String get contactNotAvailable => 'Contact indisponible';
+
+  @override
   String get contactNoWhatsapp =>
       'WhatsApp n\'est pas installé sur ce téléphone';
 

@@ -251,6 +251,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contactSignInToSee => 'Sign in to see the contact';
 
   @override
+  String get contactNotAvailable => 'Contact not available';
+
+  @override
   String get contactNoWhatsapp => 'WhatsApp is not installed on this phone';
 
   @override

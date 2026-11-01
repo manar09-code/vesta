@@ -249,6 +249,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get contactSignInToSee => 'ادخل باش تشوف رقم التلفون';
 
   @override
+  String get contactNotAvailable => 'رقم التلفون موش متوفر';
+
+  @override
   String get contactNoWhatsapp => 'واتساب موش موجود في التلفون هذا';
 
   @override

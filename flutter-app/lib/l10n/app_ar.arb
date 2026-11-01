@@ -79,6 +79,7 @@
   "contactCallButton": "اتصل",
   "contactWhatsappButton": "واتساب",
   "contactSignInToSee": "ادخل باش تشوف رقم التلفون",
+  "contactNotAvailable": "رقم التلفون موش متوفر",
   "contactNoWhatsapp": "واتساب موش موجود في التلفون هذا",
   "contactCallFailed": "ما نجمناش نفتحو الاتصال",
   "contactWhatsappMessage": "سلام، يهمني إعلانك {title} في Vesta",
