@@ -263,4 +263,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get listingsEmpty => 'Aucune annonce pour l\'instant';
+
+  @override
+  String get favoritesFilterAll => 'Tous';
+
+  @override
+  String get favoritesFilterBuy => 'Acheter';
+
+  @override
+  String get favoritesFilterRent => 'Louer';
+
+  @override
+  String get favoritesFilterStay => 'Séjourner';
+
+  @override
+  String get favoritesFilterEmpty => 'Aucun favori dans cette catégorie';
 }

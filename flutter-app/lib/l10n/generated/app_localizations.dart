@@ -591,6 +591,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No listings yet'**
   String get listingsEmpty;
+
+  /// No description provided for @favoritesFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get favoritesFilterAll;
+
+  /// No description provided for @favoritesFilterBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy'**
+  String get favoritesFilterBuy;
+
+  /// No description provided for @favoritesFilterRent.
+  ///
+  /// In en, this message translates to:
+  /// **'Rent'**
+  String get favoritesFilterRent;
+
+  /// No description provided for @favoritesFilterStay.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay'**
+  String get favoritesFilterStay;
+
+  /// No description provided for @favoritesFilterEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorites in this category'**
+  String get favoritesFilterEmpty;
 }
 
 class _AppLocalizationsDelegate

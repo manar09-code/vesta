@@ -81,5 +81,10 @@
   "favoritesErrorPermission": "You are not allowed to do this.",
   "favoritesErrorNotSignedIn": "Sign in to save favorites.",
   "favoritesErrorUnknown": "Something went wrong. Please try again.",
-  "listingsEmpty": "No listings yet"
+  "listingsEmpty": "No listings yet",
+  "favoritesFilterAll": "All",
+  "favoritesFilterBuy": "Buy",
+  "favoritesFilterRent": "Rent",
+  "favoritesFilterStay": "Stay",
+  "favoritesFilterEmpty": "No favorites in this category"
 }

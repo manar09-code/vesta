@@ -259,4 +259,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get listingsEmpty => 'No listings yet';
+
+  @override
+  String get favoritesFilterAll => 'All';
+
+  @override
+  String get favoritesFilterBuy => 'Buy';
+
+  @override
+  String get favoritesFilterRent => 'Rent';
+
+  @override
+  String get favoritesFilterStay => 'Stay';
+
+  @override
+  String get favoritesFilterEmpty => 'No favorites in this category';
 }

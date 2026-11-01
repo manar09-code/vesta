@@ -81,5 +81,10 @@
   "favoritesErrorPermission": "Tu n'as pas le droit de faire cela.",
   "favoritesErrorNotSignedIn": "Connecte-toi pour enregistrer des favoris.",
   "favoritesErrorUnknown": "Une erreur est survenue. Réessaie.",
-  "listingsEmpty": "Aucune annonce pour l'instant"
+  "listingsEmpty": "Aucune annonce pour l'instant",
+  "favoritesFilterAll": "Tous",
+  "favoritesFilterBuy": "Acheter",
+  "favoritesFilterRent": "Louer",
+  "favoritesFilterStay": "Séjourner",
+  "favoritesFilterEmpty": "Aucun favori dans cette catégorie"
 }

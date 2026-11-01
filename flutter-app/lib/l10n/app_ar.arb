@@ -81,5 +81,10 @@
   "favoritesErrorPermission": "غير مسموح لك بهذا الإجراء.",
   "favoritesErrorNotSignedIn": "سجّل الدخول لحفظ المفضلة.",
   "favoritesErrorUnknown": "حدث خطأ. حاول مرة أخرى.",
-  "listingsEmpty": "لا توجد إعلانات بعد"
+  "listingsEmpty": "لا توجد إعلانات بعد",
+  "favoritesFilterAll": "الكل",
+  "favoritesFilterBuy": "شراء",
+  "favoritesFilterRent": "كراء",
+  "favoritesFilterStay": "إقامة",
+  "favoritesFilterEmpty": "لا توجد مفضلة في هذه الفئة"
 }

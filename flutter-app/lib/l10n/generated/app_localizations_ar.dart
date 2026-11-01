@@ -256,4 +256,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get listingsEmpty => 'لا توجد إعلانات بعد';
+
+  @override
+  String get favoritesFilterAll => 'الكل';
+
+  @override
+  String get favoritesFilterBuy => 'شراء';
+
+  @override
+  String get favoritesFilterRent => 'كراء';
+
+  @override
+  String get favoritesFilterStay => 'إقامة';
+
+  @override
+  String get favoritesFilterEmpty => 'لا توجد مفضلة في هذه الفئة';
 }
