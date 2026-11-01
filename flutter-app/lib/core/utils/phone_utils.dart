@@ -18,7 +18,7 @@ String? normalizeTunisianPhone(String input) {
 bool isValidTunisianPhone(String input) =>
     normalizeTunisianPhone(input) != null;
 
-/// +21620123456 -> "+216 20 123 456". Returns the input if invalid.
+/// +21692816836 -> "+216 92 816 836". Returns the input if invalid.
 String formatPhone(String e164) {
   final normalized = normalizeTunisianPhone(e164);
   if (normalized == null) return e164;
