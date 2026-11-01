@@ -3,6 +3,13 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     function signedIn() { return request.auth != null; }
+
+    // VST-79 : compte connecte ET non anonyme (email, Google...). Les comptes anonymes
+    // (navigation en invite) n'ont pas le droit de lire le telephone d'une annonce.
+    function notAnonymous() {
+      return signedIn() && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+
     function isUser(uid) { return signedIn() && request.auth.uid == uid; }
     function listingPath(id) {
       return /databases/$(database)/documents/listings/$(id);
@@ -155,9 +162,10 @@ service cloud.firestore {
           && isUser(get(listingPath(listingId)).data.ownerId);
       }
 
-      // VST-74 : contact de l'annonce, lisible seulement par un utilisateur connecte
+      // VST-74 / VST-79 : contact de l'annonce, lisible seulement par un utilisateur
+      // connecte NON anonyme (les invites ne voient pas le numero).
       match /contact/info {
-        allow read: if signedIn();
+        allow read: if notAnonymous();
         allow create, update: if isUser(getAfter(listingPath(listingId)).data.ownerId)
           && validListingContact(request.resource.data);
         allow delete: if isUser(get(listingPath(listingId)).data.ownerId);
