@@ -280,4 +280,8 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get verifyBannerSent => 'E-mail de vérification envoyé';
+
+  @override
+  String get authErrorTooManyRequests =>
+      'Trop de tentatives, réessayez dans quelques minutes';
 }

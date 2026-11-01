@@ -627,6 +627,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Verification email sent'**
   String get verifyBannerSent;
+
+  /// No description provided for @authErrorTooManyRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts, please try again in a few minutes'**
+  String get authErrorTooManyRequests;
 }
 
 class _AppLocalizationsDelegate

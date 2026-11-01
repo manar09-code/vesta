@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 
 /// Errors the UI can show. Screens turn them into translated messages.
 enum AuthError {
@@ -10,6 +11,7 @@ enum AuthError {
   emailInUse,
   wrongPassword,
   noNetwork,
+  tooManyRequests,
   unknown,
 }
 
@@ -136,7 +138,11 @@ class AuthRepository {
         return AuthError.wrongPassword;
       case 'network-request-failed':
         return AuthError.noNetwork;
+      case 'too-many-requests':
+        return AuthError.tooManyRequests;
       default:
+        // Shown as a generic message; the code helps to find the cause.
+        debugPrint('Unmapped Firebase Auth error code: $code');
         return AuthError.unknown;
     }
   }

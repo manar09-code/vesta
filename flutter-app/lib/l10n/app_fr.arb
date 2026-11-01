@@ -87,5 +87,6 @@
   "commonCancel": "Annuler",
   "verifyBannerText": "Veuillez confirmer votre adresse e-mail.",
   "verifyBannerResend": "Renvoyer",
-  "verifyBannerSent": "E-mail de vérification envoyé"
+  "verifyBannerSent": "E-mail de vérification envoyé",
+  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes"
 }

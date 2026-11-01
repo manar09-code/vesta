@@ -10,6 +10,7 @@ String authErrorMessage(AppLocalizations l10n, AuthError error) {
     AuthError.emailInUse => l10n.authErrorEmailInUse,
     AuthError.wrongPassword => l10n.authErrorWrongPassword,
     AuthError.noNetwork => l10n.authErrorNoNetwork,
+    AuthError.tooManyRequests => l10n.authErrorTooManyRequests,
     AuthError.unknown => l10n.authErrorUnknown,
   };
 }

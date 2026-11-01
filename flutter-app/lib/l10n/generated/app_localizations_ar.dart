@@ -274,4 +274,8 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get verifyBannerSent => 'تبعث إيميل التأكيد';
+
+  @override
+  String get authErrorTooManyRequests =>
+      'برشا محاولات، عاود جرّب بعد شوية دقايق';
 }
