@@ -98,6 +98,8 @@ class ListingRepository {
         if (listing.listingType == 'rent') 'rentPeriod': listing.rentPeriod,
         'propertyType': listing.propertyType,
         'city': listing.city,
+        // docs/data-model.md: the apps always write the status.
+        'status': 'available',
         // optional fields are written only when filled
         if (listing.bedrooms != null) 'bedrooms': listing.bedrooms,
         if (listing.bathrooms != null) 'bathrooms': listing.bathrooms,
