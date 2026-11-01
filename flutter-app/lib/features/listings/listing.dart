@@ -60,3 +60,28 @@ class Listing {
     );
   }
 }
+
+/// The three offer types of Vesta (docs/offer-types.md). A product view on
+/// `listingType` and `rentPeriod`: no `offerType` field is stored.
+enum OfferType { sale, rent, stay }
+
+/// Single place that decides the offer type. Screens never re-implement it.
+OfferType offerTypeOf(Listing listing) {
+  if (listing.listingType == 'sale') return OfferType.sale;
+  // listingType == 'rent': per night is a stay, per month or year is a rent.
+  return listing.rentPeriod == 'night' ? OfferType.stay : OfferType.rent;
+}
+
+/// Statuses that mean "nobody can take this listing now".
+/// `reserved` is not here: the listing is still shown normally.
+const Set<String> _unavailableStatuses = {
+  'sold',
+  'rented',
+  'unavailable',
+  'hidden',
+};
+
+extension ListingAvailability on Listing {
+  /// A favorite that is unavailable stays in the list with a grey label.
+  bool get isUnavailable => _unavailableStatuses.contains(status);
+}
