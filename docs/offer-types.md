@@ -8,9 +8,11 @@ The Firestore fields already exist and **do not change**: `listingType` (`sale` 
 
 | Offer type | Stored as | Price shown as | Who | Main contact |
 |---|---|---|---|---|
-| **Sale** | `listingType = sale` | `120 000 TND` | Seller to buyer | Chat, call, WhatsApp, visit request (S3) |
-| **Rent** | `listingType = rent` and `rentPeriod` = `month` or `year` | `900 TND / month` | Landlord to tenant | Chat, call, WhatsApp, visit request (S3) |
-| **Stay** | `listingType = rent` and `rentPeriod = night` | `150 TND / night` | Host to guest | Chat, call, WhatsApp, booking request (S3) |
+| **Sale** | `listingType = sale` | `TND 120,000` | Seller to buyer | Chat, call, WhatsApp, visit request (S3) |
+| **Rent** | `listingType = rent` and `rentPeriod` = `month` or `year` | `TND 900 / month` | Landlord to tenant | Chat, call, WhatsApp, visit request (S3) |
+| **Stay** | `listingType = rent` and `rentPeriod = night` | `TND 150 / night` | Host to guest | Chat, call, WhatsApp, booking request (S3) |
+
+**Price format.** Prices follow `formatPrice` (`flutter-app/lib/core/config/app_config.dart`): currency first, comma as thousands separator, for example `TND 450,000`. The unit (`/ night`, `/ month`, `/ year`) is added after it. `formatPrice` is the reference for every screen, in both apps.
 
 Both apps use one helper, `offerTypeOf(listing)`, that returns `sale`, `rent` or `stay` from those two fields. Nobody re-implements the rule inside a screen.
 
@@ -31,14 +33,15 @@ R = required, O = optional, - = not used. Existing fields are in **bold**.
 
 | Field | Sale | Rent | Stay | Note |
 |---|---|---|---|---|
-| **title, description, price, currency, city** | R | R | R | description at least 40 characters |
+| **title, description, price, currency, city** | R | R | R | description at least 40 characters; **price must be above 0** (the rules refuse 0 and negative prices) |
 | **propertyType** | R | R | R | see section 2 |
 | **latitude, longitude** | O | O | O | map shows only listings with coordinates |
-| **bedrooms, bathrooms, areaSqm** | R (area) | R (area) | O | |
+| **areaSqm** | R | R | O | |
+| **bedrooms, bathrooms** | R* | R* | O | *Required for apartment, house, villa, studio, riad and guest house. Not asked for `land`, optional for `commercial`. |
 | 1 to 5 photos | R | R | R | at least 1 |
 | `contactPhone` (`+216XXXXXXXX`) | R | R | R | **stored in `listings/{id}/contact/info`**, readable by signed-in users only |
 | `whatsappEnabled` (bool) | O | O | O | default false, same contact document |
-| `status` | `available`, `reserved`, `sold`, `hidden` | `available`, `reserved`, `rented`, `hidden` | `available`, `unavailable`, `hidden` | default `available` |
+| `status` | `available`, `reserved`, `sold`, `hidden` | `available`, `reserved`, `rented`, `hidden` | `available`, `unavailable`, `hidden` | default `available`: **the apps always write `status: 'available'` on create** (the rules accept a missing status, but search queries on `status == 'available'` do not return listings without the field) |
 | `negotiable` (bool) | O | - | - | |
 | `yearBuilt` (number) | O | - | - | |
 | `documentsNote` (string, max 200) | O | - | - | text only, no upload ("title deed available") |
@@ -51,8 +54,10 @@ R = required, O = optional, - = not used. Existing fields are in **bold**.
 | `checkIn`, `checkOut` (text `HH:mm`) | - | - | O | |
 | `houseRules` (array of keys) | - | - | O | `no_smoking`, `no_pets`, `no_parties`, `quiet_hours` |
 | `minNights` (number) | - | - | O | default 1 |
-| `viewCount` (number) | O | O | O | dashboard, Sprint 3, +1 per user per day |
+| `viewCount` (number) | O | O | O | dashboard, Sprint 3, +1 per user per day. **Not possible with the current rules:** only the owner can write the listing, so counting views from other users needs another mechanism, decided in Sprint 3. |
 | `verified` (bool) | O | O | O | set only by Manar in the console, "Verified" badge |
+
+**Phone format.** `+216` followed by 8 digits, and the first digit must be 2, 3, 4, 5, 7 or 9 (pattern `^\+216[234579][0-9]{7}$`). The rules refuse any other number, for example one starting with 1, so the forms apply the same check.
 
 The phone is **not** in the listing document. Listings are readable by guests (no account needed, VST-72), so a phone inside would be public. It is stored in `listings/{id}/contact/info`, which only signed-in users can read (decided in VST-74). The number is prefilled from the profile when publishing and the owner can change it per listing. The app writes the listing and its contact in one batch, and reads the contact only when a signed-in user opens the details screen.
 

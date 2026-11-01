@@ -46,6 +46,7 @@ Personas: **Buyer/Tenant** (searches and contacts) and **Owner/Agent** (publishe
 - As a tenant, I want a "Rent" tab with the monthly price, deposit and furnished info, so that I know my real cost.
 - As a traveller, I want a "Stay" tab with the price per night, guests, amenities and house rules, so that I can choose a guest house or Airbnb.
 - As a seller, I want to choose "Sell" when publishing and only see the fields that matter for a sale, so that publishing is quick.
+- As a landlord, I want to choose "Rent out" and add the deposit, the available date and whether it is furnished, so that tenants know the conditions before they call.
 - As a host, I want to choose "Offer a stay" and add amenities, check-in time and house rules, so that guests know what to expect.
 - As a user, I want to call or send a WhatsApp message to the owner in one tap, so that I can reach him the Tunisian way.
 - As an owner, I want to mark a listing as sold, rented or unavailable, so that nobody contacts me for something that is gone.
