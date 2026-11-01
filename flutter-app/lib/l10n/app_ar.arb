@@ -86,5 +86,30 @@
     "placeholders": {
       "title": { "type": "String" }
     }
-  }
+  },
+  "profileEditTitle": "عدّل حسابي",
+  "profileNameLabel": "الاسم",
+  "profileEmailLabel": "البريد الإلكتروني",
+  "profileSaveButton": "احفظ",
+  "profileChangePhoto": "بدّل الصورة",
+  "profilePhotoGallery": "اختار من المعرض",
+  "profilePhotoCamera": "خوذ صورة",
+  "profileSaved": "تم حفظ التغييرات",
+  "profileMyListings": "إعلاناتي",
+  "profileNoListings": "ما عندكش إعلانات توّا",
+  "profileListingsLoadError": "ما نجمناش نحمّلو إعلاناتك",
+  "profileEditListing": "عدّل الإعلان هذا",
+  "profileDeleteListing": "احذف الإعلان هذا",
+  "profileDeleteConfirmTitle": "تحذف الإعلان هذا؟",
+  "profileDeleteConfirmBody": "الصور متاعو يتحذفو زادة. ما تنجمش ترجع في هذا.",
+  "profileDeleteConfirm": "احذف",
+  "profileCancel": "إلغاء",
+  "profileListingDeleted": "تم حذف الإعلان",
+  "profileErrorNameRequired": "أدخل اسمك",
+  "profileErrorNoNetwork": "ما فماش اتصال، عاود جرّب",
+  "profileErrorPermission": "ما عندكش الصلاحية باش تعمل هذا",
+  "profileErrorNotSignedIn": "سجّل الدخول قبل",
+  "profileErrorUnknown": "صار مشكل، عاود جرّب",
+  "profilePhotoErrorTooLarge": "الصورة هذي كبيرة برشا",
+  "profilePhotoErrorRead": "ما نجمناش نقراو الصورة"
 }

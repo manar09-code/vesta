@@ -260,4 +260,80 @@ class AppLocalizationsEn extends AppLocalizations {
   String contactWhatsappMessage(String title) {
     return 'Hello, I am interested in your listing $title on Vesta';
   }
+
+  @override
+  String get profileEditTitle => 'Edit profile';
+
+  @override
+  String get profileNameLabel => 'Name';
+
+  @override
+  String get profileEmailLabel => 'Email';
+
+  @override
+  String get profileSaveButton => 'Save';
+
+  @override
+  String get profileChangePhoto => 'Change photo';
+
+  @override
+  String get profilePhotoGallery => 'Choose from gallery';
+
+  @override
+  String get profilePhotoCamera => 'Take a photo';
+
+  @override
+  String get profileSaved => 'Profile saved';
+
+  @override
+  String get profileMyListings => 'My listings';
+
+  @override
+  String get profileNoListings => 'You have no listings yet';
+
+  @override
+  String get profileListingsLoadError => 'Could not load your listings';
+
+  @override
+  String get profileEditListing => 'Edit this listing';
+
+  @override
+  String get profileDeleteListing => 'Delete this listing';
+
+  @override
+  String get profileDeleteConfirmTitle => 'Delete this listing?';
+
+  @override
+  String get profileDeleteConfirmBody =>
+      'Its photos will be deleted too. This cannot be undone.';
+
+  @override
+  String get profileDeleteConfirm => 'Delete';
+
+  @override
+  String get profileCancel => 'Cancel';
+
+  @override
+  String get profileListingDeleted => 'Listing deleted';
+
+  @override
+  String get profileErrorNameRequired => 'Name is required';
+
+  @override
+  String get profileErrorNoNetwork => 'No connection. Please try again.';
+
+  @override
+  String get profileErrorPermission => 'You are not allowed to do this';
+
+  @override
+  String get profileErrorNotSignedIn => 'Please sign in';
+
+  @override
+  String get profileErrorUnknown => 'Something went wrong. Please try again.';
+
+  @override
+  String get profilePhotoErrorTooLarge => 'This photo is too large';
+
+  @override
+  String get profilePhotoErrorRead => 'Could not read this photo';
 }
