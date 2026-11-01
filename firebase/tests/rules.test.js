@@ -12,6 +12,10 @@ import {
 let env;
 const as = (uid) => env.authenticatedContext(uid).firestore();
 const anon = () => env.unauthenticatedContext().firestore();
+// VST-79 : utilisateur connecte avec un fournisseur precis
+// ('anonymous' = invite avec session Firebase, 'password' = email, 'google.com' = Google)
+const asProvider = (uid, provider) =>
+  env.authenticatedContext(uid, { firebase: { sign_in_provider: provider } }).firestore();
 
 const makeListing = (owner, over = {}) => ({
   ownerId: owner, title: 'T', description: 'D', price: 100000,
@@ -500,6 +504,19 @@ test('contact : lu par un utilisateur connecte : OK', async () => {
 test('contact : lu sans etre connecte (invite) : refuse', async () => {
   await seedContact();
   await assertFails(getDoc(contactRef(anon())));
+});
+// VST-79 : un compte anonyme (invite avec session Firebase) ne lit pas le numero
+test('contact : lu par un compte anonyme : refuse', async () => {
+  await seedContact();
+  await assertFails(getDoc(contactRef(asProvider('anon1', 'anonymous'))));
+});
+test('contact : lu par un compte email : OK', async () => {
+  await seedContact();
+  await assertSucceeds(getDoc(contactRef(asProvider('bob', 'password'))));
+});
+test('contact : lu par un compte Google : OK', async () => {
+  await seedContact();
+  await assertSucceeds(getDoc(contactRef(asProvider('bob', 'google.com'))));
 });
 test('contact : cree par le proprietaire avec un bon numero : OK', async () => {
   await assertSucceeds(setDoc(contactRef(as('alice')),
