@@ -34,7 +34,7 @@ The first build downloads about 180 MB of Android components and can take 10 to 
 
 Done by the person who publishes (VST-53). The package name stays `com.vesta.flutterapp`.
 
-1. **Create the upload keystore (once).** Keep it outside the repo and back it up together with its password: losing it blocks every future update. On Windows, `keytool` comes with Android Studio:
+1. **Create the upload keystore (once).** If an upload key already exists (the first Play upload was signed with one), ask Manar for it and do not create a second one: a new key needs a key reset request in the Play Console. Keep it outside the repo and back it up together with its password: losing it blocks every future update. On Windows, `keytool` comes with Android Studio:
    ```
    & "C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe" -genkey -v -keystore "$env:USERPROFILE\vesta-upload.jks" -keyalg RSA -keysize 2048 -validity 10000 -alias upload
    ```
@@ -55,7 +55,7 @@ Done by the person who publishes (VST-53). The package name stays `com.vesta.flu
    ```
    & "C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe" -printcert -jarfile build\app\outputs\bundle\release\app-release.aab
    ```
-5. **Test the APK on a real phone** (uninstall any debug build first, the signatures differ): sign up, log in, publish a listing with photos, Arabic. Only then send the AAB.
+5. **Test the APK on a real phone**: sign up, log in, publish a listing with photos, Arabic. Only then send the AAB. Do **not** use a phone that has the Play Store test version: the release APK has a different signature, so Android asks to uninstall the Play version first, and a tester who does that can break the 14-day closed test count. Use another phone, or an emulator.
 6. **Upload the `.aab`** to the Play Console test track.
 
 Notes:
