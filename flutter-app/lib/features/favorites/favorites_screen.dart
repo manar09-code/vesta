@@ -20,6 +20,19 @@ final favoriteListingProvider = FutureProvider.family<Listing?, String>(
   },
 );
 
+/// Selected filter chip: null = All, otherwise one offer type.
+class FavoritesFilterController extends Notifier<OfferType?> {
+  @override
+  OfferType? build() => null;
+
+  void select(OfferType? type) => state = type;
+}
+
+final favoritesFilterProvider =
+    NotifierProvider<FavoritesFilterController, OfferType?>(
+  FavoritesFilterController.new,
+);
+
 class FavoritesScreen extends ConsumerWidget {
   const FavoritesScreen({super.key});
 
@@ -54,14 +67,73 @@ class FavoritesScreen extends ConsumerWidget {
       ),
       data: (listingIds) {
         if (listingIds.isEmpty) return const _EmptyView();
-        return ListView.separated(
-          padding: const EdgeInsets.all(16),
-          itemCount: listingIds.length,
-          separatorBuilder: (_, _) => const SizedBox(height: 12),
-          itemBuilder: (_, index) =>
-              _FavoriteItem(listingId: listingIds[index]),
+
+        final filter = ref.watch(favoritesFilterProvider);
+        // Keep ids matching the chip. Deleted listings appear only under All;
+        // listings still loading remain visible until their type is known.
+        final shown = listingIds.where((id) {
+          if (filter == null) return true;
+          final listing = ref.watch(favoriteListingProvider(id));
+          return listing.when(
+            data: (data) => data != null && offerTypeOf(data) == filter,
+            loading: () => true,
+            error: (_, _) => true,
+          );
+        }).toList();
+
+        return Column(
+          children: [
+            const _FilterChips(),
+            Expanded(
+              child: shown.isEmpty
+                  ? Center(child: Text(l10n.favoritesFilterEmpty))
+                  : ListView.separated(
+                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+                      itemCount: shown.length,
+                      separatorBuilder: (_, _) => const SizedBox(height: 12),
+                      itemBuilder: (_, index) =>
+                          _FavoriteItem(listingId: shown[index]),
+                    ),
+            ),
+          ],
         );
       },
+    );
+  }
+}
+
+/// The four chips on top of the list: All / Buy / Rent / Stay.
+class _FilterChips extends ConsumerWidget {
+  const _FilterChips();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final selected = ref.watch(favoritesFilterProvider);
+
+    final options = <(OfferType?, String)>[
+      (null, l10n.favoritesFilterAll),
+      (OfferType.sale, l10n.favoritesFilterBuy),
+      (OfferType.rent, l10n.favoritesFilterRent),
+      (OfferType.stay, l10n.favoritesFilterStay),
+    ];
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+      child: Row(
+        children: [
+          for (final (type, label) in options) ...[
+            ChoiceChip(
+              label: Text(label),
+              selected: selected == type,
+              onSelected: (_) =>
+                  ref.read(favoritesFilterProvider.notifier).select(type),
+            ),
+            const SizedBox(width: 8),
+          ],
+        ],
+      ),
     );
   }
 }
