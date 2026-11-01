@@ -40,3 +40,16 @@ Personas: **Buyer/Tenant** (searches and contacts) and **Owner/Agent** (publishe
 ## Push notifications
 - As a user, I want to receive a notification when I get a new message, so that I don't miss a buyer or an owner.
 
+
+## Offer types: sale, rent, stay (VST-100, see `docs/offer-types.md`)
+- As a buyer, I want a "Buy" tab with prices in TND, so that I only compare homes for sale.
+- As a tenant, I want a "Rent" tab with the monthly price, deposit and furnished info, so that I know my real cost.
+- As a traveller, I want a "Stay" tab with the price per night, guests, amenities and house rules, so that I can choose a guest house or Airbnb.
+- As a seller, I want to choose "Sell" when publishing and only see the fields that matter for a sale, so that publishing is quick.
+- As a host, I want to choose "Offer a stay" and add amenities, check-in time and house rules, so that guests know what to expect.
+- As a user, I want to call or send a WhatsApp message to the owner in one tap, so that I can reach him the Tunisian way.
+- As an owner, I want to mark a listing as sold, rented or unavailable, so that nobody contacts me for something that is gone.
+- As a user, I want the map pins to show the offer type by color, so that I understand the map at a glance.
+- As a guest (no account), I want to browse listings and details, so that I can decide to sign up later.
+- As a user, I want to report a suspicious listing or block a user, so that I am protected from scams.
+- As a user, I want to delete my account and my data from the app, so that I control my information.
