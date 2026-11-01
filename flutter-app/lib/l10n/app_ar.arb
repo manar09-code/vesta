@@ -71,5 +71,20 @@
   "listingErrorPermissionDenied": "ما عندكش الصلاحية باش تعمل هذا",
   "listingErrorUnknown": "صار مشكل، عاود جرّب",
   "photoErrorTooLarge": "الصورة هذي كبيرة برشا، اختار وحدة أخرى",
-  "photoErrorReadFailed": "ما نجمناش نقراو الصورة"
+  "photoErrorReadFailed": "ما نجمناش نقراو الصورة",
+  "favoritesEmptyTitle": "لا توجد مفضلة بعد",
+  "favoritesEmptyBody": "اضغط على القلب في أي إعلان لحفظه هنا.",
+  "favoritesUnavailable": "هذا الإعلان لم يعد متاحًا",
+  "favoritesRemove": "إزالة",
+  "favoritesRetry": "حاول مرة أخرى",
+  "favoritesErrorNoNetwork": "لا يوجد اتصال. تحقق من الإنترنت وحاول مجددًا.",
+  "favoritesErrorPermission": "غير مسموح لك بهذا الإجراء.",
+  "favoritesErrorNotSignedIn": "سجّل الدخول لحفظ المفضلة.",
+  "favoritesErrorUnknown": "حدث خطأ. حاول مرة أخرى.",
+  "listingsEmpty": "لا توجد إعلانات بعد",
+  "favoritesFilterAll": "الكل",
+  "favoritesFilterBuy": "شراء",
+  "favoritesFilterRent": "كراء",
+  "favoritesFilterStay": "إقامة",
+  "favoritesFilterEmpty": "لا توجد مفضلة في هذه الفئة"
 }

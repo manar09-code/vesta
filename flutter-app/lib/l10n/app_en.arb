@@ -71,5 +71,20 @@
   "listingErrorPermissionDenied": "You are not allowed to do this",
   "listingErrorUnknown": "Something went wrong, please try again",
   "photoErrorTooLarge": "This photo is too large, choose another one",
-  "photoErrorReadFailed": "Could not read this photo"
+  "photoErrorReadFailed": "Could not read this photo",
+  "favoritesEmptyTitle": "No favorites yet",
+  "favoritesEmptyBody": "Tap the heart on a listing to save it here.",
+  "favoritesUnavailable": "This listing is no longer available",
+  "favoritesRemove": "Remove",
+  "favoritesRetry": "Try again",
+  "favoritesErrorNoNetwork": "No connection. Check your internet and try again.",
+  "favoritesErrorPermission": "You are not allowed to do this.",
+  "favoritesErrorNotSignedIn": "Sign in to save favorites.",
+  "favoritesErrorUnknown": "Something went wrong. Please try again.",
+  "listingsEmpty": "No listings yet",
+  "favoritesFilterAll": "All",
+  "favoritesFilterBuy": "Buy",
+  "favoritesFilterRent": "Rent",
+  "favoritesFilterStay": "Stay",
+  "favoritesFilterEmpty": "No favorites in this category"
 }

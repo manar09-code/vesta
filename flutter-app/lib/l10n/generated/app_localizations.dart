@@ -531,6 +531,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not read this photo'**
   String get photoErrorReadFailed;
+
+  /// No description provided for @favoritesEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorites yet'**
+  String get favoritesEmptyTitle;
+
+  /// No description provided for @favoritesEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the heart on a listing to save it here.'**
+  String get favoritesEmptyBody;
+
+  /// No description provided for @favoritesUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This listing is no longer available'**
+  String get favoritesUnavailable;
+
+  /// No description provided for @favoritesRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get favoritesRemove;
+
+  /// No description provided for @favoritesRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get favoritesRetry;
+
+  /// No description provided for @favoritesErrorNoNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection. Check your internet and try again.'**
+  String get favoritesErrorNoNetwork;
+
+  /// No description provided for @favoritesErrorPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'You are not allowed to do this.'**
+  String get favoritesErrorPermission;
+
+  /// No description provided for @favoritesErrorNotSignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to save favorites.'**
+  String get favoritesErrorNotSignedIn;
+
+  /// No description provided for @favoritesErrorUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get favoritesErrorUnknown;
+
+  /// No description provided for @listingsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No listings yet'**
+  String get listingsEmpty;
+
+  /// No description provided for @favoritesFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get favoritesFilterAll;
+
+  /// No description provided for @favoritesFilterBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy'**
+  String get favoritesFilterBuy;
+
+  /// No description provided for @favoritesFilterRent.
+  ///
+  /// In en, this message translates to:
+  /// **'Rent'**
+  String get favoritesFilterRent;
+
+  /// No description provided for @favoritesFilterStay.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay'**
+  String get favoritesFilterStay;
+
+  /// No description provided for @favoritesFilterEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorites in this category'**
+  String get favoritesFilterEmpty;
 }
 
 class _AppLocalizationsDelegate

@@ -230,4 +230,52 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'Impossible de lire cette photo';
+
+  @override
+  String get favoritesEmptyTitle => 'Aucun favori pour l\'instant';
+
+  @override
+  String get favoritesEmptyBody =>
+      'Appuie sur le cœur d\'une annonce pour la retrouver ici.';
+
+  @override
+  String get favoritesUnavailable => 'Cette annonce n\'est plus disponible';
+
+  @override
+  String get favoritesRemove => 'Retirer';
+
+  @override
+  String get favoritesRetry => 'Réessayer';
+
+  @override
+  String get favoritesErrorNoNetwork =>
+      'Pas de connexion. Vérifie ton internet et réessaie.';
+
+  @override
+  String get favoritesErrorPermission => 'Tu n\'as pas le droit de faire cela.';
+
+  @override
+  String get favoritesErrorNotSignedIn =>
+      'Connecte-toi pour enregistrer des favoris.';
+
+  @override
+  String get favoritesErrorUnknown => 'Une erreur est survenue. Réessaie.';
+
+  @override
+  String get listingsEmpty => 'Aucune annonce pour l\'instant';
+
+  @override
+  String get favoritesFilterAll => 'Tous';
+
+  @override
+  String get favoritesFilterBuy => 'Acheter';
+
+  @override
+  String get favoritesFilterRent => 'Louer';
+
+  @override
+  String get favoritesFilterStay => 'Séjourner';
+
+  @override
+  String get favoritesFilterEmpty => 'Aucun favori dans cette catégorie';
 }

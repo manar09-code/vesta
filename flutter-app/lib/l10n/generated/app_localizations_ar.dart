@@ -225,4 +225,50 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'ما نجمناش نقراو الصورة';
+
+  @override
+  String get favoritesEmptyTitle => 'لا توجد مفضلة بعد';
+
+  @override
+  String get favoritesEmptyBody => 'اضغط على القلب في أي إعلان لحفظه هنا.';
+
+  @override
+  String get favoritesUnavailable => 'هذا الإعلان لم يعد متاحًا';
+
+  @override
+  String get favoritesRemove => 'إزالة';
+
+  @override
+  String get favoritesRetry => 'حاول مرة أخرى';
+
+  @override
+  String get favoritesErrorNoNetwork =>
+      'لا يوجد اتصال. تحقق من الإنترنت وحاول مجددًا.';
+
+  @override
+  String get favoritesErrorPermission => 'غير مسموح لك بهذا الإجراء.';
+
+  @override
+  String get favoritesErrorNotSignedIn => 'سجّل الدخول لحفظ المفضلة.';
+
+  @override
+  String get favoritesErrorUnknown => 'حدث خطأ. حاول مرة أخرى.';
+
+  @override
+  String get listingsEmpty => 'لا توجد إعلانات بعد';
+
+  @override
+  String get favoritesFilterAll => 'الكل';
+
+  @override
+  String get favoritesFilterBuy => 'شراء';
+
+  @override
+  String get favoritesFilterRent => 'كراء';
+
+  @override
+  String get favoritesFilterStay => 'إقامة';
+
+  @override
+  String get favoritesFilterEmpty => 'لا توجد مفضلة في هذه الفئة';
 }
