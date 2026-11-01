@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import '../../core/config/app_config.dart';
 import '../favorites/favorite_button.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'listing.dart';
@@ -126,7 +126,7 @@ class ListingCard extends ConsumerWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '${_formatPrice(listing.price)} ${listing.currency}',
+                    formatPrice(listing.price, currency: listing.currency),
                     style: theme.textTheme.titleSmall?.copyWith(
                       color: theme.colorScheme.primary,
                       fontWeight: FontWeight.bold,
@@ -139,12 +139,5 @@ class ListingCard extends ConsumerWidget {
         ),
       ),
     );
-  }
-
-  /// 250000 instead of 250000.0 when the price has no decimals.
-  String _formatPrice(num price) {
-    return price == price.roundToDouble()
-        ? price.toInt().toString()
-        : price.toString();
   }
 }
