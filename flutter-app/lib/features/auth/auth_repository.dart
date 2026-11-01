@@ -56,6 +56,12 @@ class AuthRepository {
         'email': email,
       });
       await batch.commit();
+
+      // First verification mail. If it fails the account is still fine: the
+      // user can ask again from the banner.
+      try {
+        await created.sendEmailVerification();
+      } catch (_) {}
     } on FirebaseAuthException catch (e) {
       await _rollback(created);
       throw AuthFailure(_mapAuthCode(e.code));
@@ -86,6 +92,24 @@ class AuthRepository {
   }
 
   Future<void> signOut() => _auth.signOut();
+
+  /// Sends the verification mail to the signed-in user.
+  Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(_mapAuthCode(e.code));
+    }
+  }
+
+  /// Reloads the signed-in user from Firebase and tells if the email is now
+  /// verified (the local user object does not change by itself).
+  Future<bool> reloadEmailVerified() async {
+    final user = _auth.currentUser;
+    if (user == null) return true;
+    await user.reload();
+    return _auth.currentUser?.emailVerified ?? true;
+  }
 
   /// Sends the reset mail. An unknown email gives the same result as a known
   /// one, so nobody can find out which emails have an account.

@@ -84,5 +84,8 @@
   "forgotPasswordBody": "Enter your email. If an account exists, we send you a link to choose a new password.",
   "forgotPasswordSend": "Send link",
   "forgotPasswordSent": "If an account exists for this email, a reset link has been sent.",
-  "commonCancel": "Cancel"
+  "commonCancel": "Cancel",
+  "verifyBannerText": "Please verify your email address.",
+  "verifyBannerResend": "Send again",
+  "verifyBannerSent": "Verification email sent"
 }

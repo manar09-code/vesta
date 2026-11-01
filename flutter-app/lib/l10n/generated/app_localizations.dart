@@ -609,6 +609,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get commonCancel;
+
+  /// No description provided for @verifyBannerText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please verify your email address.'**
+  String get verifyBannerText;
+
+  /// No description provided for @verifyBannerResend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send again'**
+  String get verifyBannerResend;
+
+  /// No description provided for @verifyBannerSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification email sent'**
+  String get verifyBannerSent;
 }
 
 class _AppLocalizationsDelegate

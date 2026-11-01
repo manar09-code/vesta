@@ -84,5 +84,8 @@
   "forgotPasswordBody": "أدخل البريد الإلكتروني. كان فما حساب، باش نبعثولك رابط باش تختار كلمة سر جديدة.",
   "forgotPasswordSend": "ابعث الرابط",
   "forgotPasswordSent": "كان فما حساب بالبريد هذا، تبعثلو رابط.",
-  "commonCancel": "إلغاء"
+  "commonCancel": "إلغاء",
+  "verifyBannerText": "لازم تأكد البريد الإلكتروني متاعك.",
+  "verifyBannerResend": "ابعث مرة أخرى",
+  "verifyBannerSent": "تبعث إيميل التأكيد"
 }

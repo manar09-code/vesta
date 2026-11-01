@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/auth_controller.dart';
+import '../../features/auth/email_verification_banner.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/auth/require_sign_in.dart';
 import '../../features/auth/sign_up_screen.dart';
@@ -170,7 +171,12 @@ class _MainShell extends ConsumerWidget {
           ),
         ],
       ),
-      body: shell,
+      body: Column(
+        children: [
+          const EmailVerificationBanner(),
+          Expanded(child: shell),
+        ],
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: shell.currentIndex,
         onDestinationSelected: (index) =>

@@ -84,5 +84,8 @@
   "forgotPasswordBody": "Saisissez votre e-mail. Si un compte existe, nous vous envoyons un lien pour choisir un nouveau mot de passe.",
   "forgotPasswordSend": "Envoyer le lien",
   "forgotPasswordSent": "Si un compte existe pour cet e-mail, un lien a été envoyé.",
-  "commonCancel": "Annuler"
+  "commonCancel": "Annuler",
+  "verifyBannerText": "Veuillez confirmer votre adresse e-mail.",
+  "verifyBannerResend": "Renvoyer",
+  "verifyBannerSent": "E-mail de vérification envoyé"
 }

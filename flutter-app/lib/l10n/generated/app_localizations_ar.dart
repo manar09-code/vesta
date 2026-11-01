@@ -265,4 +265,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get commonCancel => 'إلغاء';
+
+  @override
+  String get verifyBannerText => 'لازم تأكد البريد الإلكتروني متاعك.';
+
+  @override
+  String get verifyBannerResend => 'ابعث مرة أخرى';
+
+  @override
+  String get verifyBannerSent => 'تبعث إيميل التأكيد';
 }

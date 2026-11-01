@@ -268,4 +268,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonCancel => 'Cancel';
+
+  @override
+  String get verifyBannerText => 'Please verify your email address.';
+
+  @override
+  String get verifyBannerResend => 'Send again';
+
+  @override
+  String get verifyBannerSent => 'Verification email sent';
 }
