@@ -1,0 +1,24 @@
+%% C4 level 2: containers (VST-69). No Firebase Storage (photos are base64 in Firestore), no FCM in the MVP (in-app notification center), OpenStreetMap instead of Google Maps.
+flowchart TB
+  Buyer["<b>Acheteur / locataire</b>"]:::person
+  Owner["<b>Propriétaire / agent</b>"]:::person
+  subgraph APPS["Application mobile Vesta"]
+    direction LR
+    Flutter["<b>Application Flutter</b><br/>Dart, Android + iOS"]:::ours
+    RN["<b>Application React Native</b><br/>JavaScript, Android + iOS"]:::ours
+  end
+  OSM["<b>OpenStreetMap</b><br/>Fonds de carte"]:::ext
+  subgraph FB["Firebase (backend partagé)"]
+    direction LR
+    Auth["<b>Auth</b><br/>Comptes, connexion"]:::ext
+    Store["<b>Firestore</b><br/>Annonces, photos (base64), favoris, messages"]:::ext
+  end
+  Buyer --> APPS
+  Owner --> APPS
+  APPS --> FB
+  APPS --> OSM
+  classDef person fill:#e3f4ec,stroke:#2a9d6f,color:#14543b
+  classDef ours fill:#e8e8ff,stroke:#6a64d8,color:#2b2780
+  classDef ext fill:#f1ede8,stroke:#8a8178,color:#3b3630
+  style APPS fill:#f7f7ff,stroke:#6a64d8,stroke-dasharray:5 4
+  style FB fill:#faf8f5,stroke:#8a8178,stroke-dasharray:5 4

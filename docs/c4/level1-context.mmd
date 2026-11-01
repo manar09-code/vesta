@@ -1,0 +1,16 @@
+%% C4 level 1: system context (VST-69). Matches the decisions: OpenStreetMap (no Google Maps), photos in Firestore (no Firebase Storage).
+flowchart LR
+  Buyer["<b>Acheteur / locataire</b><br/>Recherche des biens"]:::person
+  Owner["<b>Propriétaire / agent</b><br/>Publie des annonces"]:::person
+  Vesta["<b>Application Vesta</b><br/>Flutter + React Native"]:::ours
+  Firebase["<b>Firebase</b><br/>Connexion, base de données, photos"]:::ext
+  OSM["<b>OpenStreetMap</b><br/>Fonds de carte"]:::ext
+  Play["<b>Google Play</b><br/>Distribution de l'app"]:::ext
+  Buyer --> Vesta
+  Owner --> Vesta
+  Vesta --> Firebase
+  Vesta --> OSM
+  Vesta --> Play
+  classDef person fill:#e3f4ec,stroke:#2a9d6f,color:#14543b
+  classDef ours fill:#e8e8ff,stroke:#6a64d8,color:#2b2780
+  classDef ext fill:#f1ede8,stroke:#8a8178,color:#3b3630
