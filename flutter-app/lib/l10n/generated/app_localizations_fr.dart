@@ -230,4 +230,38 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'Impossible de lire cette photo';
+
+  @override
+  String get contactPhoneLabel => 'Numéro de téléphone';
+
+  @override
+  String get contactPhoneHint => '20 123 456';
+
+  @override
+  String get contactWhatsappSwitch => 'J\'accepte les messages WhatsApp';
+
+  @override
+  String get contactErrorPhoneInvalid =>
+      'Entrez 8 chiffres commençant par 2, 3, 4, 5, 7 ou 9';
+
+  @override
+  String get contactCallButton => 'Appeler';
+
+  @override
+  String get contactWhatsappButton => 'WhatsApp';
+
+  @override
+  String get contactSignInToSee => 'Connectez-vous pour voir le contact';
+
+  @override
+  String get contactNoWhatsapp =>
+      'WhatsApp n\'est pas installé sur ce téléphone';
+
+  @override
+  String get contactCallFailed => 'Impossible d\'ouvrir le composeur';
+
+  @override
+  String contactWhatsappMessage(String title) {
+    return 'Bonjour, votre annonce $title sur Vesta m\'intéresse';
+  }
 }

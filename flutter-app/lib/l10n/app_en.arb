@@ -71,5 +71,20 @@
   "listingErrorPermissionDenied": "You are not allowed to do this",
   "listingErrorUnknown": "Something went wrong, please try again",
   "photoErrorTooLarge": "This photo is too large, choose another one",
-  "photoErrorReadFailed": "Could not read this photo"
+  "photoErrorReadFailed": "Could not read this photo",
+  "contactPhoneLabel": "Phone number",
+  "contactPhoneHint": "20 123 456",
+  "contactWhatsappSwitch": "I accept WhatsApp messages",
+  "contactErrorPhoneInvalid": "Enter 8 digits starting with 2, 3, 4, 5, 7 or 9",
+  "contactCallButton": "Call",
+  "contactWhatsappButton": "WhatsApp",
+  "contactSignInToSee": "Sign in to see the contact",
+  "contactNoWhatsapp": "WhatsApp is not installed on this phone",
+  "contactCallFailed": "Cannot open the phone dialer",
+  "contactWhatsappMessage": "Hello, I am interested in your listing {title} on Vesta",
+  "@contactWhatsappMessage": {
+    "placeholders": {
+      "title": { "type": "String" }
+    }
+  }
 }

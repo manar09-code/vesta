@@ -71,5 +71,20 @@
   "listingErrorPermissionDenied": "ما عندكش الصلاحية باش تعمل هذا",
   "listingErrorUnknown": "صار مشكل، عاود جرّب",
   "photoErrorTooLarge": "الصورة هذي كبيرة برشا، اختار وحدة أخرى",
-  "photoErrorReadFailed": "ما نجمناش نقراو الصورة"
+  "photoErrorReadFailed": "ما نجمناش نقراو الصورة",
+  "contactPhoneLabel": "رقم التلفون",
+  "contactPhoneHint": "20 123 456",
+  "contactWhatsappSwitch": "نقبل رسائل واتساب",
+  "contactErrorPhoneInvalid": "أدخل 8 أرقام تبدأ بـ 2 أو 3 أو 4 أو 5 أو 7 أو 9",
+  "contactCallButton": "اتصل",
+  "contactWhatsappButton": "واتساب",
+  "contactSignInToSee": "ادخل باش تشوف رقم التلفون",
+  "contactNoWhatsapp": "واتساب موش موجود في التلفون هذا",
+  "contactCallFailed": "ما نجمناش نفتحو الاتصال",
+  "contactWhatsappMessage": "سلام، يهمني إعلانك {title} في Vesta",
+  "@contactWhatsappMessage": {
+    "placeholders": {
+      "title": { "type": "String" }
+    }
+  }
 }

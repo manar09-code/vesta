@@ -225,4 +225,37 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'ما نجمناش نقراو الصورة';
+
+  @override
+  String get contactPhoneLabel => 'رقم التلفون';
+
+  @override
+  String get contactPhoneHint => '20 123 456';
+
+  @override
+  String get contactWhatsappSwitch => 'نقبل رسائل واتساب';
+
+  @override
+  String get contactErrorPhoneInvalid =>
+      'أدخل 8 أرقام تبدأ بـ 2 أو 3 أو 4 أو 5 أو 7 أو 9';
+
+  @override
+  String get contactCallButton => 'اتصل';
+
+  @override
+  String get contactWhatsappButton => 'واتساب';
+
+  @override
+  String get contactSignInToSee => 'ادخل باش تشوف رقم التلفون';
+
+  @override
+  String get contactNoWhatsapp => 'واتساب موش موجود في التلفون هذا';
+
+  @override
+  String get contactCallFailed => 'ما نجمناش نفتحو الاتصال';
+
+  @override
+  String contactWhatsappMessage(String title) {
+    return 'سلام، يهمني إعلانك $title في Vesta';
+  }
 }

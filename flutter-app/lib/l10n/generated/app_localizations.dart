@@ -531,6 +531,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not read this photo'**
   String get photoErrorReadFailed;
+
+  /// No description provided for @contactPhoneLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get contactPhoneLabel;
+
+  /// No description provided for @contactPhoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'20 123 456'**
+  String get contactPhoneHint;
+
+  /// No description provided for @contactWhatsappSwitch.
+  ///
+  /// In en, this message translates to:
+  /// **'I accept WhatsApp messages'**
+  String get contactWhatsappSwitch;
+
+  /// No description provided for @contactErrorPhoneInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 8 digits starting with 2, 3, 4, 5, 7 or 9'**
+  String get contactErrorPhoneInvalid;
+
+  /// No description provided for @contactCallButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get contactCallButton;
+
+  /// No description provided for @contactWhatsappButton.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get contactWhatsappButton;
+
+  /// No description provided for @contactSignInToSee.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to see the contact'**
+  String get contactSignInToSee;
+
+  /// No description provided for @contactNoWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp is not installed on this phone'**
+  String get contactNoWhatsapp;
+
+  /// No description provided for @contactCallFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot open the phone dialer'**
+  String get contactCallFailed;
+
+  /// No description provided for @contactWhatsappMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, I am interested in your listing {title} on Vesta'**
+  String contactWhatsappMessage(String title);
 }
 
 class _AppLocalizationsDelegate
