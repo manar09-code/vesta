@@ -43,6 +43,8 @@ class NewListing {
     required this.listingType,
     required this.propertyType,
     required this.city,
+    required this.contactPhone,
+    required this.whatsappEnabled,
     this.rentPeriod,
     this.bedrooms,
     this.bathrooms,
@@ -56,6 +58,8 @@ class NewListing {
   final String? rentPeriod; // required only when listingType == 'rent'
   final String propertyType;
   final String city;
+  final String contactPhone;
+  final bool whatsappEnabled;
   final num? bedrooms;
   final num? bathrooms;
   final num? areaSqm;
@@ -66,7 +70,7 @@ class ListingRepository {
   FirebaseFirestore get _db => FirebaseFirestore.instance;
   FirebaseAuth get _auth => FirebaseAuth.instance;
 
-  /// Creates the listing and its photos in ONE batch write.
+  /// Creates the listing, its contact, and its photos in ONE batch write.
   /// [photosBase64] holds 1 to 5 already compressed base64 strings.
   /// Returns the id of the new listing.
   Future<String> createListing({
@@ -103,6 +107,12 @@ class ListingRepository {
         if (listing.areaSqm != null) 'areaSqm': listing.areaSqm,
         'photoCount': photosBase64.length,
         'createdAt': FieldValue.serverTimestamp(),
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+
+      batch.set(ref.collection('contact').doc('info'), {
+        'contactPhone': listing.contactPhone,
+        'whatsappEnabled': listing.whatsappEnabled,
         'updatedAt': FieldValue.serverTimestamp(),
       });
 
