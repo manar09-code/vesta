@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../favorites/favorite_button.dart';
+import '../../l10n/generated/app_localizations.dart';
 import 'listing.dart';
 import 'listing_repository.dart';
 
@@ -23,6 +24,8 @@ class ListingCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
+    final unavailable = listing.isUnavailable;
     final cover = ref.watch(listingCoverPhotoProvider(listing.id)).value;
 
     ImageProvider? image;
@@ -62,6 +65,31 @@ class ListingCard extends ConsumerWidget {
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
                     ),
+                  if (unavailable) ...[
+                    // Grey veil over the photo.
+                    ColoredBox(color: Colors.black.withValues(alpha: 0.45)),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Container(
+                        margin: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade700,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          l10n.favoritesUnavailable,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                   Positioned(
                     top: 8,
                     right: 8,
