@@ -10,5 +10,6 @@ class AppColors {
   static const Color sand = Color(0xFFF0E7DA);
   static const Color background = Color(0xFFF7F3EB);
   static const Color grey = Color(0xFF6B777B);
+  static const Color white = Color(0xFFFFFFFF);
   static const Color border = Color(0xFFE5E5DF);
 }
