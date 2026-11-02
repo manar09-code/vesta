@@ -123,4 +123,45 @@ Format decided by Manar (review of PR #41): the currency comes first, then the a
 | check-in | Check-in | Arrivée | الوصول | ? |
 | check-out | Check-out | Départ | المغادرة | ? |
 | max guests | Max guests | Voyageurs max | أقصى عدد ضيوف | |
-| beds | Beds | Lits | الفرشات
+| beds | Beds | Lits | الفرشات | ? |
+| bedrooms | Bedrooms | Chambres | بيوت النوم | ? see also "rooms" in section 3 |
+| bathrooms | Bathrooms | Salles de bain | بيوت الماء | ? same term as section 3 |
+| kitchen | Kitchen | Cuisine | كوزينة | Tunisian word |
+| wifi | Wi-Fi | Wi-Fi | واي فاي | |
+| air conditioning | Air conditioning | Climatisation | مكيّف | ? |
+| heating | Heating | Chauffage | تسخين | ? |
+| parking | Parking | Parking | موقف سيارات | ? |
+| pool | Pool | Piscine | مسبح | |
+| terrace | Terrace | Terrasse | تيراس | ? |
+| sea view | Sea view | Vue sur mer | إطلالة على البحر | |
+| pets allowed | Pets allowed | Animaux acceptés | الحيوانات مسموحة | |
+| breakfast | Breakfast | Petit-déjeuner | فطور الصباح | |
+| washing machine | Washing machine | Machine à laver | غسالة | |
+| TV | TV | Télévision | تلفزة | |
+| garden | Garden | Jardin | جنينة | Tunisian word |
+| no smoking | No smoking | Non-fumeur | ممنوع التدخين | |
+| no pets | No pets | Animaux interdits | ممنوع الحيوانات | |
+| no parties | No parties | Fêtes interdites | ممنوع الحفلات | |
+| quiet hours | Quiet hours | Heures calmes | ساعات الهدوء | |
+
+## 6. Messages and errors
+
+| Situation | English | Français | العربية (تونسي) | Note |
+|---|---|---|---|---|
+| no network | No internet connection | Pas de connexion internet | ما فماش اتصال بالإنترنت | app_ar |
+| something went wrong | Something went wrong, try again | Une erreur est survenue, réessaie | صار مشكل، عاود جرّب | app_ar |
+| wrong password | Wrong email or password | E-mail ou mot de passe incorrect | البريد الإلكتروني أو كلمة السر غالطين | app_ar |
+| field required | This field is required | Ce champ est obligatoire | هذا الحقل مطلوب | ? |
+| email in use | This email is already used | Cet e-mail est déjà utilisé | البريد هذا مستعمل من قبل | app_ar |
+| password too short | Password must be at least 8 characters | Le mot de passe doit contenir au moins 8 caractères | كلمة السر لازم تكون 8 حروف على الأقل | app_ar |
+| sign in to continue | Sign in to continue | Connecte-toi pour continuer | ادخل باش تكمل | app_ar |
+| permission denied | You are not allowed to do this | Tu n'as pas le droit de faire cela | ما عندكش الصلاحية باش تعمل هذا | app_ar |
+| no favorites | No favorites yet | Aucun favori pour l'instant | ما عندكش مفضلة توا | proposal, to replace the formal draft in the app |
+| no listings | No listings yet | Aucune annonce pour l'instant | ما فماش إعلانات توا | proposal |
+| saved | Saved | Enregistré | تم الحفظ | |
+
+## 7. Review checklist (VST-77, point 4)
+
+- [ ] Manar has read the file and corrected the terms marked "?" (she starts with بيوت الماء and شيل).
+- [x] One Tunisian reader outside the team has read it and corrected the terms that sound strange.
+- [ ] Ahmed confirms the file is enough to fill `app_ar` and the React Native `ar` file (VST-70).
