@@ -2,7 +2,7 @@
 
 | Level | File | Content |
 |---|---|---|
-| 1 and 2 | `Vesta_C4_Niveau1_Contexte.pdf`, `Vesta_C4_Niveau2_Containers.pdf` | Context and containers |
+| 1 and 2 | `Vesta_C4_Niveau1_Contexte.pdf`, `Vesta_C4_Niveau2_Containers.pdf` (sources: `level1-context.mmd`, `level2-containers.mmd`) | Context and containers |
 | 3 | `level3-auth-profile.png` (source: `level3-auth-profile.mmd`) | Auth and Profile components of the Flutter app (VST-27) |
 | 3 | `level3-listings-favorites.png` (source: `level3-listings-favorites.mmd`) | Listings and Favorites components of the Flutter app (VST-28) |
 | 3 | `level3-search-map-chat.png` (source: `level3-search-map-chat.mmd`) | Search, Map and Chat components of the Flutter app (VST-29) |
