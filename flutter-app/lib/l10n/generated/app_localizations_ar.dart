@@ -225,4 +225,57 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'ما نجمناش نقراو الصورة';
+
+  @override
+  String get settingsTitle => 'الإعدادات';
+
+  @override
+  String get settingsAbout => 'على Vesta';
+
+  @override
+  String get settingsVersion => 'الإصدار';
+
+  @override
+  String get settingsPrivacy => 'الخصوصية وفسخ الحساب';
+
+  @override
+  String get settingsContact => 'اتصل بينا';
+
+  @override
+  String get settingsDeleteAccount => 'فسخ حسابي';
+
+  @override
+  String get settingsLinkError => 'ما نجمناش نحلو الرابط';
+
+  @override
+  String get authForgotPassword => 'نسيت كلمة السر؟';
+
+  @override
+  String get forgotPasswordTitle => 'بدّل كلمة السر';
+
+  @override
+  String get forgotPasswordBody =>
+      'أدخل البريد الإلكتروني. كان فما حساب، باش نبعثولك رابط باش تختار كلمة سر جديدة.';
+
+  @override
+  String get forgotPasswordSend => 'ابعث الرابط';
+
+  @override
+  String get forgotPasswordSent => 'كان فما حساب بالبريد هذا، تبعثلو رابط.';
+
+  @override
+  String get commonCancel => 'إلغاء';
+
+  @override
+  String get verifyBannerText => 'لازم تأكد البريد الإلكتروني متاعك.';
+
+  @override
+  String get verifyBannerResend => 'ابعث مرة أخرى';
+
+  @override
+  String get verifyBannerSent => 'تبعث إيميل التأكيد';
+
+  @override
+  String get authErrorTooManyRequests =>
+      'برشا محاولات، عاود جرّب بعد شوية دقايق';
 }

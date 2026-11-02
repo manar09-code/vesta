@@ -230,4 +230,58 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'Impossible de lire cette photo';
+
+  @override
+  String get settingsTitle => 'Paramètres';
+
+  @override
+  String get settingsAbout => 'À propos de Vesta';
+
+  @override
+  String get settingsVersion => 'Version';
+
+  @override
+  String get settingsPrivacy => 'Confidentialité et suppression du compte';
+
+  @override
+  String get settingsContact => 'Nous contacter';
+
+  @override
+  String get settingsDeleteAccount => 'Supprimer mon compte';
+
+  @override
+  String get settingsLinkError => 'Impossible d’ouvrir le lien';
+
+  @override
+  String get authForgotPassword => 'Mot de passe oublié ?';
+
+  @override
+  String get forgotPasswordTitle => 'Réinitialiser le mot de passe';
+
+  @override
+  String get forgotPasswordBody =>
+      'Saisissez votre e-mail. Si un compte existe, nous vous envoyons un lien pour choisir un nouveau mot de passe.';
+
+  @override
+  String get forgotPasswordSend => 'Envoyer le lien';
+
+  @override
+  String get forgotPasswordSent =>
+      'Si un compte existe pour cet e-mail, un lien a été envoyé.';
+
+  @override
+  String get commonCancel => 'Annuler';
+
+  @override
+  String get verifyBannerText => 'Veuillez confirmer votre adresse e-mail.';
+
+  @override
+  String get verifyBannerResend => 'Renvoyer';
+
+  @override
+  String get verifyBannerSent => 'E-mail de vérification envoyé';
+
+  @override
+  String get authErrorTooManyRequests =>
+      'Trop de tentatives, réessayez dans quelques minutes';
 }

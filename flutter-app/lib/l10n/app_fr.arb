@@ -71,5 +71,22 @@
   "listingErrorPermissionDenied": "Vous n'avez pas le droit de faire cela",
   "listingErrorUnknown": "Une erreur est survenue, réessayez",
   "photoErrorTooLarge": "Cette photo est trop lourde, choisissez-en une autre",
-  "photoErrorReadFailed": "Impossible de lire cette photo"
+  "photoErrorReadFailed": "Impossible de lire cette photo",
+  "settingsTitle": "Paramètres",
+  "settingsAbout": "À propos de Vesta",
+  "settingsVersion": "Version",
+  "settingsPrivacy": "Confidentialité et suppression du compte",
+  "settingsContact": "Nous contacter",
+  "settingsDeleteAccount": "Supprimer mon compte",
+  "settingsLinkError": "Impossible d’ouvrir le lien",
+  "authForgotPassword": "Mot de passe oublié ?",
+  "forgotPasswordTitle": "Réinitialiser le mot de passe",
+  "forgotPasswordBody": "Saisissez votre e-mail. Si un compte existe, nous vous envoyons un lien pour choisir un nouveau mot de passe.",
+  "forgotPasswordSend": "Envoyer le lien",
+  "forgotPasswordSent": "Si un compte existe pour cet e-mail, un lien a été envoyé.",
+  "commonCancel": "Annuler",
+  "verifyBannerText": "Veuillez confirmer votre adresse e-mail.",
+  "verifyBannerResend": "Renvoyer",
+  "verifyBannerSent": "E-mail de vérification envoyé",
+  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes"
 }
