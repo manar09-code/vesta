@@ -8,7 +8,7 @@ import '../../features/auth/require_sign_in.dart';
 import '../../features/auth/sign_up_screen.dart';
 import '../../features/chat/chat_screen.dart';
 import '../../features/favorites/favorites_screen.dart';
-import '../../features/listings/listing_detail_screen.dart'; // NEW VST-73
+import '../../features/listings/listing_detail_screen.dart';
 import '../../features/listings/listings_screen.dart';
 import '../../features/listings/publish_listing_screen.dart';
 import '../../features/map/map_screen.dart';
@@ -28,8 +28,8 @@ abstract class AppRoutes {
   static const chat = '/chat';
   static const notifications = '/notifications';
   static const publish = '/publish';
-  static const listingDetail = '/listing/:id'; // NEW VST-73
-  static String listingDetailPath(String id) => '/listing/$id'; // NEW VST-73
+  static const listingDetail = '/listing/:id';
+  static String listingDetailPath(String id) => '/listing/$id';
 }
 
 /// Pages that need an account. A guest never reaches them from the UI (the
@@ -118,7 +118,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.publish,
         builder: (context, state) => const PublishListingScreen(),
       ),
-      // NEW VST-73: details of one listing, open to guests (VST-72).
+      // Details of one listing, open to guests (VST-72).
       GoRoute(
         path: AppRoutes.listingDetail,
         builder: (context, state) => _SubPage(
