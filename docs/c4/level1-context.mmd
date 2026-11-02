@@ -1,0 +1,16 @@
+%% C4 level 1: system context (VST-69). Decisions: OpenStreetMap (no Google Maps), photos in Firestore (no Firebase Storage).
+flowchart LR
+  Buyer["<b>Buyer / tenant / traveller</b><br/>Browses as a guest, signs in to save and contact"]:::person
+  Owner["<b>Owner / agent</b><br/>Publishes listings"]:::person
+  Vesta["<b>Vesta app</b><br/>Flutter + React Native"]:::ours
+  Firebase["<b>Firebase</b><br/>Sign-in and database (photos as base64)"]:::ext
+  OSM["<b>OpenStreetMap</b><br/>Map tiles"]:::ext
+  Play["<b>Google Play</b><br/>App distribution"]:::ext
+  Buyer -->|"Searches listings, saves favorites, contacts owners"| Vesta
+  Owner -->|"Publishes and manages listings"| Vesta
+  Vesta -->|"Signs in users, reads and writes data"| Firebase
+  Vesta -->|"Loads map tiles"| OSM
+  Vesta -.->|"Is distributed on"| Play
+  classDef person fill:#e3f4ec,stroke:#2a9d6f,color:#14543b
+  classDef ours fill:#e8e8ff,stroke:#6a64d8,color:#2b2780
+  classDef ext fill:#f1ede8,stroke:#8a8178,color:#3b3630

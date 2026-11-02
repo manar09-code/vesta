@@ -37,7 +37,7 @@ Personas: **Buyer/Tenant** (searches and contacts) and **Owner/Agent** (publishe
 - As a user, I want to edit my name and photo, so that others can recognize me.
 - As an owner, I want to see my own published listings, so that I can keep track of them.
 
-## Push notifications
+## Message alerts (in-app notifications)
 - As a user, I want to receive a notification when I get a new message, so that I don't miss a buyer or an owner.
 
 
