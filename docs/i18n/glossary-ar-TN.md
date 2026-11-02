@@ -10,23 +10,25 @@ Source of the existing terms: `flutter-app/lib/l10n/app_ar.arb` and `docs/offer-
 3. Buttons are verbs in the imperative: ادخل, ابعث, احذف, احفظ.
 4. Messages and hints may use Tunisian words (باش, برشا, ما ... ش). Titles and buttons prefer words that every Arabic reader understands.
 5. No mix of scripts in one sentence. Exceptions: numbers (Latin digits), `TND`, and the name Vesta.
-6. Numbers in Latin digits: 450, 120 000. Never Arabic-Indic digits (٤٥٠).
+6. Numbers in Latin digits: 450, 120,000. Never Arabic-Indic digits (٤٥٠).
 7. Arabic is written right to left. Numbers and `TND` stay left to right inside Arabic sentences.
 8. Do not translate word for word from French or English. Write what a Tunisian would really say.
 
 ## 2. Money (TND)
 
+Format decided by Manar (review of PR #41): the currency comes first, then the amount, with a comma as thousands separator. No space inside the number.
+
 | Rule | English | Français | العربية |
 |---|---|---|---|
-| Sale | `120 000 TND` | `120 000 TND` | `120 000 TND` |
-| Per night | `150 TND / night` | `150 TND / nuit` | `150 TND / ليلة` |
-| Per month | `900 TND / month` | `900 TND / mois` | `900 TND / شهر` |
-| Per year | `5 000 TND / year` | `5 000 TND / an` | `5 000 TND / سنة` |
+| Sale | `TND 120,000` | `TND 120,000` | `TND 120,000` |
+| Per night | `TND 150 / night` | `TND 150 / nuit` | `TND 150 / ليلة` |
+| Per month | `TND 900 / month` | `TND 900 / mois` | `TND 900 / شهر` |
+| Per year | `TND 5,000 / year` | `TND 5,000 / an` | `TND 5,000 / سنة` |
 
-- Thousands separator: one non-breaking space, in the three languages.
-- The amount comes first, then `TND`, then the unit. `formatPrice` is the only function that formats a price (spec VST-100).
-- In right-to-left screens the amount and `TND` stay in one left-to-right block. To check on a phone set to Arabic.
-- Note: the ticket VST-77 writes `TND 450`, the merged spec writes `450 TND`. This file follows the spec. To confirm with Manar.
+- Thousands separator: a comma (`120,000`), in the three languages.
+- The currency `TND` comes first, then the amount, then the unit. `formatPrice` is the only function that formats a price (spec VST-100).
+- In right-to-left screens the whole price (`TND 120,000 / ليلة`) stays in one left-to-right block, and the Arabic unit follows it. To check on a phone set to Arabic.
+- Numbers always use Latin digits (0 to 9), never Arabic-Indic digits.
 
 ## 3. Terms: listings and properties
 
