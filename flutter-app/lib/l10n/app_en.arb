@@ -73,6 +73,10 @@
   "photoErrorTooLarge": "This photo is too large, choose another one",
   "photoErrorReadFailed": "Could not read this photo",
 <<<<<<< HEAD
+   ...tes clés favoris...
+=======
+   ...les clés de develop (settings, forgotPassword, ...)...
+>>>>>>> origin/develop
   "favoritesEmptyTitle": "No favorites yet",
   "favoritesEmptyBody": "Tap the heart on a listing to save it here.",
   "favoritesUnavailable": "This listing is no longer available",
