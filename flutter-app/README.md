@@ -30,6 +30,40 @@ Expected result: a white screen with the word "Vesta" in the center.
 
 The first build downloads about 180 MB of Android components and can take 10 to 25 minutes on a slow connection. Do not close the terminal. If it fails with a network error, run `flutter run` again: files already downloaded are kept.
 
+## Release build (Android, Google Play)
+
+Done by the person who publishes (VST-53). The package name stays `com.vesta.flutterapp`.
+
+1. **Create the upload keystore (once).** If an upload key already exists (the first Play upload was signed with one), ask Manar for it and do not create a second one: a new key needs a key reset request in the Play Console. Keep it outside the repo and back it up together with its password: losing it blocks every future update. On Windows, `keytool` comes with Android Studio:
+   ```
+   & "C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe" -genkey -v -keystore "$env:USERPROFILE\vesta-upload.jks" -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+   ```
+2. **Create `android/key.properties`** (already in `.gitignore`, never commit it) with your own values. Use forward slashes in the path:
+   ```
+   storePassword=<your password>
+   keyPassword=<your password>
+   keyAlias=upload
+   storeFile=C:/Users/<you>/vesta-upload.jks
+   ```
+3. **Build** from `flutter-app/`:
+   ```
+   flutter build appbundle --release
+   flutter build apk --release
+   ```
+   Outputs: `build/app/outputs/bundle/release/app-release.aab` (for Google Play) and `build/app/outputs/flutter-apk/app-release.apk` (for a phone test).
+4. **Check the signature.** The owner must be your name, not "Android Debug":
+   ```
+   & "C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe" -printcert -jarfile build\app\outputs\bundle\release\app-release.aab
+   ```
+5. **Test the APK on a real phone**: sign up, log in, publish a listing with photos, Arabic. Only then send the AAB. Do **not** use a phone that has the Play Store test version: the release APK has a different signature, so Android asks to uninstall the Play version first, and a tester who does that can break the 14-day closed test count. Use another phone, or an emulator.
+6. **Upload the `.aab`** to the Play Console test track.
+
+Notes:
+- Without `key.properties`, the release build falls back to debug signing. That is fine for `flutter run --release`, but Google Play will not accept it.
+- Each Play upload needs a higher build number: change the number after `+` in `version:` in `pubspec.yaml` (for example `1.0.0+2`).
+- The `INTERNET` permission is declared in the main `AndroidManifest.xml`. Without it, Firebase does not work in release builds.
+- The first release build downloads the Flutter engine for three architectures and can take 15 to 20 minutes on a slow connection. Later builds take about a minute.
+
 ## Secrets (never commit)
 
 - `google-services.json` and `local.properties` are never committed.
@@ -56,7 +90,7 @@ Setup:
 - Set `userAgentPackageName: 'com.vesta.flutterapp'` on the `TileLayer`.
 - Keep the attribution visible on the map: "© OpenStreetMap contributors" (`RichAttributionWidget`). Use `alignment: AttributionAlignment.bottomLeft` so it is not covered by a floating button at the bottom right.
 - Android permissions in `AndroidManifest.xml`: `INTERNET`, `ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`.
-- `INTERNET` is only added to debug builds by default. Add it to the main manifest before the Google Play release build (VST-53).
+- `INTERNET` is only added to debug builds by default. It is now declared in the main manifest (VST-53), so release builds have it.
 
 Test results (throwaway test app, debug build on the phone):
 - Map displays OSM tiles (Tunis), pan and zoom work: yes
@@ -72,3 +106,4 @@ Limits:
 
 - If the project and the Pub cache are on different drives (for example project on `F:`, cache on `C:`), the Android build can fail with the Kotlin error "this and base files have different roots". Fix: add `kotlin.incremental=false` to `%USERPROFILE%\.gradle\gradle.properties` (your PC only, do not commit it), then run `flutter clean`.
 - The first build downloads about 180 MB of Android engine files. On a slow connection it can take a long time. If it fails with a network error, run `flutter run` again: files already downloaded are kept.
+- If every `flutter` command hangs with no output (even `flutter --version`), an old `flutter.bat` process is probably still holding Flutter's startup lock. List them with `Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match "flutter" }`, stop the leftover `cmd.exe` ones with `Stop-Process -Id <id> -Force`, and close VS Code (its Flutter extension keeps starting `flutter devices`). Do not press Ctrl+C repeatedly during a build.
