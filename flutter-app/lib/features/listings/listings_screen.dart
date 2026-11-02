@@ -1,16 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/widgets/placeholder_screen.dart';
 import '../../l10n/generated/app_localizations.dart';
+import 'listing.dart';
+import 'listing_card.dart';
+import 'listing_repository.dart';
 
-class ListingsScreen extends StatelessWidget {
+/// Newest listings for the Explore tab. Pull down to read them again.
+final latestListingsProvider = FutureProvider<List<Listing>>(
+  (ref) => ListingRepository().getLatestListings(),
+);
+
+class ListingsScreen extends ConsumerWidget {
   const ListingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return PlaceholderScreen(
-      icon: Icons.home_work_outlined,
-      title: AppLocalizations.of(context).tabExplore,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final listings = ref.watch(latestListingsProvider);
+
+    return listings.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, _) => Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(_errorText(l10n, error), textAlign: TextAlign.center),
+              const SizedBox(height: 16),
+              FilledButton(
+                onPressed: () => ref.invalidate(latestListingsProvider),
+                child: Text(l10n.favoritesRetry),
+              ),
+            ],
+          ),
+        ),
+      ),
+      data: (items) => RefreshIndicator(
+        onRefresh: () => ref.refresh(latestListingsProvider.future),
+        child: items.isEmpty
+            ? ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                children: [
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height * 0.7,
+                    child: Center(child: Text(l10n.listingsEmpty)),
+                  ),
+                ],
+              )
+            : ListView.separated(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(16),
+                itemCount: items.length,
+                separatorBuilder: (_, _) => const SizedBox(height: 12),
+                itemBuilder: (_, index) => ListingCard(
+                  listing: items[index],
+                  // The details screen does not exist yet: placeholder for now.
+                  onTap: () => ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(l10n.comingSoon))),
+                ),
+              ),
+      ),
     );
+  }
+
+  String _errorText(AppLocalizations l10n, Object error) {
+    if (error is ListingFailure && error.error == ListingError.noNetwork) {
+      return l10n.favoritesErrorNoNetwork;
+    }
+    return l10n.favoritesErrorUnknown;
   }
 }
