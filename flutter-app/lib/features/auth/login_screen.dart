@@ -6,6 +6,7 @@ import '../../core/router/app_router.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'auth_controller.dart';
 import 'auth_messages.dart';
+import 'forgot_password_dialog.dart';
 import 'require_sign_in.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -92,7 +93,19 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     textAlign: TextAlign.center,
                   ),
                 ],
-                const SizedBox(height: 24),
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: TextButton(
+                    onPressed: auth.isLoading
+                        ? null
+                        : () => showForgotPasswordDialog(
+                              context,
+                              initialEmail: _email.text.trim(),
+                            ),
+                    child: Text(l10n.authForgotPassword),
+                  ),
+                ),
+                const SizedBox(height: 8),
                 FilledButton(
                   onPressed: auth.isLoading ? null : _submit,
                   child: auth.isLoading

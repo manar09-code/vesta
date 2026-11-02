@@ -531,6 +531,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not read this photo'**
   String get photoErrorReadFailed;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About Vesta'**
+  String get settingsAbout;
+
+  /// No description provided for @settingsVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get settingsVersion;
+
+  /// No description provided for @settingsPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy and account deletion'**
+  String get settingsPrivacy;
+
+  /// No description provided for @settingsContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact us'**
+  String get settingsContact;
+
+  /// No description provided for @settingsDeleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my account'**
+  String get settingsDeleteAccount;
+
+  /// No description provided for @settingsLinkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the link'**
+  String get settingsLinkError;
+
+  /// No description provided for @authForgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get authForgotPassword;
+
+  /// No description provided for @forgotPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset your password'**
+  String get forgotPasswordTitle;
+
+  /// No description provided for @forgotPasswordBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email. If an account exists, we send you a link to choose a new password.'**
+  String get forgotPasswordBody;
+
+  /// No description provided for @forgotPasswordSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send link'**
+  String get forgotPasswordSend;
+
+  /// No description provided for @forgotPasswordSent.
+  ///
+  /// In en, this message translates to:
+  /// **'If an account exists for this email, a reset link has been sent.'**
+  String get forgotPasswordSent;
+
+  /// No description provided for @commonCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get commonCancel;
+
+  /// No description provided for @verifyBannerText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please verify your email address.'**
+  String get verifyBannerText;
+
+  /// No description provided for @verifyBannerResend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send again'**
+  String get verifyBannerResend;
+
+  /// No description provided for @verifyBannerSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification email sent'**
+  String get verifyBannerSent;
+
+  /// No description provided for @authErrorTooManyRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts, please try again in a few minutes'**
+  String get authErrorTooManyRequests;
 }
 
 class _AppLocalizationsDelegate
