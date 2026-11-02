@@ -72,7 +72,6 @@
   "listingErrorUnknown": "صار مشكل، عاود جرّب",
   "photoErrorTooLarge": "الصورة هذي كبيرة برشا، اختار وحدة أخرى",
   "photoErrorReadFailed": "ما نجمناش نقراو الصورة",
-<<<<<<< HEAD
   "favoritesEmptyTitle": "لا توجد مفضلة بعد",
   "favoritesEmptyBody": "اضغط على القلب في أي إعلان لحفظه هنا.",
   "favoritesUnavailable": "هذا الإعلان لم يعد متاحًا",
@@ -87,8 +86,7 @@
   "favoritesFilterBuy": "شراء",
   "favoritesFilterRent": "كراء",
   "favoritesFilterStay": "إقامة",
-  "favoritesFilterEmpty": "لا توجد مفضلة في هذه الفئة"
-=======
+  "favoritesFilterEmpty": "لا توجد مفضلة في هذه الفئة",
   "settingsTitle": "الإعدادات",
   "settingsAbout": "على Vesta",
   "settingsVersion": "الإصدار",
@@ -106,5 +104,4 @@
   "verifyBannerResend": "ابعث مرة أخرى",
   "verifyBannerSent": "تبعث إيميل التأكيد",
   "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق"
->>>>>>> origin/develop
 }
