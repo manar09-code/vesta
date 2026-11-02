@@ -72,6 +72,7 @@
   "listingErrorUnknown": "Something went wrong, please try again",
   "photoErrorTooLarge": "This photo is too large, choose another one",
   "photoErrorReadFailed": "Could not read this photo",
+<<<<<<< HEAD
   "favoritesEmptyTitle": "No favorites yet",
   "favoritesEmptyBody": "Tap the heart on a listing to save it here.",
   "favoritesUnavailable": "This listing is no longer available",
@@ -87,4 +88,23 @@
   "favoritesFilterRent": "Rent",
   "favoritesFilterStay": "Stay",
   "favoritesFilterEmpty": "No favorites in this category"
+=======
+  "settingsTitle": "Settings",
+  "settingsAbout": "About Vesta",
+  "settingsVersion": "Version",
+  "settingsPrivacy": "Privacy and account deletion",
+  "settingsContact": "Contact us",
+  "settingsDeleteAccount": "Delete my account",
+  "settingsLinkError": "Could not open the link",
+  "authForgotPassword": "Forgot password?",
+  "forgotPasswordTitle": "Reset your password",
+  "forgotPasswordBody": "Enter your email. If an account exists, we send you a link to choose a new password.",
+  "forgotPasswordSend": "Send link",
+  "forgotPasswordSent": "If an account exists for this email, a reset link has been sent.",
+  "commonCancel": "Cancel",
+  "verifyBannerText": "Please verify your email address.",
+  "verifyBannerResend": "Send again",
+  "verifyBannerSent": "Verification email sent",
+  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes"
+>>>>>>> origin/develop
 }

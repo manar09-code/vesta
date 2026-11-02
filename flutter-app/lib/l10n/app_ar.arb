@@ -72,6 +72,7 @@
   "listingErrorUnknown": "صار مشكل، عاود جرّب",
   "photoErrorTooLarge": "الصورة هذي كبيرة برشا، اختار وحدة أخرى",
   "photoErrorReadFailed": "ما نجمناش نقراو الصورة",
+<<<<<<< HEAD
   "favoritesEmptyTitle": "لا توجد مفضلة بعد",
   "favoritesEmptyBody": "اضغط على القلب في أي إعلان لحفظه هنا.",
   "favoritesUnavailable": "هذا الإعلان لم يعد متاحًا",
@@ -87,4 +88,23 @@
   "favoritesFilterRent": "كراء",
   "favoritesFilterStay": "إقامة",
   "favoritesFilterEmpty": "لا توجد مفضلة في هذه الفئة"
+=======
+  "settingsTitle": "الإعدادات",
+  "settingsAbout": "على Vesta",
+  "settingsVersion": "الإصدار",
+  "settingsPrivacy": "الخصوصية وفسخ الحساب",
+  "settingsContact": "اتصل بينا",
+  "settingsDeleteAccount": "فسخ حسابي",
+  "settingsLinkError": "ما نجمناش نحلو الرابط",
+  "authForgotPassword": "نسيت كلمة السر؟",
+  "forgotPasswordTitle": "بدّل كلمة السر",
+  "forgotPasswordBody": "أدخل البريد الإلكتروني. كان فما حساب، باش نبعثولك رابط باش تختار كلمة سر جديدة.",
+  "forgotPasswordSend": "ابعث الرابط",
+  "forgotPasswordSent": "كان فما حساب بالبريد هذا، تبعثلو رابط.",
+  "commonCancel": "إلغاء",
+  "verifyBannerText": "لازم تأكد البريد الإلكتروني متاعك.",
+  "verifyBannerResend": "ابعث مرة أخرى",
+  "verifyBannerSent": "تبعث إيميل التأكيد",
+  "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق"
+>>>>>>> origin/develop
 }
