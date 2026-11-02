@@ -71,5 +71,15 @@
   "listingErrorPermissionDenied": "ما عندكش الصلاحية باش تعمل هذا",
   "listingErrorUnknown": "صار مشكل، عاود جرّب",
   "photoErrorTooLarge": "الصورة هذي كبيرة برشا، اختار وحدة أخرى",
-  "photoErrorReadFailed": "ما نجمناش نقراو الصورة"
+  "photoErrorReadFailed": "ما نجمناش نقراو الصورة",
+  "listingDetailNotFound": "الإعلان غير موجود",
+  "listingDetailLoadError": "تعذّر تحميل الإعلان.",
+  "listingDetailRetry": "إعادة المحاولة",
+  "listingDetailNoPhoto": "لا توجد صور",
+  "listingDetailBedrooms": "غرف النوم",
+  "listingDetailBathrooms": "الحمّامات",
+  "listingDetailArea": "المساحة (م²)",
+  "listingDetailPerNight": "/ ليلة",
+  "listingDetailPerMonth": "/ شهر",
+  "listingDetailPerYear": "/ سنة"
 }

@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'listing_model.dart';
 import 'listing_repository.dart';
 
 final listingRepositoryProvider = Provider<ListingRepository>(
@@ -87,3 +91,31 @@ class ListingController extends Notifier<PublishState> {
 
 final listingControllerProvider =
     NotifierProvider<ListingController, PublishState>(ListingController.new);
+
+/// One listing with its decoded photos, ready for the details screen.
+class ListingDetail {
+  const ListingDetail({required this.listing, required this.photos});
+
+  final Listing listing;
+  final List<Uint8List> photos;
+}
+
+/// Loads one listing and its photos. Null when the listing does not exist.
+/// Decoding happens here, once, so the screen never decodes in `build`.
+final listingDetailProvider =
+    FutureProvider.autoDispose.family<ListingDetail?, String>((ref, id) async {
+  final repository = ref.read(listingRepositoryProvider);
+  final listing = await repository.getListing(id);
+  if (listing == null) return null;
+
+  final encoded = await repository.getPhotos(id);
+  final photos = <Uint8List>[];
+  for (final text in encoded) {
+    try {
+      photos.add(base64Decode(text));
+    } on FormatException {
+      // A damaged photo is skipped, the others still show.
+    }
+  }
+  return ListingDetail(listing: listing, photos: photos);
+});

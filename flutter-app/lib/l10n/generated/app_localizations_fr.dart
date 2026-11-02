@@ -230,4 +230,34 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'Impossible de lire cette photo';
+
+  @override
+  String get listingDetailNotFound => 'Annonce introuvable';
+
+  @override
+  String get listingDetailLoadError => 'Impossible de charger cette annonce.';
+
+  @override
+  String get listingDetailRetry => 'Réessayer';
+
+  @override
+  String get listingDetailNoPhoto => 'Aucune photo';
+
+  @override
+  String get listingDetailBedrooms => 'Chambres';
+
+  @override
+  String get listingDetailBathrooms => 'Salles de bain';
+
+  @override
+  String get listingDetailArea => 'Surface (m²)';
+
+  @override
+  String get listingDetailPerNight => '/ nuit';
+
+  @override
+  String get listingDetailPerMonth => '/ mois';
+
+  @override
+  String get listingDetailPerYear => '/ an';
 }

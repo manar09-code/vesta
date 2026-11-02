@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../core/config/app_config.dart';
+import 'listing_model.dart';
 
 /// Errors the UI can show. Screens turn them into translated messages.
 enum ListingError {
@@ -116,6 +117,34 @@ class ListingRepository {
 
       await batch.commit();
       return ref.id;
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Reads one listing. Returns null when it does not exist.
+  Future<Listing?> getListing(String id) async {
+    try {
+      final snap = await _db.collection('listings').doc(id).get();
+      final data = snap.data();
+      if (!snap.exists || data == null) return null;
+      return Listing.fromMap(snap.id, data);
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Reads the photos of a listing as base64 strings, sorted by id
+  /// (p0 first = cover). Ids can have gaps, so we never use the position.
+  Future<List<String>> getPhotos(String id) async {
+    try {
+      final snap =
+          await _db.collection('listings').doc(id).collection('photos').get();
+      final docs = snap.docs.toList()..sort((a, b) => a.id.compareTo(b.id));
+      return [
+        for (final doc in docs)
+          if (doc.data()['base64'] is String) doc.data()['base64'] as String,
+      ];
     } on FirebaseException catch (e) {
       throw ListingFailure(_mapCode(e.code));
     }

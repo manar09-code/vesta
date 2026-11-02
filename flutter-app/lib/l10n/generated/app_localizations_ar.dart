@@ -225,4 +225,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get photoErrorReadFailed => 'ما نجمناش نقراو الصورة';
+
+  @override
+  String get listingDetailNotFound => 'الإعلان غير موجود';
+
+  @override
+  String get listingDetailLoadError => 'تعذّر تحميل الإعلان.';
+
+  @override
+  String get listingDetailRetry => 'إعادة المحاولة';
+
+  @override
+  String get listingDetailNoPhoto => 'لا توجد صور';
+
+  @override
+  String get listingDetailBedrooms => 'غرف النوم';
+
+  @override
+  String get listingDetailBathrooms => 'الحمّامات';
+
+  @override
+  String get listingDetailArea => 'المساحة (م²)';
+
+  @override
+  String get listingDetailPerNight => '/ ليلة';
+
+  @override
+  String get listingDetailPerMonth => '/ شهر';
+
+  @override
+  String get listingDetailPerYear => '/ سنة';
 }
