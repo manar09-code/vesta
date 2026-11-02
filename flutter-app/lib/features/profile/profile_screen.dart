@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +7,6 @@ import '../../l10n/generated/app_localizations.dart';
 import '../auth/auth_controller.dart';
 import '../auth/require_sign_in.dart';
 import '../listings/listing_summary.dart';
-import 'edit_profile_screen.dart';
 import 'profile_avatar.dart';
 import 'profile_controller.dart';
 import 'profile_messages.dart';
@@ -80,15 +78,7 @@ class ProfileScreen extends ConsumerWidget {
           _ProfileHeader(email: user.email),
           const SizedBox(height: 16),
           OutlinedButton.icon(
-            onPressed: () {
-              final profile = ref.read(myProfileProvider).value;
-              if (profile == null) return; // profile not loaded yet
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => EditProfileScreen(profile: profile),
-                ),
-              );
-            },
+            onPressed: () => context.push(AppRoutes.editProfile),
             icon: const Icon(Icons.edit_outlined),
             label: Text(l10n.profileEditTitle),
           ),
@@ -121,13 +111,6 @@ class ProfileScreen extends ConsumerWidget {
           FilledButton.tonal(
             onPressed: () => requireSignIn(context, ref),
             child: Text(l10n.authLoginButton),
-          ),
-        ] else ...[
-          const SizedBox(height: 12),
-          TextButton.icon(
-            onPressed: () => FirebaseAuth.instance.signOut(),
-            icon: const Icon(Icons.logout),
-            label: Text(l10n.authLogoutButton),
           ),
         ],
       ],
