@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../core/config/app_config.dart';
+import 'listing_summary.dart';
 
 /// Errors the UI can show. Screens turn them into translated messages.
 enum ListingError {
@@ -43,6 +44,8 @@ class NewListing {
     required this.listingType,
     required this.propertyType,
     required this.city,
+    required this.contactPhone,
+    required this.whatsappEnabled,
     this.rentPeriod,
     this.bedrooms,
     this.bathrooms,
@@ -56,6 +59,8 @@ class NewListing {
   final String? rentPeriod; // required only when listingType == 'rent'
   final String propertyType;
   final String city;
+  final String contactPhone;
+  final bool whatsappEnabled;
   final num? bedrooms;
   final num? bathrooms;
   final num? areaSqm;
@@ -66,7 +71,7 @@ class ListingRepository {
   FirebaseFirestore get _db => FirebaseFirestore.instance;
   FirebaseAuth get _auth => FirebaseAuth.instance;
 
-  /// Creates the listing and its photos in ONE batch write.
+  /// Creates the listing, its contact, and its photos in ONE batch write.
   /// [photosBase64] holds 1 to 5 already compressed base64 strings.
   /// Returns the id of the new listing.
   Future<String> createListing({
@@ -106,6 +111,12 @@ class ListingRepository {
         'updatedAt': FieldValue.serverTimestamp(),
       });
 
+      batch.set(ref.collection('contact').doc('info'), {
+        'contactPhone': listing.contactPhone,
+        'whatsappEnabled': listing.whatsappEnabled,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+
       // Fixed ids p0..p4: the id gives the display order, p0 = cover.
       for (var i = 0; i < photosBase64.length; i++) {
         batch.set(ref.collection('photos').doc('p$i'), {
@@ -116,6 +127,39 @@ class ListingRepository {
 
       await batch.commit();
       return ref.id;
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Live list of the signed-in user's own listings, newest first.
+  /// Needs the index (ownerId, createdAt desc) from firestore.indexes.json.
+  Stream<List<ListingSummary>> watchMyListings() {
+    final user = _auth.currentUser;
+    if (user == null) return Stream.value(const []);
+    return _db
+        .collection('listings')
+        .where('ownerId', isEqualTo: user.uid)
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map((snap) => snap.docs.map(ListingSummary.fromDoc).toList());
+  }
+
+  /// Deletes the listing, its photos and its contact in ONE batch
+  /// (otherwise they stay orphaned, see docs/data-model.md).
+  Future<void> deleteListing(ListingSummary listing) async {
+    final user = _auth.currentUser;
+    if (user == null) throw const ListingFailure(ListingError.notSignedIn);
+
+    try {
+      final ref = _db.collection('listings').doc(listing.id);
+      final batch = _db.batch();
+      for (var i = 0; i < listing.photoCount; i++) {
+        batch.delete(ref.collection('photos').doc('p$i'));
+      }
+      batch.delete(ref.collection('contact').doc('info'));
+      batch.delete(ref);
+      await batch.commit();
     } on FirebaseException catch (e) {
       throw ListingFailure(_mapCode(e.code));
     }

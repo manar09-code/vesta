@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/utils/phone_utils.dart';
 import 'listing_repository.dart';
 
 final listingRepositoryProvider = Provider<ListingRepository>(
@@ -14,6 +15,7 @@ enum ListingFieldError {
   cityRequired,
   rentPeriodRequired,
   numberInvalid,
+  phoneInvalid,
 }
 
 ListingFieldError? validateTitle(String? v) =>
@@ -24,6 +26,11 @@ ListingFieldError? validateDescription(String? v) =>
 
 ListingFieldError? validateCity(String? v) =>
     (v ?? '').trim().isEmpty ? ListingFieldError.cityRequired : null;
+
+ListingFieldError? validatePhone(String? v) =>
+    isValidTunisianPhone((v ?? '').trim())
+        ? null
+        : ListingFieldError.phoneInvalid;
 
 /// Price must be a number >= 0.
 ListingFieldError? validatePrice(String? v) {
