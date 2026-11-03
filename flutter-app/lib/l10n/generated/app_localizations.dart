@@ -463,7 +463,7 @@ abstract class AppLocalizations {
   /// No description provided for @listingErrorPriceInvalid.
   ///
   /// In en, this message translates to:
-  /// **'Enter a price of 0 or more'**
+  /// **'Enter a price between 1 and 50,000,000'**
   String get listingErrorPriceInvalid;
 
   /// No description provided for @listingErrorCityRequired.
