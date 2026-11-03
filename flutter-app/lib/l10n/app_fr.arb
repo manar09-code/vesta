@@ -128,5 +128,14 @@
   "verifyBannerText": "Veuillez confirmer votre adresse e-mail.",
   "verifyBannerResend": "Renvoyer",
   "verifyBannerSent": "E-mail de vérification envoyé",
-  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes"
+  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes",
+  "onboardingSkip": "Passer",
+  "onboardingNext": "Suivant",
+  "onboardingStart": "Commencer",
+  "onboardingTitle1": "Trouvez votre bien en Tunisie",
+  "onboardingBody1": "Parcourez des maisons d’hôtes, appartements et maisons pour séjourner, louer ou acheter.",
+  "onboardingTitle2": "Contactez le propriétaire",
+  "onboardingBody2": "Discutez avec lui par message, ou appelez-le ou écrivez-lui sur WhatsApp.",
+  "onboardingTitle3": "Publiez votre bien",
+  "onboardingBody3": "Ajoutez votre annonce avec des photos en quelques minutes."
 }

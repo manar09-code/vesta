@@ -128,5 +128,14 @@
   "verifyBannerText": "Please verify your email address.",
   "verifyBannerResend": "Send again",
   "verifyBannerSent": "Verification email sent",
-  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes"
+  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes",
+  "onboardingSkip": "Skip",
+  "onboardingNext": "Next",
+  "onboardingStart": "Get started",
+  "onboardingTitle1": "Find your place in Tunisia",
+  "onboardingBody1": "Browse guest houses, apartments and houses to stay, rent or buy.",
+  "onboardingTitle2": "Contact the owner",
+  "onboardingBody2": "Chat with the owner, or call or message them on WhatsApp.",
+  "onboardingTitle3": "Publish your own place",
+  "onboardingBody3": "Add your listing with photos in a few minutes."
 }

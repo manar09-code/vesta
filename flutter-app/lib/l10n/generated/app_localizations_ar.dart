@@ -400,4 +400,33 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
+
+  @override
+  String get onboardingSkip => 'تخطّى';
+
+  @override
+  String get onboardingNext => 'التالي';
+
+  @override
+  String get onboardingStart => 'ابدأ';
+
+  @override
+  String get onboardingTitle1 => 'اكتشف مكانك في تونس';
+
+  @override
+  String get onboardingBody1 =>
+      'تصفّح دور الضيافة والشقق والدور للإقامة أو الكراء أو الشراء.';
+
+  @override
+  String get onboardingTitle2 => 'تواصل مع المالك';
+
+  @override
+  String get onboardingBody2 =>
+      'ابعثله رسالة، ولا اتصل بيه، ولا اكتبله على واتساب.';
+
+  @override
+  String get onboardingTitle3 => 'انشر إعلانك';
+
+  @override
+  String get onboardingBody3 => 'زيد إعلانك مع الصور في دقايق قليلة.';
 }
