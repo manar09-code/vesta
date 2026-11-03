@@ -192,7 +192,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get listingErrorDescriptionRequired => 'Enter a description';
 
   @override
-  String get listingErrorPriceInvalid => 'Enter a price of 0 or more';
+  String get listingErrorPriceInvalid => 'Enter a price between 1 and 50,000,000';
 
   @override
   String get listingErrorCityRequired => 'Enter a city';

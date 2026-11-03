@@ -60,7 +60,7 @@
   "publishRemovePhoto": "Supprimer la photo",
   "listingErrorTitleRequired": "Entrez un titre",
   "listingErrorDescriptionRequired": "Entrez une description",
-  "listingErrorPriceInvalid": "Entrez un prix supérieur ou égal à 0",
+  "listingErrorPriceInvalid": "Entrez un prix entre 1 et 50 000 000",
   "listingErrorCityRequired": "Entrez une ville",
   "listingErrorRentPeriodRequired": "Choisissez une période de location",
   "listingErrorNumberInvalid": "Entrez un nombre valide",
