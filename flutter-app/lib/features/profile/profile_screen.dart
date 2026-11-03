@@ -6,7 +6,7 @@ import '../../core/router/app_router.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../auth/auth_controller.dart';
 import '../auth/require_sign_in.dart';
-import '../listings/listing_summary.dart';
+import '../listings/listing.dart';
 import 'profile_avatar.dart';
 import 'profile_controller.dart';
 import 'profile_messages.dart';
@@ -23,7 +23,7 @@ class ProfileScreen extends ConsumerWidget {
   Future<void> _confirmDelete(
     BuildContext context,
     WidgetRef ref,
-    ListingSummary listing,
+    Listing listing,
   ) async {
     final l10n = AppLocalizations.of(context);
     final confirmed = await showDialog<bool>(
@@ -148,7 +148,7 @@ class _ProfileHeader extends ConsumerWidget {
 class _MyListings extends ConsumerWidget {
   const _MyListings({required this.onDelete});
 
-  final void Function(ListingSummary listing) onDelete;
+  final void Function(Listing listing) onDelete;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

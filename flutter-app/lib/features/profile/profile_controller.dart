@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import '../auth/auth_controller.dart';
 import '../listings/listing_controller.dart';
 import '../listings/listing_repository.dart';
-import '../listings/listing_summary.dart';
+import '../listings/listing.dart';
 import '../listings/photo_service.dart';
 import 'user_repository.dart';
 
@@ -20,7 +20,7 @@ final myProfileProvider = StreamProvider<UserProfile?>((ref) {
 });
 
 /// Listings of the signed-in user only, newest first, live.
-final myListingsProvider = StreamProvider<List<ListingSummary>>((ref) {
+final myListingsProvider = StreamProvider<List<Listing>>((ref) {
   final user = ref.watch(authStateProvider).value;
   if (user == null) return Stream.value(const []);
   return ref.watch(listingRepositoryProvider).watchMyListings();
@@ -84,7 +84,7 @@ class ProfileController extends Notifier<ProfileFormState> {
   }
 
   /// Returns true when the listing and its photos were deleted.
-  Future<bool> deleteListing(ListingSummary listing) =>
+  Future<bool> deleteListing(Listing listing) =>
       _run(() => _listings.deleteListing(listing));
 
   void clearError() => state = const ProfileFormState();
