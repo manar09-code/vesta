@@ -11,7 +11,7 @@ Manar · Eya · Ahmed · Mahmoud
 ```
 vesta/
 ├── flutter-app/         Flutter version (Dart)
-├── react-native-app/    React Native version (JavaScript/TypeScript)
+├── react-native-app/    React Native version (TypeScript)
 ├── firebase/            Firestore security rules
 ├── docs/
 │   ├── c4/              C4 model, levels 1-4
