@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../core/config/app_config.dart';
+import 'listing.dart';
 
 /// Errors the UI can show. Screens turn them into translated messages.
 enum ListingError {
@@ -97,6 +98,8 @@ class ListingRepository {
         if (listing.listingType == 'rent') 'rentPeriod': listing.rentPeriod,
         'propertyType': listing.propertyType,
         'city': listing.city,
+        // docs/data-model.md: the apps always write the status.
+        'status': 'available',
         // optional fields are written only when filled
         if (listing.bedrooms != null) 'bedrooms': listing.bedrooms,
         if (listing.bathrooms != null) 'bathrooms': listing.bathrooms,
@@ -116,6 +119,94 @@ class ListingRepository {
 
       await batch.commit();
       return ref.id;
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Live list of the signed-in user's own listings, newest first.
+  /// Needs the index (ownerId, createdAt desc) from firestore.indexes.json.
+  Stream<List<Listing>> watchMyListings() {
+    final user = _auth.currentUser;
+    if (user == null) return Stream.value(const []);
+    return _db
+        .collection('listings')
+        .where('ownerId', isEqualTo: user.uid)
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map((snap) => snap.docs.map(Listing.fromDoc).toList());
+  }
+
+  /// Deletes the listing, its photos and its contact in ONE batch
+  /// (otherwise they stay orphaned, see docs/data-model.md).
+  Future<void> deleteListing(Listing listing) async {
+    final user = _auth.currentUser;
+    if (user == null) throw const ListingFailure(ListingError.notSignedIn);
+
+    try {
+      final ref = _db.collection('listings').doc(listing.id);
+      final batch = _db.batch();
+      for (var i = 0; i < listing.photoCount; i++) {
+        batch.delete(ref.collection('photos').doc('p$i'));
+      }
+      batch.delete(ref.collection('contact').doc('info'));
+      batch.delete(ref);
+      await batch.commit();
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Reads listings by id, in the same order as [ids].
+  /// An entry is null when the listing no longer exists (deleted by its
+  /// owner) or cannot be read (for example hidden): the caller skips it
+  /// or shows "no longer available".
+  Future<List<Listing?>> getListingsByIds(List<String> ids) {
+    return Future.wait(ids.map(_getListingOrNull));
+  }
+
+  Future<Listing?> _getListingOrNull(String id) async {
+    try {
+      final doc = await _db.collection('listings').doc(id).get();
+      if (!doc.exists) return null;
+      return Listing.fromDoc(doc);
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') return null;
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Cover photo (id p0) of a listing, as base64. Null if there is none.
+  Future<String?> getCoverPhotoBase64(String listingId) async {
+    try {
+      final doc = await _db
+          .collection('listings')
+          .doc(listingId)
+          .collection('photos')
+          .doc('p0')
+          .get();
+      return doc.data()?['base64'] as String?;
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') return null;
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Newest listings first, for the Explore tab. Hidden listings are skipped:
+  /// the rules let everybody read them, so the app must filter them.
+  /// Sorting only on createdAt needs no Firestore index.
+  Future<List<Listing>> getLatestListings({int limit = 20}) async {
+    try {
+      final snapshot = await _db
+          .collection('listings')
+          .orderBy('createdAt', descending: true)
+          .limit(limit)
+          .get();
+      return [
+        for (final doc in snapshot.docs)
+          if ((doc.data()['status'] as String?) != 'hidden')
+            Listing.fromDoc(doc),
+      ];
     } on FirebaseException catch (e) {
       throw ListingFailure(_mapCode(e.code));
     }

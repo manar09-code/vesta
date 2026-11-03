@@ -229,6 +229,129 @@ class AppLocalizationsEn extends AppLocalizations {
   String get photoErrorReadFailed => 'Could not read this photo';
 
   @override
+  String get profileEditTitle => 'Edit profile';
+
+  @override
+  String get profileNameLabel => 'Name';
+
+  @override
+  String get profileEmailLabel => 'Email';
+
+  @override
+  String get profileSaveButton => 'Save';
+
+  @override
+  String get profileChangePhoto => 'Change photo';
+
+  @override
+  String get profilePhotoGallery => 'Choose from gallery';
+
+  @override
+  String get profilePhotoCamera => 'Take a photo';
+
+  @override
+  String get profileSaved => 'Profile saved';
+
+  @override
+  String get profileMyListings => 'My listings';
+
+  @override
+  String get profileNoListings => 'You have no listings yet';
+
+  @override
+  String get profileListingsLoadError => 'Could not load your listings';
+
+  @override
+  String get profileEditListing => 'Edit this listing';
+
+  @override
+  String get profileDeleteListing => 'Delete this listing';
+
+  @override
+  String get profileDeleteConfirmTitle => 'Delete this listing?';
+
+  @override
+  String get profileDeleteConfirmBody =>
+      'Its photos will be deleted too. This cannot be undone.';
+
+  @override
+  String get profileDeleteConfirm => 'Delete';
+
+  @override
+  String get profileCancel => 'Cancel';
+
+  @override
+  String get profileListingDeleted => 'Listing deleted';
+
+  @override
+  String get profileErrorNameRequired => 'Name is required';
+
+  @override
+  String get profileErrorNoNetwork => 'No connection. Please try again.';
+
+  @override
+  String get profileErrorPermission => 'You are not allowed to do this';
+
+  @override
+  String get profileErrorNotSignedIn => 'Please sign in';
+
+  @override
+  String get profileErrorUnknown => 'Something went wrong. Please try again.';
+
+  @override
+  String get profilePhotoErrorTooLarge => 'This photo is too large';
+
+  @override
+  String get profilePhotoErrorRead => 'Could not read this photo';
+
+  @override
+  String get favoritesEmptyTitle => 'No favorites yet';
+
+  @override
+  String get favoritesEmptyBody =>
+      'Tap the heart on a listing to save it here.';
+
+  @override
+  String get favoritesUnavailable => 'This listing is no longer available';
+
+  @override
+  String get favoritesRemove => 'Remove';
+
+  @override
+  String get favoritesRetry => 'Try again';
+
+  @override
+  String get favoritesErrorNoNetwork =>
+      'No connection. Check your internet and try again.';
+
+  @override
+  String get favoritesErrorPermission => 'You are not allowed to do this.';
+
+  @override
+  String get favoritesErrorNotSignedIn => 'Sign in to save favorites.';
+
+  @override
+  String get favoritesErrorUnknown => 'Something went wrong. Please try again.';
+
+  @override
+  String get listingsEmpty => 'No listings yet';
+
+  @override
+  String get favoritesFilterAll => 'All';
+
+  @override
+  String get favoritesFilterBuy => 'Buy';
+
+  @override
+  String get favoritesFilterRent => 'Rent';
+
+  @override
+  String get favoritesFilterStay => 'Stay';
+
+  @override
+  String get favoritesFilterEmpty => 'No favorites in this category';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override
