@@ -21,6 +21,9 @@ class VestaApp extends ConsumerWidget {
       routerConfig: router,
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+      // When the phone language is not supported, Flutter uses the FIRST locale
+      // of this generated list. It is sorted alphabetically (ar, en, fr), so the
+      // fallback is Arabic. If a language is added, check that ar is still first.
       supportedLocales: AppLocalizations.supportedLocales,
     );
   }
