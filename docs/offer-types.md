@@ -84,7 +84,7 @@ The phone is **not** in the listing document. Listings are readable by guests (n
 | Rent | navy | `#20394A` |
 | Sale | terracotta | `#A65D42` |
 
-Ribbons use the color as background with cream text (`#F7F3EB`). No other color is added.
+Ribbons use the color as background with cream text (`#FAF8F4`). No other color is added.
 
 ## 6. Labels (first version, the glossary ticket VST-77 validates the final wording)
 
