@@ -260,4 +260,106 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get listingDetailPerYear => '/ an';
+
+  @override
+  String get favoritesEmptyTitle => 'Aucun favori pour l\'instant';
+
+  @override
+  String get favoritesEmptyBody =>
+      'Appuie sur le cœur d\'une annonce pour la retrouver ici.';
+
+  @override
+  String get favoritesUnavailable => 'Cette annonce n\'est plus disponible';
+
+  @override
+  String get favoritesRemove => 'Retirer';
+
+  @override
+  String get favoritesRetry => 'Réessayer';
+
+  @override
+  String get favoritesErrorNoNetwork =>
+      'Pas de connexion. Vérifie ton internet et réessaie.';
+
+  @override
+  String get favoritesErrorPermission => 'Tu n\'as pas le droit de faire cela.';
+
+  @override
+  String get favoritesErrorNotSignedIn =>
+      'Connecte-toi pour enregistrer des favoris.';
+
+  @override
+  String get favoritesErrorUnknown => 'Une erreur est survenue. Réessaie.';
+
+  @override
+  String get listingsEmpty => 'Aucune annonce pour l\'instant';
+
+  @override
+  String get favoritesFilterAll => 'Tous';
+
+  @override
+  String get favoritesFilterBuy => 'Acheter';
+
+  @override
+  String get favoritesFilterRent => 'Louer';
+
+  @override
+  String get favoritesFilterStay => 'Séjourner';
+
+  @override
+  String get favoritesFilterEmpty => 'Aucun favori dans cette catégorie';
+
+  @override
+  String get settingsTitle => 'Paramètres';
+
+  @override
+  String get settingsAbout => 'À propos de Vesta';
+
+  @override
+  String get settingsVersion => 'Version';
+
+  @override
+  String get settingsPrivacy => 'Confidentialité et suppression du compte';
+
+  @override
+  String get settingsContact => 'Nous contacter';
+
+  @override
+  String get settingsDeleteAccount => 'Supprimer mon compte';
+
+  @override
+  String get settingsLinkError => 'Impossible d’ouvrir le lien';
+
+  @override
+  String get authForgotPassword => 'Mot de passe oublié ?';
+
+  @override
+  String get forgotPasswordTitle => 'Réinitialiser le mot de passe';
+
+  @override
+  String get forgotPasswordBody =>
+      'Saisissez votre e-mail. Si un compte existe, nous vous envoyons un lien pour choisir un nouveau mot de passe.';
+
+  @override
+  String get forgotPasswordSend => 'Envoyer le lien';
+
+  @override
+  String get forgotPasswordSent =>
+      'Si un compte existe pour cet e-mail, un lien a été envoyé.';
+
+  @override
+  String get commonCancel => 'Annuler';
+
+  @override
+  String get verifyBannerText => 'Veuillez confirmer votre adresse e-mail.';
+
+  @override
+  String get verifyBannerResend => 'Renvoyer';
+
+  @override
+  String get verifyBannerSent => 'E-mail de vérification envoyé';
+
+  @override
+  String get authErrorTooManyRequests =>
+      'Trop de tentatives, réessayez dans quelques minutes';
 }

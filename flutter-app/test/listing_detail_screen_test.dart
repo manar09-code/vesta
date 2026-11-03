@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutterapp/features/listings/listing.dart';
 import 'package:flutterapp/features/listings/listing_controller.dart';
 import 'package:flutterapp/features/listings/listing_detail_screen.dart';
-import 'package:flutterapp/features/listings/listing_model.dart';
 import 'package:flutterapp/l10n/generated/app_localizations.dart';
 
 const _sale = Listing(
@@ -19,6 +19,8 @@ const _sale = Listing(
   bedrooms: 2,
   bathrooms: 1,
   areaSqm: 85,
+  photoCount: 0,
+  status: 'available',
 );
 
 const _rent = Listing(
@@ -32,6 +34,8 @@ const _rent = Listing(
   rentPeriod: 'month',
   propertyType: 'studio',
   city: 'Tunis',
+  photoCount: 0,
+  status: 'available',
 );
 
 /// Shows the details screen with a fake loader, so no Firebase is needed.
@@ -41,11 +45,12 @@ Future<void> _pumpDetail(
   Locale locale = const Locale('en'),
   bool settle = true,
 }) async {
-    // Tall test screen: the 4:3 photo area is 600 px high on an 800 px wide
+  // Tall test screen: the 4:3 photo area is 600 px high on an 800 px wide
   // screen and would hide the texts below it from the lazy ListView.
   tester.view.physicalSize = const Size(800, 2400);
   tester.view.devicePixelRatio = 1.0;
   addTearDown(tester.view.reset);
+
   await tester.pumpWidget(
     ProviderScope(
       overrides: [

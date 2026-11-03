@@ -6,8 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/config/app_config.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'listing_controller.dart';
-import 'listing_model.dart';
-
+import 'listing.dart';
 /// Details of one listing (VST-73, part 1): photos, price, city, facts and
 /// description. Read only. The favorite heart and the contact buttons are
 /// added later by their own tickets, in the slots marked SLOT below.

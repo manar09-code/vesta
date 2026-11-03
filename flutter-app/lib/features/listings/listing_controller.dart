@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'listing_model.dart';
+import 'listing.dart';
 import 'listing_repository.dart';
 
 final listingRepositoryProvider = Provider<ListingRepository>(

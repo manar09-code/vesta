@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 
 /// Errors the UI can show. Screens turn them into translated messages.
 enum AuthError {
@@ -10,6 +11,7 @@ enum AuthError {
   emailInUse,
   wrongPassword,
   noNetwork,
+  tooManyRequests,
   unknown,
 }
 
@@ -56,6 +58,12 @@ class AuthRepository {
         'email': email,
       });
       await batch.commit();
+
+      // First verification mail. If it fails the account is still fine: the
+      // user can ask again from the banner.
+      try {
+        await created.sendEmailVerification();
+      } catch (_) {}
     } on FirebaseAuthException catch (e) {
       await _rollback(created);
       throw AuthFailure(_mapAuthCode(e.code));
@@ -87,6 +95,35 @@ class AuthRepository {
 
   Future<void> signOut() => _auth.signOut();
 
+  /// Sends the verification mail to the signed-in user.
+  Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(_mapAuthCode(e.code));
+    }
+  }
+
+  /// Reloads the signed-in user from Firebase and tells if the email is now
+  /// verified (the local user object does not change by itself).
+  Future<bool> reloadEmailVerified() async {
+    final user = _auth.currentUser;
+    if (user == null) return true;
+    await user.reload();
+    return _auth.currentUser?.emailVerified ?? true;
+  }
+
+  /// Sends the reset mail. An unknown email gives the same result as a known
+  /// one, so nobody can find out which emails have an account.
+  Future<void> sendPasswordReset(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') return;
+      throw AuthFailure(_mapAuthCode(e.code));
+    }
+  }
+
   AuthError _mapAuthCode(String code) {
     switch (code) {
       case 'invalid-email':
@@ -101,7 +138,11 @@ class AuthRepository {
         return AuthError.wrongPassword;
       case 'network-request-failed':
         return AuthError.noNetwork;
+      case 'too-many-requests':
+        return AuthError.tooManyRequests;
       default:
+        // Shown as a generic message; the code helps to find the cause.
+        debugPrint('Unmapped Firebase Auth error code: $code');
         return AuthError.unknown;
     }
   }

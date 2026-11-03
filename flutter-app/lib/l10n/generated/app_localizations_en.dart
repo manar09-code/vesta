@@ -257,4 +257,105 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get listingDetailPerYear => '/ year';
+
+  @override
+  String get favoritesEmptyTitle => 'No favorites yet';
+
+  @override
+  String get favoritesEmptyBody =>
+      'Tap the heart on a listing to save it here.';
+
+  @override
+  String get favoritesUnavailable => 'This listing is no longer available';
+
+  @override
+  String get favoritesRemove => 'Remove';
+
+  @override
+  String get favoritesRetry => 'Try again';
+
+  @override
+  String get favoritesErrorNoNetwork =>
+      'No connection. Check your internet and try again.';
+
+  @override
+  String get favoritesErrorPermission => 'You are not allowed to do this.';
+
+  @override
+  String get favoritesErrorNotSignedIn => 'Sign in to save favorites.';
+
+  @override
+  String get favoritesErrorUnknown => 'Something went wrong. Please try again.';
+
+  @override
+  String get listingsEmpty => 'No listings yet';
+
+  @override
+  String get favoritesFilterAll => 'All';
+
+  @override
+  String get favoritesFilterBuy => 'Buy';
+
+  @override
+  String get favoritesFilterRent => 'Rent';
+
+  @override
+  String get favoritesFilterStay => 'Stay';
+
+  @override
+  String get favoritesFilterEmpty => 'No favorites in this category';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsAbout => 'About Vesta';
+
+  @override
+  String get settingsVersion => 'Version';
+
+  @override
+  String get settingsPrivacy => 'Privacy and account deletion';
+
+  @override
+  String get settingsContact => 'Contact us';
+
+  @override
+  String get settingsDeleteAccount => 'Delete my account';
+
+  @override
+  String get settingsLinkError => 'Could not open the link';
+
+  @override
+  String get authForgotPassword => 'Forgot password?';
+
+  @override
+  String get forgotPasswordTitle => 'Reset your password';
+
+  @override
+  String get forgotPasswordBody =>
+      'Enter your email. If an account exists, we send you a link to choose a new password.';
+
+  @override
+  String get forgotPasswordSend => 'Send link';
+
+  @override
+  String get forgotPasswordSent =>
+      'If an account exists for this email, a reset link has been sent.';
+
+  @override
+  String get commonCancel => 'Cancel';
+
+  @override
+  String get verifyBannerText => 'Please verify your email address.';
+
+  @override
+  String get verifyBannerResend => 'Send again';
+
+  @override
+  String get verifyBannerSent => 'Verification email sent';
+
+  @override
+  String get authErrorTooManyRequests =>
+      'Too many attempts, please try again in a few minutes';
 }

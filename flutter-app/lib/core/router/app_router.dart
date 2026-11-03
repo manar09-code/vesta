@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/auth_controller.dart';
+import '../../features/auth/email_verification_banner.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/auth/require_sign_in.dart';
 import '../../features/auth/sign_up_screen.dart';
@@ -15,6 +16,7 @@ import '../../features/map/map_screen.dart';
 import '../../features/notifications/notifications_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/search/search_screen.dart';
+import '../../features/settings/settings_screen.dart';
 import '../../l10n/generated/app_localizations.dart';
 
 abstract class AppRoutes {
@@ -28,6 +30,7 @@ abstract class AppRoutes {
   static const chat = '/chat';
   static const notifications = '/notifications';
   static const publish = '/publish';
+  static const settings = '/settings';
   static const listingDetail = '/listing/:id';
   static String listingDetailPath(String id) => '/listing/$id';
 }
@@ -115,6 +118,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             const _SubPage(child: NotificationsScreen()),
       ),
       GoRoute(
+        path: AppRoutes.settings,
+        builder: (context, state) => _SubPage(
+          title: AppLocalizations.of(context).settingsTitle,
+          child: const SettingsScreen(),
+        ),
+      ),
+      GoRoute(
         path: AppRoutes.publish,
         builder: (context, state) => const PublishListingScreen(),
       ),
@@ -171,7 +181,12 @@ class _MainShell extends ConsumerWidget {
           ),
         ],
       ),
-      body: shell,
+      body: Column(
+        children: [
+          const EmailVerificationBanner(),
+          Expanded(child: shell),
+        ],
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: shell.currentIndex,
         onDestinationSelected: (index) =>
@@ -195,12 +210,16 @@ class _MainShell extends ConsumerWidget {
 
 /// Simple page with a back button, used for screens outside the tabs.
 class _SubPage extends StatelessWidget {
-  const _SubPage({required this.child});
+  const _SubPage({required this.child, this.title});
 
   final Widget child;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: child);
+    return Scaffold(
+      appBar: AppBar(title: title == null ? null : Text(title!)),
+      body: child,
+    );
   }
 }
