@@ -13,6 +13,8 @@ import '../../features/listings/listings_screen.dart';
 import '../../features/listings/publish_listing_screen.dart';
 import '../../features/map/map_screen.dart';
 import '../../features/notifications/notifications_screen.dart';
+import '../../features/profile/edit_profile_screen.dart';
+import '../../features/profile/profile_controller.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/search/search_screen.dart';
 import '../../features/settings/settings_screen.dart';
@@ -29,6 +31,7 @@ abstract class AppRoutes {
   static const chat = '/chat';
   static const notifications = '/notifications';
   static const publish = '/publish';
+  static const editProfile = '/profile/edit';
   static const settings = '/settings';
 }
 
@@ -38,6 +41,7 @@ const _accountOnlyRoutes = {
   AppRoutes.publish,
   AppRoutes.chat,
   AppRoutes.notifications,
+  AppRoutes.editProfile,
 };
 
 /// Router for guest browsing (VST-72): everybody opens the app on the home
@@ -124,6 +128,20 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.publish,
         builder: (context, state) => const PublishListingScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.editProfile,
+        builder: (context, state) => Consumer(
+          builder: (context, ref, _) {
+            final profile = ref.watch(myProfileProvider).value;
+            if (profile == null) {
+              return const Scaffold(
+                body: Center(child: CircularProgressIndicator()),
+              );
+            }
+            return EditProfileScreen(profile: profile);
+          },
+        ),
       ),
     ],
   );
