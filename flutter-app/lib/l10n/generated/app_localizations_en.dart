@@ -230,6 +230,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get photoErrorReadFailed => 'Could not read this photo';
 
   @override
+  String get listingDetailNotFound => 'Listing not found';
+
+  @override
+  String get listingDetailLoadError => 'Could not load this listing.';
+
+  @override
+  String get listingDetailRetry => 'Try again';
+
+  @override
+  String get listingDetailNoPhoto => 'No photo';
+
+  @override
+  String get listingDetailBedrooms => 'Bedrooms';
+
+  @override
+  String get listingDetailBathrooms => 'Bathrooms';
+
+  @override
+  String get listingDetailArea => 'Area (m²)';
+
+  @override
+  String get listingDetailPerNight => '/ night';
+
+  @override
+  String get listingDetailPerMonth => '/ month';
+
+  @override
+  String get listingDetailPerYear => '/ year';
+
+  @override
   String get profileEditTitle => 'Edit profile';
 
   @override

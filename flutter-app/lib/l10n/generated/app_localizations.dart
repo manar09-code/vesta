@@ -532,6 +532,66 @@ abstract class AppLocalizations {
   /// **'Could not read this photo'**
   String get photoErrorReadFailed;
 
+  /// No description provided for @listingDetailNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Listing not found'**
+  String get listingDetailNotFound;
+
+  /// No description provided for @listingDetailLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load this listing.'**
+  String get listingDetailLoadError;
+
+  /// No description provided for @listingDetailRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get listingDetailRetry;
+
+  /// No description provided for @listingDetailNoPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'No photo'**
+  String get listingDetailNoPhoto;
+
+  /// No description provided for @listingDetailBedrooms.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedrooms'**
+  String get listingDetailBedrooms;
+
+  /// No description provided for @listingDetailBathrooms.
+  ///
+  /// In en, this message translates to:
+  /// **'Bathrooms'**
+  String get listingDetailBathrooms;
+
+  /// No description provided for @listingDetailArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Area (m²)'**
+  String get listingDetailArea;
+
+  /// No description provided for @listingDetailPerNight.
+  ///
+  /// In en, this message translates to:
+  /// **'/ night'**
+  String get listingDetailPerNight;
+
+  /// No description provided for @listingDetailPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'/ month'**
+  String get listingDetailPerMonth;
+
+  /// No description provided for @listingDetailPerYear.
+  ///
+  /// In en, this message translates to:
+  /// **'/ year'**
+  String get listingDetailPerYear;
+
   /// No description provided for @profileEditTitle.
   ///
   /// In en, this message translates to:
