@@ -5,10 +5,12 @@ import { appConfig, formatPrice } from '../../core/config';
 import { AppText } from '../../core/components/AppText';
 import { PrimaryButton } from '../../core/components/PrimaryButton';
 import { changeAppLanguage } from '../../core/i18n';
+import { useAuth } from '../auth/authController';
 import { theme } from '../../core/theme';
 
 export function HomeScreen(): React.JSX.Element {
   const { t } = useTranslation();
+  const { signOut } = useAuth();
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <AppText translationKey="appName" style={styles.title} />
@@ -27,6 +29,8 @@ export function HomeScreen(): React.JSX.Element {
           />
         ))}
       </View>
+      {/* Temporary: the profile and settings screens will own Log out. */}
+      <PrimaryButton labelKey="authLogoutButton" onPress={() => signOut()} />
     </ScrollView>
   );
 }
