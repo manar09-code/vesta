@@ -128,5 +128,13 @@
   "verifyBannerText": "لازم تأكد البريد الإلكتروني متاعك.",
   "verifyBannerResend": "ابعث مرة أخرى",
   "verifyBannerSent": "تبعث إيميل التأكيد",
-  "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق"
+  "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق",
+  "offerSale": "للبيع",
+  "offerRent": "للكراء",
+  "offerStay": "إقامة",
+  "unitNight": "/ ليلة",
+  "unitMonth": "/ شهر",
+  "unitYear": "/ سنة",
+  "commonRetry": "عاود جرّب",
+  "commonOffline": "ما عندكش إنترنت. ممكن شوية محتوى ما يظهرش."
 }

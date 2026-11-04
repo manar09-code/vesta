@@ -400,4 +400,28 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
+
+  @override
+  String get offerSale => 'للبيع';
+
+  @override
+  String get offerRent => 'للكراء';
+
+  @override
+  String get offerStay => 'إقامة';
+
+  @override
+  String get unitNight => '/ ليلة';
+
+  @override
+  String get unitMonth => '/ شهر';
+
+  @override
+  String get unitYear => '/ سنة';
+
+  @override
+  String get commonRetry => 'عاود جرّب';
+
+  @override
+  String get commonOffline => 'ما عندكش إنترنت. ممكن شوية محتوى ما يظهرش.';
 }

@@ -409,4 +409,29 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Trop de tentatives, réessayez dans quelques minutes';
+
+  @override
+  String get offerSale => 'À vendre';
+
+  @override
+  String get offerRent => 'À louer';
+
+  @override
+  String get offerStay => 'Séjour';
+
+  @override
+  String get unitNight => '/ nuit';
+
+  @override
+  String get unitMonth => '/ mois';
+
+  @override
+  String get unitYear => '/ an';
+
+  @override
+  String get commonRetry => 'Réessayer';
+
+  @override
+  String get commonOffline =>
+      'Vous êtes hors ligne. Certains contenus peuvent ne pas s’afficher.';
 }

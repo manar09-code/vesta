@@ -873,6 +873,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Too many attempts, please try again in a few minutes'**
   String get authErrorTooManyRequests;
+
+  /// No description provided for @offerSale.
+  ///
+  /// In en, this message translates to:
+  /// **'For sale'**
+  String get offerSale;
+
+  /// No description provided for @offerRent.
+  ///
+  /// In en, this message translates to:
+  /// **'For rent'**
+  String get offerRent;
+
+  /// No description provided for @offerStay.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay'**
+  String get offerStay;
+
+  /// No description provided for @unitNight.
+  ///
+  /// In en, this message translates to:
+  /// **'/ night'**
+  String get unitNight;
+
+  /// No description provided for @unitMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'/ month'**
+  String get unitMonth;
+
+  /// No description provided for @unitYear.
+  ///
+  /// In en, this message translates to:
+  /// **'/ year'**
+  String get unitYear;
+
+  /// No description provided for @commonRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get commonRetry;
+
+  /// No description provided for @commonOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'You are offline. Some content may not load.'**
+  String get commonOffline;
 }
 
 class _AppLocalizationsDelegate
