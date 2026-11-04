@@ -29,10 +29,15 @@ ListingFieldError? validateCity(String? v) =>
 /// Keep in sync with the price rule in firebase/firestore.rules.
 const maxListingPrice = 50000000;
 
-/// Price must be a number greater than 0 and at most [maxListingPrice].
+/// Price must be a finite number greater than 0 and at most
+/// [maxListingPrice]. `num.tryParse` accepts "NaN" and "Infinity", and NaN
+/// passes every comparison below, so it is rejected with [num.isFinite].
 ListingFieldError? validatePrice(String? v) {
   final price = num.tryParse((v ?? '').trim());
-  return (price == null || price <= 0 || price > maxListingPrice)
+  return (price == null ||
+          !price.isFinite ||
+          price <= 0 ||
+          price > maxListingPrice)
       ? ListingFieldError.priceInvalid
       : null;
 }
