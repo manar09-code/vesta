@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/config/app_config.dart';
+import '../../core/theme/app_colors.dart';
 import '../favorites/favorite_button.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'listing.dart';
@@ -67,7 +68,7 @@ class ListingCard extends ConsumerWidget {
                     ),
                   if (unavailable) ...[
                     // Grey veil over the photo.
-                    ColoredBox(color: Colors.black.withValues(alpha: 0.45)),
+                    ColoredBox(color: AppColors.navy.withValues(alpha: 0.45)),
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Container(
@@ -77,13 +78,13 @@ class ListingCard extends ConsumerWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade700,
+                          color: AppColors.grey,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
                           l10n.favoritesUnavailable,
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: AppColors.white,
                             fontSize: 12,
                           ),
                         ),

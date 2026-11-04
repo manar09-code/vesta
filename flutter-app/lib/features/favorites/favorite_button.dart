@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/theme/app_colors.dart';
 import '../auth/require_sign_in.dart';
 import 'favorites_controller.dart';
 
@@ -23,7 +24,7 @@ class FavoriteButton extends ConsumerWidget {
       iconSize: size,
       icon: Icon(
         isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: isFavorite ? Colors.redAccent : null,
+        color: isFavorite ? AppColors.error : null,
       ),
       onPressed: () async {
         // A guest first signs in (VST-72), then the heart is toggled.
