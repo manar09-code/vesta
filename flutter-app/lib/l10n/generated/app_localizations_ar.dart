@@ -191,7 +191,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get listingErrorDescriptionRequired => 'أدخل الوصف';
 
   @override
-  String get listingErrorPriceInvalid => 'أدخل سوم يساوي 0 أو أكثر';
+  String get listingErrorPriceInvalid => 'أدخل سوم بين 1 و50,000,000';
 
   @override
   String get listingErrorCityRequired => 'أدخل المدينة';

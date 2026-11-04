@@ -60,7 +60,7 @@
   "publishRemovePhoto": "Remove photo",
   "listingErrorTitleRequired": "Enter a title",
   "listingErrorDescriptionRequired": "Enter a description",
-  "listingErrorPriceInvalid": "Enter a price of 0 or more",
+  "listingErrorPriceInvalid": "Enter a price between 1 and 50,000,000",
   "listingErrorCityRequired": "Enter a city",
   "listingErrorRentPeriodRequired": "Choose a rent period",
   "listingErrorNumberInvalid": "Enter a valid number",
