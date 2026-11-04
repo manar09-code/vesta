@@ -22,7 +22,7 @@ The same files are used by the Flutter app (`flutter-app/assets/images/`) and th
 | Name | Hex |
 |---|---|
 | Primary blue | `#176AAB` |
-| Background cream | `#F7F3EB` |
+| Background cream | `#FAF8F4` |
 | Navy | `#20394A` |
 | Terracotta | `#A65D42` |
 

@@ -31,3 +31,17 @@ Never commit `google-services.json`, `GoogleService-Info.plist`, `.env`, keystor
 
 ## Team rhythm
 Monday: 15-minute sync. Friday: demo of what is merged. Pair call when a feature is finished: explain the logic to the person who ports or reviews it.
+
+## Design-system check (colors)
+Colors only come from the theme files: `flutter-app/lib/core/theme/` (Flutter) and `react-native-app/src/core/theme.ts` (React Native). The token list is in `docs/brand/design-tokens.md`. A screen or a component never writes a color directly.
+
+Before opening a PR, run this from the repo root (it needs Node, the same one as the React Native app):
+
+```
+node tools/check-colors.js
+```
+
+It fails and prints the file and the line if it finds `Color(0x`, `Color.fromRGBO`, `Color.fromARGB` or `Colors.x` (except `Colors.transparent`) in the Flutter app outside `lib/core/theme/`, or a hex color, `rgb(`, `hsl(` or a named color in the React Native app outside the theme file. `node tools/check-colors.js --self-test` checks that the script itself still works. The same check runs on GitHub for every PR into `develop`.
+
+If a color is missing, add a token to the theme in both apps (small PR) and tell the team. In a very rare case a line can be skipped with the comment `color-check-ignore`; explain why in the PR.
+

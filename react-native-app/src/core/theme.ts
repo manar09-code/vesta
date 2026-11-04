@@ -7,7 +7,7 @@ export const theme = {
     sand: '#F0E7DA',
     terracotta: '#A65D42',
     white: '#FFFFFF',
-    background: '#F7F3EB',
+    background: '#FAF8F4',
     error: '#A33B32',
   },
   fontSizes: { small: 14, body: 16, title: 24, heading: 30 },

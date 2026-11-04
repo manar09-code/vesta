@@ -52,7 +52,7 @@ service cloud.firestore {
       return d.ownerId is string
         && d.title is string
         && d.description is string
-        && d.price is number && d.price > 0
+        && d.price is number && d.price > 0 && d.price <= 50000000
         && d.currency is string && d.currency.size() == 3
         && d.listingType in ['sale', 'rent']
         && (d.listingType != 'rent' || d.rentPeriod in ['night', 'month', 'year'])

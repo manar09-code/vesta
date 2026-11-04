@@ -351,6 +351,13 @@ test('prix a 0 : refuse', async () => {
 test('prix negatif : refuse', async () => {
   await assertFails(create({ price: -5 }));
 });
+test('prix au maximum (50 000 000) : OK', async () => {
+  await assertSucceeds(create({ price: 50000000 }));
+});
+test('prix absurde (VST-104) : refuse', async () => {
+  await assertFails(create({ price: 50000001 }));
+  await assertFails(create({ price: 9223372036854775807 }));
+});
 
 // statuts selon le type d'offre
 test('statut absent : OK (traite comme available)', async () => {
