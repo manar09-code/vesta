@@ -11,7 +11,7 @@ class AppTheme {
       brightness: Brightness.light,
     ).copyWith(
       primary: AppColors.primary,
-      onPrimary: Colors.white,
+      onPrimary: AppColors.white,
       secondary: AppColors.terracotta,
       tertiary: AppColors.navy,
       onSurfaceVariant: AppColors.grey,
@@ -29,13 +29,13 @@ class AppTheme {
         centerTitle: true,
       ),
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         indicatorColor: AppColors.primary.withValues(alpha: 0.15),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
+          foregroundColor: AppColors.white,
         ),
       ),
     );

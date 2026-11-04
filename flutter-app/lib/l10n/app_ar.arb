@@ -60,7 +60,7 @@
   "publishRemovePhoto": "احذف الصورة",
   "listingErrorTitleRequired": "أدخل العنوان",
   "listingErrorDescriptionRequired": "أدخل الوصف",
-  "listingErrorPriceInvalid": "أدخل سوم يساوي 0 أو أكثر",
+  "listingErrorPriceInvalid": "أدخل سوم بين 1 و50,000,000",
   "listingErrorCityRequired": "أدخل المدينة",
   "listingErrorRentPeriodRequired": "اختار مدة الكراء",
   "listingErrorNumberInvalid": "أدخل رقم صحيح",
