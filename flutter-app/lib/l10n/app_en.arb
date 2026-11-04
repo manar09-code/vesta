@@ -128,5 +128,13 @@
   "verifyBannerText": "Please verify your email address.",
   "verifyBannerResend": "Send again",
   "verifyBannerSent": "Verification email sent",
-  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes"
+  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes",
+  "offerSale": "For sale",
+  "offerRent": "For rent",
+  "offerStay": "Stay",
+  "unitNight": "/ night",
+  "unitMonth": "/ month",
+  "unitYear": "/ year",
+  "commonRetry": "Try again",
+  "commonOffline": "You are offline. Some content may not load."
 }

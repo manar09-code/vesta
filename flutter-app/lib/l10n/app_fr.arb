@@ -128,5 +128,13 @@
   "verifyBannerText": "Veuillez confirmer votre adresse e-mail.",
   "verifyBannerResend": "Renvoyer",
   "verifyBannerSent": "E-mail de vérification envoyé",
-  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes"
+  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes",
+  "offerSale": "À vendre",
+  "offerRent": "À louer",
+  "offerStay": "Séjour",
+  "unitNight": "/ nuit",
+  "unitMonth": "/ mois",
+  "unitYear": "/ an",
+  "commonRetry": "Réessayer",
+  "commonOffline": "Vous êtes hors ligne. Certains contenus peuvent ne pas s’afficher."
 }
