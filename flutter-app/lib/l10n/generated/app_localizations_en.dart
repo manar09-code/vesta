@@ -435,4 +435,21 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Too many attempts, please try again in a few minutes';
+
+  @override
+  String get loading => 'Loading…';
+
+  @override
+  String homePriceExample(String price) {
+    return 'Example price: $price';
+  }
+
+  @override
+  String get languageEn => 'English';
+
+  @override
+  String get languageFr => 'Français';
+
+  @override
+  String get languageAr => 'العربية';
 }

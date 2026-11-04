@@ -138,5 +138,17 @@
   "verifyBannerText": "Veuillez confirmer votre adresse e-mail.",
   "verifyBannerResend": "Renvoyer",
   "verifyBannerSent": "E-mail de vérification envoyé",
-  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes"
+  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes",
+  "loading": "Chargement…",
+  "homePriceExample": "Exemple de prix : {price}",
+  "@homePriceExample": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "languageEn": "English",
+  "languageFr": "Français",
+  "languageAr": "العربية"
 }
