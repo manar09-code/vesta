@@ -3,9 +3,10 @@ import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
 import { AppText } from './AppText';
 import { theme } from '../theme';
 
-type Props = TextInputProps & { labelKey: string };
+type Props = TextInputProps & { labelKey: string; errorKey?: string };
 export function AppTextField({
   labelKey,
+  errorKey,
   style,
   ...props
 }: Props): React.JSX.Element {
@@ -14,9 +15,12 @@ export function AppTextField({
       <AppText translationKey={labelKey} />
       <TextInput
         placeholderTextColor={theme.colors.grey}
-        style={[styles.input, style]}
+        style={[styles.input, errorKey ? styles.inputError : null, style]}
         {...props}
       />
+      {errorKey ? (
+        <AppText translationKey={errorKey} style={styles.error} />
+      ) : null}
     </View>
   );
 }
@@ -29,4 +33,6 @@ const styles = StyleSheet.create({
     color: theme.colors.navy,
     padding: theme.spacing.md,
   },
+  inputError: { borderColor: theme.colors.error },
+  error: { color: theme.colors.error, fontSize: theme.fontSizes.small },
 });
