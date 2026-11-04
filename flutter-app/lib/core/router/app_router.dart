@@ -62,59 +62,47 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     refreshListenable: refresh,
     redirect: (context, state) {
       final auth = ref.read(authStateProvider);
-      if (auth.isLoading) return null;
+      if (auth.isLoading) return null; // wait for the first auth state
       final signedIn = auth.value != null;
-
       if (!signedIn && _accountOnlyRoutes.contains(state.matchedLocation)) {
         return AppRoutes.explore;
       }
-
       return null;
     },
     routes: [
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => _MainShell(shell: shell),
         branches: [
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: AppRoutes.explore,
-                builder: (context, state) => const ListingsScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: AppRoutes.search,
-                builder: (context, state) => const SearchScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: AppRoutes.map,
-                builder: (context, state) => const MapScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: AppRoutes.favorites,
-                builder: (context, state) => const FavoritesScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: AppRoutes.profile,
-                builder: (context, state) => const ProfileScreen(),
-              ),
-            ],
-          ),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.explore,
+              builder: (context, state) => const ListingsScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.search,
+              builder: (context, state) => const SearchScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.map,
+              builder: (context, state) => const MapScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.favorites,
+              builder: (context, state) => const FavoritesScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.profile,
+              builder: (context, state) => const ProfileScreen(),
+            ),
+          ]),
         ],
       ),
       GoRoute(
@@ -145,7 +133,6 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.publish,
         builder: (context, state) => const PublishListingScreen(),
       ),
-
       // Details of one listing, open to guests (VST-72).
       GoRoute(
         path: AppRoutes.listingDetail,
@@ -153,20 +140,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           child: ListingDetailScreen(listingId: state.pathParameters['id']!),
         ),
       ),
-
-      // Edit profile (from develop).
       GoRoute(
         path: AppRoutes.editProfile,
         builder: (context, state) => Consumer(
           builder: (context, ref, _) {
             final profile = ref.watch(myProfileProvider).value;
-
             if (profile == null) {
               return const Scaffold(
                 body: Center(child: CircularProgressIndicator()),
               );
             }
-
             return EditProfileScreen(profile: profile);
           },
         ),
@@ -184,10 +167,7 @@ class _MainShell extends ConsumerWidget {
   /// Chat and notifications need an account: a guest gets the sign-in sheet,
   /// then the screen opens once he is signed in.
   Future<void> _openAccountPage(
-    BuildContext context,
-    WidgetRef ref,
-    String route,
-  ) async {
+      BuildContext context, WidgetRef ref, String route) async {
     if (!await requireSignIn(context, ref)) return;
     if (context.mounted) context.push(route);
   }
@@ -195,7 +175,6 @@ class _MainShell extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-
     final titles = [
       l10n.tabExplore,
       l10n.tabSearch,
@@ -233,25 +212,15 @@ class _MainShell extends ConsumerWidget {
             shell.goBranch(index, initialLocation: index == shell.currentIndex),
         destinations: [
           NavigationDestination(
-            icon: const Icon(Icons.home_work_outlined),
-            label: titles[0],
-          ),
+              icon: const Icon(Icons.home_work_outlined), label: titles[0]),
           NavigationDestination(
-            icon: const Icon(Icons.search),
-            label: titles[1],
-          ),
+              icon: const Icon(Icons.search), label: titles[1]),
           NavigationDestination(
-            icon: const Icon(Icons.map_outlined),
-            label: titles[2],
-          ),
+              icon: const Icon(Icons.map_outlined), label: titles[2]),
           NavigationDestination(
-            icon: const Icon(Icons.favorite_border),
-            label: titles[3],
-          ),
+              icon: const Icon(Icons.favorite_border), label: titles[3]),
           NavigationDestination(
-            icon: const Icon(Icons.person_outline),
-            label: titles[4],
-          ),
+              icon: const Icon(Icons.person_outline), label: titles[4]),
         ],
       ),
     );

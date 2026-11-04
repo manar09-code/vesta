@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -54,8 +53,8 @@ class NewListing {
   final String title;
   final String description;
   final num price;
-  final String listingType;
-  final String? rentPeriod;
+  final String listingType; // 'sale' or 'rent'
+  final String? rentPeriod; // required only when listingType == 'rent'
   final String propertyType;
   final String city;
   final num? bedrooms;
@@ -76,20 +75,16 @@ class ListingRepository {
     required List<String> photosBase64,
   }) async {
     final user = _auth.currentUser;
-    if (user == null) {
-      throw const ListingFailure(ListingError.notSignedIn);
-    }
-
+    if (user == null) throw const ListingFailure(ListingError.notSignedIn);
     if (photosBase64.isEmpty) {
       throw const ListingFailure(ListingError.noPhotos);
     }
-
     if (photosBase64.length > maxListingPhotos) {
       throw const ListingFailure(ListingError.tooManyPhotos);
     }
 
     try {
-      final ref = _db.collection('listings').doc();
+      final ref = _db.collection('listings').doc(); // auto-id
       final batch = _db.batch();
 
       batch.set(ref, {
@@ -99,10 +94,13 @@ class ListingRepository {
         'price': listing.price,
         'currency': AppConfig.currency,
         'listingType': listing.listingType,
+        // rentPeriod only for rentals, the field is absent for a sale
         if (listing.listingType == 'rent') 'rentPeriod': listing.rentPeriod,
         'propertyType': listing.propertyType,
         'city': listing.city,
+        // docs/data-model.md: the apps always write the status.
         'status': 'available',
+        // optional fields are written only when filled
         if (listing.bedrooms != null) 'bedrooms': listing.bedrooms,
         if (listing.bathrooms != null) 'bathrooms': listing.bathrooms,
         if (listing.areaSqm != null) 'areaSqm': listing.areaSqm,
@@ -111,6 +109,7 @@ class ListingRepository {
         'updatedAt': FieldValue.serverTimestamp(),
       });
 
+      // Fixed ids p0..p4: the id gives the display order, p0 = cover.
       for (var i = 0; i < photosBase64.length; i++) {
         batch.set(ref.collection('photos').doc('p$i'), {
           'base64': photosBase64[i],
@@ -129,8 +128,7 @@ class ListingRepository {
   /// Needs the index (ownerId, createdAt desc) from firestore.indexes.json.
   Stream<List<Listing>> watchMyListings() {
     final user = _auth.currentUser;
-    if (user == null) return Stream.value(const <Listing>[]);
-
+    if (user == null) return Stream.value(const []);
     return _db
         .collection('listings')
         .where('ownerId', isEqualTo: user.uid)
@@ -139,45 +137,30 @@ class ListingRepository {
         .map((snap) => snap.docs.map(Listing.fromDoc).toList());
   }
 
-  /// Deletes the listing, its photos and its contact in ONE batch.
+  /// Deletes the listing, its photos and its contact in ONE batch
+  /// (otherwise they stay orphaned, see docs/data-model.md).
   Future<void> deleteListing(Listing listing) async {
     final user = _auth.currentUser;
-
-    if (user == null) {
-      throw const ListingFailure(ListingError.notSignedIn);
-    }
+    if (user == null) throw const ListingFailure(ListingError.notSignedIn);
 
     try {
       final ref = _db.collection('listings').doc(listing.id);
       final batch = _db.batch();
-
       for (var i = 0; i < listing.photoCount; i++) {
         batch.delete(ref.collection('photos').doc('p$i'));
       }
-
       batch.delete(ref.collection('contact').doc('info'));
       batch.delete(ref);
-
       await batch.commit();
     } on FirebaseException catch (e) {
       throw ListingFailure(_mapCode(e.code));
     }
   }
 
-  /// Reads one listing. Returns null when it does not exist.
-  Future<Listing?> getListing(String id) async {
-    try {
-      final doc = await _db.collection('listings').doc(id).get();
-
-      if (!doc.exists) return null;
-
-      return Listing.fromDoc(doc);
-    } on FirebaseException catch (e) {
-      throw ListingFailure(_mapCode(e.code));
-    }
-  }
-
   /// Reads listings by id, in the same order as [ids].
+  /// An entry is null when the listing no longer exists (deleted by its
+  /// owner) or cannot be read (for example hidden): the caller skips it
+  /// or shows "no longer available".
   Future<List<Listing?>> getListingsByIds(List<String> ids) {
     return Future.wait(ids.map(_getListingOrNull));
   }
@@ -185,35 +168,10 @@ class ListingRepository {
   Future<Listing?> _getListingOrNull(String id) async {
     try {
       final doc = await _db.collection('listings').doc(id).get();
-
       if (!doc.exists) return null;
-
       return Listing.fromDoc(doc);
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') return null;
-
-      throw ListingFailure(_mapCode(e.code));
-    }
-  }
-
-  /// Reads the photos of a listing as base64 strings, sorted by id.
-  Future<List<String>> getPhotos(String id) async {
-    try {
-      final snap = await _db
-          .collection('listings')
-          .doc(id)
-          .collection('photos')
-          .get();
-
-      final docs = snap.docs.toList()
-        ..sort((a, b) => a.id.compareTo(b.id));
-
-      return [
-        for (final doc in docs)
-          if (doc.data()['base64'] is String)
-            doc.data()['base64'] as String,
-      ];
-    } on FirebaseException catch (e) {
       throw ListingFailure(_mapCode(e.code));
     }
   }
@@ -227,17 +185,16 @@ class ListingRepository {
           .collection('photos')
           .doc('p0')
           .get();
-
       return doc.data()?['base64'] as String?;
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') return null;
-
       throw ListingFailure(_mapCode(e.code));
     }
   }
 
-  /// Newest listings first, for the Explore tab.
-  /// Hidden listings are skipped.
+  /// Newest listings first, for the Explore tab. Hidden listings are skipped:
+  /// the rules let everybody read them, so the app must filter them.
+  /// Sorting only on createdAt needs no Firestore index.
   Future<List<Listing>> getLatestListings({int limit = 20}) async {
     try {
       final snapshot = await _db
@@ -245,11 +202,40 @@ class ListingRepository {
           .orderBy('createdAt', descending: true)
           .limit(limit)
           .get();
-
       return [
         for (final doc in snapshot.docs)
           if ((doc.data()['status'] as String?) != 'hidden')
             Listing.fromDoc(doc),
+      ];
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Reads one listing. Returns null when it does not exist.
+  Future<Listing?> getListing(String id) async {
+    try {
+      final doc = await _db.collection('listings').doc(id).get();
+      if (!doc.exists) return null;
+      return Listing.fromDoc(doc);
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Reads the photos of a listing as base64 strings, sorted by id
+  /// (p0 first = cover). Ids can have gaps, so we never use the position.
+  Future<List<String>> getPhotos(String id) async {
+    try {
+      final snap = await _db
+          .collection('listings')
+          .doc(id)
+          .collection('photos')
+          .get();
+      final docs = snap.docs.toList()..sort((a, b) => a.id.compareTo(b.id));
+      return [
+        for (final doc in docs)
+          if (doc.data()['base64'] is String) doc.data()['base64'] as String,
       ];
     } on FirebaseException catch (e) {
       throw ListingFailure(_mapCode(e.code));
