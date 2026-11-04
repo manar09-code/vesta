@@ -128,5 +128,17 @@
   "verifyBannerText": "Please verify your email address.",
   "verifyBannerResend": "Send again",
   "verifyBannerSent": "Verification email sent",
-  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes"
+  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes",
+  "loading": "Loading…",
+  "homePriceExample": "Example price: {price}",
+  "@homePriceExample": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "languageEn": "English",
+  "languageFr": "Français",
+  "languageAr": "العربية"
 }

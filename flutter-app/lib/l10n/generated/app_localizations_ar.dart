@@ -116,7 +116,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get publishFieldDescription => 'الوصف';
 
   @override
-  String get publishFieldPrice => 'السوم (دينار)';
+  String get publishFieldPrice => 'السوم (TND)';
 
   @override
   String get publishFieldCity => 'المدينة';
@@ -400,4 +400,21 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
+
+  @override
+  String get loading => 'جارٍ التحميل…';
+
+  @override
+  String homePriceExample(String price) {
+    return 'مثال على السعر: $price';
+  }
+
+  @override
+  String get languageEn => 'English';
+
+  @override
+  String get languageFr => 'Français';
+
+  @override
+  String get languageAr => 'العربية';
 }

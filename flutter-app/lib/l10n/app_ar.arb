@@ -35,7 +35,7 @@
   "publishSuccess": "تم نشر الإعلان متاعك",
   "publishFieldTitle": "العنوان",
   "publishFieldDescription": "الوصف",
-  "publishFieldPrice": "السوم (دينار)",
+  "publishFieldPrice": "السوم (TND)",
   "publishFieldCity": "المدينة",
   "publishFieldBedrooms": "عدد البيوت (اختياري)",
   "publishFieldBathrooms": "عدد بيوت الماء (اختياري)",
@@ -128,5 +128,17 @@
   "verifyBannerText": "لازم تأكد البريد الإلكتروني متاعك.",
   "verifyBannerResend": "ابعث مرة أخرى",
   "verifyBannerSent": "تبعث إيميل التأكيد",
-  "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق"
+  "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق",
+  "loading": "جارٍ التحميل…",
+  "homePriceExample": "مثال على السعر: {price}",
+  "@homePriceExample": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "languageEn": "English",
+  "languageFr": "Français",
+  "languageAr": "العربية"
 }
