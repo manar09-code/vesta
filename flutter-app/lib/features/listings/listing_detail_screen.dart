@@ -78,6 +78,16 @@ class _DetailBody extends StatelessWidget {
           photos: data.photos,
           emptyLabel: l10n.listingDetailNoPhoto,
         ),
+        if (listing.isUnavailable)
+          Container(
+            width: double.infinity,
+            color: theme.colorScheme.surfaceContainerHighest,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(
+              l10n.favoritesUnavailable,
+              style: theme.textTheme.labelLarge,
+            ),
+          ),
         Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 24),
           child: Column(
@@ -142,19 +152,24 @@ class _DetailBody extends StatelessWidget {
 }
 
 /// formatPrice is the only function that formats a price. The unit is added
-/// for a rental (night, month or year).
+/// for a stay (night) and for a rental (month or year). The offer type comes
+/// from offerTypeOf: the rule is not written a second time here.
 String _priceText(AppLocalizations l10n, Listing listing) {
   final price = formatPrice(listing.price, currency: listing.currency);
-  if (listing.listingType != 'rent') return price;
-  switch (listing.rentPeriod) {
-    case 'night':
-      return '$price ${l10n.listingDetailPerNight}';
-    case 'month':
-      return '$price ${l10n.listingDetailPerMonth}';
-    case 'year':
-      return '$price ${l10n.listingDetailPerYear}';
-    default:
+  switch (offerTypeOf(listing)) {
+    case OfferType.sale:
       return price;
+    case OfferType.stay:
+      return '$price ${l10n.listingDetailPerNight}';
+    case OfferType.rent:
+      switch (listing.rentPeriod) {
+        case 'year':
+          return '$price ${l10n.listingDetailPerYear}';
+        case 'month':
+          return '$price ${l10n.listingDetailPerMonth}';
+        default:
+          return price;
+      }
   }
 }
 
