@@ -933,6 +933,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Too many attempts, please try again in a few minutes'**
   String get authErrorTooManyRequests;
+
+  /// No description provided for @listingErrorGuestsInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number of guests between 1 and 30'**
+  String get listingErrorGuestsInvalid;
+
+  /// No description provided for @listingErrorRoomsInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number between 0 and 20'**
+  String get listingErrorRoomsInvalid;
 }
 
 class _AppLocalizationsDelegate

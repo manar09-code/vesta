@@ -435,4 +435,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Too many attempts, please try again in a few minutes';
+
+  @override
+  String get listingErrorGuestsInvalid =>
+      'Enter a number of guests between 1 and 30';
+
+  @override
+  String get listingErrorRoomsInvalid => 'Enter a number between 0 and 20';
 }

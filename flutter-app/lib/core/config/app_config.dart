@@ -14,10 +14,39 @@ class AppConfig {
   static const double mapCenterLatitude = 36.8065;
   static const double mapCenterLongitude = 10.1815;
   static const double mapDefaultZoom = 11;
+    /// The 24 governorates of Tunisia. Keys are stored in Firestore
+  /// (`governorate`), the apps translate them (never store translated text).
+  static const List<String> governorates = [
+    'ariana',
+    'beja',
+    'ben_arous',
+    'bizerte',
+    'gabes',
+    'gafsa',
+    'jendouba',
+    'kairouan',
+    'kasserine',
+    'kebili',
+    'kef',
+    'mahdia',
+    'manouba',
+    'medenine',
+    'monastir',
+    'nabeul',
+    'sfax',
+    'sidi_bouzid',
+    'siliana',
+    'sousse',
+    'tataouine',
+    'tozeur',
+    'tunis',
+    'zaghouan',
+  ];
 }
 
 /// Formats a price the same way in every screen, e.g. "TND 450,000".
 String formatPrice(num amount, {String? currency}) {
   final formatter = NumberFormat('#,##0', 'en');
   return '${currency ?? AppConfig.currency} ${formatter.format(amount)}';
+  
 }

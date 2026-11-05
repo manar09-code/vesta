@@ -68,6 +68,10 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
         return l.listingErrorRentPeriodRequired;
       case ListingFieldError.numberInvalid:
         return l.listingErrorNumberInvalid;
+      case ListingFieldError.guestsInvalid:
+        return l.listingErrorGuestsInvalid;
+      case ListingFieldError.roomsInvalid:
+        return l.listingErrorRoomsInvalid;
     }
   }
 

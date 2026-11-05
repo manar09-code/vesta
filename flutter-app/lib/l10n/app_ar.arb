@@ -138,5 +138,7 @@
   "verifyBannerText": "لازم تأكد البريد الإلكتروني متاعك.",
   "verifyBannerResend": "ابعث مرة أخرى",
   "verifyBannerSent": "تبعث إيميل التأكيد",
-  "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق"
+  "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق",
+    "listingErrorGuestsInvalid": "أدخل عدد الضيوف بين 1 و30",
+  "listingErrorRoomsInvalid": "أدخل رقمًا بين 0 و20"
 }

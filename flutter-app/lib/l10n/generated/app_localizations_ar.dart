@@ -430,4 +430,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
+
+  @override
+  String get listingErrorGuestsInvalid => 'أدخل عدد الضيوف بين 1 و30';
+
+  @override
+  String get listingErrorRoomsInvalid => 'أدخل رقمًا بين 0 و20';
 }

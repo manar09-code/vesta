@@ -138,5 +138,7 @@
   "verifyBannerText": "Veuillez confirmer votre adresse e-mail.",
   "verifyBannerResend": "Renvoyer",
   "verifyBannerSent": "E-mail de vérification envoyé",
-  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes"
+  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes",
+    "listingErrorGuestsInvalid": "Indiquez un nombre d'invités entre 1 et 30",
+  "listingErrorRoomsInvalid": "Indiquez un nombre entre 0 et 20"
 }
