@@ -14,11 +14,13 @@ export function useFavorites() {
   // Optimistic answers: listingId -> what the heart must show right now.
   const [pending, setPending] = useState<Record<string, boolean>>({});
   const [error, setError] = useState<FavoritesError | null>(null);
+  const [attempt, setAttempt] = useState(0);
   const inFlight = useRef<Set<string>>(new Set());
 
   // Restarts by itself when the user signs in or out.
   useEffect(() => {
     setLoading(true);
+    setError(null);
     return favoritesRepository.watchFavoriteListingIds(
       next => {
         setIds(next);
@@ -29,7 +31,7 @@ export function useFavorites() {
         setLoading(false);
       },
     );
-  }, [isSignedIn]);
+  }, [isSignedIn, attempt]);
 
   const isFavorite = useCallback(
     (listingId: string) => pending[listingId] ?? ids.includes(listingId),
@@ -57,7 +59,9 @@ export function useFavorites() {
           await favoritesRepository.remove(listingId);
         }
       } catch (failure) {
-        setError(failure instanceof FavoritesFailure ? failure.error : 'unknown');
+        setError(
+          failure instanceof FavoritesFailure ? failure.error : 'unknown',
+        );
       } finally {
         inFlight.current.delete(listingId);
         // Dropping the optimistic value rolls the heart back to the real
@@ -73,6 +77,7 @@ export function useFavorites() {
   );
 
   const clearError = useCallback(() => setError(null), []);
+  const retry = useCallback(() => setAttempt(count => count + 1), []);
 
-  return { ids, loading, error, isFavorite, toggle, clearError };
+  return { ids, loading, error, isFavorite, toggle, clearError, retry };
 }
