@@ -38,6 +38,35 @@ const _rent = Listing(
   status: 'available',
 );
 
+const _sold = Listing(
+  id: 'l1',
+  ownerId: 'u1',
+  title: 'Sold house',
+  description: 'Already sold.',
+  price: 300000,
+  currency: 'TND',
+  listingType: 'sale',
+  propertyType: 'house',
+  city: 'Sfax',
+  photoCount: 0,
+  status: 'sold',
+);
+
+const _stay = Listing(
+  id: 'l1',
+  ownerId: 'u1',
+  title: 'Beach house stay',
+  description: 'Close to the sea.',
+  price: 150,
+  currency: 'TND',
+  listingType: 'rent',
+  rentPeriod: 'night',
+  propertyType: 'house',
+  city: 'Djerba',
+  photoCount: 0,
+  status: 'available',
+);
+
 /// Shows the details screen with a fake loader, so no Firebase is needed.
 Future<void> _pumpDetail(
   WidgetTester tester,
@@ -94,6 +123,31 @@ void main() {
     );
     expect(find.text('Studio near the station'), findsOneWidget);
     expect(find.textContaining('/ month'), findsOneWidget);
+  });
+
+  testWidgets('shows a banner when the listing is unavailable',
+      (tester) async {
+    await _pumpDetail(
+      tester,
+      () async => const ListingDetail(listing: _sold, photos: []),
+    );
+    expect(find.text('This listing is no longer available'), findsOneWidget);
+  });
+
+  testWidgets('shows the unit for a stay (per night)', (tester) async {
+    await _pumpDetail(
+      tester,
+      () async => const ListingDetail(listing: _stay, photos: []),
+    );
+    expect(find.textContaining('/ night'), findsOneWidget);
+  });
+
+  testWidgets('shows no banner for an available listing', (tester) async {
+    await _pumpDetail(
+      tester,
+      () async => const ListingDetail(listing: _sale, photos: []),
+    );
+    expect(find.text('This listing is no longer available'), findsNothing);
   });
 
   testWidgets('shows a message when the listing does not exist',
