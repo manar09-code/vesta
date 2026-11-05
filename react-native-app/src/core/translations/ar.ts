@@ -26,4 +26,13 @@ export default {
   authErrorNoNetwork: 'ما فماش اتصال بالإنترنت',
   authErrorTooManyRequests: 'برشا محاولات، عاود جرّب بعد شوية دقايق',
   authErrorUnknown: 'صار مشكل، عاود جرّب',
+  favoritesEmptyTitle: 'لا توجد مفضلة بعد',
+  favoritesEmptyBody: 'اضغط على القلب في أي إعلان لحفظه هنا.',
+  favoritesUnavailable: 'هذا الإعلان لم يعد متاحًا',
+  favoritesRemove: 'إزالة',
+  favoritesRetry: 'حاول مرة أخرى',
+  favoritesErrorNoNetwork: 'لا يوجد اتصال. تحقق من الإنترنت وحاول مجددًا.',
+  favoritesErrorPermission: 'غير مسموح لك بهذا الإجراء.',
+  favoritesErrorNotSignedIn: 'سجّل الدخول لحفظ المفضلة.',
+  favoritesErrorUnknown: 'حدث خطأ. حاول مرة أخرى.',
 };
