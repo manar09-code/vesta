@@ -439,4 +439,11 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Trop de tentatives, réessayez dans quelques minutes';
+
+  @override
+  String get searchHint => 'Rechercher par ville';
+
+  @override
+  String get searchNoResults =>
+      'Aucune annonce ne correspond à votre recherche';
 }

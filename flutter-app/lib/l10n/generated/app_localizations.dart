@@ -933,6 +933,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Too many attempts, please try again in a few minutes'**
   String get authErrorTooManyRequests;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by city'**
+  String get searchHint;
+
+  /// No description provided for @searchNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No listings match your search'**
+  String get searchNoResults;
 }
 
 class _AppLocalizationsDelegate

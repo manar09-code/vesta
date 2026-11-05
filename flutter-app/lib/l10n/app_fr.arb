@@ -138,5 +138,7 @@
   "verifyBannerText": "Veuillez confirmer votre adresse e-mail.",
   "verifyBannerResend": "Renvoyer",
   "verifyBannerSent": "E-mail de vérification envoyé",
-  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes"
+  "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes",
+    "searchHint": "Rechercher par ville",
+  "searchNoResults": "Aucune annonce ne correspond à votre recherche"
 }

@@ -435,4 +435,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Too many attempts, please try again in a few minutes';
+
+  @override
+  String get searchHint => 'Search by city';
+
+  @override
+  String get searchNoResults => 'No listings match your search';
 }

@@ -138,5 +138,7 @@
   "verifyBannerText": "لازم تأكد البريد الإلكتروني متاعك.",
   "verifyBannerResend": "ابعث مرة أخرى",
   "verifyBannerSent": "تبعث إيميل التأكيد",
-  "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق"
+  "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق",
+    "searchHint": "ابحث حسب المدينة",
+  "searchNoResults": "لا توجد إعلانات مطابقة لبحثك"
 }

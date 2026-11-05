@@ -430,4 +430,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
+
+  @override
+  String get searchHint => 'ابحث حسب المدينة';
+
+  @override
+  String get searchNoResults => 'لا توجد إعلانات مطابقة لبحثك';
 }

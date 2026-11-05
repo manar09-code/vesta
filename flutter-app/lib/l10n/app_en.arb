@@ -138,5 +138,7 @@
   "verifyBannerText": "Please verify your email address.",
   "verifyBannerResend": "Send again",
   "verifyBannerSent": "Verification email sent",
-  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes"
+  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes",
+    "searchHint": "Search by city",
+  "searchNoResults": "No listings match your search"
 }
