@@ -50,12 +50,15 @@ export function ListingCard({ listing }: Props): React.JSX.Element {
           />
         ) : null}
         {unavailable ? (
-          <View style={styles.veil}>
-            <AppText
-              translationKey="favoritesUnavailable"
-              style={styles.badge}
-            />
-          </View>
+          <>
+            <View style={styles.veil} />
+            <View style={styles.badgeWrap}>
+              <AppText
+                translationKey="favoritesUnavailable"
+                style={styles.badge}
+              />
+            </View>
+          </>
         ) : null}
       </View>
       {coverError !== null ? (
@@ -86,7 +89,11 @@ const styles = StyleSheet.create({
   photo: { aspectRatio: 16 / 10, backgroundColor: theme.colors.sand },
   image: { height: '100%', width: '100%' },
   veil: {
-    backgroundColor: 'rgba(32, 57, 74, 0.45)',
+    ...StyleSheet.absoluteFill,
+    backgroundColor: theme.colors.navy,
+    opacity: 0.45,
+  },
+  badgeWrap: {
     ...StyleSheet.absoluteFill,
     justifyContent: 'flex-end',
     padding: theme.spacing.sm,
