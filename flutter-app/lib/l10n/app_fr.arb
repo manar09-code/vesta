@@ -140,5 +140,21 @@
   "verifyBannerSent": "E-mail de vérification envoyé",
   "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes",
     "searchHint": "Rechercher par ville",
-  "searchNoResults": "Aucune annonce ne correspond à votre recherche"
+  "searchNoResults": "Aucune annonce ne correspond à votre recherche",
+    "searchFilters": "Filtres",
+  "searchPriceMin": "Prix min",
+  "searchPriceMax": "Prix max",
+  "searchOfferType": "Type d'offre",
+  "searchPropertyType": "Type de bien",
+  "searchAll": "Tous",
+  "searchTypeSale": "Vente",
+  "searchTypeRent": "Location",
+  "searchApply": "Appliquer",
+  "searchReset": "Réinitialiser",
+  "searchPropApartment": "Appartement",
+  "searchPropHouse": "Maison",
+  "searchPropVilla": "Villa",
+  "searchPropStudio": "Studio",
+  "searchPropRiad": "Riad",
+  "searchPropGuestHouse": "Maison d'hôtes"
 }

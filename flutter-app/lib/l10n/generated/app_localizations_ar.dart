@@ -436,4 +436,52 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get searchNoResults => 'لا توجد إعلانات مطابقة لبحثك';
+
+  @override
+  String get searchFilters => 'تصفية';
+
+  @override
+  String get searchPriceMin => 'السعر الأدنى';
+
+  @override
+  String get searchPriceMax => 'السعر الأقصى';
+
+  @override
+  String get searchOfferType => 'نوع العرض';
+
+  @override
+  String get searchPropertyType => 'نوع العقار';
+
+  @override
+  String get searchAll => 'الكل';
+
+  @override
+  String get searchTypeSale => 'بيع';
+
+  @override
+  String get searchTypeRent => 'كراء';
+
+  @override
+  String get searchApply => 'تطبيق';
+
+  @override
+  String get searchReset => 'إعادة تعيين';
+
+  @override
+  String get searchPropApartment => 'شقة';
+
+  @override
+  String get searchPropHouse => 'منزل';
+
+  @override
+  String get searchPropVilla => 'فيلا';
+
+  @override
+  String get searchPropStudio => 'ستوديو';
+
+  @override
+  String get searchPropRiad => 'رياض';
+
+  @override
+  String get searchPropGuestHouse => 'نزل';
 }

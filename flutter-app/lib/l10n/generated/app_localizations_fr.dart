@@ -446,4 +446,52 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get searchNoResults =>
       'Aucune annonce ne correspond à votre recherche';
+
+  @override
+  String get searchFilters => 'Filtres';
+
+  @override
+  String get searchPriceMin => 'Prix min';
+
+  @override
+  String get searchPriceMax => 'Prix max';
+
+  @override
+  String get searchOfferType => 'Type d\'offre';
+
+  @override
+  String get searchPropertyType => 'Type de bien';
+
+  @override
+  String get searchAll => 'Tous';
+
+  @override
+  String get searchTypeSale => 'Vente';
+
+  @override
+  String get searchTypeRent => 'Location';
+
+  @override
+  String get searchApply => 'Appliquer';
+
+  @override
+  String get searchReset => 'Réinitialiser';
+
+  @override
+  String get searchPropApartment => 'Appartement';
+
+  @override
+  String get searchPropHouse => 'Maison';
+
+  @override
+  String get searchPropVilla => 'Villa';
+
+  @override
+  String get searchPropStudio => 'Studio';
+
+  @override
+  String get searchPropRiad => 'Riad';
+
+  @override
+  String get searchPropGuestHouse => 'Maison d\'hôtes';
 }

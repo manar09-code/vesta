@@ -7,6 +7,7 @@ import '../../l10n/generated/app_localizations.dart';
 import '../listings/listing_card.dart';
 import '../listings/listing_repository.dart';
 import 'search_filters_notifier.dart';
+import 'search_filters_sheet.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -28,21 +29,46 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final results = ref.watch(searchResultsProvider);
+    final filters = ref.watch(searchFiltersProvider);
+    // The city has its own text field: the badge counts the panel filters only.
+    final panelCount =
+        filters.activeCount - (filters.city.trim().isNotEmpty ? 1 : 0);
 
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-          child: TextField(
-            controller: _controller,
-            textInputAction: TextInputAction.search,
-            decoration: InputDecoration(
-              hintText: l10n.searchHint,
-              prefixIcon: const Icon(Icons.search),
-              border: const OutlineInputBorder(),
-            ),
-            // The notifier waits 400 ms after the last keystroke.
-            onChanged: ref.read(searchFiltersProvider.notifier).setCity,
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _controller,
+                  textInputAction: TextInputAction.search,
+                  decoration: InputDecoration(
+                    hintText: l10n.searchHint,
+                    prefixIcon: const Icon(Icons.search),
+                    border: const OutlineInputBorder(),
+                  ),
+                  // The notifier waits 400 ms after the last keystroke.
+                  onChanged: ref.read(searchFiltersProvider.notifier).setCity,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Badge(
+                isLabelVisible: panelCount > 0,
+                label: Text('$panelCount'),
+                child: IconButton.filledTonal(
+                  tooltip: l10n.searchFilters,
+                  icon: const Icon(Icons.tune),
+                  onPressed: () => showModalBottomSheet<void>(
+                    context: context,
+                    isScrollControlled: true,
+                    showDragHandle: true,
+                    builder: (_) => const SearchFiltersSheet(),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
         Expanded(
