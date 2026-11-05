@@ -37,4 +37,13 @@ export default {
   favoritesErrorPermission: "Tu n'as pas le droit de faire cela.",
   favoritesErrorNotSignedIn: 'Connecte-toi pour enregistrer des favoris.',
   favoritesErrorUnknown: 'Une erreur est survenue. Réessaie.',
+  tabFavorites: 'Favoris',
+  favoritesFilterAll: 'Tous',
+  favoritesFilterBuy: 'Acheter',
+  favoritesFilterRent: 'Louer',
+  favoritesFilterStay: 'Séjourner',
+  favoritesFilterEmpty: 'Aucun favori dans cette catégorie',
+  signInToContinueTitle: 'Connectez-vous pour continuer',
+  signInToContinueBody:
+    'Connectez-vous ou créez un compte pour ajouter des favoris, écrire aux propriétaires et publier des annonces.',
 };

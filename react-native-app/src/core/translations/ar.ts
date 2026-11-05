@@ -35,4 +35,13 @@ export default {
   favoritesErrorPermission: 'غير مسموح لك بهذا الإجراء.',
   favoritesErrorNotSignedIn: 'سجّل الدخول لحفظ المفضلة.',
   favoritesErrorUnknown: 'حدث خطأ. حاول مرة أخرى.',
+  tabFavorites: 'المفضلة',
+  favoritesFilterAll: 'الكل',
+  favoritesFilterBuy: 'شراء',
+  favoritesFilterRent: 'كراء',
+  favoritesFilterStay: 'إقامة',
+  favoritesFilterEmpty: 'لا توجد مفضلة في هذه الفئة',
+  signInToContinueTitle: 'ادخل باش تكمل',
+  signInToContinueBody:
+    'ادخل لحسابك ولا اعمل حساب جديد باش تزيد في المفضلة، تبعث رسالة للمالك وتنشر إعلان.',
 };

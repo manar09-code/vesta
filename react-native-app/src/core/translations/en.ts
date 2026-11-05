@@ -36,4 +36,13 @@ export default {
   favoritesErrorPermission: 'You are not allowed to do this.',
   favoritesErrorNotSignedIn: 'Sign in to save favorites.',
   favoritesErrorUnknown: 'Something went wrong. Please try again.',
+  tabFavorites: 'Favorites',
+  favoritesFilterAll: 'All',
+  favoritesFilterBuy: 'Buy',
+  favoritesFilterRent: 'Rent',
+  favoritesFilterStay: 'Stay',
+  favoritesFilterEmpty: 'No favorites in this category',
+  signInToContinueTitle: 'Sign in to continue',
+  signInToContinueBody:
+    'Sign in or create an account to save favorites, message owners and post listings.',
 };
