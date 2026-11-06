@@ -34,6 +34,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chatTitle => 'Messages';
 
   @override
+  String get chatEmptyTitle => 'No conversations yet';
+
+  @override
+  String get chatEmptyBody => 'Open a listing and tap Contact owner to start.';
+
+  @override
+  String get chatContactOwner => 'Contact owner';
+
+  @override
+  String get chatOwnListing => 'This is your own listing';
+
+  @override
+  String get chatContactError => 'Could not open the chat, try again';
+
+  @override
+  String get chatUnknownUser => 'Vesta user';
+
+  @override
+  String get chatLoadError => 'Could not load your messages';
+
+  @override
+  String get chatRetry => 'Try again';
+
+  @override
+  String get chatListingRemoved => 'Listing no longer available';
+
+  @override
   String get loginTitle => 'Sign in';
 
   @override

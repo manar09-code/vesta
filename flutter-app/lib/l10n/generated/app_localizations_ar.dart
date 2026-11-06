@@ -34,6 +34,33 @@ class AppLocalizationsAr extends AppLocalizations {
   String get chatTitle => 'الرسائل';
 
   @override
+  String get chatEmptyTitle => 'لا توجد محادثات بعد';
+
+  @override
+  String get chatEmptyBody => 'افتح إعلانًا واضغط على «تواصل مع المالك» للبدء.';
+
+  @override
+  String get chatContactOwner => 'تواصل مع المالك';
+
+  @override
+  String get chatOwnListing => 'هذا إعلانك الخاص';
+
+  @override
+  String get chatContactError => 'تعذّر فتح المحادثة، حاول مرة أخرى';
+
+  @override
+  String get chatUnknownUser => 'مستخدم Vesta';
+
+  @override
+  String get chatLoadError => 'تعذّر تحميل رسائلك';
+
+  @override
+  String get chatRetry => 'حاول مرة أخرى';
+
+  @override
+  String get chatListingRemoved => 'الإعلان لم يعد متاحًا';
+
+  @override
   String get loginTitle => 'تسجيل الدخول';
 
   @override

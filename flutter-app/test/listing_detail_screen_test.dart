@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutterapp/features/chat/chat_controller.dart';
 import 'package:flutterapp/features/listings/listing.dart';
 import 'package:flutterapp/features/listings/listing_controller.dart';
 import 'package:flutterapp/features/listings/listing_detail_screen.dart';
@@ -73,6 +74,7 @@ Future<void> _pumpDetail(
   Future<ListingDetail?> Function() load, {
   Locale locale = const Locale('en'),
   bool settle = true,
+  String? myUid,
 }) async {
   // Tall test screen: the 4:3 photo area is 600 px high on an 800 px wide
   // screen and would hide the texts below it from the lazy ListView.
@@ -84,6 +86,7 @@ Future<void> _pumpDetail(
     ProviderScope(
       overrides: [
         listingDetailProvider('l1').overrideWith((ref) => load()),
+        myUidProvider.overrideWithValue(myUid),
       ],
       child: MaterialApp(
         locale: locale,
@@ -168,5 +171,32 @@ void main() {
 
     await _pumpDetail(tester, () async => null, locale: const Locale('ar'));
     expect(find.text('الإعلان غير موجود'), findsOneWidget);
+  });
+
+  testWidgets('a guest sees Contact owner (VST-44)', (tester) async {
+    await _pumpDetail(
+      tester,
+      () async => const ListingDetail(listing: _sale, photos: []),
+    );
+    expect(find.text('Contact owner'), findsOneWidget);
+  });
+
+  testWidgets('another user sees Contact owner (VST-44)', (tester) async {
+    await _pumpDetail(
+      tester,
+      () async => const ListingDetail(listing: _sale, photos: []),
+      myUid: 'someone-else',
+    );
+    expect(find.text('Contact owner'), findsOneWidget);
+  });
+
+  testWidgets('the owner does not see Contact owner (VST-44)', (tester) async {
+    await _pumpDetail(
+      tester,
+      () async => const ListingDetail(listing: _sale, photos: []),
+      myUid: 'u1',
+    );
+    expect(find.text('Sea view flat'), findsOneWidget);
+    expect(find.text('Contact owner'), findsNothing);
   });
 }

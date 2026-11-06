@@ -34,6 +34,33 @@ class AppLocalizationsFr extends AppLocalizations {
   String get chatTitle => 'Messages';
 
   @override
+  String get chatEmptyTitle => 'Aucune conversation';
+
+  @override
+  String get chatEmptyBody => 'Ouvrez une annonce et touchez « Contacter le propriétaire » pour commencer.';
+
+  @override
+  String get chatContactOwner => 'Contacter le propriétaire';
+
+  @override
+  String get chatOwnListing => 'Votre propre annonce';
+
+  @override
+  String get chatContactError => 'Impossible d\'ouvrir la conversation, réessayez';
+
+  @override
+  String get chatUnknownUser => 'Utilisateur Vesta';
+
+  @override
+  String get chatLoadError => 'Impossible de charger vos messages';
+
+  @override
+  String get chatRetry => 'Réessayer';
+
+  @override
+  String get chatListingRemoved => 'Annonce plus disponible';
+
+  @override
   String get loginTitle => 'Connexion';
 
   @override
