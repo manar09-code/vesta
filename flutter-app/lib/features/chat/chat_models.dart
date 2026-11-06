@@ -31,11 +31,17 @@ TextDirection textDirectionFor(
   TextDirection fallback = TextDirection.ltr,
 }) {
   for (final rune in text.runes) {
+    if (_isArabicDigit(rune)) continue; // digits are neutral
     if (_isRtlLetter(rune)) return TextDirection.rtl;
     if (_isLtrLetter(rune)) return TextDirection.ltr;
   }
   return fallback;
 }
+
+/// Arabic-Indic digits (٠-٩) and the Persian ones (۰-۹): they sit inside the
+/// Arabic block but are numbers, not letters.
+bool _isArabicDigit(int rune) =>
+    (rune >= 0x0660 && rune <= 0x0669) || (rune >= 0x06F0 && rune <= 0x06F9);
 
 /// Hebrew, Arabic, Syriac, Thaana, N'Ko... and the Arabic presentation forms.
 bool _isRtlLetter(int rune) =>

@@ -84,6 +84,16 @@ void main() {
       expect(textDirectionFor('Éric, ça va ?'), TextDirection.ltr);
     });
 
+    test('Arabic-Indic digits are neutral, not right to left', () {
+      expect(textDirectionFor('٣٢١'), TextDirection.ltr);
+      expect(textDirectionFor('٣٢١ Salut'), TextDirection.ltr);
+      expect(textDirectionFor('٣٢١ مرحبا'), TextDirection.rtl);
+      expect(
+        textDirectionFor('٣٢١', fallback: TextDirection.rtl),
+        TextDirection.rtl,
+      );
+    });
+
     test('text without letters follows the fallback', () {
       expect(textDirectionFor('12345'), TextDirection.ltr);
       expect(

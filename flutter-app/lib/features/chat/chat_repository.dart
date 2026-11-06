@@ -8,6 +8,7 @@ import 'chat_models.dart';
 enum ChatError {
   notSignedIn,
   ownListing,
+  messageTooLong,
   noNetwork,
   permissionDenied,
   unknown,
@@ -104,7 +105,7 @@ class ChatRepository {
     final body = text.trim();
     if (body.isEmpty) return;
     if (body.length > maxMessageLength) {
-      throw const ChatFailure(ChatError.unknown);
+      throw const ChatFailure(ChatError.messageTooLong);
     }
 
     final recipient = user.uid == buyerId ? ownerId : buyerId;
