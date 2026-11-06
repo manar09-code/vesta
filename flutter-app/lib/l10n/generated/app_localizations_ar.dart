@@ -22,6 +22,32 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tabMap => 'الخريطة';
 
   @override
+  String get mapMyLocation => 'موقعي';
+
+  @override
+  String get mapLocationDenied => 'تم رفض إذن الموقع. الخريطة تعمل مع ذلك.';
+
+  @override
+  String get mapLocationDeniedForever =>
+      'الموقع محظور لتطبيق Vesta. يمكنك تفعيله من إعدادات التطبيق.';
+
+  @override
+  String get mapLocationServiceOff =>
+      'فعّل الموقع (GPS) على هاتفك لمعرفة مكانك.';
+
+  @override
+  String get mapLocationError => 'تعذّر تحديد موقعك. حاول مرة أخرى.';
+
+  @override
+  String get mapOpenSettings => 'الإعدادات';
+
+  @override
+  String get mapViewDetails => 'عرض التفاصيل';
+
+  @override
+  String get mapNoListings => 'لا توجد إعلانات بموقع حتى الآن';
+
+  @override
   String get tabFavorites => 'المفضلة';
 
   @override
