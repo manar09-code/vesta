@@ -397,6 +397,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsDeleteAccount => 'فسخ حسابي';
 
   @override
+  String get deleteAccountTitle => 'تمسح حسابك؟';
+
+  @override
+  String get deleteAccountBody =>
+      'هذا يمسح نهائيا حسابك وملفك الشخصي وإعلاناتك وصورها والمفضلة. الرسائل اللي بعثتها تبقى في محادثة الطرف الآخر. ما ينجمش يتراجع عليه.';
+
+  @override
+  String get deleteAccountPassword => 'اكتب كلمة السر باش تأكد';
+
+  @override
+  String get deleteAccountConfirm => 'امسح';
+
+  @override
+  String get deleteAccountDone => 'تم مسح حسابك.';
+
+  @override
   String get settingsLinkError => 'ما نجمناش نحلو الرابط';
 
   @override

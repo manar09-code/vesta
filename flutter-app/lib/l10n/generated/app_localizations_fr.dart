@@ -405,6 +405,23 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsDeleteAccount => 'Supprimer mon compte';
 
   @override
+  String get deleteAccountTitle => 'Supprimer votre compte ?';
+
+  @override
+  String get deleteAccountBody =>
+      'Cela supprime définitivement votre compte, votre profil, vos annonces et leurs photos, et vos favoris. Les messages que vous avez envoyés restent dans la conversation de l\'autre personne. Cette action est irréversible.';
+
+  @override
+  String get deleteAccountPassword =>
+      'Saisissez votre mot de passe pour confirmer';
+
+  @override
+  String get deleteAccountConfirm => 'Supprimer';
+
+  @override
+  String get deleteAccountDone => 'Votre compte a été supprimé.';
+
+  @override
   String get settingsLinkError => 'Impossible d’ouvrir le lien';
 
   @override
