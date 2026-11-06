@@ -251,6 +251,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get listingDetailPerNight => '/ ليلة';
 
   @override
+  String get listingDetailAtAGlance => 'نظرة سريعة';
+
+  @override
+  String get listingDetailGuests => 'الضيوف';
+
+  @override
+  String get listingDetailReadMore => 'اقرأ المزيد';
+
+  @override
+  String get listingDetailReadLess => 'عرض أقل';
+
+  @override
   String get listingDetailPerMonth => '/ شهر';
 
   @override

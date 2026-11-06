@@ -256,6 +256,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get listingDetailPerNight => '/ nuit';
 
   @override
+  String get listingDetailAtAGlance => 'En un coup d\'œil';
+
+  @override
+  String get listingDetailGuests => 'Invités';
+
+  @override
+  String get listingDetailReadMore => 'Lire la suite';
+
+  @override
+  String get listingDetailReadLess => 'Réduire';
+
+  @override
   String get listingDetailPerMonth => '/ mois';
 
   @override

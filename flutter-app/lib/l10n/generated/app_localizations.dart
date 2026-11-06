@@ -580,6 +580,30 @@ abstract class AppLocalizations {
   /// **'/ night'**
   String get listingDetailPerNight;
 
+  /// No description provided for @listingDetailAtAGlance.
+  ///
+  /// In en, this message translates to:
+  /// **'At a glance'**
+  String get listingDetailAtAGlance;
+
+  /// No description provided for @listingDetailGuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Guests'**
+  String get listingDetailGuests;
+
+  /// No description provided for @listingDetailReadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Read more'**
+  String get listingDetailReadMore;
+
+  /// No description provided for @listingDetailReadLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Read less'**
+  String get listingDetailReadLess;
+
   /// No description provided for @listingDetailPerMonth.
   ///
   /// In en, this message translates to:

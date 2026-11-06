@@ -254,6 +254,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get listingDetailPerNight => '/ night';
 
   @override
+  String get listingDetailAtAGlance => 'At a glance';
+
+  @override
+  String get listingDetailGuests => 'Guests';
+
+  @override
+  String get listingDetailReadMore => 'Read more';
+
+  @override
+  String get listingDetailReadLess => 'Read less';
+
+  @override
   String get listingDetailPerMonth => '/ month';
 
   @override
