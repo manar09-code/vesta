@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../l10n/generated/app_localizations.dart';
+import '../listings/listing.dart';
 import '../listings/listing_repository.dart';
 import 'search_filters_notifier.dart';
 
@@ -19,7 +20,7 @@ class SearchFiltersSheet extends ConsumerStatefulWidget {
 class _SearchFiltersSheetState extends ConsumerState<SearchFiltersSheet> {
   late final TextEditingController _min;
   late final TextEditingController _max;
-  String? _listingType;
+  OfferType? _offerType;
   String? _propertyType;
 
   @override
@@ -28,7 +29,7 @@ class _SearchFiltersSheetState extends ConsumerState<SearchFiltersSheet> {
     final f = ref.read(searchFiltersProvider);
     _min = TextEditingController(text: f.minPrice?.toString() ?? '');
     _max = TextEditingController(text: f.maxPrice?.toString() ?? '');
-    _listingType = f.listingType;
+    _offerType = f.offerType;
     _propertyType = f.propertyType;
   }
 
@@ -45,7 +46,7 @@ class _SearchFiltersSheetState extends ConsumerState<SearchFiltersSheet> {
       min: num.tryParse(_min.text.trim()),
       max: num.tryParse(_max.text.trim()),
     );
-    notifier.setListingType(_listingType);
+    notifier.setOfferType(_offerType);
     notifier.setPropertyType(_propertyType);
     Navigator.of(context).pop();
   }
@@ -54,7 +55,7 @@ class _SearchFiltersSheetState extends ConsumerState<SearchFiltersSheet> {
     setState(() {
       _min.clear();
       _max.clear();
-      _listingType = null;
+      _offerType = null;
       _propertyType = null;
     });
   }
@@ -109,13 +110,16 @@ class _SearchFiltersSheetState extends ConsumerState<SearchFiltersSheet> {
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
+              runSpacing: 4,
               children: [
-                _chip(l10n.searchAll, _listingType == null,
-                    () => setState(() => _listingType = null)),
-                _chip(l10n.searchTypeSale, _listingType == 'sale',
-                    () => setState(() => _listingType = 'sale')),
-                _chip(l10n.searchTypeRent, _listingType == 'rent',
-                    () => setState(() => _listingType = 'rent')),
+                _chip(l10n.searchAll, _offerType == null,
+                    () => setState(() => _offerType = null)),
+                _chip(l10n.searchTypeSale, _offerType == OfferType.sale,
+                    () => setState(() => _offerType = OfferType.sale)),
+                _chip(l10n.searchTypeRent, _offerType == OfferType.rent,
+                    () => setState(() => _offerType = OfferType.rent)),
+                _chip(l10n.searchTypeStay, _offerType == OfferType.stay,
+                    () => setState(() => _offerType = OfferType.stay)),
               ],
             ),
             const SizedBox(height: 16),

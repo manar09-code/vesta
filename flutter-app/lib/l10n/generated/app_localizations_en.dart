@@ -467,6 +467,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchTypeRent => 'Rent';
 
   @override
+  String get searchTypeStay => 'Stay';
+
+  @override
   String get searchApply => 'Apply';
 
   @override

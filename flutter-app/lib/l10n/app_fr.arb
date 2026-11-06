@@ -149,6 +149,7 @@
   "searchAll": "Tous",
   "searchTypeSale": "Vente",
   "searchTypeRent": "Location",
+    "searchTypeStay": "Séjour",
   "searchApply": "Appliquer",
   "searchReset": "Réinitialiser",
   "searchPropApartment": "Appartement",

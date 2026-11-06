@@ -472,6 +472,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get searchTypeRent => 'Location';
 
   @override
+  String get searchTypeStay => 'Séjour';
+
+  @override
   String get searchApply => 'Appliquer';
 
   @override

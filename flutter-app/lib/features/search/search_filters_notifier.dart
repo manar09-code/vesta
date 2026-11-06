@@ -38,8 +38,8 @@ class SearchFiltersNotifier extends Notifier<SearchFilters> {
     state = state.copyWith(minPrice: min, maxPrice: max);
   }
 
-  void setListingType(String? type) {
-    state = state.copyWith(listingType: type);
+  void setOfferType(OfferType? type) {
+    state = state.copyWith(offerType: type);
   }
 
   void setPropertyType(String? type) {

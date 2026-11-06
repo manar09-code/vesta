@@ -994,6 +994,12 @@ abstract class AppLocalizations {
   /// **'Rent'**
   String get searchTypeRent;
 
+  /// No description provided for @searchTypeStay.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay'**
+  String get searchTypeStay;
+
   /// No description provided for @searchApply.
   ///
   /// In en, this message translates to:

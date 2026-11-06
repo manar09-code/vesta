@@ -149,6 +149,7 @@
   "searchAll": "All",
   "searchTypeSale": "Sale",
   "searchTypeRent": "Rent",
+    "searchTypeStay": "Stay",
   "searchApply": "Apply",
   "searchReset": "Reset",
   "searchPropApartment": "Apartment",

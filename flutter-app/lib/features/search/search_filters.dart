@@ -1,5 +1,22 @@
 import '../listings/listing.dart';
 
+/// Accented letters and the plain letter that replaces each of them.
+const String _accentsFrom = 'àáâãäåçèéêëìíîïñòóôõöùúûüýÿ';
+const String _accentsTo = 'aaaaaaceeeeiiiinooooouuuuyy';
+
+/// Lower case, no accents, no spaces around: "  Gabès " becomes "gabes".
+/// Arabic text is kept as it is (it has no case and no accents to remove).
+String normalizeSearchText(String input) {
+  final lower = input.trim().toLowerCase();
+  final buffer = StringBuffer();
+  for (final rune in lower.runes) {
+    final char = String.fromCharCode(rune);
+    final index = _accentsFrom.indexOf(char);
+    buffer.write(index == -1 ? char : _accentsTo[index]);
+  }
+  return buffer.toString();
+}
+
 /// Filters of the search screen. Pure data and logic: no Firebase here,
 /// so it is easy to test.
 ///
@@ -14,14 +31,16 @@ class SearchFilters {
     this.minPrice,
     this.maxPrice,
     this.city = '',
-    this.listingType,
+    this.offerType,
     this.propertyType,
   });
 
   final num? minPrice;
   final num? maxPrice;
   final String city; // free text, matched with "contains"
-  final String? listingType; // 'sale' or 'rent', null = both
+  // The rule is offerTypeOf (docs/offer-types.md), never listingType alone:
+  // a stay (rent per night) is not a rent.
+  final OfferType? offerType; // null = all
   final String? propertyType; // null = all
 
   static const Object _keep = Object();
@@ -31,16 +50,16 @@ class SearchFilters {
     Object? minPrice = _keep,
     Object? maxPrice = _keep,
     String? city,
-    Object? listingType = _keep,
+    Object? offerType = _keep,
     Object? propertyType = _keep,
   }) {
     return SearchFilters(
       minPrice: identical(minPrice, _keep) ? this.minPrice : minPrice as num?,
       maxPrice: identical(maxPrice, _keep) ? this.maxPrice : maxPrice as num?,
       city: city ?? this.city,
-      listingType: identical(listingType, _keep)
-          ? this.listingType
-          : listingType as String?,
+      offerType: identical(offerType, _keep)
+          ? this.offerType
+          : offerType as OfferType?,
       propertyType: identical(propertyType, _keep)
           ? this.propertyType
           : propertyType as String?,
@@ -51,7 +70,7 @@ class SearchFilters {
   int get activeCount =>
       (minPrice != null || maxPrice != null ? 1 : 0) +
       (city.trim().isNotEmpty ? 1 : 0) +
-      (listingType != null ? 1 : 0) +
+      (offerType != null ? 1 : 0) +
       (propertyType != null ? 1 : 0);
 
   bool get isEmpty => activeCount == 0;
@@ -59,20 +78,21 @@ class SearchFilters {
   bool matches(Listing listing) {
     if (minPrice != null && listing.price < minPrice!) return false;
     if (maxPrice != null && listing.price > maxPrice!) return false;
-    if (listingType != null && listing.listingType != listingType) {
-      return false;
-    }
+    if (offerType != null && offerTypeOf(listing) != offerType) return false;
     if (propertyType != null && listing.propertyType != propertyType) {
       return false;
     }
-    final query = city.trim().toLowerCase();
-    if (query.isNotEmpty && !listing.city.toLowerCase().contains(query)) {
+    final query = normalizeSearchText(city);
+    if (query.isNotEmpty &&
+        !normalizeSearchText(listing.city).contains(query)) {
       return false;
     }
     return true;
   }
 
   /// Keeps the order of [listings] (already newest first).
+  /// A sold, rented, unavailable or hidden listing stays visible in the
+  /// favorites but is not offered by the search.
   List<Listing> apply(List<Listing> listings) =>
-      listings.where(matches).toList();
+      listings.where((l) => !l.isUnavailable && matches(l)).toList();
 }

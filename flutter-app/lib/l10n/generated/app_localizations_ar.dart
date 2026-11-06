@@ -462,6 +462,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get searchTypeRent => 'كراء';
 
   @override
+  String get searchTypeStay => 'إقامة';
+
+  @override
   String get searchApply => 'تطبيق';
 
   @override
