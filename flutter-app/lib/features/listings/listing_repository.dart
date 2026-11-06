@@ -48,6 +48,8 @@ class NewListing {
     this.bedrooms,
     this.bathrooms,
     this.areaSqm,
+    this.contactPhone,
+    this.whatsappEnabled = false,
   });
 
   final String title;
@@ -60,6 +62,8 @@ class NewListing {
   final num? bedrooms;
   final num? bathrooms;
   final num? areaSqm;
+  final String? contactPhone;
+  final bool whatsappEnabled;
 }
 
 /// Only place that talks to the `listings` collection and its photos.
@@ -114,6 +118,16 @@ class ListingRepository {
         batch.set(ref.collection('photos').doc('p$i'), {
           'base64': photosBase64[i],
           'createdAt': FieldValue.serverTimestamp(),
+        });
+      }
+
+      // Private contact details stay outside the public listing document.
+      final phone = listing.contactPhone;
+      if (phone != null) {
+        batch.set(ref.collection('contact').doc('info'), {
+          'contactPhone': phone,
+          'whatsappEnabled': listing.whatsappEnabled,
+          'updatedAt': FieldValue.serverTimestamp(),
         });
       }
 
