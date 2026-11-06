@@ -1,7 +1,6 @@
 import 'dart:ui' show TextDirection;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart' show Bidi;
 
 /// Longest message accepted by the rules (see firebase/firestore.rules).
 const maxMessageLength = 2000;
@@ -24,19 +23,31 @@ String conversationIdFor(String listingId, String buyerId) =>
 
 /// Text direction that follows the message itself, not the app language:
 /// people write Arabic, French and English, sometimes mixed (VST-44).
+/// The first letter decides (the Unicode "first strong character" rule), so
+/// "Salut مرحبا" is left to right and "مرحبا Salut" is right to left.
 /// Text without letters (digits, emoji) follows [fallback].
 TextDirection textDirectionFor(
   String text, {
   TextDirection fallback = TextDirection.ltr,
 }) {
-  final trimmed = text.trim();
-  if (trimmed.isEmpty || !Bidi.hasAnyDirectionalChars(trimmed)) {
-    return fallback;
+  for (final rune in text.runes) {
+    if (_isRtlLetter(rune)) return TextDirection.rtl;
+    if (_isLtrLetter(rune)) return TextDirection.ltr;
   }
-  return Bidi.detectRtlDirectionality(trimmed)
-      ? TextDirection.rtl
-      : TextDirection.ltr;
+  return fallback;
 }
+
+/// Hebrew, Arabic, Syriac, Thaana, N'Ko... and the Arabic presentation forms.
+bool _isRtlLetter(int rune) =>
+    (rune >= 0x0590 && rune <= 0x08FF) ||
+    (rune >= 0xFB1D && rune <= 0xFDFF) ||
+    (rune >= 0xFE70 && rune <= 0xFEFF);
+
+/// Latin letters, with the accents used in French (é, à, ç...).
+bool _isLtrLetter(int rune) =>
+    (rune >= 0x41 && rune <= 0x5A) ||
+    (rune >= 0x61 && rune <= 0x7A) ||
+    (rune >= 0xC0 && rune <= 0x24F && rune != 0xD7 && rune != 0xF7);
 
 /// One conversation, as read from the `conversations` collection.
 class Conversation {

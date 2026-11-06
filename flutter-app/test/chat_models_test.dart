@@ -77,6 +77,13 @@ void main() {
       expect(textDirectionFor('Is it still available?'), TextDirection.ltr);
     });
 
+    test('the first letter decides for mixed text', () {
+      expect(textDirectionFor('Salut مرحبا'), TextDirection.ltr);
+      expect(textDirectionFor('مرحبا Salut'), TextDirection.rtl);
+      expect(textDirectionFor('12 مرحبا'), TextDirection.rtl);
+      expect(textDirectionFor('Éric, ça va ?'), TextDirection.ltr);
+    });
+
     test('text without letters follows the fallback', () {
       expect(textDirectionFor('12345'), TextDirection.ltr);
       expect(
