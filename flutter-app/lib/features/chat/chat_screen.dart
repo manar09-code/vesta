@@ -41,6 +41,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
       case ChatError.permissionDenied:
       case ChatError.notSignedIn:
       case ChatError.ownListing:
+      case ChatError.messageTooLong:
       case ChatError.unknown:
         return l10n.chatSendFailed;
     }
@@ -111,7 +112,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     ref.listen(messagesProvider(widget.conversationId), (_, next) {
       final count = next.value?.length ?? 0;
       _markReadIfNeeded(myUid);
-    if (count > _lastCount && _scroll.hasClients) {
+      if (count > _lastCount && _scroll.hasClients) {
         // The list is reversed: 0 is the bottom, where the newest message is.
         _scroll.animateTo(
           0,
