@@ -945,6 +945,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter a number between 0 and 20'**
   String get listingErrorRoomsInvalid;
+
+  /// No description provided for @publishFieldGuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum guests (optional)'**
+  String get publishFieldGuests;
+
+  /// No description provided for @publishAmenitiesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Amenities'**
+  String get publishAmenitiesTitle;
+
+  /// No description provided for @publishAmenitiesCounter.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} / 10'**
+  String publishAmenitiesCounter(int count);
+
+  /// No description provided for @publishCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in time'**
+  String get publishCheckIn;
+
+  /// No description provided for @publishCheckOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-out time'**
+  String get publishCheckOut;
+
+  /// No description provided for @publishTimeNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get publishTimeNotSet;
+
+  /// No description provided for @publishRulesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'House rules'**
+  String get publishRulesTitle;
+
+  /// No description provided for @amenityWifi.
+  ///
+  /// In en, this message translates to:
+  /// **'Wi-Fi'**
+  String get amenityWifi;
+
+  /// No description provided for @amenityAc.
+  ///
+  /// In en, this message translates to:
+  /// **'Air conditioning'**
+  String get amenityAc;
+
+  /// No description provided for @amenityHeating.
+  ///
+  /// In en, this message translates to:
+  /// **'Heating'**
+  String get amenityHeating;
+
+  /// No description provided for @amenityKitchen.
+  ///
+  /// In en, this message translates to:
+  /// **'Kitchen'**
+  String get amenityKitchen;
+
+  /// No description provided for @amenityParking.
+  ///
+  /// In en, this message translates to:
+  /// **'Parking'**
+  String get amenityParking;
+
+  /// No description provided for @amenityPool.
+  ///
+  /// In en, this message translates to:
+  /// **'Pool'**
+  String get amenityPool;
+
+  /// No description provided for @amenityBreakfast.
+  ///
+  /// In en, this message translates to:
+  /// **'Breakfast'**
+  String get amenityBreakfast;
+
+  /// No description provided for @amenityWashingMachine.
+  ///
+  /// In en, this message translates to:
+  /// **'Washing machine'**
+  String get amenityWashingMachine;
+
+  /// No description provided for @amenityTv.
+  ///
+  /// In en, this message translates to:
+  /// **'TV'**
+  String get amenityTv;
+
+  /// No description provided for @amenityGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden'**
+  String get amenityGarden;
+
+  /// No description provided for @ruleNoSmoking.
+  ///
+  /// In en, this message translates to:
+  /// **'No smoking'**
+  String get ruleNoSmoking;
+
+  /// No description provided for @ruleNoPets.
+  ///
+  /// In en, this message translates to:
+  /// **'No pets'**
+  String get ruleNoPets;
+
+  /// No description provided for @ruleNoParties.
+  ///
+  /// In en, this message translates to:
+  /// **'No parties'**
+  String get ruleNoParties;
+
+  /// No description provided for @ruleQuietHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet hours'**
+  String get ruleQuietHours;
 }
 
 class _AppLocalizationsDelegate

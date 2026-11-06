@@ -446,4 +446,69 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get listingErrorRoomsInvalid => 'Indiquez un nombre entre 0 et 20';
+
+  @override
+  String get publishFieldGuests => 'Nombre maximum d\'invités (optionnel)';
+
+  @override
+  String get publishAmenitiesTitle => 'Équipements';
+
+  @override
+  String publishAmenitiesCounter(int count) {
+    return '$count / 10';
+  }
+
+  @override
+  String get publishCheckIn => 'Heure d\'arrivée';
+
+  @override
+  String get publishCheckOut => 'Heure de départ';
+
+  @override
+  String get publishTimeNotSet => 'Non défini';
+
+  @override
+  String get publishRulesTitle => 'Règles de la maison';
+
+  @override
+  String get amenityWifi => 'Wi-Fi';
+
+  @override
+  String get amenityAc => 'Climatisation';
+
+  @override
+  String get amenityHeating => 'Chauffage';
+
+  @override
+  String get amenityKitchen => 'Cuisine';
+
+  @override
+  String get amenityParking => 'Parking';
+
+  @override
+  String get amenityPool => 'Piscine';
+
+  @override
+  String get amenityBreakfast => 'Petit-déjeuner';
+
+  @override
+  String get amenityWashingMachine => 'Machine à laver';
+
+  @override
+  String get amenityTv => 'Télévision';
+
+  @override
+  String get amenityGarden => 'Jardin';
+
+  @override
+  String get ruleNoSmoking => 'Non-fumeur';
+
+  @override
+  String get ruleNoPets => 'Animaux non admis';
+
+  @override
+  String get ruleNoParties => 'Pas de fêtes';
+
+  @override
+  String get ruleQuietHours => 'Heures de calme';
 }
