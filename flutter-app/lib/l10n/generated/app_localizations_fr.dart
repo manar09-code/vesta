@@ -75,7 +75,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get chatNoMessages => 'Aucun message. Dites bonjour !';
 
   @override
-  String get chatSendError => 'Pas encore envoyé. Il partira dès que vous serez de nouveau en ligne.';
+  String get chatSendError =>
+      'Pas encore envoyé. Il partira dès que vous serez de nouveau en ligne.';
 
   @override
   String get chatSendFailed => 'Message non envoyé, réessayez';

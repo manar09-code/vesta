@@ -73,7 +73,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chatNoMessages => 'No messages yet. Say hello!';
 
   @override
-  String get chatSendError => 'Not sent yet. It will be sent when you are back online.';
+  String get chatSendError =>
+      'Not sent yet. It will be sent when you are back online.';
 
   @override
   String get chatSendFailed => 'Message not sent, try again';

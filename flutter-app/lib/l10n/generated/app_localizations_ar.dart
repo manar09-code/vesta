@@ -73,7 +73,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get chatNoMessages => 'لا توجد رسائل بعد. ابدأ بالتحية!';
 
   @override
-  String get chatSendError => 'لم يُرسل بعد. سيُرسل عند عودة الاتصال بالإنترنت.';
+  String get chatSendError =>
+      'لم يُرسل بعد. سيُرسل عند عودة الاتصال بالإنترنت.';
 
   @override
   String get chatSendFailed => 'لم يتم إرسال الرسالة، حاول مرة أخرى';
