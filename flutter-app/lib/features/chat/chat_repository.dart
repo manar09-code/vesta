@@ -138,6 +138,24 @@ class ChatRepository {
     }
   }
 
+  /// Sets the unread counter of the signed-in user to 0 for [conversationId].
+  /// Only touches `unread.{uid}`: the rules allow it because the participants
+  /// and the listing stay the same. Does nothing if the conversation does not
+  /// exist yet (nobody has written to it).
+  Future<void> markRead(String conversationId) async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+    try {
+      await _conversations
+          .doc(conversationId)
+          .update({'unread.${user.uid}': 0});
+    } on FirebaseException catch (e) {
+      // not-found: the conversation is created with the first message.
+      if (e.code == 'not-found') return;
+      throw ChatFailure(_mapCode(e.code));
+    }
+  }
+
   /// Public name of a user (`users/{uid}`), or null if there is none.
   Future<String?> getUserName(String uid) async {
     if (uid.isEmpty) return null;

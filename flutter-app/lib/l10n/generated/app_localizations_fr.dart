@@ -63,6 +63,24 @@ class AppLocalizationsFr extends AppLocalizations {
   String get chatListingRemoved => 'Annonce plus disponible';
 
   @override
+  String get chatMessageHint => 'Écrivez un message';
+
+  @override
+  String get chatSend => 'Envoyer';
+
+  @override
+  String get chatSending => 'Envoi…';
+
+  @override
+  String get chatNoMessages => 'Aucun message. Dites bonjour !';
+
+  @override
+  String get chatSendError => 'Pas encore envoyé. Il partira dès que vous serez de nouveau en ligne.';
+
+  @override
+  String get chatSendFailed => 'Message non envoyé, réessayez';
+
+  @override
   String get loginTitle => 'Connexion';
 
   @override

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../auth/auth_controller.dart';
@@ -36,3 +38,50 @@ final conversationListingProvider =
     FutureProvider.autoDispose.family<Listing?, String>((ref, listingId) {
   return ref.watch(listingRepositoryProvider).getListing(listingId);
 });
+
+/// Live messages of one conversation, newest first (last 50 only). The
+/// listener stops when the chat screen is closed (autoDispose): no leak.
+final messagesProvider = StreamProvider.autoDispose
+    .family<List<ChatMessage>, String>((ref, conversationId) {
+  ref.watch(authStateProvider);
+  return ref.watch(chatRepositoryProvider).watchMessages(conversationId);
+});
+
+/// How long the screen waits before telling the user the message is still
+/// in the queue (offline). The message itself is not lost: Firestore sends it
+/// when the network is back.
+const sendWaitLimit = Duration(seconds: 8);
+
+/// Sends [text] in the conversation [conversationId] and reports what the
+/// screen should show. Returns null when the message reached the server, or
+/// the [ChatError] otherwise.
+///
+/// VST-50 hook: the in-app alert for the other person is created from here
+/// (after a successful send), not in the screen.
+Future<ChatError?> sendChatMessage(
+  WidgetRef ref, {
+  required String conversationId,
+  required String ownerId,
+  required String text,
+}) async {
+  final ids = parseConversationId(conversationId);
+  if (ids == null) return ChatError.unknown;
+  try {
+    await ref
+        .read(chatRepositoryProvider)
+        .sendMessage(
+          listingId: ids.listingId,
+          buyerId: ids.buyerId,
+          ownerId: ownerId,
+          text: text,
+        )
+        .timeout(sendWaitLimit);
+    return null;
+  } on TimeoutException {
+    return ChatError.noNetwork;
+  } on ChatFailure catch (e) {
+    return e.error;
+  } catch (_) {
+    return ChatError.unknown;
+  }
+}
