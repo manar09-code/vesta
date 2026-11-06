@@ -34,6 +34,7 @@ const List<String> propertyTypes = [
   'riad',
   'guest_house',
 ];
+
 /// Keys allowed by the rules (docs/data-model.md). Max 10 amenities, 4 rules.
 const List<String> amenityKeys = [
   'wifi',
@@ -71,14 +72,12 @@ class NewListing {
     this.bedrooms,
     this.bathrooms,
     this.areaSqm,
-        this.governorate,
     this.maxGuests,
     this.amenities = const [],
     this.checkIn,
     this.checkOut,
     this.houseRules = const [],
   });
-  
 
   final String title;
   final String description;
@@ -90,7 +89,6 @@ class NewListing {
   final num? bedrooms;
   final num? bathrooms;
   final num? areaSqm;
-    final String? governorate; // a key of AppConfig.governorates
   final num? maxGuests;
   final List<String> amenities; // keys of amenityKeys
   final String? checkIn; // 'HH:mm'
@@ -140,13 +138,12 @@ class ListingRepository {
         if (listing.bedrooms != null) 'bedrooms': listing.bedrooms,
         if (listing.bathrooms != null) 'bathrooms': listing.bathrooms,
         if (listing.areaSqm != null) 'areaSqm': listing.areaSqm,
-        'photoCount': photosBase64.length,
-                if (listing.governorate != null) 'governorate': listing.governorate,
         if (listing.maxGuests != null) 'maxGuests': listing.maxGuests,
         if (listing.amenities.isNotEmpty) 'amenities': listing.amenities,
         if (listing.checkIn != null) 'checkIn': listing.checkIn,
         if (listing.checkOut != null) 'checkOut': listing.checkOut,
         if (listing.houseRules.isNotEmpty) 'houseRules': listing.houseRules,
+        'photoCount': photosBase64.length,
         'createdAt': FieldValue.serverTimestamp(),
         'updatedAt': FieldValue.serverTimestamp(),
       });

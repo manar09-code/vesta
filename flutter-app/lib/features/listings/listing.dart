@@ -20,7 +20,6 @@ class Listing {
     this.bedrooms,
     this.bathrooms,
     this.areaSqm,
-    this.governorate,
     this.maxGuests,
     this.amenities = const [],
     this.checkIn,
@@ -43,7 +42,6 @@ class Listing {
   final num? bedrooms;
   final num? bathrooms;
   final num? areaSqm;
-  final String? governorate; // a key of AppConfig.governorates
   final num? maxGuests;
   final List<String> amenities; // keys of amenityKeys
   final String? checkIn; // 'HH:mm'
@@ -69,7 +67,6 @@ class Listing {
       bedrooms: data['bedrooms'] as num?,
       bathrooms: data['bathrooms'] as num?,
       areaSqm: data['areaSqm'] as num?,
-      governorate: data['governorate'] as String?,
       maxGuests: data['maxGuests'] as num?,
       amenities: _stringList(data['amenities']),
       checkIn: data['checkIn'] as String?,
