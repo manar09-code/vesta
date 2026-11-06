@@ -146,8 +146,8 @@ void main() {
     await tester.tap(find.byType(IconButton));
     await tester.pumpAndSettle();
 
-    // The owner comes from the listing, the buyer from the conversation id.
-    expect(repository.sent, ['l1|buyer1|owner1|  Hello  ']);
+    // The text is trimmed; the owner comes from the listing, the buyer from the id.
+    expect(repository.sent, ['l1|buyer1|owner1|Hello']);
     expect(tester.widget<TextField>(find.byType(TextField)).controller!.text,
         isEmpty);
   });
