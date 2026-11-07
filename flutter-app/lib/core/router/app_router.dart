@@ -7,6 +7,7 @@ import '../../features/auth/email_verification_banner.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/auth/require_sign_in.dart';
 import '../../features/auth/sign_up_screen.dart';
+import '../../features/chat/chat_controller.dart';
 import '../../features/chat/chat_list_screen.dart';
 import '../../features/chat/chat_screen.dart';
 import '../../features/favorites/favorites_screen.dart';
@@ -200,12 +201,19 @@ class _MainShell extends ConsumerWidget {
       l10n.tabProfile,
     ];
 
+    final unread = ref.watch(unreadTotalProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(titles[shell.currentIndex]),
         actions: [
           IconButton(
-            icon: const Icon(Icons.chat_bubble_outline),
+            // Red number when somebody wrote to me (VST-44).
+            icon: Badge(
+              isLabelVisible: unread > 0,
+              label: Text(unread > 99 ? '99+' : '$unread'),
+              child: const Icon(Icons.chat_bubble_outline),
+            ),
             tooltip: l10n.chatTitle,
             onPressed: () => _openAccountPage(context, ref, AppRoutes.chat),
           ),
