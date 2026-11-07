@@ -124,6 +124,54 @@ abstract class AppLocalizations {
   /// **'Map'**
   String get tabMap;
 
+  /// No description provided for @mapMyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'My location'**
+  String get mapMyLocation;
+
+  /// No description provided for @mapLocationDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission denied. The map still works.'**
+  String get mapLocationDenied;
+
+  /// No description provided for @mapLocationDeniedForever.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is blocked for Vesta. You can enable it in the app settings.'**
+  String get mapLocationDeniedForever;
+
+  /// No description provided for @mapLocationServiceOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location (GPS) on your phone to see where you are.'**
+  String get mapLocationServiceOff;
+
+  /// No description provided for @mapLocationError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not find your position. Try again.'**
+  String get mapLocationError;
+
+  /// No description provided for @mapOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get mapOpenSettings;
+
+  /// No description provided for @mapViewDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'View details'**
+  String get mapViewDetails;
+
+  /// No description provided for @mapNoListings.
+  ///
+  /// In en, this message translates to:
+  /// **'No listing with a location yet'**
+  String get mapNoListings;
+
   /// No description provided for @tabFavorites.
   ///
   /// In en, this message translates to:
