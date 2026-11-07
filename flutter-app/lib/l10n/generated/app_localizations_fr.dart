@@ -456,4 +456,34 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Trop de tentatives, réessayez dans quelques minutes';
+
+  @override
+  String get onboardingSkip => 'Passer';
+
+  @override
+  String get onboardingNext => 'Suivant';
+
+  @override
+  String get onboardingStart => 'Commencer';
+
+  @override
+  String get onboardingTitle1 => 'Trouvez votre bien en Tunisie';
+
+  @override
+  String get onboardingBody1 =>
+      'Parcourez des maisons d’hôtes, appartements et maisons pour séjourner, louer ou acheter.';
+
+  @override
+  String get onboardingTitle2 => 'Contactez le propriétaire';
+
+  @override
+  String get onboardingBody2 =>
+      'Discutez avec lui par message, ou appelez-le ou écrivez-lui sur WhatsApp.';
+
+  @override
+  String get onboardingTitle3 => 'Publiez votre bien';
+
+  @override
+  String get onboardingBody3 =>
+      'Ajoutez votre annonce avec des photos en quelques minutes.';
 }

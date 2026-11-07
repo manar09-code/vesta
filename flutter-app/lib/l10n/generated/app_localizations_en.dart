@@ -451,4 +451,34 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Too many attempts, please try again in a few minutes';
+
+  @override
+  String get onboardingSkip => 'Skip';
+
+  @override
+  String get onboardingNext => 'Next';
+
+  @override
+  String get onboardingStart => 'Get started';
+
+  @override
+  String get onboardingTitle1 => 'Find your place in Tunisia';
+
+  @override
+  String get onboardingBody1 =>
+      'Browse guest houses, apartments and houses to stay, rent or buy.';
+
+  @override
+  String get onboardingTitle2 => 'Contact the owner';
+
+  @override
+  String get onboardingBody2 =>
+      'Chat with the owner, or call or message them on WhatsApp.';
+
+  @override
+  String get onboardingTitle3 => 'Publish your own place';
+
+  @override
+  String get onboardingBody3 =>
+      'Add your listing with photos in a few minutes.';
 }
