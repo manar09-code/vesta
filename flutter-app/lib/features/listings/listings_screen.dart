@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../core/router/app_router.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'listing.dart';
 import 'listing_card.dart';
@@ -56,9 +58,9 @@ class ListingsScreen extends ConsumerWidget {
                 separatorBuilder: (_, _) => const SizedBox(height: 12),
                 itemBuilder: (_, index) => ListingCard(
                   listing: items[index],
-                  // The details screen does not exist yet: placeholder for now.
-                  onTap: () => ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text(l10n.comingSoon))),
+                  onTap: () => context.push(
+                    AppRoutes.listingDetailPath(items[index].id),
+                  ),
                 ),
               ),
       ),
