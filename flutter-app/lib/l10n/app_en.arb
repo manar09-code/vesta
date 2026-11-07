@@ -139,12 +139,12 @@
   "verifyBannerResend": "Send again",
   "verifyBannerSent": "Verification email sent",
   "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes",
-    "listingErrorGuestsInvalid": "Enter a number of guests between 1 and 30",
+  "listingErrorGuestsInvalid": "Enter a number of guests between 1 and 30",
   "listingErrorRoomsInvalid": "Enter a number between 0 and 20",
-    "publishFieldGuests": "Maximum guests (optional)",
+  "publishFieldGuests": "Maximum guests (optional)",
   "publishAmenitiesTitle": "Amenities",
   "publishAmenitiesCounter": "{count} / 10",
-    "@publishAmenitiesCounter": {
+  "@publishAmenitiesCounter": {
     "placeholders": { "count": { "type": "int" } }
   },
   "publishCheckIn": "Check-in time",

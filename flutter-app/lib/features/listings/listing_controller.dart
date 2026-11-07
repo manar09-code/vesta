@@ -18,7 +18,7 @@ enum ListingFieldError {
   cityRequired,
   rentPeriodRequired,
   numberInvalid,
-    guestsInvalid,
+  guestsInvalid,
   roomsInvalid,
 }
 
