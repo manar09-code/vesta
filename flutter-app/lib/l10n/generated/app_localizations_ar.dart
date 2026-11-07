@@ -61,23 +61,23 @@ class AppLocalizationsAr extends AppLocalizations {
   String get chatListingRemoved => 'الإعلان ما عادش موجود';
 
   @override
-  String get chatMessageHint => 'اكتب رسالة';
+  String get chatMessageHint => 'اكتب رسالتك...';
 
   @override
-  String get chatSend => 'إرسال';
+  String get chatSend => 'ابعث';
 
   @override
-  String get chatSending => 'جارٍ الإرسال…';
+  String get chatSending => 'يتبعث...';
 
   @override
-  String get chatNoMessages => 'لا توجد رسائل بعد. ابدأ بالتحية!';
+  String get chatNoMessages => 'ما فما حتى رسالة توا. ابدا المحادثة!';
 
   @override
   String get chatSendError =>
-      'لم يُرسل بعد. سيُرسل عند عودة الاتصال بالإنترنت.';
+      'ما تبعثتش توا. باش تتبعث كي يرجع الإنترنت.';
 
   @override
-  String get chatSendFailed => 'لم يتم إرسال الرسالة، حاول مرة أخرى';
+  String get chatSendFailed => 'الرسالة ما تبعثتش، عاود جرّب';
 
   @override
   String get loginTitle => 'تسجيل الدخول';
