@@ -285,6 +285,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get listingDetailPerNight => '/ nuit';
 
   @override
+  String get listingDetailAtAGlance => 'En un coup d\'œil';
+
+  @override
+  String get listingDetailGuests => 'Invités';
+
+  @override
+  String get listingDetailReadMore => 'Lire la suite';
+
+  @override
+  String get listingDetailReadLess => 'Réduire';
+
+  @override
   String get listingDetailPerMonth => '/ mois';
 
   @override
@@ -434,6 +446,23 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsDeleteAccount => 'Supprimer mon compte';
 
   @override
+  String get deleteAccountTitle => 'Supprimer votre compte ?';
+
+  @override
+  String get deleteAccountBody =>
+      'Cela supprime définitivement votre compte, votre profil, vos annonces et leurs photos, et vos favoris. Les messages que vous avez envoyés restent dans la conversation de l\'autre personne. Cette action est irréversible.';
+
+  @override
+  String get deleteAccountPassword =>
+      'Saisissez votre mot de passe pour confirmer';
+
+  @override
+  String get deleteAccountConfirm => 'Supprimer';
+
+  @override
+  String get deleteAccountDone => 'Votre compte a été supprimé.';
+
+  @override
   String get settingsLinkError => 'Impossible d’ouvrir le lien';
 
   @override
@@ -468,4 +497,134 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Trop de tentatives, réessayez dans quelques minutes';
+
+  @override
+  String get listingErrorGuestsInvalid =>
+      'Indiquez un nombre d\'invités entre 1 et 30';
+
+  @override
+  String get listingErrorRoomsInvalid => 'Indiquez un nombre entre 0 et 20';
+
+  @override
+  String get publishFieldGuests => 'Nombre maximum d\'invités (optionnel)';
+
+  @override
+  String get publishAmenitiesTitle => 'Équipements';
+
+  @override
+  String publishAmenitiesCounter(int count) {
+    return '$count / 10';
+  }
+
+  @override
+  String get publishCheckIn => 'Heure d\'arrivée';
+
+  @override
+  String get publishCheckOut => 'Heure de départ';
+
+  @override
+  String get publishTimeNotSet => 'Non défini';
+
+  @override
+  String get publishRulesTitle => 'Règles de la maison';
+
+  @override
+  String get amenityWifi => 'Wi-Fi';
+
+  @override
+  String get amenityAc => 'Climatisation';
+
+  @override
+  String get amenityHeating => 'Chauffage';
+
+  @override
+  String get amenityKitchen => 'Cuisine';
+
+  @override
+  String get amenityParking => 'Parking';
+
+  @override
+  String get amenityPool => 'Piscine';
+
+  @override
+  String get amenityBreakfast => 'Petit-déjeuner';
+
+  @override
+  String get amenityWashingMachine => 'Machine à laver';
+
+  @override
+  String get amenityTv => 'Télévision';
+
+  @override
+  String get amenityGarden => 'Jardin';
+
+  @override
+  String get ruleNoSmoking => 'Non-fumeur';
+
+  @override
+  String get ruleNoPets => 'Animaux non admis';
+
+  @override
+  String get ruleNoParties => 'Pas de fêtes';
+
+  @override
+  String get ruleQuietHours => 'Heures de calme';
+
+  @override
+  String get searchHint => 'Rechercher par ville';
+
+  @override
+  String get searchNoResults =>
+      'Aucune annonce ne correspond à votre recherche';
+
+  @override
+  String get searchFilters => 'Filtres';
+
+  @override
+  String get searchPriceMin => 'Prix min';
+
+  @override
+  String get searchPriceMax => 'Prix max';
+
+  @override
+  String get searchOfferType => 'Type d\'offre';
+
+  @override
+  String get searchPropertyType => 'Type de bien';
+
+  @override
+  String get searchAll => 'Tous';
+
+  @override
+  String get searchTypeSale => 'Vente';
+
+  @override
+  String get searchTypeRent => 'Location';
+
+  @override
+  String get searchTypeStay => 'Séjour';
+
+  @override
+  String get searchApply => 'Appliquer';
+
+  @override
+  String get searchReset => 'Réinitialiser';
+
+  @override
+  String get searchPropApartment => 'Appartement';
+
+  @override
+  String get searchPropHouse => 'Maison';
+
+  @override
+  String get searchPropVilla => 'Villa';
+
+  @override
+  String get searchPropStudio => 'Studio';
+
+  @override
+  String get searchPropRiad => 'Riad';
+
+  @override
+  String get searchPropGuestHouse => 'Maison d\'hôtes';
 }

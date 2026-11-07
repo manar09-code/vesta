@@ -281,6 +281,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get listingDetailPerNight => '/ night';
 
   @override
+  String get listingDetailAtAGlance => 'At a glance';
+
+  @override
+  String get listingDetailGuests => 'Guests';
+
+  @override
+  String get listingDetailReadMore => 'Read more';
+
+  @override
+  String get listingDetailReadLess => 'Read less';
+
+  @override
   String get listingDetailPerMonth => '/ month';
 
   @override
@@ -428,6 +440,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsDeleteAccount => 'Delete my account';
 
   @override
+  String get deleteAccountTitle => 'Delete your account?';
+
+  @override
+  String get deleteAccountBody =>
+      'This permanently deletes your account, your profile, your listings and their photos, and your favorites. Messages you sent stay in the other person\'s conversation. This cannot be undone.';
+
+  @override
+  String get deleteAccountPassword => 'Enter your password to confirm';
+
+  @override
+  String get deleteAccountConfirm => 'Delete';
+
+  @override
+  String get deleteAccountDone => 'Your account has been deleted.';
+
+  @override
   String get settingsLinkError => 'Could not open the link';
 
   @override
@@ -462,4 +490,133 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Too many attempts, please try again in a few minutes';
+
+  @override
+  String get listingErrorGuestsInvalid =>
+      'Enter a number of guests between 1 and 30';
+
+  @override
+  String get listingErrorRoomsInvalid => 'Enter a number between 0 and 20';
+
+  @override
+  String get publishFieldGuests => 'Maximum guests (optional)';
+
+  @override
+  String get publishAmenitiesTitle => 'Amenities';
+
+  @override
+  String publishAmenitiesCounter(int count) {
+    return '$count / 10';
+  }
+
+  @override
+  String get publishCheckIn => 'Check-in time';
+
+  @override
+  String get publishCheckOut => 'Check-out time';
+
+  @override
+  String get publishTimeNotSet => 'Not set';
+
+  @override
+  String get publishRulesTitle => 'House rules';
+
+  @override
+  String get amenityWifi => 'Wi-Fi';
+
+  @override
+  String get amenityAc => 'Air conditioning';
+
+  @override
+  String get amenityHeating => 'Heating';
+
+  @override
+  String get amenityKitchen => 'Kitchen';
+
+  @override
+  String get amenityParking => 'Parking';
+
+  @override
+  String get amenityPool => 'Pool';
+
+  @override
+  String get amenityBreakfast => 'Breakfast';
+
+  @override
+  String get amenityWashingMachine => 'Washing machine';
+
+  @override
+  String get amenityTv => 'TV';
+
+  @override
+  String get amenityGarden => 'Garden';
+
+  @override
+  String get ruleNoSmoking => 'No smoking';
+
+  @override
+  String get ruleNoPets => 'No pets';
+
+  @override
+  String get ruleNoParties => 'No parties';
+
+  @override
+  String get ruleQuietHours => 'Quiet hours';
+
+  @override
+  String get searchHint => 'Search by city';
+
+  @override
+  String get searchNoResults => 'No listings match your search';
+
+  @override
+  String get searchFilters => 'Filters';
+
+  @override
+  String get searchPriceMin => 'Min price';
+
+  @override
+  String get searchPriceMax => 'Max price';
+
+  @override
+  String get searchOfferType => 'Offer type';
+
+  @override
+  String get searchPropertyType => 'Property type';
+
+  @override
+  String get searchAll => 'All';
+
+  @override
+  String get searchTypeSale => 'Sale';
+
+  @override
+  String get searchTypeRent => 'Rent';
+
+  @override
+  String get searchTypeStay => 'Stay';
+
+  @override
+  String get searchApply => 'Apply';
+
+  @override
+  String get searchReset => 'Reset';
+
+  @override
+  String get searchPropApartment => 'Apartment';
+
+  @override
+  String get searchPropHouse => 'House';
+
+  @override
+  String get searchPropVilla => 'Villa';
+
+  @override
+  String get searchPropStudio => 'Studio';
+
+  @override
+  String get searchPropRiad => 'Riad';
+
+  @override
+  String get searchPropGuestHouse => 'Guest house';
 }
