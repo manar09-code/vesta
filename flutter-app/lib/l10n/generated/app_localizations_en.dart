@@ -462,7 +462,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Too many attempts, please try again in a few minutes';
 
   @override
-<<<<<<< HEAD
   String get contactCall => 'Call';
 
   @override
@@ -491,7 +490,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String contactMessageStay(String title) {
     return 'Hello, I am interested in staying at $title on Vesta';
   }
-=======
+
+  @override
   String get searchHint => 'Search by city';
 
   @override
@@ -547,5 +547,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchPropGuestHouse => 'Guest house';
->>>>>>> origin/develop
 }

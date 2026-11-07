@@ -147,7 +147,6 @@
   "verifyBannerResend": "Send again",
   "verifyBannerSent": "Verification email sent",
   "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes",
-<<<<<<< HEAD
   "contactCall": "Call",
   "contactWhatsapp": "WhatsApp",
   "contactSignInToSee": "Sign in to see the contact",
@@ -176,9 +175,7 @@
         "type": "String"
       }
     }
-  }
-}
-=======
+  },
     "searchHint": "Search by city",
   "searchNoResults": "No listings match your search",
     "searchFilters": "Filters",
@@ -199,4 +196,3 @@
   "searchPropRiad": "Riad",
   "searchPropGuestHouse": "Guest house"
 }
->>>>>>> origin/develop

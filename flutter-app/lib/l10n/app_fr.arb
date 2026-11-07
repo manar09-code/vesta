@@ -147,7 +147,6 @@
   "verifyBannerResend": "Renvoyer",
   "verifyBannerSent": "E-mail de vérification envoyé",
   "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes",
-<<<<<<< HEAD
   "contactCall": "Appeler",
   "contactWhatsapp": "WhatsApp",
   "contactSignInToSee": "Connectez-vous pour voir le contact",
@@ -176,9 +175,7 @@
         "type": "String"
       }
     }
-  }
-}
-=======
+  },
     "searchHint": "Rechercher par ville",
   "searchNoResults": "Aucune annonce ne correspond à votre recherche",
     "searchFilters": "Filtres",
@@ -199,4 +196,3 @@
   "searchPropRiad": "Riad",
   "searchPropGuestHouse": "Maison d'hôtes"
 }
->>>>>>> origin/develop

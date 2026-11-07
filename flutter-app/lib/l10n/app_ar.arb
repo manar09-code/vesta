@@ -147,7 +147,6 @@
   "verifyBannerResend": "ابعث مرة أخرى",
   "verifyBannerSent": "تبعث إيميل التأكيد",
   "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق",
-<<<<<<< HEAD
   "contactCall": "اتصل",
   "contactWhatsapp": "واتساب",
   "contactSignInToSee": "سجّل الدخول باش تشوف رقم التواصل",
@@ -176,9 +175,7 @@
         "type": "String"
       }
     }
-  }
-}
-=======
+  },
     "searchHint": "ابحث حسب المدينة",
   "searchNoResults": "لا توجد إعلانات مطابقة لبحثك",
     "searchFilters": "تصفية",
@@ -199,4 +196,3 @@
   "searchPropRiad": "رياض",
   "searchPropGuestHouse": "نزل"
 }
->>>>>>> origin/develop
