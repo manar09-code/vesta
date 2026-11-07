@@ -128,7 +128,7 @@
   "settingsPrivacy": "الخصوصية وفسخ الحساب",
   "settingsContact": "اتصل بينا",
   "settingsDeleteAccount": "فسخ حسابي",
-    "deleteAccountTitle": "تمسح حسابك؟",
+  "deleteAccountTitle": "تمسح حسابك؟",
   "deleteAccountBody": "هذا يمسح نهائيا حسابك وملفك الشخصي وإعلاناتك وصورها والمفضلة. الرسائل اللي بعثتها تبقى في محادثة الطرف الآخر. ما ينجمش يتراجع عليه.",
   "deleteAccountPassword": "اكتب كلمة السر باش تأكد",
   "deleteAccountConfirm": "امسح",

@@ -128,7 +128,7 @@
   "settingsPrivacy": "Confidentialité et suppression du compte",
   "settingsContact": "Nous contacter",
   "settingsDeleteAccount": "Supprimer mon compte",
-    "deleteAccountTitle": "Supprimer votre compte ?",
+  "deleteAccountTitle": "Supprimer votre compte ?",
   "deleteAccountBody": "Cela supprime définitivement votre compte, votre profil, vos annonces et leurs photos, et vos favoris. Les messages que vous avez envoyés restent dans la conversation de l'autre personne. Cette action est irréversible.",
   "deleteAccountPassword": "Saisissez votre mot de passe pour confirmer",
   "deleteAccountConfirm": "Supprimer",
