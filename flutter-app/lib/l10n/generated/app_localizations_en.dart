@@ -254,6 +254,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get listingDetailPerNight => '/ night';
 
   @override
+  String get listingDetailAtAGlance => 'At a glance';
+
+  @override
+  String get listingDetailGuests => 'Guests';
+
+  @override
+  String get listingDetailReadMore => 'Read more';
+
+  @override
+  String get listingDetailReadLess => 'Read less';
+
+  @override
   String get listingDetailPerMonth => '/ month';
 
   @override
@@ -451,4 +463,76 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Too many attempts, please try again in a few minutes';
+
+  @override
+  String get listingErrorGuestsInvalid =>
+      'Enter a number of guests between 1 and 30';
+
+  @override
+  String get listingErrorRoomsInvalid => 'Enter a number between 0 and 20';
+
+  @override
+  String get publishFieldGuests => 'Maximum guests (optional)';
+
+  @override
+  String get publishAmenitiesTitle => 'Amenities';
+
+  @override
+  String publishAmenitiesCounter(int count) {
+    return '$count / 10';
+  }
+
+  @override
+  String get publishCheckIn => 'Check-in time';
+
+  @override
+  String get publishCheckOut => 'Check-out time';
+
+  @override
+  String get publishTimeNotSet => 'Not set';
+
+  @override
+  String get publishRulesTitle => 'House rules';
+
+  @override
+  String get amenityWifi => 'Wi-Fi';
+
+  @override
+  String get amenityAc => 'Air conditioning';
+
+  @override
+  String get amenityHeating => 'Heating';
+
+  @override
+  String get amenityKitchen => 'Kitchen';
+
+  @override
+  String get amenityParking => 'Parking';
+
+  @override
+  String get amenityPool => 'Pool';
+
+  @override
+  String get amenityBreakfast => 'Breakfast';
+
+  @override
+  String get amenityWashingMachine => 'Washing machine';
+
+  @override
+  String get amenityTv => 'TV';
+
+  @override
+  String get amenityGarden => 'Garden';
+
+  @override
+  String get ruleNoSmoking => 'No smoking';
+
+  @override
+  String get ruleNoPets => 'No pets';
+
+  @override
+  String get ruleNoParties => 'No parties';
+
+  @override
+  String get ruleQuietHours => 'Quiet hours';
 }

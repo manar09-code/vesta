@@ -251,6 +251,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get listingDetailPerNight => '/ ليلة';
 
   @override
+  String get listingDetailAtAGlance => 'نظرة سريعة';
+
+  @override
+  String get listingDetailGuests => 'الضيوف';
+
+  @override
+  String get listingDetailReadMore => 'اقرأ المزيد';
+
+  @override
+  String get listingDetailReadLess => 'عرض أقل';
+
+  @override
   String get listingDetailPerMonth => '/ شهر';
 
   @override
@@ -446,4 +458,75 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
+
+  @override
+  String get listingErrorGuestsInvalid => 'أدخل عدد الضيوف بين 1 و30';
+
+  @override
+  String get listingErrorRoomsInvalid => 'أدخل رقمًا بين 0 و20';
+
+  @override
+  String get publishFieldGuests => 'الحد الأقصى للضيوف (اختياري)';
+
+  @override
+  String get publishAmenitiesTitle => 'التجهيزات';
+
+  @override
+  String publishAmenitiesCounter(int count) {
+    return '$count / 10';
+  }
+
+  @override
+  String get publishCheckIn => 'وقت الوصول';
+
+  @override
+  String get publishCheckOut => 'وقت المغادرة';
+
+  @override
+  String get publishTimeNotSet => 'غير محدد';
+
+  @override
+  String get publishRulesTitle => 'قواعد المنزل';
+
+  @override
+  String get amenityWifi => 'واي فاي';
+
+  @override
+  String get amenityAc => 'مكيف';
+
+  @override
+  String get amenityHeating => 'تدفئة';
+
+  @override
+  String get amenityKitchen => 'مطبخ';
+
+  @override
+  String get amenityParking => 'موقف سيارات';
+
+  @override
+  String get amenityPool => 'مسبح';
+
+  @override
+  String get amenityBreakfast => 'فطور';
+
+  @override
+  String get amenityWashingMachine => 'غسالة';
+
+  @override
+  String get amenityTv => 'تلفاز';
+
+  @override
+  String get amenityGarden => 'حديقة';
+
+  @override
+  String get ruleNoSmoking => 'ممنوع التدخين';
+
+  @override
+  String get ruleNoPets => 'الحيوانات غير مسموحة';
+
+  @override
+  String get ruleNoParties => 'ممنوع الحفلات';
+
+  @override
+  String get ruleQuietHours => 'ساعات الهدوء';
 }

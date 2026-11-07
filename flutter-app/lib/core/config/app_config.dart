@@ -20,4 +20,5 @@ class AppConfig {
 String formatPrice(num amount, {String? currency}) {
   final formatter = NumberFormat('#,##0', 'en');
   return '${currency ?? AppConfig.currency} ${formatter.format(amount)}';
+  
 }
