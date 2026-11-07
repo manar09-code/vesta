@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../core/theme/app_colors.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'listing_controller.dart';
+import 'listing_labels.dart';
 import 'listing_repository.dart';
 import 'photo_service.dart';
 
@@ -28,12 +29,17 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
   final _bedrooms = TextEditingController();
   final _bathrooms = TextEditingController();
   final _area = TextEditingController();
+  final _guests = TextEditingController();
   final _photoService = PhotoService();
 
   String _listingType = 'sale';
   String? _rentPeriod;
   String _propertyType = 'apartment';
   final List<String> _photos = []; // base64 strings, index 0 = cover
+  final Set<String> _amenities = {};
+  final Set<String> _houseRules = {};
+  TimeOfDay? _checkIn;
+  TimeOfDay? _checkOut;
   String? _photoMessage;
   bool _rentPeriodMissing = false;
 
@@ -47,6 +53,7 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
       _bedrooms,
       _bathrooms,
       _area,
+      _guests,
     ]) {
       c.dispose();
     }
@@ -68,6 +75,10 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
         return l.listingErrorRentPeriodRequired;
       case ListingFieldError.numberInvalid:
         return l.listingErrorNumberInvalid;
+      case ListingFieldError.guestsInvalid:
+        return l.listingErrorGuestsInvalid;
+      case ListingFieldError.roomsInvalid:
+        return l.listingErrorRoomsInvalid;
     }
   }
 
@@ -127,6 +138,28 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
     }
   }
 
+  // ---- time: shown with the device format, stored as HH:mm ----
+  String _hhmm(TimeOfDay t) =>
+      '${t.hour.toString().padLeft(2, '0')}:'
+      '${t.minute.toString().padLeft(2, '0')}';
+
+  Future<void> _pickTime({required bool checkIn}) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime:
+          (checkIn ? _checkIn : _checkOut) ??
+          TimeOfDay(hour: checkIn ? 14 : 11, minute: 0),
+    );
+    if (picked == null || !mounted) return;
+    setState(() {
+      if (checkIn) {
+        _checkIn = picked;
+      } else {
+        _checkOut = picked;
+      }
+    });
+  }
+
   // ---- photos ----
   Future<void> _addPhoto(ImageSource source) async {
     final l = AppLocalizations.of(context);
@@ -179,6 +212,18 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
       bedrooms: _optional(_bedrooms),
       bathrooms: _optional(_bathrooms),
       areaSqm: _optional(_area),
+      maxGuests: _optional(_guests),
+      // Keep the order of amenityKeys / houseRuleKeys, whatever the taps.
+      amenities: [
+        for (final k in amenityKeys)
+          if (_amenities.contains(k)) k,
+      ],
+      checkIn: _checkIn == null ? null : _hhmm(_checkIn!),
+      checkOut: _checkOut == null ? null : _hhmm(_checkOut!),
+      houseRules: [
+        for (final k in houseRuleKeys)
+          if (_houseRules.contains(k)) k,
+      ],
     );
 
     final ok = await ref
@@ -193,9 +238,29 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
     }
   }
 
+  Widget _timeTile({
+    required String label,
+    required TimeOfDay? value,
+    required String emptyLabel,
+    required VoidCallback onTap,
+  }) {
+    return Expanded(
+      child: OutlinedButton.icon(
+        onPressed: onTap,
+        icon: const Icon(Icons.schedule),
+        label: Text(
+          '$label: ${value == null ? emptyLabel : value.format(context)}',
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
+    final theme = Theme.of(context);
     final state = ref.watch(listingControllerProvider);
     final loading = state.isLoading;
 
@@ -296,25 +361,115 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
                 validator: (v) => fieldValidator(v, validateCity),
               ),
               const SizedBox(height: 12),
-              for (final entry in [
-                (_bedrooms, l.publishFieldBedrooms),
-                (_bathrooms, l.publishFieldBathrooms),
-                (_area, l.publishFieldArea),
-              ]) ...[
-                TextFormField(
-                  controller: entry.$1,
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
-                  decoration: InputDecoration(labelText: entry.$2),
-                  validator: (v) => fieldValidator(v, validateOptionalNumber),
+              TextFormField(
+                controller: _guests,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(labelText: l.publishFieldGuests),
+                validator: (v) => fieldValidator(v, validateGuests),
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                controller: _bedrooms,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: l.publishFieldBedrooms,
                 ),
-                const SizedBox(height: 12),
-              ],
+                validator: (v) => fieldValidator(v, validateRooms),
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                controller: _bathrooms,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: l.publishFieldBathrooms,
+                ),
+                validator: (v) => fieldValidator(v, validateRooms),
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                controller: _area,
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                decoration: InputDecoration(labelText: l.publishFieldArea),
+                validator: (v) => fieldValidator(v, validateOptionalNumber),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      l.publishAmenitiesTitle,
+                      style: theme.textTheme.titleMedium,
+                    ),
+                  ),
+                  Text(l.publishAmenitiesCounter(_amenities.length)),
+                ],
+              ),
               const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final key in amenityKeys)
+                    FilterChip(
+                      avatar: Icon(amenityIcon(key), size: 18),
+                      label: Text(amenityLabel(l, key)),
+                      selected: _amenities.contains(key),
+                      onSelected: (on) => setState(() {
+                        if (on) {
+                          _amenities.add(key);
+                        } else {
+                          _amenities.remove(key);
+                        }
+                      }),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  _timeTile(
+                    label: l.publishCheckIn,
+                    value: _checkIn,
+                    emptyLabel: l.publishTimeNotSet,
+                    onTap: () => _pickTime(checkIn: true),
+                  ),
+                  const SizedBox(width: 12),
+                  _timeTile(
+                    label: l.publishCheckOut,
+                    value: _checkOut,
+                    emptyLabel: l.publishTimeNotSet,
+                    onTap: () => _pickTime(checkIn: false),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Text(l.publishRulesTitle, style: theme.textTheme.titleMedium),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final key in houseRuleKeys)
+                    FilterChip(
+                      avatar: Icon(houseRuleIcon(key), size: 18),
+                      label: Text(houseRuleLabel(l, key)),
+                      selected: _houseRules.contains(key),
+                      onSelected: (on) => setState(() {
+                        if (on) {
+                          _houseRules.add(key);
+                        } else {
+                          _houseRules.remove(key);
+                        }
+                      }),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 20),
               Text(
                 '${l.publishPhotosTitle}  ${_photos.length}/$maxListingPhotos',
-                style: Theme.of(context).textTheme.titleMedium,
+                style: theme.textTheme.titleMedium,
               ),
               const SizedBox(height: 8),
               Row(
@@ -337,9 +492,7 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
                     _photoMessage!,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
+                    style: TextStyle(color: theme.colorScheme.error),
                   ),
                 ),
               const SizedBox(height: 8),
@@ -388,9 +541,7 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
                   padding: const EdgeInsets.only(top: 12),
                   child: Text(
                     _listingError(l, state.error!),
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
+                    style: TextStyle(color: theme.colorScheme.error),
                   ),
                 ),
               const SizedBox(height: 24),
@@ -411,3 +562,4 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
     );
   }
 }
+
