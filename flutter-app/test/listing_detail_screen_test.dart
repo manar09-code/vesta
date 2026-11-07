@@ -110,9 +110,12 @@ void main() {
     expect(find.text('Sousse'), findsOneWidget);
     expect(find.text('Bright flat close to the beach.'), findsOneWidget);
     expect(find.textContaining('120'), findsOneWidget);
-    expect(find.text('Bedrooms: 2'), findsOneWidget);
-    expect(find.text('Bathrooms: 1'), findsOneWidget);
-    expect(find.text('Area (m²): 85'), findsOneWidget);
+    // "At a glance" tiles: the value and the label are separate texts.
+    expect(find.text('Bedrooms'), findsOneWidget);
+    expect(find.text('2'), findsOneWidget);
+    expect(find.text('Bathrooms'), findsOneWidget);
+    expect(find.text('1'), findsOneWidget);
+    expect(find.text('85'), findsOneWidget);
     expect(find.text('No photo'), findsOneWidget);
   });
 

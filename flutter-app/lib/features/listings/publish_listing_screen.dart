@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../core/theme/app_colors.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'listing_controller.dart';
+import 'listing_labels.dart';
 import 'listing_repository.dart';
 import 'photo_service.dart';
 
@@ -134,83 +135,6 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
         return l.publishPeriodMonth;
       default:
         return l.publishPeriodYear;
-    }
-  }
-
-  // ---- amenities and house rules: keys stored, text translated here ----
-  String _amenityLabel(AppLocalizations l, String key) {
-    switch (key) {
-      case 'wifi':
-        return l.amenityWifi;
-      case 'ac':
-        return l.amenityAc;
-      case 'heating':
-        return l.amenityHeating;
-      case 'kitchen':
-        return l.amenityKitchen;
-      case 'parking':
-        return l.amenityParking;
-      case 'pool':
-        return l.amenityPool;
-      case 'breakfast':
-        return l.amenityBreakfast;
-      case 'washing_machine':
-        return l.amenityWashingMachine;
-      case 'tv':
-        return l.amenityTv;
-      default:
-        return l.amenityGarden;
-    }
-  }
-
-  IconData _amenityIcon(String key) {
-    switch (key) {
-      case 'wifi':
-        return Icons.wifi;
-      case 'ac':
-        return Icons.ac_unit;
-      case 'heating':
-        return Icons.thermostat;
-      case 'kitchen':
-        return Icons.kitchen;
-      case 'parking':
-        return Icons.local_parking;
-      case 'pool':
-        return Icons.pool;
-      case 'breakfast':
-        return Icons.free_breakfast;
-      case 'washing_machine':
-        return Icons.local_laundry_service;
-      case 'tv':
-        return Icons.tv;
-      default:
-        return Icons.yard;
-    }
-  }
-
-  String _ruleLabel(AppLocalizations l, String key) {
-    switch (key) {
-      case 'no_smoking':
-        return l.ruleNoSmoking;
-      case 'no_pets':
-        return l.ruleNoPets;
-      case 'no_parties':
-        return l.ruleNoParties;
-      default:
-        return l.ruleQuietHours;
-    }
-  }
-
-  IconData _ruleIcon(String key) {
-    switch (key) {
-      case 'no_smoking':
-        return Icons.smoke_free;
-      case 'no_pets':
-        return Icons.pets;
-      case 'no_parties':
-        return Icons.celebration;
-      default:
-        return Icons.bedtime;
     }
   }
 
@@ -489,8 +413,8 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
                 children: [
                   for (final key in amenityKeys)
                     FilterChip(
-                      avatar: Icon(_amenityIcon(key), size: 18),
-                      label: Text(_amenityLabel(l, key)),
+                      avatar: Icon(amenityIcon(key), size: 18),
+                      label: Text(amenityLabel(l, key)),
                       selected: _amenities.contains(key),
                       onSelected: (on) => setState(() {
                         if (on) {
@@ -529,8 +453,8 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
                 children: [
                   for (final key in houseRuleKeys)
                     FilterChip(
-                      avatar: Icon(_ruleIcon(key), size: 18),
-                      label: Text(_ruleLabel(l, key)),
+                      avatar: Icon(houseRuleIcon(key), size: 18),
+                      label: Text(houseRuleLabel(l, key)),
                       selected: _houseRules.contains(key),
                       onSelected: (on) => setState(() {
                         if (on) {
@@ -638,3 +562,4 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
     );
   }
 }
+
