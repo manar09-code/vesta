@@ -223,6 +223,6 @@ void main() {
     expect(find.text('Aucun message. Dites bonjour !'), findsOneWidget);
 
     await _pump(tester, locale: const Locale('ar'));
-    expect(find.text('لا توجد رسائل بعد. ابدأ بالتحية!'), findsOneWidget);
+    expect(find.text('ما فما حتى رسالة توا. ابدا المحادثة!'), findsOneWidget);
   });
 }

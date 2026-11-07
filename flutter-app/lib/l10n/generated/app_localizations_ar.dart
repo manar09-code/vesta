@@ -73,8 +73,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get chatNoMessages => 'ما فما حتى رسالة توا. ابدا المحادثة!';
 
   @override
-  String get chatSendError =>
-      'ما تبعثتش توا. باش تتبعث كي يرجع الإنترنت.';
+  String get chatSendError => 'ما تبعثتش توا. باش تتبعث كي يرجع الإنترنت.';
 
   @override
   String get chatSendFailed => 'الرسالة ما تبعثتش، عاود جرّب';
