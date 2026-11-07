@@ -27,4 +27,23 @@ export default {
   authErrorTooManyRequests:
     'Trop de tentatives, réessayez dans quelques minutes',
   authErrorUnknown: 'Une erreur est survenue, réessayez',
+  favoritesEmptyTitle: "Aucun favori pour l'instant",
+  favoritesEmptyBody: "Appuie sur le cœur d'une annonce pour la retrouver ici.",
+  favoritesUnavailable: "Cette annonce n'est plus disponible",
+  favoritesRemove: 'Retirer',
+  favoritesRetry: 'Réessayer',
+  favoritesErrorNoNetwork:
+    'Pas de connexion. Vérifie ton internet et réessaie.',
+  favoritesErrorPermission: "Tu n'as pas le droit de faire cela.",
+  favoritesErrorNotSignedIn: 'Connecte-toi pour enregistrer des favoris.',
+  favoritesErrorUnknown: 'Une erreur est survenue. Réessaie.',
+  tabFavorites: 'Favoris',
+  favoritesFilterAll: 'Tous',
+  favoritesFilterBuy: 'Acheter',
+  favoritesFilterRent: 'Louer',
+  favoritesFilterStay: 'Séjourner',
+  favoritesFilterEmpty: 'Aucun favori dans cette catégorie',
+  signInToContinueTitle: 'Connectez-vous pour continuer',
+  signInToContinueBody:
+    'Connectez-vous ou créez un compte pour ajouter des favoris, écrire aux propriétaires et publier des annonces.',
 };
