@@ -103,4 +103,30 @@ void main() {
       expect(textDirectionFor('   '), TextDirection.ltr);
     });
   });
+
+  group('totalUnread', () {
+    Conversation conv(String id, Map<String, int> unread) => Conversation(
+          id: id,
+          listingId: 'l',
+          participantIds: const ['a', 'b'],
+          lastMessage: '',
+          lastMessageAt: null,
+          unread: unread,
+        );
+
+    test('adds my counters only', () {
+      final list = [
+        conv('1', {'a': 2, 'b': 5}),
+        conv('2', {'a': 1}),
+        conv('3', {'b': 4}),
+      ];
+      expect(totalUnread(list, 'a'), 3);
+      expect(totalUnread(list, 'b'), 9);
+    });
+
+    test('nothing unread gives 0', () {
+      expect(totalUnread(const [], 'a'), 0);
+      expect(totalUnread([conv('1', const {})], 'a'), 0);
+    });
+  });
 }

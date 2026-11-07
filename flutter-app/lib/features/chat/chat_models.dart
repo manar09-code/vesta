@@ -122,6 +122,11 @@ List<Conversation> sortNewestFirst(Iterable<Conversation> conversations) {
   return list;
 }
 
+/// Unread messages of [uid] over all the conversations (for the badge on the
+/// chat icon).
+int totalUnread(Iterable<Conversation> conversations, String uid) =>
+    conversations.fold(0, (total, c) => total + c.unreadFor(uid));
+
 /// One message of a conversation.
 class ChatMessage {
   const ChatMessage({
