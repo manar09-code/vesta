@@ -131,6 +131,11 @@
   "settingsPrivacy": "Confidentialité et suppression du compte",
   "settingsContact": "Nous contacter",
   "settingsDeleteAccount": "Supprimer mon compte",
+  "deleteAccountTitle": "Supprimer votre compte ?",
+  "deleteAccountBody": "Cela supprime définitivement votre compte, votre profil, vos annonces et leurs photos, et vos favoris. Les messages que vous avez envoyés restent dans la conversation de l'autre personne. Cette action est irréversible.",
+  "deleteAccountPassword": "Saisissez votre mot de passe pour confirmer",
+  "deleteAccountConfirm": "Supprimer",
+  "deleteAccountDone": "Votre compte a été supprimé.",
   "settingsLinkError": "Impossible d’ouvrir le lien",
   "authForgotPassword": "Mot de passe oublié ?",
   "forgotPasswordTitle": "Réinitialiser le mot de passe",
@@ -142,6 +147,7 @@
   "verifyBannerResend": "Renvoyer",
   "verifyBannerSent": "E-mail de vérification envoyé",
   "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes",
+<<<<<<< HEAD
   "contactCall": "Appeler",
   "contactWhatsapp": "WhatsApp",
   "contactSignInToSee": "Connectez-vous pour voir le contact",
@@ -172,3 +178,25 @@
     }
   }
 }
+=======
+    "searchHint": "Rechercher par ville",
+  "searchNoResults": "Aucune annonce ne correspond à votre recherche",
+    "searchFilters": "Filtres",
+  "searchPriceMin": "Prix min",
+  "searchPriceMax": "Prix max",
+  "searchOfferType": "Type d'offre",
+  "searchPropertyType": "Type de bien",
+  "searchAll": "Tous",
+  "searchTypeSale": "Vente",
+  "searchTypeRent": "Location",
+    "searchTypeStay": "Séjour",
+  "searchApply": "Appliquer",
+  "searchReset": "Réinitialiser",
+  "searchPropApartment": "Appartement",
+  "searchPropHouse": "Maison",
+  "searchPropVilla": "Villa",
+  "searchPropStudio": "Studio",
+  "searchPropRiad": "Riad",
+  "searchPropGuestHouse": "Maison d'hôtes"
+}
+>>>>>>> origin/develop

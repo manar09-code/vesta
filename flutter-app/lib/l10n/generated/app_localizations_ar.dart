@@ -406,6 +406,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsDeleteAccount => 'فسخ حسابي';
 
   @override
+  String get deleteAccountTitle => 'تمسح حسابك؟';
+
+  @override
+  String get deleteAccountBody =>
+      'هذا يمسح نهائيا حسابك وملفك الشخصي وإعلاناتك وصورها والمفضلة. الرسائل اللي بعثتها تبقى في محادثة الطرف الآخر. ما ينجمش يتراجع عليه.';
+
+  @override
+  String get deleteAccountPassword => 'اكتب كلمة السر باش تأكد';
+
+  @override
+  String get deleteAccountConfirm => 'امسح';
+
+  @override
+  String get deleteAccountDone => 'تم مسح حسابك.';
+
+  @override
   String get settingsLinkError => 'ما نجمناش نحلو الرابط';
 
   @override
@@ -441,6 +457,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
 
   @override
+<<<<<<< HEAD
   String get contactCall => 'اتصل';
 
   @override
@@ -469,4 +486,61 @@ class AppLocalizationsAr extends AppLocalizations {
   String contactMessageStay(String title) {
     return 'عسلامة، مهتم بالإقامة في $title على Vesta';
   }
+=======
+  String get searchHint => 'ابحث حسب المدينة';
+
+  @override
+  String get searchNoResults => 'لا توجد إعلانات مطابقة لبحثك';
+
+  @override
+  String get searchFilters => 'تصفية';
+
+  @override
+  String get searchPriceMin => 'السعر الأدنى';
+
+  @override
+  String get searchPriceMax => 'السعر الأقصى';
+
+  @override
+  String get searchOfferType => 'نوع العرض';
+
+  @override
+  String get searchPropertyType => 'نوع العقار';
+
+  @override
+  String get searchAll => 'الكل';
+
+  @override
+  String get searchTypeSale => 'بيع';
+
+  @override
+  String get searchTypeRent => 'كراء';
+
+  @override
+  String get searchTypeStay => 'إقامة';
+
+  @override
+  String get searchApply => 'تطبيق';
+
+  @override
+  String get searchReset => 'إعادة تعيين';
+
+  @override
+  String get searchPropApartment => 'شقة';
+
+  @override
+  String get searchPropHouse => 'منزل';
+
+  @override
+  String get searchPropVilla => 'فيلا';
+
+  @override
+  String get searchPropStudio => 'ستوديو';
+
+  @override
+  String get searchPropRiad => 'رياض';
+
+  @override
+  String get searchPropGuestHouse => 'نزل';
+>>>>>>> origin/develop
 }

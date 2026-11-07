@@ -131,6 +131,11 @@
   "settingsPrivacy": "Privacy and account deletion",
   "settingsContact": "Contact us",
   "settingsDeleteAccount": "Delete my account",
+  "deleteAccountTitle": "Delete your account?",
+  "deleteAccountBody": "This permanently deletes your account, your profile, your listings and their photos, and your favorites. Messages you sent stay in the other person's conversation. This cannot be undone.",
+  "deleteAccountPassword": "Enter your password to confirm",
+  "deleteAccountConfirm": "Delete",
+  "deleteAccountDone": "Your account has been deleted.",
   "settingsLinkError": "Could not open the link",
   "authForgotPassword": "Forgot password?",
   "forgotPasswordTitle": "Reset your password",
@@ -142,6 +147,7 @@
   "verifyBannerResend": "Send again",
   "verifyBannerSent": "Verification email sent",
   "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes",
+<<<<<<< HEAD
   "contactCall": "Call",
   "contactWhatsapp": "WhatsApp",
   "contactSignInToSee": "Sign in to see the contact",
@@ -172,3 +178,25 @@
     }
   }
 }
+=======
+    "searchHint": "Search by city",
+  "searchNoResults": "No listings match your search",
+    "searchFilters": "Filters",
+  "searchPriceMin": "Min price",
+  "searchPriceMax": "Max price",
+  "searchOfferType": "Offer type",
+  "searchPropertyType": "Property type",
+  "searchAll": "All",
+  "searchTypeSale": "Sale",
+  "searchTypeRent": "Rent",
+    "searchTypeStay": "Stay",
+  "searchApply": "Apply",
+  "searchReset": "Reset",
+  "searchPropApartment": "Apartment",
+  "searchPropHouse": "House",
+  "searchPropVilla": "Villa",
+  "searchPropStudio": "Studio",
+  "searchPropRiad": "Riad",
+  "searchPropGuestHouse": "Guest house"
+}
+>>>>>>> origin/develop

@@ -9,8 +9,10 @@ import '../../core/config/locale_provider.dart';
 import '../../core/router/app_router.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../auth/auth_controller.dart';
+import '../auth/delete_account_dialog.dart';
 
-/// Settings opened from the Profile tab (VST-95): language, about, sign out.
+/// Settings opened from the Profile tab (VST-95): language, about, sign out,
+/// delete account (VST-84).
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
@@ -37,6 +39,19 @@ class SettingsScreen extends ConsumerWidget {
     ref.read(authControllerProvider.notifier).signOut();
     // Back to the guest home: nothing of the previous user stays on screen.
     context.go(AppRoutes.explore);
+  }
+
+  Future<void> _deleteAccount(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final router = GoRouter.of(context);
+
+    final deleted = await showDeleteAccountDialog(context);
+    if (!deleted) return;
+
+    // The account is gone: back to the guest home.
+    router.go(AppRoutes.explore);
+    messenger.showSnackBar(SnackBar(content: Text(l10n.deleteAccountDone)));
   }
 
   @override
@@ -99,15 +114,13 @@ class SettingsScreen extends ConsumerWidget {
         ),
         if (signedIn) ...[
           const Divider(),
-          // The deletion itself is handled by the Play Store rules ticket
-          // (VST-84): for now this opens the page that explains how to ask.
           ListTile(
             leading: Icon(Icons.delete_outline, color: theme.colorScheme.error),
             title: Text(
               l10n.settingsDeleteAccount,
               style: TextStyle(color: theme.colorScheme.error),
             ),
-            onTap: () => _open(context, privacyUri),
+            onTap: () => _deleteAccount(context),
           ),
           ListTile(
             leading: const Icon(Icons.logout),

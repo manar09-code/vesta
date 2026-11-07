@@ -27,4 +27,22 @@ export default {
   authErrorTooManyRequests:
     'Too many attempts, please try again in a few minutes',
   authErrorUnknown: 'Something went wrong, please try again',
+  favoritesEmptyTitle: 'No favorites yet',
+  favoritesEmptyBody: 'Tap the heart on a listing to save it here.',
+  favoritesUnavailable: 'This listing is no longer available',
+  favoritesRemove: 'Remove',
+  favoritesRetry: 'Try again',
+  favoritesErrorNoNetwork: 'No connection. Check your internet and try again.',
+  favoritesErrorPermission: 'You are not allowed to do this.',
+  favoritesErrorNotSignedIn: 'Sign in to save favorites.',
+  favoritesErrorUnknown: 'Something went wrong. Please try again.',
+  tabFavorites: 'Favorites',
+  favoritesFilterAll: 'All',
+  favoritesFilterBuy: 'Buy',
+  favoritesFilterRent: 'Rent',
+  favoritesFilterStay: 'Stay',
+  favoritesFilterEmpty: 'No favorites in this category',
+  signInToContinueTitle: 'Sign in to continue',
+  signInToContinueBody:
+    'Sign in or create an account to save favorites, message owners and post listings.',
 };
