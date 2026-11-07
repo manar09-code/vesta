@@ -56,6 +56,9 @@ class AuthController extends Notifier<AuthFormState> {
 
   Future<void> signOut() => _repository.signOut();
 
+  Future<bool> deleteAccount(String password) =>
+      _run(() => _repository.deleteAccount(password));
+
   Future<bool> _run(Future<void> Function() action) async {
     if (state.isLoading) return false; // no double submit
     state = const AuthFormState(isLoading: true);

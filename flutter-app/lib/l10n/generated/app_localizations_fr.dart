@@ -426,4 +426,109 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get languageAr => 'العربية';
+
+  @override
+  String get listingDetailNotFound => 'Annonce introuvable';
+
+  @override
+  String get listingDetailLoadError => 'Impossible de charger cette annonce.';
+
+  @override
+  String get listingDetailRetry => 'Réessayer';
+
+  @override
+  String get listingDetailNoPhoto => 'Aucune photo';
+
+  @override
+  String get listingDetailBedrooms => 'Chambres';
+
+  @override
+  String get listingDetailBathrooms => 'Salles de bain';
+
+  @override
+  String get listingDetailArea => 'Surface (m²)';
+
+  @override
+  String get listingDetailPerNight => '/ nuit';
+
+  @override
+  String get listingDetailPerMonth => '/ mois';
+
+  @override
+  String get listingDetailPerYear => '/ an';
+
+  @override
+  String get deleteAccountTitle => 'Supprimer votre compte ?';
+
+  @override
+  String get deleteAccountBody =>
+      'Cela supprime définitivement votre compte, votre profil, vos annonces et leurs photos, et vos favoris. Les messages que vous avez envoyés restent dans la conversation de l\'autre personne. Cette action est irréversible.';
+
+  @override
+  String get deleteAccountPassword =>
+      'Saisissez votre mot de passe pour confirmer';
+
+  @override
+  String get deleteAccountConfirm => 'Supprimer';
+
+  @override
+  String get deleteAccountDone => 'Votre compte a été supprimé.';
+
+  @override
+  String get searchHint => 'Rechercher par ville';
+
+  @override
+  String get searchNoResults =>
+      'Aucune annonce ne correspond à votre recherche';
+
+  @override
+  String get searchFilters => 'Filtres';
+
+  @override
+  String get searchPriceMin => 'Prix min';
+
+  @override
+  String get searchPriceMax => 'Prix max';
+
+  @override
+  String get searchOfferType => 'Type d\'offre';
+
+  @override
+  String get searchPropertyType => 'Type de bien';
+
+  @override
+  String get searchAll => 'Tous';
+
+  @override
+  String get searchTypeSale => 'Vente';
+
+  @override
+  String get searchTypeRent => 'Location';
+
+  @override
+  String get searchTypeStay => 'Séjour';
+
+  @override
+  String get searchApply => 'Appliquer';
+
+  @override
+  String get searchReset => 'Réinitialiser';
+
+  @override
+  String get searchPropApartment => 'Appartement';
+
+  @override
+  String get searchPropHouse => 'Maison';
+
+  @override
+  String get searchPropVilla => 'Villa';
+
+  @override
+  String get searchPropStudio => 'Studio';
+
+  @override
+  String get searchPropRiad => 'Riad';
+
+  @override
+  String get searchPropGuestHouse => 'Maison d\'hôtes';
 }

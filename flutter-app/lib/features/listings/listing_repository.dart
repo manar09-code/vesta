@@ -212,6 +212,36 @@ class ListingRepository {
     }
   }
 
+  /// Reads one listing. Returns null when it does not exist.
+  Future<Listing?> getListing(String id) async {
+    try {
+      final doc = await _db.collection('listings').doc(id).get();
+      if (!doc.exists) return null;
+      return Listing.fromDoc(doc);
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Reads the photos of a listing as base64 strings, sorted by id
+  /// (p0 first = cover). Ids can have gaps, so we never use the position.
+  Future<List<String>> getPhotos(String id) async {
+    try {
+      final snap = await _db
+          .collection('listings')
+          .doc(id)
+          .collection('photos')
+          .get();
+      final docs = snap.docs.toList()..sort((a, b) => a.id.compareTo(b.id));
+      return [
+        for (final doc in docs)
+          if (doc.data()['base64'] is String) doc.data()['base64'] as String,
+      ];
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
   ListingError _mapCode(String code) {
     switch (code) {
       case 'unavailable':

@@ -133,3 +133,37 @@ home.price.example,Example price: {price},Exemple de prix : {price},مثال ع�
 language.en,English,English,English,Settings,same in all languages; React Native only so far
 language.fr,Français,Français,Français,Settings,same in all languages; React Native only so far
 language.ar,العربية,العربية,العربية,Settings,same in all languages; React Native only so far
+listing.detail.not.found,Listing not found,Annonce introuvable,الإعلان غير موجود,Listings,
+listing.detail.load.error,Could not load this listing.,Impossible de charger cette annonce.,تعذّر تحميل الإعلان.,Listings,
+listing.detail.retry,Try again,Réessayer,إعادة المحاولة,Listings,
+listing.detail.no.photo,No photo,Aucune photo,لا توجد صور,Listings,
+listing.detail.bedrooms,Bedrooms,Chambres,غرف النوم,Listings,
+listing.detail.bathrooms,Bathrooms,Salles de bain,الحمّامات,Listings,
+listing.detail.area,Area (m²),Surface (m²),المساحة (م²),Listings,
+listing.detail.per.night,/ night,/ nuit,/ ليلة,Listings,
+listing.detail.per.month,/ month,/ mois,/ شهر,Listings,
+listing.detail.per.year,/ year,/ an,/ سنة,Listings,
+delete.account.title,Delete your account?,Supprimer votre compte ?,تمسح حسابك؟,Delete,
+delete.account.body,"This permanently deletes your account, your profile, your listings and their photos, and your favorites. Messages you sent stay in the other person's conversation. This cannot be undone.","Cela supprime définitivement votre compte, votre profil, vos annonces et leurs photos, et vos favoris. Les messages que vous avez envoyés restent dans la conversation de l'autre personne. Cette action est irréversible.",هذا يمسح نهائيا حسابك وملفك الشخصي وإعلاناتك وصورها والمفضلة. الرسائل اللي بعثتها تبقى في محادثة الطرف الآخر. ما ينجمش يتراجع عليه.,Delete,
+delete.account.password,Enter your password to confirm,Saisissez votre mot de passe pour confirmer,اكتب كلمة السر باش تأكد,Delete,
+delete.account.confirm,Delete,Supprimer,امسح,Delete,
+delete.account.done,Your account has been deleted.,Votre compte a été supprimé.,تم مسح حسابك.,Delete,
+search.hint,Search by city,Rechercher par ville,ابحث حسب المدينة,Search,
+search.no.results,No listings match your search,Aucune annonce ne correspond à votre recherche,لا توجد إعلانات مطابقة لبحثك,Search,
+search.filters,Filters,Filtres,تصفية,Search,
+search.price.min,Min price,Prix min,السعر الأدنى,Search,
+search.price.max,Max price,Prix max,السعر الأقصى,Search,
+search.offer.type,Offer type,Type d'offre,نوع العرض,Search,
+search.property.type,Property type,Type de bien,نوع العقار,Search,
+search.all,All,Tous,الكل,Search,
+search.type.sale,Sale,Vente,بيع,Search,
+search.type.rent,Rent,Location,كراء,Search,
+search.type.stay,Stay,Séjour,إقامة,Search,
+search.apply,Apply,Appliquer,تطبيق,Search,
+search.reset,Reset,Réinitialiser,إعادة تعيين,Search,
+search.prop.apartment,Apartment,Appartement,شقة,Search,
+search.prop.house,House,Maison,منزل,Search,
+search.prop.villa,Villa,Villa,فيلا,Search,same in en and fr
+search.prop.studio,Studio,Studio,ستوديو,Search,same in en and fr
+search.prop.riad,Riad,Riad,رياض,Search,same in en and fr
+search.prop.guest.house,Guest house,Maison d'hôtes,نزل,Search,
