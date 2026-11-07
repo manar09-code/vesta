@@ -27,6 +27,16 @@ final conversationsProvider =
   return ref.watch(chatRepositoryProvider).watchConversations();
 });
 
+/// Number of unread messages, for the badge on the chat icon. 0 for a guest
+/// or while the list is loading. It reuses [conversationsProvider], so no
+/// second Firestore listener is opened.
+final unreadTotalProvider = Provider<int>((ref) {
+  final uid = ref.watch(myUidProvider);
+  if (uid == null) return 0;
+  final conversations = ref.watch(conversationsProvider).value;
+  return conversations == null ? 0 : totalUnread(conversations, uid);
+});
+
 /// Public name of a user, for the conversation list and the chat header.
 final userNameProvider =
     FutureProvider.autoDispose.family<String?, String>((ref, uid) {
