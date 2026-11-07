@@ -177,6 +177,10 @@ class _MyListings extends ConsumerWidget {
             for (final listing in items)
               Card(
                 child: ListTile(
+                  // Opens the details, like any listing of the Explore tab.
+                  onTap: () => context.push(
+                    AppRoutes.listingDetailPath(listing.id),
+                  ),
                   title: Text(listing.title),
                   subtitle: Text(
                     '${listing.city} · ${listing.price} ${listing.currency}'
