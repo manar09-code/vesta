@@ -2,9 +2,14 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/config/app_config.dart';
+import '../../core/router/app_router.dart';
 import '../../l10n/generated/app_localizations.dart';
+import '../auth/require_sign_in.dart';
+import '../chat/chat_controller.dart';
+import '../chat/chat_repository.dart';
 import 'listing.dart';
 import 'listing_controller.dart';
 import 'listing_labels.dart';
@@ -72,16 +77,40 @@ class _Fact {
   final String value;
 }
 
-class _DetailBody extends StatelessWidget {
+class _DetailBody extends ConsumerWidget {
   const _DetailBody({required this.data});
 
   final ListingDetail data;
 
+  /// "Contact owner" (VST-44): a guest signs in first, then the chat of this
+  /// listing opens. The owner never talks to himself.
+  Future<void> _contactOwner(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    if (!await requireSignIn(context, ref)) return;
+    if (!context.mounted) return;
+    try {
+      final id =
+          ref.read(chatRepositoryProvider).conversationIdForListing(data.listing);
+      context.push(AppRoutes.chatRoomPath(id));
+    } on ChatFailure catch (e) {
+      messenger.showSnackBar(SnackBar(
+        content: Text(
+          e.error == ChatError.ownListing
+              ? l10n.chatOwnListing
+              : l10n.chatContactError,
+        ),
+      ));
+    }
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final listing = data.listing;
+    final myUid = ref.watch(myUidProvider);
+    final isOwner = myUid != null && myUid == listing.ownerId;
 
     // "At a glance": only the facts the owner filled in.
     final facts = <_Fact>[
@@ -147,6 +176,14 @@ class _DetailBody extends StatelessWidget {
               ),
               // SLOT: Call and WhatsApp buttons under the price (VST-79,
               // Mahmoud). A guest must sign in first (requireSignIn).
+              if (!isOwner) ...[
+                const SizedBox(height: 12),
+                FilledButton.icon(
+                  onPressed: () => _contactOwner(context, ref),
+                  icon: const Icon(Icons.chat_bubble_outline),
+                  label: Text(l10n.chatContactOwner),
+                ),
+              ],
               const SizedBox(height: 8),
               Text(listing.title, style: theme.textTheme.titleLarge),
               const SizedBox(height: 4),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutterapp/features/chat/chat_controller.dart';
 import 'package:flutterapp/features/listings/listing.dart';
 import 'package:flutterapp/features/listings/listing_controller.dart';
 import 'package:flutterapp/features/listings/listing_detail_screen.dart';
@@ -58,6 +59,8 @@ Future<void> _pump(
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
+        // A guest: the screen reads the signed-in user (Contact owner, VST-44).
+        myUidProvider.overrideWithValue(null),
         listingDetailProvider('l1').overrideWith(
           (ref) async => ListingDetail(listing: listing, photos: const []),
         ),
