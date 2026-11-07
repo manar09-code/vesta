@@ -148,6 +148,60 @@ abstract class AppLocalizations {
   /// **'Messages'**
   String get chatTitle;
 
+  /// No description provided for @chatEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations yet'**
+  String get chatEmptyTitle;
+
+  /// No description provided for @chatEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a listing and tap Contact owner to start.'**
+  String get chatEmptyBody;
+
+  /// No description provided for @chatContactOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact owner'**
+  String get chatContactOwner;
+
+  /// No description provided for @chatOwnListing.
+  ///
+  /// In en, this message translates to:
+  /// **'This is your own listing'**
+  String get chatOwnListing;
+
+  /// No description provided for @chatContactError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the chat, try again'**
+  String get chatContactError;
+
+  /// No description provided for @chatUnknownUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Vesta user'**
+  String get chatUnknownUser;
+
+  /// No description provided for @chatLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load your messages'**
+  String get chatLoadError;
+
+  /// No description provided for @chatRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get chatRetry;
+
+  /// No description provided for @chatListingRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Listing no longer available'**
+  String get chatListingRemoved;
+
   /// No description provided for @loginTitle.
   ///
   /// In en, this message translates to:

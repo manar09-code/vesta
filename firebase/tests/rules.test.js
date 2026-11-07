@@ -6,7 +6,8 @@ import {
   assertFails,
 } from '@firebase/rules-unit-testing';
 import {
-  doc, getDoc, setDoc, updateDoc, deleteDoc, writeBatch,
+  doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, writeBatch,
+  collection, query, where,
 } from 'firebase/firestore';
 
 let env;
@@ -215,6 +216,64 @@ test('changer listingId a l update : refuse', async () => {
 });
 test('mettre a jour lastMessage : OK', async () => {
   await assertSucceeds(updateDoc(doc(as('bob'), 'conversations/l1_bob'), { lastMessage: 'salut' }));
+});
+
+// ---------- chat VST-44 : ecriture groupee message + conversation ----------
+// L app ecrit la conversation avec set(..., merge) : creation au premier message,
+// mise a jour ensuite. participantIds est toujours [acheteur, proprietaire].
+test('chat : 1er message, set merge cree la conversation (acheteur) : OK', async () => {
+  const db = as('carol');
+  const conv = doc(db, 'conversations/l1_carol');
+  const batch = writeBatch(db);
+  batch.set(conv, {
+    participantIds: ['carol', 'alice'], listingId: 'l1',
+    lastMessage: 'salut', lastMessageAt: new Date(), unread: { alice: 1 },
+  }, { merge: true });
+  batch.set(doc(db, 'conversations/l1_carol/messages/m1'),
+    { senderId: 'carol', text: 'salut', createdAt: new Date() });
+  await assertSucceeds(batch.commit());
+});
+test('chat : reponse du proprietaire, set merge avec le meme ordre : OK', async () => {
+  const db = as('alice');
+  const conv = doc(db, 'conversations/l1_bob');
+  const batch = writeBatch(db);
+  batch.set(conv, {
+    participantIds: ['bob', 'alice'], listingId: 'l1',
+    lastMessage: 'oui', lastMessageAt: new Date(), unread: { bob: 1 },
+  }, { merge: true });
+  batch.set(doc(db, 'conversations/l1_bob/messages/m2'),
+    { senderId: 'alice', text: 'oui', createdAt: new Date() });
+  await assertSucceeds(batch.commit());
+});
+test('chat : set merge qui change l ordre de participantIds : refuse', async () => {
+  await assertFails(setDoc(doc(as('alice'), 'conversations/l1_bob'), {
+    participantIds: ['alice', 'bob'], listingId: 'l1',
+    lastMessage: 'oui', lastMessageAt: new Date(),
+  }, { merge: true }));
+});
+test('chat : compteur unread mis a jour par un participant : OK', async () => {
+  await assertSucceeds(updateDoc(doc(as('bob'), 'conversations/l1_bob'), { 'unread.alice': 1 }));
+});
+test('chat : un non-participant ne peut pas modifier la conversation', async () => {
+  await assertFails(updateDoc(doc(as('carol'), 'conversations/l1_bob'), { 'unread.alice': 0 }));
+});
+test('chat : un non-participant ne peut pas lister les conversations des autres', async () => {
+  await assertFails(getDocs(query(collection(as('carol'), 'conversations'),
+    where('participantIds', 'array-contains', 'bob'))));
+});
+test('chat : un participant liste ses conversations (array-contains) : OK', async () => {
+  await assertSucceeds(getDocs(query(collection(as('bob'), 'conversations'),
+    where('participantIds', 'array-contains', 'bob'))));
+});
+test('chat : message envoye sans conversation valide (non-participant) : refuse', async () => {
+  const db = as('carol');
+  const batch = writeBatch(db);
+  batch.set(doc(db, 'conversations/l1_bob'), {
+    participantIds: ['bob', 'alice'], listingId: 'l1', lastMessage: 'x', lastMessageAt: new Date(),
+  }, { merge: true });
+  batch.set(doc(db, 'conversations/l1_bob/messages/m3'),
+    { senderId: 'carol', text: 'x', createdAt: new Date() });
+  await assertFails(batch.commit());
 });
 
 // ---------- messages ----------
