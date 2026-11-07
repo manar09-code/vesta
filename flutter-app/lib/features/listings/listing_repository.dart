@@ -171,6 +171,26 @@ class ListingRepository {
     }
   }
 
+  /// Reads the private contact of a listing (contact/info).
+  /// Call it only for a signed-in user: guests must not even try (rules).
+  /// Returns null when the owner gave no number.
+  Future<({String phone, bool whatsapp})?> getContact(String listingId) async {
+    try {
+      final snap = await _db
+          .collection('listings')
+          .doc(listingId)
+          .collection('contact')
+          .doc('info')
+          .get();
+      final data = snap.data();
+      final phone = data?['contactPhone'] as String?;
+      if (phone == null) return null;
+      return (phone: phone, whatsapp: data?['whatsappEnabled'] == true);
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
   /// Reads listings by id, in the same order as [ids].
   /// An entry is null when the listing no longer exists (deleted by its
   /// owner) or cannot be read (for example hidden): the caller skips it

@@ -37,6 +37,8 @@
   "publishFieldDescription": "Description",
   "publishFieldPrice": "Price (TND)",
   "publishFieldCity": "City",
+  "publishFieldPhone": "Phone",
+  "publishWhatsapp": "Available on WhatsApp",
   "publishFieldBedrooms": "Bedrooms (optional)",
   "publishFieldBathrooms": "Bathrooms (optional)",
   "publishFieldArea": "Area in m² (optional)",
@@ -62,6 +64,7 @@
   "listingErrorDescriptionRequired": "Enter a description",
   "listingErrorPriceInvalid": "Enter a price between 1 and 50,000,000",
   "listingErrorCityRequired": "Enter a city",
+  "listingErrorPhoneInvalid": "Enter a valid Tunisian phone number",
   "listingErrorRentPeriodRequired": "Choose a rent period",
   "listingErrorNumberInvalid": "Enter a valid number",
   "listingErrorNotSignedIn": "Please sign in first",
@@ -138,5 +141,34 @@
   "verifyBannerText": "Please verify your email address.",
   "verifyBannerResend": "Send again",
   "verifyBannerSent": "Verification email sent",
-  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes"
+  "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes",
+  "contactCall": "Call",
+  "contactWhatsapp": "WhatsApp",
+  "contactSignInToSee": "Sign in to see the contact",
+  "contactNoWhatsapp": "WhatsApp is not installed on this phone",
+  "contactCallError": "Could not open the phone app",
+  "contactMessageSale": "Hello, I am interested in buying {title} on Vesta",
+  "@contactMessageSale": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageRent": "Hello, I am interested in renting {title} on Vesta",
+  "@contactMessageRent": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageStay": "Hello, I am interested in staying at {title} on Vesta",
+  "@contactMessageStay": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  }
 }

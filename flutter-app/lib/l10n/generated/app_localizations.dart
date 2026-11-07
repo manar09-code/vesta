@@ -322,6 +322,18 @@ abstract class AppLocalizations {
   /// **'City'**
   String get publishFieldCity;
 
+  /// No description provided for @publishFieldPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get publishFieldPhone;
+
+  /// No description provided for @publishWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'Available on WhatsApp'**
+  String get publishWhatsapp;
+
   /// No description provided for @publishFieldBedrooms.
   ///
   /// In en, this message translates to:
@@ -471,6 +483,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter a city'**
   String get listingErrorCityRequired;
+
+  /// No description provided for @listingErrorPhoneInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid Tunisian phone number'**
+  String get listingErrorPhoneInvalid;
 
   /// No description provided for @listingErrorRentPeriodRequired.
   ///
@@ -933,6 +951,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Too many attempts, please try again in a few minutes'**
   String get authErrorTooManyRequests;
+
+  /// No description provided for @contactCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get contactCall;
+
+  /// No description provided for @contactWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get contactWhatsapp;
+
+  /// No description provided for @contactSignInToSee.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to see the contact'**
+  String get contactSignInToSee;
+
+  /// No description provided for @contactNoWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp is not installed on this phone'**
+  String get contactNoWhatsapp;
+
+  /// No description provided for @contactCallError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the phone app'**
+  String get contactCallError;
+
+  /// No description provided for @contactMessageSale.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, I am interested in buying {title} on Vesta'**
+  String contactMessageSale(String title);
+
+  /// No description provided for @contactMessageRent.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, I am interested in renting {title} on Vesta'**
+  String contactMessageRent(String title);
+
+  /// No description provided for @contactMessageStay.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, I am interested in staying at {title} on Vesta'**
+  String contactMessageStay(String title);
 }
 
 class _AppLocalizationsDelegate

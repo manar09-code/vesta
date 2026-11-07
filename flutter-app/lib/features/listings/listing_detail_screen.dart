@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/config/app_config.dart';
 import '../../l10n/generated/app_localizations.dart';
+import 'contact_buttons.dart';
 import 'listing_controller.dart';
 import 'listing.dart';
 /// Details of one listing (VST-73, part 1): photos, price, city, facts and
@@ -105,8 +106,9 @@ class _DetailBody extends StatelessWidget {
                   // SLOT: favorite heart (VST-46, Mahmoud)
                 ],
               ),
-              // SLOT: Call and WhatsApp buttons under the price (VST-79,
-              // Mahmoud). A guest must sign in first (requireSignIn).
+              // Call and WhatsApp buttons under the price (VST-79). A guest
+              // sees "Sign in to see the contact" (requireSignIn).
+              ContactButtons(listing: listing),
               const SizedBox(height: 8),
               Text(listing.title, style: theme.textTheme.titleLarge),
               const SizedBox(height: 4),

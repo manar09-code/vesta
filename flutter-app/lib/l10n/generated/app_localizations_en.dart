@@ -123,6 +123,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get publishFieldCity => 'City';
 
   @override
+  String get publishFieldPhone => 'Phone';
+
+  @override
+  String get publishWhatsapp => 'Available on WhatsApp';
+
+  @override
   String get publishFieldBedrooms => 'Bedrooms (optional)';
 
   @override
@@ -197,6 +203,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get listingErrorCityRequired => 'Enter a city';
+
+  @override
+  String get listingErrorPhoneInvalid => 'Enter a valid Tunisian phone number';
 
   @override
   String get listingErrorRentPeriodRequired => 'Choose a rent period';
@@ -435,4 +444,34 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Too many attempts, please try again in a few minutes';
+
+  @override
+  String get contactCall => 'Call';
+
+  @override
+  String get contactWhatsapp => 'WhatsApp';
+
+  @override
+  String get contactSignInToSee => 'Sign in to see the contact';
+
+  @override
+  String get contactNoWhatsapp => 'WhatsApp is not installed on this phone';
+
+  @override
+  String get contactCallError => 'Could not open the phone app';
+
+  @override
+  String contactMessageSale(String title) {
+    return 'Hello, I am interested in buying $title on Vesta';
+  }
+
+  @override
+  String contactMessageRent(String title) {
+    return 'Hello, I am interested in renting $title on Vesta';
+  }
+
+  @override
+  String contactMessageStay(String title) {
+    return 'Hello, I am interested in staying at $title on Vesta';
+  }
 }
