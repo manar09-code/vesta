@@ -413,6 +413,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsDeleteAccount => 'Delete my account';
 
   @override
+  String get deleteAccountTitle => 'Delete your account?';
+
+  @override
+  String get deleteAccountBody =>
+      'This permanently deletes your account, your profile, your listings and their photos, and your favorites. Messages you sent stay in the other person\'s conversation. This cannot be undone.';
+
+  @override
+  String get deleteAccountPassword => 'Enter your password to confirm';
+
+  @override
+  String get deleteAccountConfirm => 'Delete';
+
+  @override
+  String get deleteAccountDone => 'Your account has been deleted.';
+
+  @override
   String get settingsLinkError => 'Could not open the link';
 
   @override
@@ -519,4 +535,61 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ruleQuietHours => 'Quiet hours';
+
+  @override
+  String get searchHint => 'Search by city';
+
+  @override
+  String get searchNoResults => 'No listings match your search';
+
+  @override
+  String get searchFilters => 'Filters';
+
+  @override
+  String get searchPriceMin => 'Min price';
+
+  @override
+  String get searchPriceMax => 'Max price';
+
+  @override
+  String get searchOfferType => 'Offer type';
+
+  @override
+  String get searchPropertyType => 'Property type';
+
+  @override
+  String get searchAll => 'All';
+
+  @override
+  String get searchTypeSale => 'Sale';
+
+  @override
+  String get searchTypeRent => 'Rent';
+
+  @override
+  String get searchTypeStay => 'Stay';
+
+  @override
+  String get searchApply => 'Apply';
+
+  @override
+  String get searchReset => 'Reset';
+
+  @override
+  String get searchPropApartment => 'Apartment';
+
+  @override
+  String get searchPropHouse => 'House';
+
+  @override
+  String get searchPropVilla => 'Villa';
+
+  @override
+  String get searchPropStudio => 'Studio';
+
+  @override
+  String get searchPropRiad => 'Riad';
+
+  @override
+  String get searchPropGuestHouse => 'Guest house';
 }

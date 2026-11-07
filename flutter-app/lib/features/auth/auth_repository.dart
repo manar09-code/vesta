@@ -94,6 +94,64 @@ class AuthRepository {
   }
 
   Future<void> signOut() => _auth.signOut();
+    /// Deletes the account of the signed-in user and its data (VST-84).
+  ///
+  /// Order: ask the password again (Firebase needs a recent sign-in), then
+  /// the listings (photos + contact + listing in one batch each), the
+  /// favorites, the private contact and the profile, and the Auth user
+  /// LAST: once it is gone the rules refuse every other delete.
+  /// Safe to retry: deleting what is already gone is not an error.
+  /// Conversations stay for the other person (the rules forbid deleting them).
+  /// TODO(VST-84): add blocked users and reports when they exist.
+  Future<void> deleteAccount(String password) async {
+    final user = _auth.currentUser;
+    final email = user?.email;
+    if (user == null || email == null) {
+      throw const AuthFailure(AuthError.unknown);
+    }
+    try {
+      await user.reauthenticateWithCredential(
+        EmailAuthProvider.credential(email: email, password: password),
+      );
+      final uid = user.uid;
+
+      final listings = await _db
+          .collection('listings')
+          .where('ownerId', isEqualTo: uid)
+          .get();
+      for (final listing in listings.docs) {
+        final batch = _db.batch();
+        for (var i = 0; i < 5; i++) {
+          batch.delete(listing.reference.collection('photos').doc('p$i'));
+        }
+        batch.delete(listing.reference.collection('contact').doc('info'));
+        batch.delete(listing.reference);
+        await batch.commit();
+      }
+
+      final favorites = await _db
+          .collection('favorites')
+          .where('userId', isEqualTo: uid)
+          .get();
+      for (final favorite in favorites.docs) {
+        await favorite.reference.delete();
+      }
+
+      final userRef = _db.collection('users').doc(uid);
+      final profileBatch = _db.batch();
+      profileBatch.delete(userRef.collection('private').doc('contact'));
+      profileBatch.delete(userRef);
+      await profileBatch.commit();
+
+      await user.delete();
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(_mapAuthCode(e.code));
+    } on FirebaseException catch (e) {
+      throw AuthFailure(
+        e.code == 'unavailable' ? AuthError.noNetwork : AuthError.unknown,
+      );
+    }
+  }
 
   /// Sends the verification mail to the signed-in user.
   Future<void> sendEmailVerification() async {
