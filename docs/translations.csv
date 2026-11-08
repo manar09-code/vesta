@@ -198,7 +198,7 @@ listing.error.guests.invalid,Enter a number of guests between 1 and 30,Indiquez 
 listing.error.rooms.invalid,Enter a number between 0 and 20,Indiquez un nombre entre 0 et 20,أدخل رقمًا بين 0 و20,Listing details,
 publish.field.guests,Maximum guests (optional),Nombre maximum d'invités (optionnel),الحد الأقصى للضيوف (اختياري),Publish,
 publish.amenities.title,Amenities,Équipements,التجهيزات,Publish,
-publish.amenities.counter,{count} / 10,{count} / 10,{count} / 10,Publish,same in all languages
+publish.amenities.counter,{count:int} / 10,{count:int} / 10,{count:int} / 10,Publish,same in all languages
 publish.check.in,Check-in time,Heure d'arrivée,وقت الوصول,Publish,
 publish.check.out,Check-out time,Heure de départ,وقت المغادرة,Publish,
 publish.time.not.set,Not set,Non défini,غير محدد,Publish,

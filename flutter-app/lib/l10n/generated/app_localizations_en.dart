@@ -22,33 +22,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tabMap => 'Map';
 
   @override
-  String get mapMyLocation => 'My location';
-
-  @override
-  String get mapLocationDenied =>
-      'Location permission denied. The map still works.';
-
-  @override
-  String get mapLocationDeniedForever =>
-      'Location is blocked for Vesta. You can enable it in the app settings.';
-
-  @override
-  String get mapLocationServiceOff =>
-      'Turn on location (GPS) on your phone to see where you are.';
-
-  @override
-  String get mapLocationError => 'Could not find your position. Try again.';
-
-  @override
-  String get mapOpenSettings => 'Settings';
-
-  @override
-  String get mapViewDetails => 'View details';
-
-  @override
-  String get mapNoListings => 'No listing with a location yet';
-
-  @override
   String get tabFavorites => 'Favorites';
 
   @override
@@ -59,52 +32,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chatTitle => 'Messages';
-
-  @override
-  String get chatEmptyTitle => 'No conversations yet';
-
-  @override
-  String get chatEmptyBody => 'Open a listing and tap Contact owner to start.';
-
-  @override
-  String get chatContactOwner => 'Contact owner';
-
-  @override
-  String get chatOwnListing => 'This is your own listing';
-
-  @override
-  String get chatContactError => 'Could not open the chat, try again';
-
-  @override
-  String get chatUnknownUser => 'Vesta user';
-
-  @override
-  String get chatLoadError => 'Could not load your messages';
-
-  @override
-  String get chatRetry => 'Try again';
-
-  @override
-  String get chatListingRemoved => 'Listing no longer available';
-
-  @override
-  String get chatMessageHint => 'Write a message';
-
-  @override
-  String get chatSend => 'Send';
-
-  @override
-  String get chatSending => 'Sending…';
-
-  @override
-  String get chatNoMessages => 'No messages yet. Say hello!';
-
-  @override
-  String get chatSendError =>
-      'Not sent yet. It will be sent when you are back online.';
-
-  @override
-  String get chatSendFailed => 'Message not sent, try again';
 
   @override
   String get loginTitle => 'Sign in';
@@ -303,48 +230,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get photoErrorReadFailed => 'Could not read this photo';
 
   @override
-  String get listingDetailNotFound => 'Listing not found';
-
-  @override
-  String get listingDetailLoadError => 'Could not load this listing.';
-
-  @override
-  String get listingDetailRetry => 'Try again';
-
-  @override
-  String get listingDetailNoPhoto => 'No photo';
-
-  @override
-  String get listingDetailBedrooms => 'Bedrooms';
-
-  @override
-  String get listingDetailBathrooms => 'Bathrooms';
-
-  @override
-  String get listingDetailArea => 'Area (m²)';
-
-  @override
-  String get listingDetailPerNight => '/ night';
-
-  @override
-  String get listingDetailAtAGlance => 'At a glance';
-
-  @override
-  String get listingDetailGuests => 'Guests';
-
-  @override
-  String get listingDetailReadMore => 'Read more';
-
-  @override
-  String get listingDetailReadLess => 'Read less';
-
-  @override
-  String get listingDetailPerMonth => '/ month';
-
-  @override
-  String get listingDetailPerYear => '/ year';
-
-  @override
   String get profileEditTitle => 'Edit profile';
 
   @override
@@ -486,22 +371,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsDeleteAccount => 'Delete my account';
 
   @override
-  String get deleteAccountTitle => 'Delete your account?';
-
-  @override
-  String get deleteAccountBody =>
-      'This permanently deletes your account, your profile, your listings and their photos, and your favorites. Messages you sent stay in the other person\'s conversation. This cannot be undone.';
-
-  @override
-  String get deleteAccountPassword => 'Enter your password to confirm';
-
-  @override
-  String get deleteAccountConfirm => 'Delete';
-
-  @override
-  String get deleteAccountDone => 'Your account has been deleted.';
-
-  @override
   String get settingsLinkError => 'Could not open the link';
 
   @override
@@ -536,6 +405,211 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'Too many attempts, please try again in a few minutes';
+
+  @override
+  String get loading => 'Loading…';
+
+  @override
+  String homePriceExample(String price) {
+    return 'Example price: $price';
+  }
+
+  @override
+  String get languageEn => 'English';
+
+  @override
+  String get languageFr => 'Français';
+
+  @override
+  String get languageAr => 'العربية';
+
+  @override
+  String get listingDetailNotFound => 'Listing not found';
+
+  @override
+  String get listingDetailLoadError => 'Could not load this listing.';
+
+  @override
+  String get listingDetailRetry => 'Try again';
+
+  @override
+  String get listingDetailNoPhoto => 'No photo';
+
+  @override
+  String get listingDetailBedrooms => 'Bedrooms';
+
+  @override
+  String get listingDetailBathrooms => 'Bathrooms';
+
+  @override
+  String get listingDetailArea => 'Area (m²)';
+
+  @override
+  String get listingDetailPerNight => '/ night';
+
+  @override
+  String get listingDetailPerMonth => '/ month';
+
+  @override
+  String get listingDetailPerYear => '/ year';
+
+  @override
+  String get deleteAccountTitle => 'Delete your account?';
+
+  @override
+  String get deleteAccountBody =>
+      'This permanently deletes your account, your profile, your listings and their photos, and your favorites. Messages you sent stay in the other person\'s conversation. This cannot be undone.';
+
+  @override
+  String get deleteAccountPassword => 'Enter your password to confirm';
+
+  @override
+  String get deleteAccountConfirm => 'Delete';
+
+  @override
+  String get deleteAccountDone => 'Your account has been deleted.';
+
+  @override
+  String get searchHint => 'Search by city';
+
+  @override
+  String get searchNoResults => 'No listings match your search';
+
+  @override
+  String get searchFilters => 'Filters';
+
+  @override
+  String get searchPriceMin => 'Min price';
+
+  @override
+  String get searchPriceMax => 'Max price';
+
+  @override
+  String get searchOfferType => 'Offer type';
+
+  @override
+  String get searchPropertyType => 'Property type';
+
+  @override
+  String get searchAll => 'All';
+
+  @override
+  String get searchTypeSale => 'Sale';
+
+  @override
+  String get searchTypeRent => 'Rent';
+
+  @override
+  String get searchTypeStay => 'Stay';
+
+  @override
+  String get searchApply => 'Apply';
+
+  @override
+  String get searchReset => 'Reset';
+
+  @override
+  String get searchPropApartment => 'Apartment';
+
+  @override
+  String get searchPropHouse => 'House';
+
+  @override
+  String get searchPropVilla => 'Villa';
+
+  @override
+  String get searchPropStudio => 'Studio';
+
+  @override
+  String get searchPropRiad => 'Riad';
+
+  @override
+  String get searchPropGuestHouse => 'Guest house';
+
+  @override
+  String get mapMyLocation => 'My location';
+
+  @override
+  String get mapLocationDenied =>
+      'Location permission denied. The map still works.';
+
+  @override
+  String get mapLocationDeniedForever =>
+      'Location is blocked for Vesta. You can enable it in the app settings.';
+
+  @override
+  String get mapLocationServiceOff =>
+      'Turn on location (GPS) on your phone to see where you are.';
+
+  @override
+  String get mapLocationError => 'Could not find your position. Try again.';
+
+  @override
+  String get mapOpenSettings => 'Settings';
+
+  @override
+  String get mapViewDetails => 'View details';
+
+  @override
+  String get mapNoListings => 'No listing with a location yet';
+
+  @override
+  String get chatEmptyTitle => 'No conversations yet';
+
+  @override
+  String get chatEmptyBody => 'Open a listing and tap Contact owner to start.';
+
+  @override
+  String get chatContactOwner => 'Contact owner';
+
+  @override
+  String get chatOwnListing => 'This is your own listing';
+
+  @override
+  String get chatContactError => 'Could not open the chat, try again';
+
+  @override
+  String get chatUnknownUser => 'Vesta user';
+
+  @override
+  String get chatLoadError => 'Could not load your messages';
+
+  @override
+  String get chatRetry => 'Try again';
+
+  @override
+  String get chatListingRemoved => 'Listing no longer available';
+
+  @override
+  String get chatMessageHint => 'Write a message';
+
+  @override
+  String get chatSend => 'Send';
+
+  @override
+  String get chatSending => 'Sending…';
+
+  @override
+  String get chatNoMessages => 'No messages yet. Say hello!';
+
+  @override
+  String get chatSendError =>
+      'Not sent yet. It will be sent when you are back online.';
+
+  @override
+  String get chatSendFailed => 'Message not sent, try again';
+
+  @override
+  String get listingDetailAtAGlance => 'At a glance';
+
+  @override
+  String get listingDetailGuests => 'Guests';
+
+  @override
+  String get listingDetailReadMore => 'Read more';
+
+  @override
+  String get listingDetailReadLess => 'Read less';
 
   @override
   String get listingErrorGuestsInvalid =>
@@ -608,63 +682,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ruleQuietHours => 'Quiet hours';
-
-  @override
-  String get searchHint => 'Search by city';
-
-  @override
-  String get searchNoResults => 'No listings match your search';
-
-  @override
-  String get searchFilters => 'Filters';
-
-  @override
-  String get searchPriceMin => 'Min price';
-
-  @override
-  String get searchPriceMax => 'Max price';
-
-  @override
-  String get searchOfferType => 'Offer type';
-
-  @override
-  String get searchPropertyType => 'Property type';
-
-  @override
-  String get searchAll => 'All';
-
-  @override
-  String get searchTypeSale => 'Sale';
-
-  @override
-  String get searchTypeRent => 'Rent';
-
-  @override
-  String get searchTypeStay => 'Stay';
-
-  @override
-  String get searchApply => 'Apply';
-
-  @override
-  String get searchReset => 'Reset';
-
-  @override
-  String get searchPropApartment => 'Apartment';
-
-  @override
-  String get searchPropHouse => 'House';
-
-  @override
-  String get searchPropVilla => 'Villa';
-
-  @override
-  String get searchPropStudio => 'Studio';
-
-  @override
-  String get searchPropRiad => 'Riad';
-
-  @override
-  String get searchPropGuestHouse => 'Guest house';
 
   @override
   String get onboardingSkip => 'Skip';

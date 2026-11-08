@@ -210,7 +210,7 @@
   "@publishAmenitiesCounter": {
     "placeholders": {
       "count": {
-        "type": "String"
+        "type": "int"
       }
     }
   },
