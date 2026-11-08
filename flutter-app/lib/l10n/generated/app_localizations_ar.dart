@@ -60,6 +60,51 @@ class AppLocalizationsAr extends AppLocalizations {
   String get chatTitle => 'الرسائل';
 
   @override
+  String get chatEmptyTitle => 'ما عندكش محادثات توا';
+
+  @override
+  String get chatEmptyBody => 'حلّ إعلان واضغط على «تواصل مع المالك» باش تبدا.';
+
+  @override
+  String get chatContactOwner => 'تواصل مع المالك';
+
+  @override
+  String get chatOwnListing => 'هذا إعلانك';
+
+  @override
+  String get chatContactError => 'ما نجمناش نحلّو المحادثة، عاود جرّب';
+
+  @override
+  String get chatUnknownUser => 'مستخدم Vesta';
+
+  @override
+  String get chatLoadError => 'ما نجمناش نحمّلو رسائلك';
+
+  @override
+  String get chatRetry => 'عاود جرّب';
+
+  @override
+  String get chatListingRemoved => 'الإعلان ما عادش موجود';
+
+  @override
+  String get chatMessageHint => 'اكتب رسالتك...';
+
+  @override
+  String get chatSend => 'ابعث';
+
+  @override
+  String get chatSending => 'يتبعث...';
+
+  @override
+  String get chatNoMessages => 'ما فما حتى رسالة توا. ابدا المحادثة!';
+
+  @override
+  String get chatSendError => 'ما تبعثتش توا. باش تتبعث كي يرجع الإنترنت.';
+
+  @override
+  String get chatSendFailed => 'الرسالة ما تبعثتش، عاود جرّب';
+
+  @override
   String get loginTitle => 'تسجيل الدخول';
 
   @override
@@ -277,6 +322,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get listingDetailPerNight => '/ ليلة';
 
   @override
+  String get listingDetailAtAGlance => 'نظرة سريعة';
+
+  @override
+  String get listingDetailGuests => 'الضيوف';
+
+  @override
+  String get listingDetailReadMore => 'اقرأ المزيد';
+
+  @override
+  String get listingDetailReadLess => 'عرض أقل';
+
+  @override
   String get listingDetailPerMonth => '/ شهر';
 
   @override
@@ -423,6 +480,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsDeleteAccount => 'فسخ حسابي';
 
   @override
+  String get deleteAccountTitle => 'تمسح حسابك؟';
+
+  @override
+  String get deleteAccountBody =>
+      'هذا يمسح نهائيا حسابك وملفك الشخصي وإعلاناتك وصورها والمفضلة. الرسائل اللي بعثتها تبقى في محادثة الطرف الآخر. ما ينجمش يتراجع عليه.';
+
+  @override
+  String get deleteAccountPassword => 'اكتب كلمة السر باش تأكد';
+
+  @override
+  String get deleteAccountConfirm => 'امسح';
+
+  @override
+  String get deleteAccountDone => 'تم مسح حسابك.';
+
+  @override
   String get settingsLinkError => 'ما نجمناش نحلو الرابط';
 
   @override
@@ -456,4 +529,132 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get authErrorTooManyRequests =>
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
+
+  @override
+  String get listingErrorGuestsInvalid => 'أدخل عدد الضيوف بين 1 و30';
+
+  @override
+  String get listingErrorRoomsInvalid => 'أدخل رقمًا بين 0 و20';
+
+  @override
+  String get publishFieldGuests => 'الحد الأقصى للضيوف (اختياري)';
+
+  @override
+  String get publishAmenitiesTitle => 'التجهيزات';
+
+  @override
+  String publishAmenitiesCounter(int count) {
+    return '$count / 10';
+  }
+
+  @override
+  String get publishCheckIn => 'وقت الوصول';
+
+  @override
+  String get publishCheckOut => 'وقت المغادرة';
+
+  @override
+  String get publishTimeNotSet => 'غير محدد';
+
+  @override
+  String get publishRulesTitle => 'قواعد المنزل';
+
+  @override
+  String get amenityWifi => 'واي فاي';
+
+  @override
+  String get amenityAc => 'مكيف';
+
+  @override
+  String get amenityHeating => 'تدفئة';
+
+  @override
+  String get amenityKitchen => 'مطبخ';
+
+  @override
+  String get amenityParking => 'موقف سيارات';
+
+  @override
+  String get amenityPool => 'مسبح';
+
+  @override
+  String get amenityBreakfast => 'فطور';
+
+  @override
+  String get amenityWashingMachine => 'غسالة';
+
+  @override
+  String get amenityTv => 'تلفاز';
+
+  @override
+  String get amenityGarden => 'حديقة';
+
+  @override
+  String get ruleNoSmoking => 'ممنوع التدخين';
+
+  @override
+  String get ruleNoPets => 'الحيوانات غير مسموحة';
+
+  @override
+  String get ruleNoParties => 'ممنوع الحفلات';
+
+  @override
+  String get ruleQuietHours => 'ساعات الهدوء';
+
+  @override
+  String get searchHint => 'ابحث حسب المدينة';
+
+  @override
+  String get searchNoResults => 'لا توجد إعلانات مطابقة لبحثك';
+
+  @override
+  String get searchFilters => 'تصفية';
+
+  @override
+  String get searchPriceMin => 'السعر الأدنى';
+
+  @override
+  String get searchPriceMax => 'السعر الأقصى';
+
+  @override
+  String get searchOfferType => 'نوع العرض';
+
+  @override
+  String get searchPropertyType => 'نوع العقار';
+
+  @override
+  String get searchAll => 'الكل';
+
+  @override
+  String get searchTypeSale => 'بيع';
+
+  @override
+  String get searchTypeRent => 'كراء';
+
+  @override
+  String get searchTypeStay => 'إقامة';
+
+  @override
+  String get searchApply => 'تطبيق';
+
+  @override
+  String get searchReset => 'إعادة تعيين';
+
+  @override
+  String get searchPropApartment => 'شقة';
+
+  @override
+  String get searchPropHouse => 'منزل';
+
+  @override
+  String get searchPropVilla => 'فيلا';
+
+  @override
+  String get searchPropStudio => 'ستوديو';
+
+  @override
+  String get searchPropRiad => 'رياض';
+
+  @override
+  String get searchPropGuestHouse => 'نزل';
 }

@@ -18,6 +18,8 @@ enum ListingFieldError {
   cityRequired,
   rentPeriodRequired,
   numberInvalid,
+  guestsInvalid,
+  roomsInvalid,
 }
 
 ListingFieldError? validateTitle(String? v) =>
@@ -53,6 +55,25 @@ ListingFieldError? validateOptionalNumber(String? v) {
   if (text.isEmpty) return null;
   final n = num.tryParse(text);
   return (n == null || n < 0) ? ListingFieldError.numberInvalid : null;
+}
+/// Guests: optional, a whole number from 1 to [maxGuestsLimit].
+ListingFieldError? validateGuests(String? v) {
+  final text = (v ?? '').trim();
+  if (text.isEmpty) return null;
+  final n = int.tryParse(text);
+  return (n == null || n < 1 || n > maxGuestsLimit)
+      ? ListingFieldError.guestsInvalid
+      : null;
+}
+
+/// Bedrooms and bathrooms: optional, a whole number from 0 to [maxRoomsLimit].
+ListingFieldError? validateRooms(String? v) {
+  final text = (v ?? '').trim();
+  if (text.isEmpty) return null;
+  final n = int.tryParse(text);
+  return (n == null || n < 0 || n > maxRoomsLimit)
+      ? ListingFieldError.roomsInvalid
+      : null;
 }
 
 /// Rent period is required only for a rental.

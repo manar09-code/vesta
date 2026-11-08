@@ -7,6 +7,8 @@ import '../../features/auth/email_verification_banner.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/auth/require_sign_in.dart';
 import '../../features/auth/sign_up_screen.dart';
+import '../../features/chat/chat_controller.dart';
+import '../../features/chat/chat_list_screen.dart';
 import '../../features/chat/chat_screen.dart';
 import '../../features/favorites/favorites_screen.dart';
 import '../../features/listings/listing_detail_screen.dart';
@@ -30,6 +32,7 @@ abstract class AppRoutes {
   static const login = '/login';
   static const signup = '/signup';
   static const chat = '/chat';
+  static const chatRoom = '/chat/:conversationId';
   static const notifications = '/notifications';
   static const publish = '/publish';
   static const editProfile = '/profile/edit';
@@ -37,6 +40,7 @@ abstract class AppRoutes {
   static const listingDetail = '/listing/:id';
 
   static String listingDetailPath(String id) => '/listing/$id';
+  static String chatRoomPath(String conversationId) => '/chat/$conversationId';
 }
 
 /// Pages that need an account. A guest never reaches them from the UI (the
@@ -64,7 +68,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       final auth = ref.read(authStateProvider);
       if (auth.isLoading) return null; // wait for the first auth state
       final signedIn = auth.value != null;
-      if (!signedIn && _accountOnlyRoutes.contains(state.matchedLocation)) {
+      final location = state.matchedLocation;
+      final accountOnly = _accountOnlyRoutes.contains(location) ||
+          location.startsWith('${AppRoutes.chat}/');
+      if (!signedIn && accountOnly) {
         return AppRoutes.explore;
       }
       return null;
@@ -115,7 +122,18 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: AppRoutes.chat,
-        builder: (context, state) => const _SubPage(child: ChatScreen()),
+        builder: (context, state) => _SubPage(
+          title: AppLocalizations.of(context).chatTitle,
+          child: const ChatListScreen(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.chatRoom,
+        builder: (context, state) => _SubPage(
+          child: ChatScreen(
+            conversationId: state.pathParameters['conversationId']!,
+          ),
+        ),
       ),
       GoRoute(
         path: AppRoutes.notifications,
@@ -183,12 +201,19 @@ class _MainShell extends ConsumerWidget {
       l10n.tabProfile,
     ];
 
+    final unread = ref.watch(unreadTotalProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(titles[shell.currentIndex]),
         actions: [
           IconButton(
-            icon: const Icon(Icons.chat_bubble_outline),
+            // Red number when somebody wrote to me (VST-44).
+            icon: Badge(
+              isLabelVisible: unread > 0,
+              label: Text(unread > 99 ? '99+' : '$unread'),
+              child: const Icon(Icons.chat_bubble_outline),
+            ),
             tooltip: l10n.chatTitle,
             onPressed: () => _openAccountPage(context, ref, AppRoutes.chat),
           ),

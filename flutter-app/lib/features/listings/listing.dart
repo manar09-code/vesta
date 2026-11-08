@@ -22,6 +22,11 @@ class Listing {
     this.areaSqm,
     this.latitude,
     this.longitude,
+    this.maxGuests,
+    this.amenities = const [],
+    this.checkIn,
+    this.checkOut,
+    this.houseRules = const [],
   });
 
   final String id;
@@ -54,6 +59,12 @@ class Listing {
         lng <= 180;
   }
 
+  final num? maxGuests;
+  final List<String> amenities; // keys of amenityKeys
+  final String? checkIn; // 'HH:mm'
+  final String? checkOut; // 'HH:mm'
+  final List<String> houseRules; // keys of houseRuleKeys
+
   factory Listing.fromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data() ?? const <String, dynamic>{};
     return Listing(
@@ -75,9 +86,22 @@ class Listing {
       areaSqm: data['areaSqm'] as num?,
       latitude: (data['latitude'] as num?)?.toDouble(),
       longitude: (data['longitude'] as num?)?.toDouble(),
+      maxGuests: data['maxGuests'] as num?,
+      amenities: _stringList(data['amenities']),
+      checkIn: data['checkIn'] as String?,
+      checkOut: data['checkOut'] as String?,
+      houseRules: _stringList(data['houseRules']),
     );
   }
 }
+
+/// A list of strings from Firestore. Anything else gives an empty list.
+List<String> _stringList(Object? value) => value is List
+    ? [
+        for (final e in value)
+          if (e is String) e,
+      ]
+    : const [];
 
 /// The three offer types of Vesta (docs/offer-types.md). A product view on
 /// `listingType` and `rentPeriod`: no `offerType` field is stored.
