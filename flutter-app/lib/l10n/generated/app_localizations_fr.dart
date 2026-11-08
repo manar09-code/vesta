@@ -22,6 +22,34 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tabMap => 'Carte';
 
   @override
+  String get mapMyLocation => 'Ma position';
+
+  @override
+  String get mapLocationDenied =>
+      'Permission de localisation refusée. La carte fonctionne quand même.';
+
+  @override
+  String get mapLocationDeniedForever =>
+      'La localisation est bloquée pour Vesta. Activez-la dans les paramètres de l’application.';
+
+  @override
+  String get mapLocationServiceOff =>
+      'Activez la localisation (GPS) de votre téléphone pour voir où vous êtes.';
+
+  @override
+  String get mapLocationError =>
+      'Impossible de trouver votre position. Réessayez.';
+
+  @override
+  String get mapOpenSettings => 'Paramètres';
+
+  @override
+  String get mapViewDetails => 'Voir les détails';
+
+  @override
+  String get mapNoListings => 'Aucune annonce avec une position pour le moment';
+
+  @override
   String get tabFavorites => 'Favoris';
 
   @override

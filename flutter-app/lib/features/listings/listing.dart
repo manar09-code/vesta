@@ -20,6 +20,8 @@ class Listing {
     this.bedrooms,
     this.bathrooms,
     this.areaSqm,
+    this.latitude,
+    this.longitude,
     this.maxGuests,
     this.amenities = const [],
     this.checkIn,
@@ -42,6 +44,21 @@ class Listing {
   final num? bedrooms;
   final num? bathrooms;
   final num? areaSqm;
+  final double? latitude;
+  final double? longitude;
+
+  /// True when the owner gave a usable position (shown on the map, VST-42).
+  bool get hasLocation {
+    final lat = latitude;
+    final lng = longitude;
+    return lat != null &&
+        lng != null &&
+        lat >= -90 &&
+        lat <= 90 &&
+        lng >= -180 &&
+        lng <= 180;
+  }
+
   final num? maxGuests;
   final List<String> amenities; // keys of amenityKeys
   final String? checkIn; // 'HH:mm'
@@ -67,6 +84,8 @@ class Listing {
       bedrooms: data['bedrooms'] as num?,
       bathrooms: data['bathrooms'] as num?,
       areaSqm: data['areaSqm'] as num?,
+      latitude: (data['latitude'] as num?)?.toDouble(),
+      longitude: (data['longitude'] as num?)?.toDouble(),
       maxGuests: data['maxGuests'] as num?,
       amenities: _stringList(data['amenities']),
       checkIn: data['checkIn'] as String?,
