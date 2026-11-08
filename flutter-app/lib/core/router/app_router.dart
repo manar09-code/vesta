@@ -16,6 +16,8 @@ import '../../features/listings/listings_screen.dart';
 import '../../features/listings/publish_listing_screen.dart';
 import '../../features/map/map_screen.dart';
 import '../../features/notifications/notifications_screen.dart';
+import '../../features/onboarding/onboarding_controller.dart';
+import '../../features/onboarding/onboarding_screen.dart';
 import '../../features/profile/edit_profile_screen.dart';
 import '../../features/profile/profile_controller.dart';
 import '../../features/profile/profile_screen.dart';
@@ -25,6 +27,7 @@ import '../../l10n/generated/app_localizations.dart';
 
 abstract class AppRoutes {
   static const explore = '/';
+  static const onboarding = '/onboarding';
   static const search = '/search';
   static const map = '/map';
   static const favorites = '/favorites';
@@ -59,12 +62,18 @@ const _accountOnlyRoutes = {
 final appRouterProvider = Provider<GoRouter>((ref) {
   final refresh = ValueNotifier<int>(0);
   ref.listen(authStateProvider, (previous, next) => refresh.value++);
+  ref.listen(onboardingSeenProvider, (previous, next) => refresh.value++);
   ref.onDispose(refresh.dispose);
 
   return GoRouter(
     initialLocation: AppRoutes.explore,
     refreshListenable: refresh,
     redirect: (context, state) {
+      // First launch only (VST-99): the 3 onboarding screens, then the home.
+      final onboardingSeen = ref.read(onboardingSeenProvider);
+      final inOnboarding = state.matchedLocation == AppRoutes.onboarding;
+      if (!onboardingSeen && !inOnboarding) return AppRoutes.onboarding;
+      if (onboardingSeen && inOnboarding) return AppRoutes.explore;
       final auth = ref.read(authStateProvider);
       if (auth.isLoading) return null; // wait for the first auth state
       final signedIn = auth.value != null;
@@ -111,6 +120,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             ),
           ]),
         ],
+      ),
+      GoRoute(
+        path: AppRoutes.onboarding,
+        builder: (context, state) => const OnboardingScreen(),
       ),
       GoRoute(
         path: AppRoutes.login,

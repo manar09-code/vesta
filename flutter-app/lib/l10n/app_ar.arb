@@ -204,5 +204,14 @@
   "searchPropVilla": "فيلا",
   "searchPropStudio": "ستوديو",
   "searchPropRiad": "رياض",
-  "searchPropGuestHouse": "نزل"
+  "searchPropGuestHouse": "نزل",
+  "onboardingSkip": "عدّي",
+  "onboardingNext": "التالي",
+  "onboardingStart": "ابدا",
+  "onboardingTitle1": "اكتشف مكانك في تونس",
+  "onboardingBody1": "تصفّح دور الضيافة والشقق والدور للإقامة أو الكراء أو الشراء.",
+  "onboardingTitle2": "تواصل مع المالك",
+  "onboardingBody2": "ابعثله رسالة، ولا اتصل بيه، ولا اكتبله على واتساب.",
+  "onboardingTitle3": "انشر إعلانك",
+  "onboardingBody3": "زيد إعلانك مع الصور في دقايق قليلة."
 }
