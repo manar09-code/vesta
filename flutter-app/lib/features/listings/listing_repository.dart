@@ -35,6 +35,30 @@ const List<String> propertyTypes = [
   'guest_house',
 ];
 
+/// Keys allowed by the rules (docs/data-model.md). Max 10 amenities, 4 rules.
+const List<String> amenityKeys = [
+  'wifi',
+  'ac',
+  'heating',
+  'kitchen',
+  'parking',
+  'pool',
+  'breakfast',
+  'washing_machine',
+  'tv',
+  'garden',
+];
+const List<String> houseRuleKeys = [
+  'no_smoking',
+  'no_pets',
+  'no_parties',
+  'quiet_hours',
+];
+
+/// Limits checked in the app (the rules only check the minimum).
+const int maxGuestsLimit = 30;
+const int maxRoomsLimit = 20;
+
 /// Data entered in the publish form.
 class NewListing {
   const NewListing({
@@ -48,6 +72,11 @@ class NewListing {
     this.bedrooms,
     this.bathrooms,
     this.areaSqm,
+    this.maxGuests,
+    this.amenities = const [],
+    this.checkIn,
+    this.checkOut,
+    this.houseRules = const [],
   });
 
   final String title;
@@ -60,6 +89,11 @@ class NewListing {
   final num? bedrooms;
   final num? bathrooms;
   final num? areaSqm;
+  final num? maxGuests;
+  final List<String> amenities; // keys of amenityKeys
+  final String? checkIn; // 'HH:mm'
+  final String? checkOut; // 'HH:mm'
+  final List<String> houseRules; // keys of houseRuleKeys
 }
 
 /// Only place that talks to the `listings` collection and its photos.
@@ -104,6 +138,11 @@ class ListingRepository {
         if (listing.bedrooms != null) 'bedrooms': listing.bedrooms,
         if (listing.bathrooms != null) 'bathrooms': listing.bathrooms,
         if (listing.areaSqm != null) 'areaSqm': listing.areaSqm,
+        if (listing.maxGuests != null) 'maxGuests': listing.maxGuests,
+        if (listing.amenities.isNotEmpty) 'amenities': listing.amenities,
+        if (listing.checkIn != null) 'checkIn': listing.checkIn,
+        if (listing.checkOut != null) 'checkOut': listing.checkOut,
+        if (listing.houseRules.isNotEmpty) 'houseRules': listing.houseRules,
         'photoCount': photosBase64.length,
         'createdAt': FieldValue.serverTimestamp(),
         'updatedAt': FieldValue.serverTimestamp(),
@@ -206,6 +245,36 @@ class ListingRepository {
         for (final doc in snapshot.docs)
           if ((doc.data()['status'] as String?) != 'hidden')
             Listing.fromDoc(doc),
+      ];
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Reads one listing. Returns null when it does not exist.
+  Future<Listing?> getListing(String id) async {
+    try {
+      final doc = await _db.collection('listings').doc(id).get();
+      if (!doc.exists) return null;
+      return Listing.fromDoc(doc);
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Reads the photos of a listing as base64 strings, sorted by id
+  /// (p0 first = cover). Ids can have gaps, so we never use the position.
+  Future<List<String>> getPhotos(String id) async {
+    try {
+      final snap = await _db
+          .collection('listings')
+          .doc(id)
+          .collection('photos')
+          .get();
+      final docs = snap.docs.toList()..sort((a, b) => a.id.compareTo(b.id));
+      return [
+        for (final doc in docs)
+          if (doc.data()['base64'] is String) doc.data()['base64'] as String,
       ];
     } on FirebaseException catch (e) {
       throw ListingFailure(_mapCode(e.code));

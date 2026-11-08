@@ -1,4 +1,16 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app';
+import {
+  Auth,
+  getAuth,
+  getReactNativePersistence,
+  initializeAuth,
+} from 'firebase/auth';
+import {
+  Firestore,
+  getFirestore,
+  initializeFirestore,
+} from 'firebase/firestore';
 
 declare const process: {
   env: {
@@ -23,3 +35,32 @@ const firebaseConfig = {
 export const firebaseApp: FirebaseApp = getApps().length
   ? getApp()
   : initializeApp(firebaseConfig);
+
+/**
+ * Auth keeps the session in AsyncStorage, so the user is still signed in after
+ * the app is closed. initializeAuth can run only once per app: after a fast
+ * refresh it throws, and getAuth returns the instance that already exists.
+ */
+function createAuth(): Auth {
+  try {
+    return initializeAuth(firebaseApp, {
+      persistence: getReactNativePersistence(AsyncStorage),
+    });
+  } catch {
+    return getAuth(firebaseApp);
+  }
+}
+
+/** Same idea for Firestore (long polling auto-detect helps on networks). */
+function createFirestore(): Firestore {
+  try {
+    return initializeFirestore(firebaseApp, {
+      experimentalAutoDetectLongPolling: true,
+    });
+  } catch {
+    return getFirestore(firebaseApp);
+  }
+}
+
+export const auth: Auth = createAuth();
+export const db: Firestore = createFirestore();

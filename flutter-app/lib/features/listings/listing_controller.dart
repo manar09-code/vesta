@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'listing.dart';
 import 'listing_repository.dart';
 
 final listingRepositoryProvider = Provider<ListingRepository>(
@@ -14,6 +18,8 @@ enum ListingFieldError {
   cityRequired,
   rentPeriodRequired,
   numberInvalid,
+  guestsInvalid,
+  roomsInvalid,
 }
 
 ListingFieldError? validateTitle(String? v) =>
@@ -49,6 +55,25 @@ ListingFieldError? validateOptionalNumber(String? v) {
   if (text.isEmpty) return null;
   final n = num.tryParse(text);
   return (n == null || n < 0) ? ListingFieldError.numberInvalid : null;
+}
+/// Guests: optional, a whole number from 1 to [maxGuestsLimit].
+ListingFieldError? validateGuests(String? v) {
+  final text = (v ?? '').trim();
+  if (text.isEmpty) return null;
+  final n = int.tryParse(text);
+  return (n == null || n < 1 || n > maxGuestsLimit)
+      ? ListingFieldError.guestsInvalid
+      : null;
+}
+
+/// Bedrooms and bathrooms: optional, a whole number from 0 to [maxRoomsLimit].
+ListingFieldError? validateRooms(String? v) {
+  final text = (v ?? '').trim();
+  if (text.isEmpty) return null;
+  final n = int.tryParse(text);
+  return (n == null || n < 0 || n > maxRoomsLimit)
+      ? ListingFieldError.roomsInvalid
+      : null;
 }
 
 /// Rent period is required only for a rental.
@@ -98,3 +123,31 @@ class ListingController extends Notifier<PublishState> {
 
 final listingControllerProvider =
     NotifierProvider<ListingController, PublishState>(ListingController.new);
+
+/// One listing with its decoded photos, ready for the details screen.
+class ListingDetail {
+  const ListingDetail({required this.listing, required this.photos});
+
+  final Listing listing;
+  final List<Uint8List> photos;
+}
+
+/// Loads one listing and its photos. Null when the listing does not exist.
+/// Decoding happens here, once, so the screen never decodes in `build`.
+final listingDetailProvider =
+    FutureProvider.autoDispose.family<ListingDetail?, String>((ref, id) async {
+  final repository = ref.read(listingRepositoryProvider);
+  final listing = await repository.getListing(id);
+  if (listing == null) return null;
+
+  final encoded = await repository.getPhotos(id);
+  final photos = <Uint8List>[];
+  for (final text in encoded) {
+    try {
+      photos.add(base64Decode(text));
+    } on FormatException {
+      // A damaged photo is skipped, the others still show.
+    }
+  }
+  return ListingDetail(listing: listing, photos: photos);
+});

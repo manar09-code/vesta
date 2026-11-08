@@ -8,12 +8,17 @@ import '../../features/auth/email_verification_banner.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/auth/require_sign_in.dart';
 import '../../features/auth/sign_up_screen.dart';
+import '../../features/chat/chat_controller.dart';
+import '../../features/chat/chat_list_screen.dart';
 import '../../features/chat/chat_screen.dart';
 import '../../features/favorites/favorites_screen.dart';
+import '../../features/listings/listing_detail_screen.dart';
 import '../../features/listings/listings_screen.dart';
 import '../../features/listings/publish_listing_screen.dart';
 import '../../features/map/map_screen.dart';
 import '../../features/notifications/notifications_screen.dart';
+import '../../features/onboarding/onboarding_controller.dart';
+import '../../features/onboarding/onboarding_screen.dart';
 import '../../features/profile/edit_profile_screen.dart';
 import '../../features/profile/profile_controller.dart';
 import '../../features/profile/profile_screen.dart';
@@ -24,6 +29,7 @@ import '../widgets/ui_kit_screen.dart';
 
 abstract class AppRoutes {
   static const explore = '/';
+  static const onboarding = '/onboarding';
   static const search = '/search';
   static const map = '/map';
   static const favorites = '/favorites';
@@ -31,6 +37,7 @@ abstract class AppRoutes {
   static const login = '/login';
   static const signup = '/signup';
   static const chat = '/chat';
+  static const chatRoom = '/chat/:conversationId';
   static const notifications = '/notifications';
   static const publish = '/publish';
   static const editProfile = '/profile/edit';
@@ -38,6 +45,10 @@ abstract class AppRoutes {
 
   /// Debug only: every shared widget on one screen (VST-93).
   static const uiKit = '/ui-kit';
+  static const listingDetail = '/listing/:id';
+
+  static String listingDetailPath(String id) => '/listing/$id';
+  static String chatRoomPath(String conversationId) => '/chat/$conversationId';
 }
 
 /// Pages that need an account. A guest never reaches them from the UI (the
@@ -56,16 +67,25 @@ const _accountOnlyRoutes = {
 final appRouterProvider = Provider<GoRouter>((ref) {
   final refresh = ValueNotifier<int>(0);
   ref.listen(authStateProvider, (previous, next) => refresh.value++);
+  ref.listen(onboardingSeenProvider, (previous, next) => refresh.value++);
   ref.onDispose(refresh.dispose);
 
   return GoRouter(
     initialLocation: AppRoutes.explore,
     refreshListenable: refresh,
     redirect: (context, state) {
+      // First launch only (VST-99): the 3 onboarding screens, then the home.
+      final onboardingSeen = ref.read(onboardingSeenProvider);
+      final inOnboarding = state.matchedLocation == AppRoutes.onboarding;
+      if (!onboardingSeen && !inOnboarding) return AppRoutes.onboarding;
+      if (onboardingSeen && inOnboarding) return AppRoutes.explore;
       final auth = ref.read(authStateProvider);
       if (auth.isLoading) return null; // wait for the first auth state
       final signedIn = auth.value != null;
-      if (!signedIn && _accountOnlyRoutes.contains(state.matchedLocation)) {
+      final location = state.matchedLocation;
+      final accountOnly = _accountOnlyRoutes.contains(location) ||
+          location.startsWith('${AppRoutes.chat}/');
+      if (!signedIn && accountOnly) {
         return AppRoutes.explore;
       }
       return null;
@@ -107,6 +127,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         ],
       ),
       GoRoute(
+        path: AppRoutes.onboarding,
+        builder: (context, state) => const OnboardingScreen(),
+      ),
+      GoRoute(
         path: AppRoutes.login,
         builder: (context, state) => const _SubPage(child: LoginScreen()),
       ),
@@ -116,7 +140,18 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: AppRoutes.chat,
-        builder: (context, state) => const _SubPage(child: ChatScreen()),
+        builder: (context, state) => _SubPage(
+          title: AppLocalizations.of(context).chatTitle,
+          child: const ChatListScreen(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.chatRoom,
+        builder: (context, state) => _SubPage(
+          child: ChatScreen(
+            conversationId: state.pathParameters['conversationId']!,
+          ),
+        ),
       ),
       GoRoute(
         path: AppRoutes.notifications,
@@ -138,6 +173,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.publish,
         builder: (context, state) => const PublishListingScreen(),
+      ),
+      // Details of one listing, open to guests (VST-72).
+      GoRoute(
+        path: AppRoutes.listingDetail,
+        builder: (context, state) => _SubPage(
+          child: ListingDetailScreen(listingId: state.pathParameters['id']!),
+        ),
       ),
       GoRoute(
         path: AppRoutes.editProfile,
@@ -182,12 +224,19 @@ class _MainShell extends ConsumerWidget {
       l10n.tabProfile,
     ];
 
+    final unread = ref.watch(unreadTotalProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(titles[shell.currentIndex]),
         actions: [
           IconButton(
-            icon: const Icon(Icons.chat_bubble_outline),
+            // Red number when somebody wrote to me (VST-44).
+            icon: Badge(
+              isLabelVisible: unread > 0,
+              label: Text(unread > 99 ? '99+' : '$unread'),
+              child: const Icon(Icons.chat_bubble_outline),
+            ),
             tooltip: l10n.chatTitle,
             onPressed: () => _openAccountPage(context, ref, AppRoutes.chat),
           ),

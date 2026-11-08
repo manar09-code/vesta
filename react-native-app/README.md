@@ -22,7 +22,7 @@ Open the QR code with Expo Go on the same network as the development computer. F
 
 Use this call flow: **Screen → Controller (hook or context) → Repository → Firebase**. A screen must never call Firebase directly. Keep visual colors in `src/core/theme.ts` and display all screen text with translation keys.
 
-React Navigation native stack is used because it provides native stack transitions and supports separate auth and main flows. The root guard selects the auth stack when signed out and the main stack when signed in. The current auth controller is a signed-in placeholder so the home skeleton is visible; replace that value when authentication is implemented.
+React Navigation native stack is used because it provides native stack transitions and supports separate auth and main flows. The root guard selects the auth stack when signed out and the main stack when signed in. The auth controller (`src/features/auth/authController.tsx`) follows the Firebase session: the app starts on Log in or on Home depending on the kept session.
 
 ## Translations and language switching
 

@@ -76,14 +76,14 @@ Structure per module: `screen → controller → repository → service` (see C4
 
 ## Map (OpenStreetMap)
 
-The app will use OpenStreetMap for the map (VST-42): free, no API key, no billing. Decided on 8 Oct (VST-19).
+The app uses OpenStreetMap for the map (VST-42): free, no API key, no billing. Decided on 8 Oct (VST-19). Code: `lib/features/map` (`MapScreen`, `LocationService`, `mapListingsProvider`).
 
 Packages tested on a real phone (Redmi 2209116AG, Android 13, debug build):
 - `flutter_map` 8.3.2
 - `latlong2` 0.10.1
 - `geolocator` 14.1.1
 
-These packages were tested in a throwaway test app. They are not in `pubspec.yaml` yet: they are added when the map is built (VST-42).
+These packages were first tested in a throwaway test app and are now in `pubspec.yaml` (VST-42).
 
 Setup:
 - Tile URL: `https://tile.openstreetmap.org/{z}/{x}/{y}.png`
