@@ -547,7 +547,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Too many attempts, please try again in a few minutes';
 
   @override
-<<<<<<< HEAD
   String get contactCall => 'Call';
 
   @override
@@ -576,7 +575,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String contactMessageStay(String title) {
     return 'Hello, I am interested in staying at $title on Vesta';
   }
-=======
+
+  @override
+  String get searchHint => 'Search by city';
+
+  @override
   String get listingErrorGuestsInvalid =>
       'Enter a number of guests between 1 and 30';
 
@@ -647,10 +650,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ruleQuietHours => 'Quiet hours';
->>>>>>> origin/develop
-
-  @override
-  String get searchHint => 'Search by city';
 
   @override
   String get searchNoResults => 'No listings match your search';

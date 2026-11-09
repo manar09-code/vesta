@@ -106,7 +106,7 @@
   "listingDetailBathrooms": "Salles de bain",
   "listingDetailArea": "Surface (m²)",
   "listingDetailPerNight": "/ nuit",
-    "listingDetailAtAGlance": "En un coup d'œil",
+  "listingDetailAtAGlance": "En un coup d'œil",
   "listingDetailGuests": "Invités",
   "listingDetailReadMore": "Lire la suite",
   "listingDetailReadLess": "Réduire",
@@ -174,7 +174,6 @@
   "verifyBannerResend": "Renvoyer",
   "verifyBannerSent": "E-mail de vérification envoyé",
   "authErrorTooManyRequests": "Trop de tentatives, réessayez dans quelques minutes",
-<<<<<<< HEAD
   "contactCall": "Appeler",
   "contactWhatsapp": "WhatsApp",
   "contactSignInToSee": "Connectez-vous pour voir le contact",
@@ -204,8 +203,7 @@
       }
     }
   },
-    "searchHint": "Rechercher par ville",
-=======
+  "searchHint": "Rechercher par ville",
   "listingErrorGuestsInvalid": "Indiquez un nombre d'invités entre 1 et 30",
   "listingErrorRoomsInvalid": "Indiquez un nombre entre 0 et 20",
   "publishFieldGuests": "Nombre maximum d'invités (optionnel)",
@@ -229,8 +227,6 @@
   "ruleNoPets": "Animaux non admis",
   "ruleNoParties": "Pas de fêtes",
   "ruleQuietHours": "Heures de calme",
-  "searchHint": "Rechercher par ville",
->>>>>>> origin/develop
   "searchNoResults": "Aucune annonce ne correspond à votre recherche",
   "searchFilters": "Filtres",
   "searchPriceMin": "Prix min",

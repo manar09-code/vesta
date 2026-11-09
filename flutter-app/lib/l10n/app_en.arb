@@ -106,7 +106,7 @@
   "listingDetailBathrooms": "Bathrooms",
   "listingDetailArea": "Area (m²)",
   "listingDetailPerNight": "/ night",
-    "listingDetailAtAGlance": "At a glance",
+  "listingDetailAtAGlance": "At a glance",
   "listingDetailGuests": "Guests",
   "listingDetailReadMore": "Read more",
   "listingDetailReadLess": "Read less",
@@ -174,7 +174,6 @@
   "verifyBannerResend": "Send again",
   "verifyBannerSent": "Verification email sent",
   "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes",
-<<<<<<< HEAD
   "contactCall": "Call",
   "contactWhatsapp": "WhatsApp",
   "contactSignInToSee": "Sign in to see the contact",
@@ -204,15 +203,18 @@
       }
     }
   },
-    "searchHint": "Search by city",
-=======
+  "searchHint": "Search by city",
   "listingErrorGuestsInvalid": "Enter a number of guests between 1 and 30",
   "listingErrorRoomsInvalid": "Enter a number between 0 and 20",
   "publishFieldGuests": "Maximum guests (optional)",
   "publishAmenitiesTitle": "Amenities",
   "publishAmenitiesCounter": "{count} / 10",
   "@publishAmenitiesCounter": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "publishCheckIn": "Check-in time",
   "publishCheckOut": "Check-out time",
@@ -232,8 +234,6 @@
   "ruleNoPets": "No pets",
   "ruleNoParties": "No parties",
   "ruleQuietHours": "Quiet hours",
-  "searchHint": "Search by city",
->>>>>>> origin/develop
   "searchNoResults": "No listings match your search",
   "searchFilters": "Filters",
   "searchPriceMin": "Min price",

@@ -540,7 +540,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
 
   @override
-<<<<<<< HEAD
   String get contactCall => 'اتصل';
 
   @override
@@ -569,7 +568,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String contactMessageStay(String title) {
     return 'عسلامة، مهتم بالإقامة في $title على Vesta';
   }
-=======
+
+  @override
+  String get searchHint => 'ابحث حسب المدينة';
+
+  @override
   String get listingErrorGuestsInvalid => 'أدخل عدد الضيوف بين 1 و30';
 
   @override
@@ -639,10 +642,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ruleQuietHours => 'ساعات الهدوء';
->>>>>>> origin/develop
-
-  @override
-  String get searchHint => 'ابحث حسب المدينة';
 
   @override
   String get searchNoResults => 'لا توجد إعلانات مطابقة لبحثك';

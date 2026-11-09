@@ -106,7 +106,7 @@
   "listingDetailBathrooms": "الحمّامات",
   "listingDetailArea": "المساحة (م²)",
   "listingDetailPerNight": "/ ليلة",
-    "listingDetailAtAGlance": "نظرة سريعة",
+  "listingDetailAtAGlance": "نظرة سريعة",
   "listingDetailGuests": "الضيوف",
   "listingDetailReadMore": "اقرأ المزيد",
   "listingDetailReadLess": "عرض أقل",
@@ -174,7 +174,6 @@
   "verifyBannerResend": "ابعث مرة أخرى",
   "verifyBannerSent": "تبعث إيميل التأكيد",
   "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق",
-<<<<<<< HEAD
   "contactCall": "اتصل",
   "contactWhatsapp": "واتساب",
   "contactSignInToSee": "سجّل الدخول باش تشوف رقم التواصل",
@@ -204,8 +203,7 @@
       }
     }
   },
-    "searchHint": "ابحث حسب المدينة",
-=======
+  "searchHint": "ابحث حسب المدينة",
   "listingErrorGuestsInvalid": "أدخل عدد الضيوف بين 1 و30",
   "listingErrorRoomsInvalid": "أدخل رقمًا بين 0 و20",
   "publishFieldGuests": "الحد الأقصى للضيوف (اختياري)",
@@ -229,8 +227,6 @@
   "ruleNoPets": "الحيوانات غير مسموحة",
   "ruleNoParties": "ممنوع الحفلات",
   "ruleQuietHours": "ساعات الهدوء",
-  "searchHint": "ابحث حسب المدينة",
->>>>>>> origin/develop
   "searchNoResults": "لا توجد إعلانات مطابقة لبحثك",
   "searchFilters": "تصفية",
   "searchPriceMin": "السعر الأدنى",

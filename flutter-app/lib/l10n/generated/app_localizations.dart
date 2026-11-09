@@ -1144,7 +1144,6 @@ abstract class AppLocalizations {
   /// **'Too many attempts, please try again in a few minutes'**
   String get authErrorTooManyRequests;
 
-<<<<<<< HEAD
   /// No description provided for @contactCall.
   ///
   /// In en, this message translates to:
@@ -1192,7 +1191,13 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hello, I am interested in staying at {title} on Vesta'**
   String contactMessageStay(String title);
-=======
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by city'**
+  String get searchHint;
+
   /// No description provided for @listingErrorGuestsInvalid.
   ///
   /// In en, this message translates to:
@@ -1330,13 +1335,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Quiet hours'**
   String get ruleQuietHours;
->>>>>>> origin/develop
-
-  /// No description provided for @searchHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Search by city'**
-  String get searchHint;
 
   /// No description provided for @searchNoResults.
   ///

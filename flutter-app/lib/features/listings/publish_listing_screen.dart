@@ -30,11 +30,8 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
   final _bedrooms = TextEditingController();
   final _bathrooms = TextEditingController();
   final _area = TextEditingController();
-<<<<<<< HEAD
   final _phone = TextEditingController();
-=======
   final _guests = TextEditingController();
->>>>>>> origin/develop
   final _photoService = PhotoService();
 
   String _listingType = 'sale';
@@ -59,11 +56,8 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
       _bedrooms,
       _bathrooms,
       _area,
-<<<<<<< HEAD
       _phone,
-=======
       _guests,
->>>>>>> origin/develop
     ]) {
       c.dispose();
     }
@@ -222,10 +216,8 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
       bedrooms: _optional(_bedrooms),
       bathrooms: _optional(_bathrooms),
       areaSqm: _optional(_area),
-<<<<<<< HEAD
       contactPhone: normalizeTunisianPhone(_phone.text),
       whatsappEnabled: _whatsapp,
-=======
       maxGuests: _optional(_guests),
       // Keep the order of amenityKeys / houseRuleKeys, whatever the taps.
       amenities: [
@@ -238,7 +230,6 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
         for (final k in houseRuleKeys)
           if (_houseRules.contains(k)) k,
       ],
->>>>>>> origin/develop
     );
 
     final ok = await ref
@@ -377,7 +368,6 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
               ),
               const SizedBox(height: 12),
               TextFormField(
-<<<<<<< HEAD
                 controller: _phone,
                 keyboardType: TextInputType.phone,
                 textDirection: TextDirection.ltr,
@@ -396,19 +386,7 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
                 onChanged: (v) => setState(() => _whatsapp = v),
               ),
               const SizedBox(height: 12),
-              for (final entry in [
-                (_bedrooms, l.publishFieldBedrooms),
-                (_bathrooms, l.publishFieldBathrooms),
-                (_area, l.publishFieldArea),
-              ]) ...[
-                TextFormField(
-                  controller: entry.$1,
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
-                  decoration: InputDecoration(labelText: entry.$2),
-                  validator: (v) => fieldValidator(v, validateOptionalNumber),
-=======
+              TextFormField(
                 controller: _guests,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(labelText: l.publishFieldGuests),
@@ -420,7 +398,6 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: l.publishFieldBedrooms,
->>>>>>> origin/develop
                 ),
                 validator: (v) => fieldValidator(v, validateRooms),
               ),
@@ -610,4 +587,3 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
     );
   }
 }
-

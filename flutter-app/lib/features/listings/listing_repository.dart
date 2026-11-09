@@ -72,16 +72,13 @@ class NewListing {
     this.bedrooms,
     this.bathrooms,
     this.areaSqm,
-<<<<<<< HEAD
     this.contactPhone,
     this.whatsappEnabled = false,
-=======
     this.maxGuests,
     this.amenities = const [],
     this.checkIn,
     this.checkOut,
     this.houseRules = const [],
->>>>>>> origin/develop
   });
 
   final String title;
@@ -94,16 +91,13 @@ class NewListing {
   final num? bedrooms;
   final num? bathrooms;
   final num? areaSqm;
-<<<<<<< HEAD
   final String? contactPhone;
   final bool whatsappEnabled;
-=======
   final num? maxGuests;
   final List<String> amenities; // keys of amenityKeys
   final String? checkIn; // 'HH:mm'
   final String? checkOut; // 'HH:mm'
   final List<String> houseRules; // keys of houseRuleKeys
->>>>>>> origin/develop
 }
 
 /// Only place that talks to the `listings` collection and its photos.
