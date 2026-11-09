@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Required in release builds for Firebase (Auth, Firestore, Storage). -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Map: "my location" button (VST-42). Asked at the moment of the tap only. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <application
         android:label="${appLabel}"
         android:name="${applicationName}"

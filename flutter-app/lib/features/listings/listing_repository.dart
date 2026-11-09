@@ -35,6 +35,30 @@ const List<String> propertyTypes = [
   'guest_house',
 ];
 
+/// Keys allowed by the rules (docs/data-model.md). Max 10 amenities, 4 rules.
+const List<String> amenityKeys = [
+  'wifi',
+  'ac',
+  'heating',
+  'kitchen',
+  'parking',
+  'pool',
+  'breakfast',
+  'washing_machine',
+  'tv',
+  'garden',
+];
+const List<String> houseRuleKeys = [
+  'no_smoking',
+  'no_pets',
+  'no_parties',
+  'quiet_hours',
+];
+
+/// Limits checked in the app (the rules only check the minimum).
+const int maxGuestsLimit = 30;
+const int maxRoomsLimit = 20;
+
 /// Data entered in the publish form.
 class NewListing {
   const NewListing({
@@ -48,8 +72,16 @@ class NewListing {
     this.bedrooms,
     this.bathrooms,
     this.areaSqm,
+<<<<<<< HEAD
     this.contactPhone,
     this.whatsappEnabled = false,
+=======
+    this.maxGuests,
+    this.amenities = const [],
+    this.checkIn,
+    this.checkOut,
+    this.houseRules = const [],
+>>>>>>> origin/develop
   });
 
   final String title;
@@ -62,8 +94,16 @@ class NewListing {
   final num? bedrooms;
   final num? bathrooms;
   final num? areaSqm;
+<<<<<<< HEAD
   final String? contactPhone;
   final bool whatsappEnabled;
+=======
+  final num? maxGuests;
+  final List<String> amenities; // keys of amenityKeys
+  final String? checkIn; // 'HH:mm'
+  final String? checkOut; // 'HH:mm'
+  final List<String> houseRules; // keys of houseRuleKeys
+>>>>>>> origin/develop
 }
 
 /// Only place that talks to the `listings` collection and its photos.
@@ -108,6 +148,11 @@ class ListingRepository {
         if (listing.bedrooms != null) 'bedrooms': listing.bedrooms,
         if (listing.bathrooms != null) 'bathrooms': listing.bathrooms,
         if (listing.areaSqm != null) 'areaSqm': listing.areaSqm,
+        if (listing.maxGuests != null) 'maxGuests': listing.maxGuests,
+        if (listing.amenities.isNotEmpty) 'amenities': listing.amenities,
+        if (listing.checkIn != null) 'checkIn': listing.checkIn,
+        if (listing.checkOut != null) 'checkOut': listing.checkOut,
+        if (listing.houseRules.isNotEmpty) 'houseRules': listing.houseRules,
         'photoCount': photosBase64.length,
         'createdAt': FieldValue.serverTimestamp(),
         'updatedAt': FieldValue.serverTimestamp(),

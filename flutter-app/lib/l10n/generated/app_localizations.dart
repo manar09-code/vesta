@@ -124,6 +124,54 @@ abstract class AppLocalizations {
   /// **'Map'**
   String get tabMap;
 
+  /// No description provided for @mapMyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'My location'**
+  String get mapMyLocation;
+
+  /// No description provided for @mapLocationDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission denied. The map still works.'**
+  String get mapLocationDenied;
+
+  /// No description provided for @mapLocationDeniedForever.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is blocked for Vesta. You can enable it in the app settings.'**
+  String get mapLocationDeniedForever;
+
+  /// No description provided for @mapLocationServiceOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location (GPS) on your phone to see where you are.'**
+  String get mapLocationServiceOff;
+
+  /// No description provided for @mapLocationError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not find your position. Try again.'**
+  String get mapLocationError;
+
+  /// No description provided for @mapOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get mapOpenSettings;
+
+  /// No description provided for @mapViewDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'View details'**
+  String get mapViewDetails;
+
+  /// No description provided for @mapNoListings.
+  ///
+  /// In en, this message translates to:
+  /// **'No listing with a location yet'**
+  String get mapNoListings;
+
   /// No description provided for @tabFavorites.
   ///
   /// In en, this message translates to:
@@ -147,6 +195,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Messages'**
   String get chatTitle;
+
+  /// No description provided for @chatEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations yet'**
+  String get chatEmptyTitle;
+
+  /// No description provided for @chatEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a listing and tap Contact owner to start.'**
+  String get chatEmptyBody;
+
+  /// No description provided for @chatContactOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact owner'**
+  String get chatContactOwner;
+
+  /// No description provided for @chatOwnListing.
+  ///
+  /// In en, this message translates to:
+  /// **'This is your own listing'**
+  String get chatOwnListing;
+
+  /// No description provided for @chatContactError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the chat, try again'**
+  String get chatContactError;
+
+  /// No description provided for @chatUnknownUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Vesta user'**
+  String get chatUnknownUser;
+
+  /// No description provided for @chatLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load your messages'**
+  String get chatLoadError;
+
+  /// No description provided for @chatRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get chatRetry;
+
+  /// No description provided for @chatListingRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Listing no longer available'**
+  String get chatListingRemoved;
+
+  /// No description provided for @chatMessageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a message'**
+  String get chatMessageHint;
+
+  /// No description provided for @chatSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get chatSend;
+
+  /// No description provided for @chatSending.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending…'**
+  String get chatSending;
+
+  /// No description provided for @chatNoMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'No messages yet. Say hello!'**
+  String get chatNoMessages;
+
+  /// No description provided for @chatSendError.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sent yet. It will be sent when you are back online.'**
+  String get chatSendError;
+
+  /// No description provided for @chatSendFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Message not sent, try again'**
+  String get chatSendFailed;
 
   /// No description provided for @loginTitle.
   ///
@@ -598,6 +736,30 @@ abstract class AppLocalizations {
   /// **'/ night'**
   String get listingDetailPerNight;
 
+  /// No description provided for @listingDetailAtAGlance.
+  ///
+  /// In en, this message translates to:
+  /// **'At a glance'**
+  String get listingDetailAtAGlance;
+
+  /// No description provided for @listingDetailGuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Guests'**
+  String get listingDetailGuests;
+
+  /// No description provided for @listingDetailReadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Read more'**
+  String get listingDetailReadMore;
+
+  /// No description provided for @listingDetailReadLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Read less'**
+  String get listingDetailReadLess;
+
   /// No description provided for @listingDetailPerMonth.
   ///
   /// In en, this message translates to:
@@ -982,6 +1144,7 @@ abstract class AppLocalizations {
   /// **'Too many attempts, please try again in a few minutes'**
   String get authErrorTooManyRequests;
 
+<<<<<<< HEAD
   /// No description provided for @contactCall.
   ///
   /// In en, this message translates to:
@@ -1029,6 +1192,145 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hello, I am interested in staying at {title} on Vesta'**
   String contactMessageStay(String title);
+=======
+  /// No description provided for @listingErrorGuestsInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number of guests between 1 and 30'**
+  String get listingErrorGuestsInvalid;
+
+  /// No description provided for @listingErrorRoomsInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number between 0 and 20'**
+  String get listingErrorRoomsInvalid;
+
+  /// No description provided for @publishFieldGuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum guests (optional)'**
+  String get publishFieldGuests;
+
+  /// No description provided for @publishAmenitiesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Amenities'**
+  String get publishAmenitiesTitle;
+
+  /// No description provided for @publishAmenitiesCounter.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} / 10'**
+  String publishAmenitiesCounter(int count);
+
+  /// No description provided for @publishCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in time'**
+  String get publishCheckIn;
+
+  /// No description provided for @publishCheckOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-out time'**
+  String get publishCheckOut;
+
+  /// No description provided for @publishTimeNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get publishTimeNotSet;
+
+  /// No description provided for @publishRulesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'House rules'**
+  String get publishRulesTitle;
+
+  /// No description provided for @amenityWifi.
+  ///
+  /// In en, this message translates to:
+  /// **'Wi-Fi'**
+  String get amenityWifi;
+
+  /// No description provided for @amenityAc.
+  ///
+  /// In en, this message translates to:
+  /// **'Air conditioning'**
+  String get amenityAc;
+
+  /// No description provided for @amenityHeating.
+  ///
+  /// In en, this message translates to:
+  /// **'Heating'**
+  String get amenityHeating;
+
+  /// No description provided for @amenityKitchen.
+  ///
+  /// In en, this message translates to:
+  /// **'Kitchen'**
+  String get amenityKitchen;
+
+  /// No description provided for @amenityParking.
+  ///
+  /// In en, this message translates to:
+  /// **'Parking'**
+  String get amenityParking;
+
+  /// No description provided for @amenityPool.
+  ///
+  /// In en, this message translates to:
+  /// **'Pool'**
+  String get amenityPool;
+
+  /// No description provided for @amenityBreakfast.
+  ///
+  /// In en, this message translates to:
+  /// **'Breakfast'**
+  String get amenityBreakfast;
+
+  /// No description provided for @amenityWashingMachine.
+  ///
+  /// In en, this message translates to:
+  /// **'Washing machine'**
+  String get amenityWashingMachine;
+
+  /// No description provided for @amenityTv.
+  ///
+  /// In en, this message translates to:
+  /// **'TV'**
+  String get amenityTv;
+
+  /// No description provided for @amenityGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden'**
+  String get amenityGarden;
+
+  /// No description provided for @ruleNoSmoking.
+  ///
+  /// In en, this message translates to:
+  /// **'No smoking'**
+  String get ruleNoSmoking;
+
+  /// No description provided for @ruleNoPets.
+  ///
+  /// In en, this message translates to:
+  /// **'No pets'**
+  String get ruleNoPets;
+
+  /// No description provided for @ruleNoParties.
+  ///
+  /// In en, this message translates to:
+  /// **'No parties'**
+  String get ruleNoParties;
+
+  /// No description provided for @ruleQuietHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet hours'**
+  String get ruleQuietHours;
+>>>>>>> origin/develop
 
   /// No description provided for @searchHint.
   ///
@@ -1143,6 +1445,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Guest house'**
   String get searchPropGuestHouse;
+
+  /// No description provided for @onboardingSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onboardingSkip;
+
+  /// No description provided for @onboardingNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onboardingNext;
+
+  /// No description provided for @onboardingStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get onboardingStart;
+
+  /// No description provided for @onboardingTitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'Find your place in Tunisia'**
+  String get onboardingTitle1;
+
+  /// No description provided for @onboardingBody1.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse guest houses, apartments and houses to stay, rent or buy.'**
+  String get onboardingBody1;
+
+  /// No description provided for @onboardingTitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact the owner'**
+  String get onboardingTitle2;
+
+  /// No description provided for @onboardingBody2.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat with the owner, or call or message them on WhatsApp.'**
+  String get onboardingBody2;
+
+  /// No description provided for @onboardingTitle3.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish your own place'**
+  String get onboardingTitle3;
+
+  /// No description provided for @onboardingBody3.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your listing with photos in a few minutes.'**
+  String get onboardingBody3;
 }
 
 class _AppLocalizationsDelegate

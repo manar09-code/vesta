@@ -22,6 +22,34 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tabMap => 'Carte';
 
   @override
+  String get mapMyLocation => 'Ma position';
+
+  @override
+  String get mapLocationDenied =>
+      'Permission de localisation refusée. La carte fonctionne quand même.';
+
+  @override
+  String get mapLocationDeniedForever =>
+      'La localisation est bloquée pour Vesta. Activez-la dans les paramètres de l’application.';
+
+  @override
+  String get mapLocationServiceOff =>
+      'Activez la localisation (GPS) de votre téléphone pour voir où vous êtes.';
+
+  @override
+  String get mapLocationError =>
+      'Impossible de trouver votre position. Réessayez.';
+
+  @override
+  String get mapOpenSettings => 'Paramètres';
+
+  @override
+  String get mapViewDetails => 'Voir les détails';
+
+  @override
+  String get mapNoListings => 'Aucune annonce avec une position pour le moment';
+
+  @override
   String get tabFavorites => 'Favoris';
 
   @override
@@ -32,6 +60,54 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chatTitle => 'Messages';
+
+  @override
+  String get chatEmptyTitle => 'Aucune conversation';
+
+  @override
+  String get chatEmptyBody =>
+      'Ouvrez une annonce et touchez « Contacter le propriétaire » pour commencer.';
+
+  @override
+  String get chatContactOwner => 'Contacter le propriétaire';
+
+  @override
+  String get chatOwnListing => 'Votre propre annonce';
+
+  @override
+  String get chatContactError =>
+      'Impossible d\'ouvrir la conversation, réessayez';
+
+  @override
+  String get chatUnknownUser => 'Utilisateur Vesta';
+
+  @override
+  String get chatLoadError => 'Impossible de charger vos messages';
+
+  @override
+  String get chatRetry => 'Réessayer';
+
+  @override
+  String get chatListingRemoved => 'Annonce plus disponible';
+
+  @override
+  String get chatMessageHint => 'Écrivez un message';
+
+  @override
+  String get chatSend => 'Envoyer';
+
+  @override
+  String get chatSending => 'Envoi…';
+
+  @override
+  String get chatNoMessages => 'Aucun message. Dites bonjour !';
+
+  @override
+  String get chatSendError =>
+      'Pas encore envoyé. Il partira dès que vous serez de nouveau en ligne.';
+
+  @override
+  String get chatSendFailed => 'Message non envoyé, réessayez';
 
   @override
   String get loginTitle => 'Connexion';
@@ -265,6 +341,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get listingDetailPerNight => '/ nuit';
 
   @override
+  String get listingDetailAtAGlance => 'En un coup d\'œil';
+
+  @override
+  String get listingDetailGuests => 'Invités';
+
+  @override
+  String get listingDetailReadMore => 'Lire la suite';
+
+  @override
+  String get listingDetailReadLess => 'Réduire';
+
+  @override
   String get listingDetailPerMonth => '/ mois';
 
   @override
@@ -467,6 +555,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Trop de tentatives, réessayez dans quelques minutes';
 
   @override
+<<<<<<< HEAD
   String get contactCall => 'Appeler';
 
   @override
@@ -496,6 +585,78 @@ class AppLocalizationsFr extends AppLocalizations {
   String contactMessageStay(String title) {
     return 'Bonjour, je suis intéressé par un séjour à $title sur Vesta';
   }
+=======
+  String get listingErrorGuestsInvalid =>
+      'Indiquez un nombre d\'invités entre 1 et 30';
+
+  @override
+  String get listingErrorRoomsInvalid => 'Indiquez un nombre entre 0 et 20';
+
+  @override
+  String get publishFieldGuests => 'Nombre maximum d\'invités (optionnel)';
+
+  @override
+  String get publishAmenitiesTitle => 'Équipements';
+
+  @override
+  String publishAmenitiesCounter(int count) {
+    return '$count / 10';
+  }
+
+  @override
+  String get publishCheckIn => 'Heure d\'arrivée';
+
+  @override
+  String get publishCheckOut => 'Heure de départ';
+
+  @override
+  String get publishTimeNotSet => 'Non défini';
+
+  @override
+  String get publishRulesTitle => 'Règles de la maison';
+
+  @override
+  String get amenityWifi => 'Wi-Fi';
+
+  @override
+  String get amenityAc => 'Climatisation';
+
+  @override
+  String get amenityHeating => 'Chauffage';
+
+  @override
+  String get amenityKitchen => 'Cuisine';
+
+  @override
+  String get amenityParking => 'Parking';
+
+  @override
+  String get amenityPool => 'Piscine';
+
+  @override
+  String get amenityBreakfast => 'Petit-déjeuner';
+
+  @override
+  String get amenityWashingMachine => 'Machine à laver';
+
+  @override
+  String get amenityTv => 'Télévision';
+
+  @override
+  String get amenityGarden => 'Jardin';
+
+  @override
+  String get ruleNoSmoking => 'Non-fumeur';
+
+  @override
+  String get ruleNoPets => 'Animaux non admis';
+
+  @override
+  String get ruleNoParties => 'Pas de fêtes';
+
+  @override
+  String get ruleQuietHours => 'Heures de calme';
+>>>>>>> origin/develop
 
   @override
   String get searchHint => 'Rechercher par ville';
@@ -554,4 +715,34 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get searchPropGuestHouse => 'Maison d\'hôtes';
+
+  @override
+  String get onboardingSkip => 'Passer';
+
+  @override
+  String get onboardingNext => 'Suivant';
+
+  @override
+  String get onboardingStart => 'Commencer';
+
+  @override
+  String get onboardingTitle1 => 'Trouvez votre bien en Tunisie';
+
+  @override
+  String get onboardingBody1 =>
+      'Parcourez des maisons d’hôtes, appartements et maisons pour séjourner, louer ou acheter.';
+
+  @override
+  String get onboardingTitle2 => 'Contactez le propriétaire';
+
+  @override
+  String get onboardingBody2 =>
+      'Discutez avec lui par message, ou appelez-le ou écrivez-lui sur WhatsApp.';
+
+  @override
+  String get onboardingTitle3 => 'Publiez votre bien';
+
+  @override
+  String get onboardingBody3 =>
+      'Ajoutez votre annonce avec des photos en quelques minutes.';
 }
