@@ -87,6 +87,9 @@ class ProfileController extends Notifier<ProfileFormState> {
   Future<bool> deleteListing(Listing listing) =>
       _run(() => _listings.deleteListing(listing));
 
+  /// Returns true when the status was changed.
+  Future<bool> setStatus(Listing listing, String status) =>
+      _run(() => _listings.updateStatus(listing, status));
   void clearError() => state = const ProfileFormState();
 
   Future<bool> _run(Future<void> Function() action) async {

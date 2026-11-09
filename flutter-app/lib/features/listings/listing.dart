@@ -127,3 +127,16 @@ extension ListingAvailability on Listing {
   /// A favorite that is unavailable stays in the list with a grey label.
   bool get isUnavailable => _unavailableStatuses.contains(status);
 }
+
+/// Statuses an owner can choose, by offer type (docs/data-model.md and the
+/// Firestore rules). The order is the order of the choices in the sheet.
+List<String> allowedStatuses(OfferType type) {
+  switch (type) {
+    case OfferType.sale:
+      return const ['available', 'reserved', 'sold', 'hidden'];
+    case OfferType.rent:
+      return const ['available', 'reserved', 'rented', 'hidden'];
+    case OfferType.stay:
+      return const ['available', 'unavailable', 'hidden'];
+  }
+}
