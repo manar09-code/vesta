@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../l10n/generated/app_localizations.dart';
-import '../auth/auth_controller.dart';
 import '../auth/require_sign_in.dart';
+import '../chat/chat_controller.dart';
 import 'listing.dart';
 import 'listing_controller.dart';
 
@@ -12,8 +12,8 @@ import 'listing_controller.dart';
 /// users: a guest never triggers this read (rules + VST-74).
 final listingContactProvider = FutureProvider.autoDispose
     .family<({String phone, bool whatsapp})?, String>((ref, listingId) {
-  return ref.read(listingRepositoryProvider).getContact(listingId);
-});
+      return ref.read(listingRepositoryProvider).getContact(listingId);
+    });
 
 /// Call and WhatsApp buttons under the price (VST-79).
 /// The phone number is never logged.
@@ -25,7 +25,7 @@ class ContactButtons extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final signedIn = ref.watch(authStateProvider).value != null;
+    final signedIn = ref.watch(myUidProvider) != null;
 
     if (!signedIn) {
       return Padding(
