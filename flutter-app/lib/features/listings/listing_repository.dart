@@ -280,6 +280,7 @@ class ListingRepository {
       throw ListingFailure(_mapCode(e.code));
     }
   }
+
   /// Changes only the status of a listing (owner only, enforced by the
   /// rules). `updatedAt` follows, like on every write.
   Future<void> updateStatus(Listing listing, String status) async {
@@ -297,7 +298,7 @@ class ListingRepository {
       throw ListingFailure(_mapCode(e.code));
     }
   }
-  
+
   ListingError _mapCode(String code) {
     switch (code) {
       case 'unavailable':

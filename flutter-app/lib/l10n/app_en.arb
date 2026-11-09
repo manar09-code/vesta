@@ -127,7 +127,7 @@
   "profileDeleteConfirm": "Delete",
   "profileCancel": "Cancel",
   "profileListingDeleted": "Listing deleted",
-    "profileStatusAvailable": "Available",
+  "profileStatusAvailable": "Available",
   "profileStatusReserved": "Reserved",
   "profileStatusSold": "Sold",
   "profileStatusRented": "Rented",

@@ -127,7 +127,7 @@
   "profileDeleteConfirm": "احذف",
   "profileCancel": "إلغاء",
   "profileListingDeleted": "تم حذف الإعلان",
-    "profileStatusAvailable": "متوفر",
+  "profileStatusAvailable": "متوفر",
   "profileStatusReserved": "محجوز",
   "profileStatusSold": "مباع",
   "profileStatusRented": "مكرّي",
