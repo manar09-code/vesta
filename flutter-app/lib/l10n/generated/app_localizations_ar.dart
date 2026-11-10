@@ -395,6 +395,33 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profileListingDeleted => 'تم حذف الإعلان';
 
   @override
+  String get profileStatusAvailable => 'متوفر';
+
+  @override
+  String get profileStatusReserved => 'محجوز';
+
+  @override
+  String get profileStatusSold => 'مباع';
+
+  @override
+  String get profileStatusRented => 'مكرّي';
+
+  @override
+  String get profileStatusUnavailable => 'موش متوفر';
+
+  @override
+  String get profileStatusHidden => 'مخفي';
+
+  @override
+  String get profileStatusSheetTitle => 'بدّل حالة الإعلان';
+
+  @override
+  String get profileStatusUpdated => 'تبدّلت حالة الإعلان';
+
+  @override
+  String get profilePublishFirst => 'انشر أول إعلان ليك';
+
+  @override
   String get profileErrorNameRequired => 'أدخل اسمك';
 
   @override

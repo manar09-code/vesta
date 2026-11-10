@@ -281,6 +281,24 @@ class ListingRepository {
     }
   }
 
+  /// Changes only the status of a listing (owner only, enforced by the
+  /// rules). `updatedAt` follows, like on every write.
+  Future<void> updateStatus(Listing listing, String status) async {
+    final user = _auth.currentUser;
+    if (user == null) throw const ListingFailure(ListingError.notSignedIn);
+    if (!allowedStatuses(offerTypeOf(listing)).contains(status)) {
+      throw const ListingFailure(ListingError.unknown);
+    }
+    try {
+      await _db.collection('listings').doc(listing.id).update({
+        'status': status,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
   ListingError _mapCode(String code) {
     switch (code) {
       case 'unavailable':
