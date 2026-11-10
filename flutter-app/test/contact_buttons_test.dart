@@ -77,4 +77,3 @@ void main() {
     expect(find.byIcon(Icons.lock_outline), findsNothing);
   });
 }
-
