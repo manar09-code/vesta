@@ -560,6 +560,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonOffline => 'You are offline. Some content may not load.';
+
+  @override
   String get listingErrorGuestsInvalid =>
       'Enter a number of guests between 1 and 30';
 

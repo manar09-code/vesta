@@ -1173,6 +1173,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You are offline. Some content may not load.'**
   String get commonOffline;
+
   /// No description provided for @listingErrorGuestsInvalid.
   ///
   /// In en, this message translates to:

@@ -569,6 +569,8 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get commonOffline =>
       'Vous êtes hors ligne. Certains contenus peuvent ne pas s’afficher.';
+
+  @override
   String get listingErrorGuestsInvalid =>
       'Indiquez un nombre d\'invités entre 1 et 30';
 
