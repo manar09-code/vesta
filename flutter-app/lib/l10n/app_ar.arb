@@ -229,5 +229,6 @@
   "onboardingTitle2": "تواصل مع المالك",
   "onboardingBody2": "ابعثله رسالة، ولا اتصل بيه، ولا اكتبله على واتساب.",
   "onboardingTitle3": "انشر إعلانك",
-  "onboardingBody3": "زيد إعلانك مع الصور في دقايق قليلة."
+  "onboardingBody3": "زيد إعلانك مع الصور في دقايق قليلة.",
+  "favoritesEmptyAction": "استكشف الإعلانات"
 }

@@ -569,6 +569,8 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get commonOffline =>
       'Vous êtes hors ligne. Certains contenus peuvent ne pas s’afficher.';
+
+  @override
   String get listingErrorGuestsInvalid =>
       'Indiquez un nombre d\'invités entre 1 et 30';
 
@@ -727,4 +729,7 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get onboardingBody3 =>
       'Ajoutez votre annonce avec des photos en quelques minutes.';
+
+  @override
+  String get favoritesEmptyAction => 'Explorer les annonces';
 }

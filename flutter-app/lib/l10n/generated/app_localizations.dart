@@ -1173,6 +1173,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You are offline. Some content may not load.'**
   String get commonOffline;
+
   /// No description provided for @listingErrorGuestsInvalid.
   ///
   /// In en, this message translates to:
@@ -1478,6 +1479,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add your listing with photos in a few minutes.'**
   String get onboardingBody3;
+
+  /// No description provided for @favoritesEmptyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore listings'**
+  String get favoritesEmptyAction;
 }
 
 class _AppLocalizationsDelegate

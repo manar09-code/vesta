@@ -229,5 +229,6 @@
   "onboardingTitle2": "Contactez le propriétaire",
   "onboardingBody2": "Discutez avec lui par message, ou appelez-le ou écrivez-lui sur WhatsApp.",
   "onboardingTitle3": "Publiez votre bien",
-  "onboardingBody3": "Ajoutez votre annonce avec des photos en quelques minutes."
+  "onboardingBody3": "Ajoutez votre annonce avec des photos en quelques minutes.",
+  "favoritesEmptyAction": "Explorer les annonces"
 }

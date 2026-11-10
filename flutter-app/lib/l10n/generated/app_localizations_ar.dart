@@ -553,6 +553,8 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get commonOffline => 'ما عندكش إنترنت. ممكن شوية محتوى ما يظهرش.';
+
+  @override
   String get listingErrorGuestsInvalid => 'أدخل عدد الضيوف بين 1 و30';
 
   @override
@@ -708,4 +710,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get onboardingBody3 => 'زيد إعلانك مع الصور في دقايق قليلة.';
+
+  @override
+  String get favoritesEmptyAction => 'استكشف الإعلانات';
 }

@@ -232,5 +232,6 @@
   "onboardingTitle2": "Contact the owner",
   "onboardingBody2": "Chat with the owner, or call or message them on WhatsApp.",
   "onboardingTitle3": "Publish your own place",
-  "onboardingBody3": "Add your listing with photos in a few minutes."
+  "onboardingBody3": "Add your listing with photos in a few minutes.",
+  "favoritesEmptyAction": "Explore listings"
 }

@@ -560,6 +560,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonOffline => 'You are offline. Some content may not load.';
+
+  @override
   String get listingErrorGuestsInvalid =>
       'Enter a number of guests between 1 and 30';
 
@@ -717,4 +719,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onboardingBody3 =>
       'Add your listing with photos in a few minutes.';
+
+  @override
+  String get favoritesEmptyAction => 'Explore listings';
 }
