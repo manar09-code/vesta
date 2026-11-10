@@ -60,6 +60,8 @@
   "publishFieldDescription": "الوصف",
   "publishFieldPrice": "السوم (دينار)",
   "publishFieldCity": "المدينة",
+  "publishFieldPhone": "رقم الهاتف",
+  "publishWhatsapp": "متاح على واتساب",
   "publishFieldBedrooms": "عدد البيوت (اختياري)",
   "publishFieldBathrooms": "عدد بيوت الماء (اختياري)",
   "publishFieldArea": "المساحة بالمتر مربع (اختياري)",
@@ -85,6 +87,7 @@
   "listingErrorDescriptionRequired": "أدخل الوصف",
   "listingErrorPriceInvalid": "أدخل سوم بين 1 و50,000,000",
   "listingErrorCityRequired": "أدخل المدينة",
+  "listingErrorPhoneInvalid": "أدخل رقم هاتف تونسي صحيح",
   "listingErrorRentPeriodRequired": "اختار مدة الكراء",
   "listingErrorNumberInvalid": "أدخل رقم صحيح",
   "listingErrorNotSignedIn": "سجّل الدخول قبل",
@@ -103,7 +106,7 @@
   "listingDetailBathrooms": "الحمّامات",
   "listingDetailArea": "المساحة (م²)",
   "listingDetailPerNight": "/ ليلة",
-    "listingDetailAtAGlance": "نظرة سريعة",
+  "listingDetailAtAGlance": "نظرة سريعة",
   "listingDetailGuests": "الضيوف",
   "listingDetailReadMore": "اقرأ المزيد",
   "listingDetailReadLess": "عرض أقل",
@@ -180,6 +183,36 @@
   "verifyBannerResend": "ابعث مرة أخرى",
   "verifyBannerSent": "تبعث إيميل التأكيد",
   "authErrorTooManyRequests": "برشا محاولات، عاود جرّب بعد شوية دقايق",
+  "contactCall": "اتصل",
+  "contactWhatsapp": "واتساب",
+  "contactSignInToSee": "سجّل الدخول باش تشوف رقم التواصل",
+  "contactNoWhatsapp": "واتساب موش مثبّت على التليفون هذا",
+  "contactCallError": "ما نجمناش نحلّو تطبيق الهاتف",
+  "contactMessageSale": "عسلامة، مهتم بشراء {title} على Vesta",
+  "@contactMessageSale": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageRent": "عسلامة، مهتم بكراء {title} على Vesta",
+  "@contactMessageRent": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageStay": "عسلامة، مهتم بالإقامة في {title} على Vesta",
+  "@contactMessageStay": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "searchHint": "ابحث حسب المدينة",
   "listingErrorGuestsInvalid": "أدخل عدد الضيوف بين 1 و30",
   "listingErrorRoomsInvalid": "أدخل رقمًا بين 0 و20",
   "publishFieldGuests": "الحد الأقصى للضيوف (اختياري)",
@@ -203,7 +236,6 @@
   "ruleNoPets": "الحيوانات غير مسموحة",
   "ruleNoParties": "ممنوع الحفلات",
   "ruleQuietHours": "ساعات الهدوء",
-  "searchHint": "ابحث حسب المدينة",
   "searchNoResults": "لا توجد إعلانات مطابقة لبحثك",
   "searchFilters": "تصفية",
   "searchPriceMin": "السعر الأدنى",

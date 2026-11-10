@@ -193,6 +193,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get publishFieldCity => 'المدينة';
 
   @override
+  String get publishFieldPhone => 'رقم الهاتف';
+
+  @override
+  String get publishWhatsapp => 'متاح على واتساب';
+
+  @override
   String get publishFieldBedrooms => 'عدد البيوت (اختياري)';
 
   @override
@@ -266,6 +272,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get listingErrorCityRequired => 'أدخل المدينة';
+
+  @override
+  String get listingErrorPhoneInvalid => 'أدخل رقم هاتف تونسي صحيح';
 
   @override
   String get listingErrorRentPeriodRequired => 'اختار مدة الكراء';
@@ -558,6 +567,39 @@ class AppLocalizationsAr extends AppLocalizations {
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
 
   @override
+  String get contactCall => 'اتصل';
+
+  @override
+  String get contactWhatsapp => 'واتساب';
+
+  @override
+  String get contactSignInToSee => 'سجّل الدخول باش تشوف رقم التواصل';
+
+  @override
+  String get contactNoWhatsapp => 'واتساب موش مثبّت على التليفون هذا';
+
+  @override
+  String get contactCallError => 'ما نجمناش نحلّو تطبيق الهاتف';
+
+  @override
+  String contactMessageSale(String title) {
+    return 'عسلامة، مهتم بشراء $title على Vesta';
+  }
+
+  @override
+  String contactMessageRent(String title) {
+    return 'عسلامة، مهتم بكراء $title على Vesta';
+  }
+
+  @override
+  String contactMessageStay(String title) {
+    return 'عسلامة، مهتم بالإقامة في $title على Vesta';
+  }
+
+  @override
+  String get searchHint => 'ابحث حسب المدينة';
+
+  @override
   String get listingErrorGuestsInvalid => 'أدخل عدد الضيوف بين 1 و30';
 
   @override
@@ -627,9 +669,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ruleQuietHours => 'ساعات الهدوء';
-
-  @override
-  String get searchHint => 'ابحث حسب المدينة';
 
   @override
   String get searchNoResults => 'لا توجد إعلانات مطابقة لبحثك';

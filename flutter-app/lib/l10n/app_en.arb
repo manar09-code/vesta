@@ -60,6 +60,8 @@
   "publishFieldDescription": "Description",
   "publishFieldPrice": "Price (TND)",
   "publishFieldCity": "City",
+  "publishFieldPhone": "Phone",
+  "publishWhatsapp": "Available on WhatsApp",
   "publishFieldBedrooms": "Bedrooms (optional)",
   "publishFieldBathrooms": "Bathrooms (optional)",
   "publishFieldArea": "Area in m² (optional)",
@@ -85,6 +87,7 @@
   "listingErrorDescriptionRequired": "Enter a description",
   "listingErrorPriceInvalid": "Enter a price between 1 and 50,000,000",
   "listingErrorCityRequired": "Enter a city",
+  "listingErrorPhoneInvalid": "Enter a valid Tunisian phone number",
   "listingErrorRentPeriodRequired": "Choose a rent period",
   "listingErrorNumberInvalid": "Enter a valid number",
   "listingErrorNotSignedIn": "Please sign in first",
@@ -103,7 +106,7 @@
   "listingDetailBathrooms": "Bathrooms",
   "listingDetailArea": "Area (m²)",
   "listingDetailPerNight": "/ night",
-    "listingDetailAtAGlance": "At a glance",
+  "listingDetailAtAGlance": "At a glance",
   "listingDetailGuests": "Guests",
   "listingDetailReadMore": "Read more",
   "listingDetailReadLess": "Read less",
@@ -180,13 +183,47 @@
   "verifyBannerResend": "Send again",
   "verifyBannerSent": "Verification email sent",
   "authErrorTooManyRequests": "Too many attempts, please try again in a few minutes",
+  "contactCall": "Call",
+  "contactWhatsapp": "WhatsApp",
+  "contactSignInToSee": "Sign in to see the contact",
+  "contactNoWhatsapp": "WhatsApp is not installed on this phone",
+  "contactCallError": "Could not open the phone app",
+  "contactMessageSale": "Hello, I am interested in buying {title} on Vesta",
+  "@contactMessageSale": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageRent": "Hello, I am interested in renting {title} on Vesta",
+  "@contactMessageRent": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageStay": "Hello, I am interested in staying at {title} on Vesta",
+  "@contactMessageStay": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "searchHint": "Search by city",
   "listingErrorGuestsInvalid": "Enter a number of guests between 1 and 30",
   "listingErrorRoomsInvalid": "Enter a number between 0 and 20",
   "publishFieldGuests": "Maximum guests (optional)",
   "publishAmenitiesTitle": "Amenities",
   "publishAmenitiesCounter": "{count} / 10",
   "@publishAmenitiesCounter": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "publishCheckIn": "Check-in time",
   "publishCheckOut": "Check-out time",
@@ -206,7 +243,6 @@
   "ruleNoPets": "No pets",
   "ruleNoParties": "No parties",
   "ruleQuietHours": "Quiet hours",
-  "searchHint": "Search by city",
   "searchNoResults": "No listings match your search",
   "searchFilters": "Filters",
   "searchPriceMin": "Min price",

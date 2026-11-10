@@ -199,6 +199,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get publishFieldCity => 'Ville';
 
   @override
+  String get publishFieldPhone => 'Téléphone';
+
+  @override
+  String get publishWhatsapp => 'Disponible sur WhatsApp';
+
+  @override
   String get publishFieldBedrooms => 'Chambres (facultatif)';
 
   @override
@@ -272,6 +278,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get listingErrorCityRequired => 'Entrez une ville';
+
+  @override
+  String get listingErrorPhoneInvalid => 'Entrez un numéro tunisien valide';
 
   @override
   String get listingErrorRentPeriodRequired =>
@@ -573,6 +582,40 @@ class AppLocalizationsFr extends AppLocalizations {
       'Trop de tentatives, réessayez dans quelques minutes';
 
   @override
+  String get contactCall => 'Appeler';
+
+  @override
+  String get contactWhatsapp => 'WhatsApp';
+
+  @override
+  String get contactSignInToSee => 'Connectez-vous pour voir le contact';
+
+  @override
+  String get contactNoWhatsapp =>
+      'WhatsApp n’est pas installé sur ce téléphone';
+
+  @override
+  String get contactCallError => 'Impossible d’ouvrir l’application Téléphone';
+
+  @override
+  String contactMessageSale(String title) {
+    return 'Bonjour, je suis intéressé par l’achat de $title sur Vesta';
+  }
+
+  @override
+  String contactMessageRent(String title) {
+    return 'Bonjour, je suis intéressé par la location de $title sur Vesta';
+  }
+
+  @override
+  String contactMessageStay(String title) {
+    return 'Bonjour, je suis intéressé par un séjour à $title sur Vesta';
+  }
+
+  @override
+  String get searchHint => 'Rechercher par ville';
+
+  @override
   String get listingErrorGuestsInvalid =>
       'Indiquez un nombre d\'invités entre 1 et 30';
 
@@ -643,9 +686,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get ruleQuietHours => 'Heures de calme';
-
-  @override
-  String get searchHint => 'Rechercher par ville';
 
   @override
   String get searchNoResults =>

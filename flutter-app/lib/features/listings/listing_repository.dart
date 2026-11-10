@@ -72,6 +72,8 @@ class NewListing {
     this.bedrooms,
     this.bathrooms,
     this.areaSqm,
+    this.contactPhone,
+    this.whatsappEnabled = false,
     this.maxGuests,
     this.amenities = const [],
     this.checkIn,
@@ -89,6 +91,8 @@ class NewListing {
   final num? bedrooms;
   final num? bathrooms;
   final num? areaSqm;
+  final String? contactPhone;
+  final bool whatsappEnabled;
   final num? maxGuests;
   final List<String> amenities; // keys of amenityKeys
   final String? checkIn; // 'HH:mm'
@@ -156,6 +160,16 @@ class ListingRepository {
         });
       }
 
+      // Private contact details stay outside the public listing document.
+      final phone = listing.contactPhone;
+      if (phone != null) {
+        batch.set(ref.collection('contact').doc('info'), {
+          'contactPhone': phone,
+          'whatsappEnabled': listing.whatsappEnabled,
+          'updatedAt': FieldValue.serverTimestamp(),
+        });
+      }
+
       await batch.commit();
       return ref.id;
     } on FirebaseException catch (e) {
@@ -191,6 +205,26 @@ class ListingRepository {
       batch.delete(ref.collection('contact').doc('info'));
       batch.delete(ref);
       await batch.commit();
+    } on FirebaseException catch (e) {
+      throw ListingFailure(_mapCode(e.code));
+    }
+  }
+
+  /// Reads the private contact of a listing (contact/info).
+  /// Call it only for a signed-in user: guests must not even try (rules).
+  /// Returns null when the owner gave no number.
+  Future<({String phone, bool whatsapp})?> getContact(String listingId) async {
+    try {
+      final snap = await _db
+          .collection('listings')
+          .doc(listingId)
+          .collection('contact')
+          .doc('info')
+          .get();
+      final data = snap.data();
+      final phone = data?['contactPhone'] as String?;
+      if (phone == null) return null;
+      return (phone: phone, whatsapp: data?['whatsappEnabled'] == true);
     } on FirebaseException catch (e) {
       throw ListingFailure(_mapCode(e.code));
     }
