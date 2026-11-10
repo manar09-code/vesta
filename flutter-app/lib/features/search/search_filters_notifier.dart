@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../auth/auth_controller.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,19 +14,22 @@ const Duration searchDebounce = Duration(milliseconds: 400);
 const int searchListLimit = 100;
 
 /// The listings the search works on. Read once, then filtered in memory.
-final searchableListingsProvider = FutureProvider<List<Listing>>(
-  (ref) => ListingRepository().getLatestListings(limit: searchListLimit),
-);
+final searchableListingsProvider = FutureProvider<List<Listing>>((ref) {
+  // Read again when the signed-in user changes (login, logout).
+  ref.watch(authStateProvider.select((a) => a.value?.uid));
+  return ListingRepository().getLatestListings(limit: searchListLimit);
+});
 
 class SearchFiltersNotifier extends Notifier<SearchFilters> {
   Timer? _debounce;
 
   @override
-  SearchFilters build() {
-    ref.onDispose(() => _debounce?.cancel());
-    return const SearchFilters();
-  }
-
+SearchFilters build() {
+  // New user, new search: start again with empty filters.
+  ref.watch(authStateProvider.select((a) => a.value?.uid));
+  ref.onDispose(() => _debounce?.cancel());
+  return const SearchFilters();
+}
   /// Called on every keystroke: only the last one, 400 ms later, counts.
   void setCity(String text) {
     _debounce?.cancel();

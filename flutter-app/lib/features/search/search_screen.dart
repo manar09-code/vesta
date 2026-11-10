@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../auth/auth_controller.dart';
 
 import '../../core/router/app_router.dart';
 import '../../l10n/generated/app_localizations.dart';
@@ -27,6 +28,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(
+  authStateProvider.select((a) => a.value?.uid),
+  (_, _) => _controller.clear(),
+);
     final l10n = AppLocalizations.of(context);
     final results = ref.watch(searchResultsProvider);
     final filters = ref.watch(searchFiltersProvider);
