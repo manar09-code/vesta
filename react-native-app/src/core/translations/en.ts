@@ -235,4 +235,13 @@ export default {
   onboardingBody2: 'Chat with the owner, or call or message them on WhatsApp.',
   onboardingTitle3: 'Publish your own place',
   onboardingBody3: 'Add your listing with photos in a few minutes.',
+  profileStatusAvailable: 'Available',
+  profileStatusReserved: 'Reserved',
+  profileStatusSold: 'Sold',
+  profileStatusRented: 'Rented',
+  profileStatusUnavailable: 'Unavailable',
+  profileStatusHidden: 'Hidden',
+  profileStatusSheetTitle: 'Change the status',
+  profileStatusUpdated: 'Status updated',
+  profilePublishFirst: 'Publish your first listing',
 };

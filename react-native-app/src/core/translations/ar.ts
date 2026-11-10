@@ -231,4 +231,13 @@ export default {
   onboardingBody2: 'ابعثله رسالة، ولا اتصل بيه، ولا اكتبله على واتساب.',
   onboardingTitle3: 'انشر إعلانك',
   onboardingBody3: 'زيد إعلانك مع الصور في دقايق قليلة.',
+  profileStatusAvailable: 'متوفر',
+  profileStatusReserved: 'محجوز',
+  profileStatusSold: 'مباع',
+  profileStatusRented: 'مكرّي',
+  profileStatusUnavailable: 'موش متوفر',
+  profileStatusHidden: 'مخفي',
+  profileStatusSheetTitle: 'بدّل حالة الإعلان',
+  profileStatusUpdated: 'تبدّلت حالة الإعلان',
+  profilePublishFirst: 'انشر أول إعلان ليك',
 };

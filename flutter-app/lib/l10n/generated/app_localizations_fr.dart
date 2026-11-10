@@ -287,33 +287,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileListingDeleted => 'Annonce supprimée';
 
   @override
-  String get profileStatusAvailable => 'Disponible';
-
-  @override
-  String get profileStatusReserved => 'Réservé';
-
-  @override
-  String get profileStatusSold => 'Vendu';
-
-  @override
-  String get profileStatusRented => 'Loué';
-
-  @override
-  String get profileStatusUnavailable => 'Indisponible';
-
-  @override
-  String get profileStatusHidden => 'Masqué';
-
-  @override
-  String get profileStatusSheetTitle => 'Changer le statut';
-
-  @override
-  String get profileStatusUpdated => 'Statut mis à jour';
-
-  @override
-  String get profilePublishFirst => 'Publier votre première annonce';
-
-  @override
   String get profileErrorNameRequired => 'Le nom est obligatoire';
 
   @override
@@ -748,4 +721,31 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get onboardingBody3 =>
       'Ajoutez votre annonce avec des photos en quelques minutes.';
+
+  @override
+  String get profileStatusAvailable => 'Disponible';
+
+  @override
+  String get profileStatusReserved => 'Réservé';
+
+  @override
+  String get profileStatusSold => 'Vendu';
+
+  @override
+  String get profileStatusRented => 'Loué';
+
+  @override
+  String get profileStatusUnavailable => 'Indisponible';
+
+  @override
+  String get profileStatusHidden => 'Masqué';
+
+  @override
+  String get profileStatusSheetTitle => 'Changer le statut';
+
+  @override
+  String get profileStatusUpdated => 'Statut mis à jour';
+
+  @override
+  String get profilePublishFirst => 'Publier votre première annonce';
 }

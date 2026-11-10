@@ -640,60 +640,6 @@ abstract class AppLocalizations {
   /// **'Listing deleted'**
   String get profileListingDeleted;
 
-  /// No description provided for @profileStatusAvailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Available'**
-  String get profileStatusAvailable;
-
-  /// No description provided for @profileStatusReserved.
-  ///
-  /// In en, this message translates to:
-  /// **'Reserved'**
-  String get profileStatusReserved;
-
-  /// No description provided for @profileStatusSold.
-  ///
-  /// In en, this message translates to:
-  /// **'Sold'**
-  String get profileStatusSold;
-
-  /// No description provided for @profileStatusRented.
-  ///
-  /// In en, this message translates to:
-  /// **'Rented'**
-  String get profileStatusRented;
-
-  /// No description provided for @profileStatusUnavailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Unavailable'**
-  String get profileStatusUnavailable;
-
-  /// No description provided for @profileStatusHidden.
-  ///
-  /// In en, this message translates to:
-  /// **'Hidden'**
-  String get profileStatusHidden;
-
-  /// No description provided for @profileStatusSheetTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Change the status'**
-  String get profileStatusSheetTitle;
-
-  /// No description provided for @profileStatusUpdated.
-  ///
-  /// In en, this message translates to:
-  /// **'Status updated'**
-  String get profileStatusUpdated;
-
-  /// No description provided for @profilePublishFirst.
-  ///
-  /// In en, this message translates to:
-  /// **'Publish your first listing'**
-  String get profilePublishFirst;
-
   /// No description provided for @profileErrorNameRequired.
   ///
   /// In en, this message translates to:
@@ -1515,6 +1461,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add your listing with photos in a few minutes.'**
   String get onboardingBody3;
+
+  /// No description provided for @profileStatusAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get profileStatusAvailable;
+
+  /// No description provided for @profileStatusReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved'**
+  String get profileStatusReserved;
+
+  /// No description provided for @profileStatusSold.
+  ///
+  /// In en, this message translates to:
+  /// **'Sold'**
+  String get profileStatusSold;
+
+  /// No description provided for @profileStatusRented.
+  ///
+  /// In en, this message translates to:
+  /// **'Rented'**
+  String get profileStatusRented;
+
+  /// No description provided for @profileStatusUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable'**
+  String get profileStatusUnavailable;
+
+  /// No description provided for @profileStatusHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden'**
+  String get profileStatusHidden;
+
+  /// No description provided for @profileStatusSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change the status'**
+  String get profileStatusSheetTitle;
+
+  /// No description provided for @profileStatusUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Status updated'**
+  String get profileStatusUpdated;
+
+  /// No description provided for @profilePublishFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish your first listing'**
+  String get profilePublishFirst;
 }
 
 class _AppLocalizationsDelegate

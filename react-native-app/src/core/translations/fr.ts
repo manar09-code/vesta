@@ -240,4 +240,13 @@ export default {
     'Discutez avec lui par message, ou appelez-le ou écrivez-lui sur WhatsApp.',
   onboardingTitle3: 'Publiez votre bien',
   onboardingBody3: 'Ajoutez votre annonce avec des photos en quelques minutes.',
+  profileStatusAvailable: 'Disponible',
+  profileStatusReserved: 'Réservé',
+  profileStatusSold: 'Vendu',
+  profileStatusRented: 'Loué',
+  profileStatusUnavailable: 'Indisponible',
+  profileStatusHidden: 'Masqué',
+  profileStatusSheetTitle: 'Changer le statut',
+  profileStatusUpdated: 'Statut mis à jour',
+  profilePublishFirst: 'Publier votre première annonce',
 };

@@ -285,33 +285,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileListingDeleted => 'Listing deleted';
 
   @override
-  String get profileStatusAvailable => 'Available';
-
-  @override
-  String get profileStatusReserved => 'Reserved';
-
-  @override
-  String get profileStatusSold => 'Sold';
-
-  @override
-  String get profileStatusRented => 'Rented';
-
-  @override
-  String get profileStatusUnavailable => 'Unavailable';
-
-  @override
-  String get profileStatusHidden => 'Hidden';
-
-  @override
-  String get profileStatusSheetTitle => 'Change the status';
-
-  @override
-  String get profileStatusUpdated => 'Status updated';
-
-  @override
-  String get profilePublishFirst => 'Publish your first listing';
-
-  @override
   String get profileErrorNameRequired => 'Name is required';
 
   @override
@@ -739,4 +712,31 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onboardingBody3 =>
       'Add your listing with photos in a few minutes.';
+
+  @override
+  String get profileStatusAvailable => 'Available';
+
+  @override
+  String get profileStatusReserved => 'Reserved';
+
+  @override
+  String get profileStatusSold => 'Sold';
+
+  @override
+  String get profileStatusRented => 'Rented';
+
+  @override
+  String get profileStatusUnavailable => 'Unavailable';
+
+  @override
+  String get profileStatusHidden => 'Hidden';
+
+  @override
+  String get profileStatusSheetTitle => 'Change the status';
+
+  @override
+  String get profileStatusUpdated => 'Status updated';
+
+  @override
+  String get profilePublishFirst => 'Publish your first listing';
 }
