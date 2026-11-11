@@ -10,6 +10,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../core/config/app_config.dart';
 import '../../core/router/app_router.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_dimens.dart';
+import '../../core/theme/app_text_styles.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../listings/listing.dart';
 import '../listings/listing_repository.dart';
@@ -123,18 +125,16 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                 for (final listing in items)
                   Marker(
                     point: LatLng(listing.latitude!, listing.longitude!),
-                    width: 44,
-                    height: 44,
-                    // The tip of the pin is on the position.
-                    alignment: Alignment.topCenter,
+                    width: 96,
+                    height: 34,
                     child: GestureDetector(
                       onTap: () => setState(() => _selected = listing),
-                      child: Icon(
-                        Icons.location_on,
-                        size: 40,
-                        color: listing.id == selected?.id
-                            ? AppColors.primary
-                            : AppColors.terracotta,
+                      child: _PricePin(
+                        text: formatPrice(
+                          listing.price,
+                          currency: listing.currency,
+                        ),
+                        selected: listing.id == selected?.id,
                       ),
                     ),
                   ),
@@ -181,9 +181,10 @@ class _MapScreenState extends ConsumerState<MapScreen> {
           Align(
             alignment: Alignment.topCenter,
             child: Card(
-              margin: const EdgeInsets.all(12),
+              color: AppColors.white,
+              margin: const EdgeInsets.all(AppSpacing.md),
               child: Padding(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(AppSpacing.md),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -203,19 +204,24 @@ class _MapScreenState extends ConsumerState<MapScreen> {
           Align(
             alignment: Alignment.topCenter,
             child: Card(
-              margin: const EdgeInsets.all(12),
+              color: AppColors.white,
+              margin: const EdgeInsets.all(AppSpacing.md),
               child: Padding(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(AppSpacing.md),
                 child: Text(l10n.mapNoListings),
               ),
             ),
           ),
         PositionedDirectional(
-          top: 12,
-          end: 12,
+          // Above the preview card, which sits at the bottom.
+          bottom: selected != null ? 140 : 40,
+          end: AppSpacing.lg,
           child: FloatingActionButton.small(
             heroTag: 'map-locate',
             tooltip: l10n.mapMyLocation,
+            backgroundColor: AppColors.white,
+            foregroundColor: AppColors.primary,
+            shape: const CircleBorder(),
             onPressed: _locate,
             child: _locating
                 ? const SizedBox(
@@ -241,6 +247,46 @@ class _MapScreenState extends ConsumerState<MapScreen> {
             ),
           ),
       ],
+    );
+  }
+}
+
+/// Price pill on the map: white with navy text, primary when selected.
+class _PricePin extends StatelessWidget {
+  const _PricePin({required this.text, required this.selected});
+
+  final String text;
+  final bool selected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md,
+          vertical: AppSpacing.xs + 2,
+        ),
+        decoration: BoxDecoration(
+          color: selected ? AppColors.primary : AppColors.white,
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+          border: Border.all(
+            color: selected ? AppColors.primary : AppColors.border,
+          ),
+        ),
+        // The price always reads left to right, also in Arabic.
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Text(
+            text,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: AppTextStyles.caption.copyWith(
+              fontWeight: FontWeight.w700,
+              color: selected ? AppColors.white : AppColors.navy,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
