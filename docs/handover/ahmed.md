@@ -6,8 +6,8 @@ What I built in Vesta, how to find it, how to test it, and what is still open. W
 
 - **Quality and process:** test plan with 60 test cases for both apps (VST-52, PR #39), design-system colors check with a GitHub Action (VST-78, PR #48).
 - **React Native:** authentication (VST-37, PR #53, merged 5 Nov): login, sign up, session kept after restart, log out.
-- **Flutter:** shared UI kit with the 4 listing widgets of VST-100 (VST-93, PR #52, in review; develop merged on 11 Nov, `flutter analyze` and `flutter test` pass).
-- **Translations:** one master file and one script for both apps (VST-70, PR #54, in review, merges last).
+- **Flutter:** shared UI kit with the 4 listing widgets of VST-100 (VST-93, PR #52, merged; `flutter analyze` and `flutter test` pass, 116 tests).
+- **Translations:** one master file and one script for both apps (VST-70, PR #54, in review).
 - **React Native language default:** start in Arabic when the phone language is not English, French or Arabic (VST-105, fix written, see "Still open").
 - **Design:** Sprint 0 mockups (Figma `Vesta-mockups` is the reference for the palette only).
 
@@ -20,8 +20,8 @@ Paths marked (PR) are on the PR branch until the PR is merged.
 | Test plan | `docs/test-plan.md` (version 2) |
 | Colors check | `tools/check-colors.js`, `.github/workflows/check-colors.yml`, `docs/brand/design-tokens.md` |
 | RN auth | `react-native-app/src/features/auth/` (`LoginScreen`, `SignUpScreen`, `authController.tsx`), `src/data/repositories/authRepository.ts`, `authErrors.ts`, `authValidation.ts`, `src/data/firebase.ts`, `src/types/firebase-auth.d.ts`, guard in `App.tsx` |
-| UI kit (PR #52) | `flutter-app/lib/core/widgets/`, `lib/core/theme/` (`app_dimens.dart`, `app_text_styles.dart`), `lib/features/listings/listing_card.dart`, `docs/ui-kit.md`, `flutter-app/test/ui_kit_test.dart` |
-| UI kit debug screen (PR #52) | route `/ui-kit`: Profile > Settings > "UI kit (debug only)" |
+| UI kit | `flutter-app/lib/core/widgets/`, `lib/core/theme/` (`app_dimens.dart`, `app_text_styles.dart`), `lib/features/listings/listing_card.dart`, `docs/ui-kit.md`, `flutter-app/test/ui_kit_test.dart` |
+| UI kit debug screen | route `/ui-kit`: Profile > Settings > "UI kit (debug only)" |
 | Translations (PR #54) | `docs/translations.csv` (master), `scripts/translations.js`, `docs/translations.md`, `.github/workflows/translations.yml` |
 | RN language default | `react-native-app/src/core/language.ts`, `config.ts`, `i18n.ts`, `__tests__/language.test.ts` (not on develop yet) |
 
@@ -63,7 +63,7 @@ Paths marked (PR) are on the PR branch until the PR is merged.
 - **VST-39 (RN listings), not started, no PR.** Plan: PR 1 = publish form with the 3 offer types and photos (`expo-image-picker`, `expo-image-manipulator`, one `writeBatch` for the listing, photos and `contact/info`, `status: 'available'`, city as text because the RN map picker is not available); PR 2 = list with ribbon and price unit, and details with gallery. Reuse and extend Mahmoud's merged files from PR #58 (`src/data/models/listing.ts`, `listingCategory.ts`, `src/data/repositories/listingsRepository.ts`, `src/features/listings/ListingCard.tsx`): add `offerTypeOf`, the price unit, the ribbon and a `getListing(id)`. The two Expo packages are not installed yet (`npx expo install expo-image-picker expo-image-manipulator`).
 - **VST-82 (details and amenities in RN), not started.** The ticket says `governorate`, `checkInTime`, `checkOutTime`; `docs/data-model.md` says `city`, `checkIn`, `checkOut` and at most 10 amenities. The Flutter code is the source of truth.
 - **VST-70:** add the keys of the contact feature (#66) to the CSV, the final check by 13 Nov (`check` plus a search for texts written directly in screens, see `docs/translations.md`), and the right-to-left check with one Jira ticket per problem named `RTL: <screen>: <problem> (Flutter|React Native)` with a screenshot.
-- **Merge order:** #54 merges last. Code freeze is 17 Nov.
+- **Merge order:** #52 is merged. #54 needs `develop` merged into it first (the `.arb` files changed in #52, #66 and #67), then it can merge. Code freeze is 17 Nov.
 
 ## 3 questions a teammate could ask
 
