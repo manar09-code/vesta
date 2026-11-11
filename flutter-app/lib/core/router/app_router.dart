@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -24,6 +25,7 @@ import '../../features/profile/profile_screen.dart';
 import '../../features/search/search_screen.dart';
 import '../../features/settings/settings_screen.dart';
 import '../../l10n/generated/app_localizations.dart';
+import '../widgets/ui_kit_screen.dart';
 
 abstract class AppRoutes {
   static const explore = '/';
@@ -40,6 +42,9 @@ abstract class AppRoutes {
   static const publish = '/publish';
   static const editProfile = '/profile/edit';
   static const settings = '/settings';
+
+  /// Debug only: every shared widget on one screen (VST-93).
+  static const uiKit = '/ui-kit';
   static const listingDetail = '/listing/:id';
 
   static String listingDetailPath(String id) => '/listing/$id';
@@ -160,6 +165,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           child: const SettingsScreen(),
         ),
       ),
+      if (kDebugMode)
+        GoRoute(
+          path: AppRoutes.uiKit,
+          builder: (context, state) => const UiKitScreen(),
+        ),
       GoRoute(
         path: AppRoutes.publish,
         builder: (context, state) => const PublishListingScreen(),

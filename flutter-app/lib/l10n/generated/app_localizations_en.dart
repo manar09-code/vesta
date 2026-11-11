@@ -574,6 +574,30 @@ class AppLocalizationsEn extends AppLocalizations {
       'Too many attempts, please try again in a few minutes';
 
   @override
+  String get offerSale => 'For sale';
+
+  @override
+  String get offerRent => 'For rent';
+
+  @override
+  String get offerStay => 'Stay';
+
+  @override
+  String get unitNight => '/ night';
+
+  @override
+  String get unitMonth => '/ month';
+
+  @override
+  String get unitYear => '/ year';
+
+  @override
+  String get commonRetry => 'Try again';
+
+  @override
+  String get commonOffline => 'You are offline. Some content may not load.';
+
+  @override
   String get contactCall => 'Call';
 
   @override
