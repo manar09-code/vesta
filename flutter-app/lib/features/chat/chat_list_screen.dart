@@ -51,21 +51,18 @@ class ChatListScreen extends ConsumerWidget {
               padding: const EdgeInsets.all(AppSpacing.lg),
               children: [
                 // One white card, rows separated by thin dividers.
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
+                Material(
+                  color: AppColors.white,
+                  clipBehavior: Clip.antiAlias,
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppRadius.card),
                   ),
-                  clipBehavior: Clip.antiAlias,
                   child: Column(
                     children: [
                       for (var i = 0; i < list.length; i++) ...[
                         if (i > 0)
                           const Divider(height: 1, color: AppColors.border),
-                        _ConversationTile(
-                          conversation: list[i],
-                          myUid: me.uid,
-                        ),
+                        _ConversationTile(conversation: list[i], myUid: me.uid),
                       ],
                     ],
                   ),
@@ -90,8 +87,9 @@ class _ConversationTile extends ConsumerWidget {
     final name = ref.watch(userNameProvider(otherId)).value;
     final displayName = name ?? l10n.chatUnknownUser;
 
-    final listingAsync =
-        ref.watch(conversationListingProvider(conversation.listingId));
+    final listingAsync = ref.watch(
+      conversationListingProvider(conversation.listingId),
+    );
     final listingTitle = listingAsync.when(
       data: (listing) => listing?.title ?? l10n.chatListingRemoved,
       loading: () => '',
@@ -174,7 +172,8 @@ String _timeText(BuildContext context, DateTime? time) {
   final locale = Localizations.localeOf(context).toString();
   final now = DateTime.now();
   final local = time.toLocal();
-  final today = local.year == now.year &&
+  final today =
+      local.year == now.year &&
       local.month == now.month &&
       local.day == now.day;
   return today

@@ -38,7 +38,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     if (ref.read(authControllerProvider).isLoading) return;
     final l10n = AppLocalizations.of(context);
     final emailError = authErrorOrNull(l10n, validateEmail(_email.text));
-    final passwordError = authErrorOrNull(l10n, validatePassword(_password.text));
+    final passwordError = authErrorOrNull(
+      l10n,
+      validatePassword(_password.text),
+    );
     setState(() {
       _emailError = emailError;
       _passwordError = passwordError;

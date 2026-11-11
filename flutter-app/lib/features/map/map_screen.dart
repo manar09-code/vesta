@@ -62,9 +62,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
         setState(() => _me = position);
         _map.move(position, math.max(_map.camera.zoom, 14));
       case LocationStatus.denied:
-        messenger.showSnackBar(
-          SnackBar(content: Text(l10n.mapLocationDenied)),
-        );
+        messenger.showSnackBar(SnackBar(content: Text(l10n.mapLocationDenied)));
       case LocationStatus.deniedForever:
         messenger.showSnackBar(
           SnackBar(
@@ -80,9 +78,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
           SnackBar(content: Text(l10n.mapLocationServiceOff)),
         );
       case LocationStatus.error:
-        messenger.showSnackBar(
-          SnackBar(content: Text(l10n.mapLocationError)),
-        );
+        messenger.showSnackBar(SnackBar(content: Text(l10n.mapLocationError)));
     }
   }
 
@@ -188,9 +184,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Flexible(
-                      child: Text(_errorText(l10n, listings.error!)),
-                    ),
+                    Flexible(child: Text(_errorText(l10n, listings.error!))),
                     TextButton(
                       onPressed: () => ref.invalidate(mapListingsProvider),
                       child: Text(l10n.favoritesRetry),
@@ -240,9 +234,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
               padding: const EdgeInsets.only(bottom: 28),
               child: MapListingPreview(
                 listing: selected,
-                onOpen: () => context.push(
-                  AppRoutes.listingDetailPath(selected.id),
-                ),
+                onOpen: () =>
+                    context.push(AppRoutes.listingDetailPath(selected.id)),
               ),
             ),
           ),

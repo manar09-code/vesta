@@ -241,8 +241,9 @@ class _Bubble extends StatelessWidget {
 
     return Align(
       // My messages on the end side, the other person's on the start side.
-      alignment:
-          mine ? AlignmentDirectional.centerEnd : AlignmentDirectional.centerStart,
+      alignment: mine
+          ? AlignmentDirectional.centerEnd
+          : AlignmentDirectional.centerStart,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 3),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),

@@ -186,13 +186,13 @@ class _SettingsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(AppRadius.card),
-        border: Border.all(color: AppColors.border),
-      ),
+    return Material(
+      color: AppColors.white,
       clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppRadius.card),
+        side: const BorderSide(color: AppColors.border),
+      ),
       child: Column(
         children: [
           for (var i = 0; i < children.length; i++) ...[
@@ -240,10 +240,7 @@ class _SettingsRow extends StatelessWidget {
               style: AppTextStyles.caption.copyWith(color: AppColors.grey),
             ),
       trailing: chevron
-          ? const DirectionalIcon(
-              Icons.chevron_right,
-              color: AppColors.grey,
-            )
+          ? const DirectionalIcon(Icons.chevron_right, color: AppColors.grey)
           : trailing,
     );
   }

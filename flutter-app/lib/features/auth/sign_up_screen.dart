@@ -41,7 +41,10 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
     final l10n = AppLocalizations.of(context);
     final nameError = authErrorOrNull(l10n, validateName(_name.text));
     final emailError = authErrorOrNull(l10n, validateEmail(_email.text));
-    final passwordError = authErrorOrNull(l10n, validatePassword(_password.text));
+    final passwordError = authErrorOrNull(
+      l10n,
+      validatePassword(_password.text),
+    );
     setState(() {
       _nameError = nameError;
       _emailError = emailError;
@@ -51,7 +54,9 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
       return;
     }
 
-    final ok = await ref.read(authControllerProvider.notifier).signUp(
+    final ok = await ref
+        .read(authControllerProvider.notifier)
+        .signUp(
           email: _email.text,
           password: _password.text,
           displayName: _name.text,
