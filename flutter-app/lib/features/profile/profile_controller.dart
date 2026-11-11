@@ -31,11 +31,7 @@ ProfileError? validateDisplayName(String? value) =>
     (value ?? '').trim().isEmpty ? ProfileError.nameRequired : null;
 
 class ProfileFormState {
-  const ProfileFormState({
-    this.isLoading = false,
-    this.error,
-    this.photoError,
-  });
+  const ProfileFormState({this.isLoading = false, this.error, this.photoError});
 
   final bool isLoading;
   final ProfileError? error;
@@ -66,10 +62,7 @@ class ProfileController extends Notifier<ProfileFormState> {
   }
 
   /// Returns true when the profile was saved.
-  Future<bool> save({
-    required String displayName,
-    String? photoBase64,
-  }) async {
+  Future<bool> save({required String displayName, String? photoBase64}) async {
     final invalid = validateDisplayName(displayName);
     if (invalid != null) {
       state = ProfileFormState(error: invalid);
@@ -87,6 +80,9 @@ class ProfileController extends Notifier<ProfileFormState> {
   Future<bool> deleteListing(Listing listing) =>
       _run(() => _listings.deleteListing(listing));
 
+  /// Returns true when the status was changed.
+  Future<bool> setStatus(Listing listing, String status) =>
+      _run(() => _listings.updateStatus(listing, status));
   void clearError() => state = const ProfileFormState();
 
   Future<bool> _run(Future<void> Function() action) async {
@@ -122,5 +118,5 @@ class ProfileController extends Notifier<ProfileFormState> {
 
 final profileControllerProvider =
     NotifierProvider<ProfileController, ProfileFormState>(
-  ProfileController.new,
-);
+      ProfileController.new,
+    );

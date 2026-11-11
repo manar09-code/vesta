@@ -196,6 +196,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get publishFieldCity => 'City';
 
   @override
+  String get publishFieldPhone => 'Phone';
+
+  @override
+  String get publishWhatsapp => 'Available on WhatsApp';
+
+  @override
   String get publishFieldBedrooms => 'Bedrooms (optional)';
 
   @override
@@ -270,6 +276,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get listingErrorCityRequired => 'Enter a city';
+
+  @override
+  String get listingErrorPhoneInvalid => 'Enter a valid Tunisian phone number';
 
   @override
   String get listingErrorRentPeriodRequired => 'Choose a rent period';
@@ -398,6 +407,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileListingDeleted => 'Listing deleted';
+
+  @override
+  String get profileStatusAvailable => 'Available';
+
+  @override
+  String get profileStatusReserved => 'Reserved';
+
+  @override
+  String get profileStatusSold => 'Sold';
+
+  @override
+  String get profileStatusRented => 'Rented';
+
+  @override
+  String get profileStatusUnavailable => 'Unavailable';
+
+  @override
+  String get profileStatusHidden => 'Hidden';
+
+  @override
+  String get profileStatusSheetTitle => 'Change the status';
+
+  @override
+  String get profileStatusUpdated => 'Status updated';
+
+  @override
+  String get profilePublishFirst => 'Publish your first listing';
 
   @override
   String get profileErrorNameRequired => 'Name is required';
@@ -562,6 +598,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonOffline => 'You are offline. Some content may not load.';
 
   @override
+  String get contactCall => 'Call';
+
+  @override
+  String get contactWhatsapp => 'WhatsApp';
+
+  @override
+  String get contactSignInToSee => 'Sign in to see the contact';
+
+  @override
+  String get contactNoWhatsapp => 'WhatsApp is not installed on this phone';
+
+  @override
+  String get contactCallError => 'Could not open the phone app';
+
+  @override
+  String contactMessageSale(String title) {
+    return 'Hello, I am interested in buying $title on Vesta';
+  }
+
+  @override
+  String contactMessageRent(String title) {
+    return 'Hello, I am interested in renting $title on Vesta';
+  }
+
+  @override
+  String contactMessageStay(String title) {
+    return 'Hello, I am interested in staying at $title on Vesta';
+  }
+
+  @override
+  String get searchHint => 'Search by city';
+
+  @override
   String get listingErrorGuestsInvalid =>
       'Enter a number of guests between 1 and 30';
 
@@ -632,9 +701,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ruleQuietHours => 'Quiet hours';
-
-  @override
-  String get searchHint => 'Search by city';
 
   @override
   String get searchNoResults => 'No listings match your search';

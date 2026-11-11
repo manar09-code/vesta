@@ -60,6 +60,8 @@
   "publishFieldDescription": "Description",
   "publishFieldPrice": "Prix (TND)",
   "publishFieldCity": "Ville",
+  "publishFieldPhone": "Téléphone",
+  "publishWhatsapp": "Disponible sur WhatsApp",
   "publishFieldBedrooms": "Chambres (facultatif)",
   "publishFieldBathrooms": "Salles de bain (facultatif)",
   "publishFieldArea": "Surface en m² (facultatif)",
@@ -85,6 +87,7 @@
   "listingErrorDescriptionRequired": "Entrez une description",
   "listingErrorPriceInvalid": "Entrez un prix entre 1 et 50 000 000",
   "listingErrorCityRequired": "Entrez une ville",
+  "listingErrorPhoneInvalid": "Entrez un numéro tunisien valide",
   "listingErrorRentPeriodRequired": "Choisissez une période de location",
   "listingErrorNumberInvalid": "Entrez un nombre valide",
   "listingErrorNotSignedIn": "Connectez-vous d'abord",
@@ -103,7 +106,7 @@
   "listingDetailBathrooms": "Salles de bain",
   "listingDetailArea": "Surface (m²)",
   "listingDetailPerNight": "/ nuit",
-    "listingDetailAtAGlance": "En un coup d'œil",
+  "listingDetailAtAGlance": "En un coup d'œil",
   "listingDetailGuests": "Invités",
   "listingDetailReadMore": "Lire la suite",
   "listingDetailReadLess": "Réduire",
@@ -127,6 +130,15 @@
   "profileDeleteConfirm": "Supprimer",
   "profileCancel": "Annuler",
   "profileListingDeleted": "Annonce supprimée",
+  "profileStatusAvailable": "Disponible",
+  "profileStatusReserved": "Réservé",
+  "profileStatusSold": "Vendu",
+  "profileStatusRented": "Loué",
+  "profileStatusUnavailable": "Indisponible",
+  "profileStatusHidden": "Masqué",
+  "profileStatusSheetTitle": "Changer le statut",
+  "profileStatusUpdated": "Statut mis à jour",
+  "profilePublishFirst": "Publier votre première annonce",
   "profileErrorNameRequired": "Le nom est obligatoire",
   "profileErrorNoNetwork": "Pas de connexion. Veuillez réessayer.",
   "profileErrorPermission": "Action non autorisée",
@@ -179,6 +191,36 @@
   "unitYear": "/ an",
   "commonRetry": "Réessayer",
   "commonOffline": "Vous êtes hors ligne. Certains contenus peuvent ne pas s’afficher.",
+  "contactCall": "Appeler",
+  "contactWhatsapp": "WhatsApp",
+  "contactSignInToSee": "Connectez-vous pour voir le contact",
+  "contactNoWhatsapp": "WhatsApp n’est pas installé sur ce téléphone",
+  "contactCallError": "Impossible d’ouvrir l’application Téléphone",
+  "contactMessageSale": "Bonjour, je suis intéressé par l’achat de {title} sur Vesta",
+  "@contactMessageSale": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageRent": "Bonjour, je suis intéressé par la location de {title} sur Vesta",
+  "@contactMessageRent": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageStay": "Bonjour, je suis intéressé par un séjour à {title} sur Vesta",
+  "@contactMessageStay": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "searchHint": "Rechercher par ville",
   "listingErrorGuestsInvalid": "Indiquez un nombre d'invités entre 1 et 30",
   "listingErrorRoomsInvalid": "Indiquez un nombre entre 0 et 20",
   "publishFieldGuests": "Nombre maximum d'invités (optionnel)",
@@ -202,7 +244,6 @@
   "ruleNoPets": "Animaux non admis",
   "ruleNoParties": "Pas de fêtes",
   "ruleQuietHours": "Heures de calme",
-  "searchHint": "Rechercher par ville",
   "searchNoResults": "Aucune annonce ne correspond à votre recherche",
   "searchFilters": "Filtres",
   "searchPriceMin": "Prix min",
