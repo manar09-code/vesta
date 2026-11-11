@@ -55,6 +55,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     if (ok && mounted) finishSignIn(context);
   }
 
+  /// Guests can browse without an account: close the screen (or go home).
+  void _continueAsGuest() {
+    if (context.canPop()) {
+      context.pop(false);
+    } else {
+      context.go(AppRoutes.explore);
+    }
+  }
+
   Future<void> _goToSignUp() async {
     final signedUp = await context.push<bool>(AppRoutes.signup);
     if (signedUp == true && mounted) finishSignIn(context);
@@ -90,12 +99,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
               const SizedBox(height: AppSpacing.lg),
               Text(
-                l10n.loginTitle,
+                l10n.authWelcomeTitle,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.title.copyWith(
                   color: AppColors.navy,
                   fontWeight: FontWeight.w700,
                 ),
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              Text(
+                l10n.authWelcomeSubtitle,
+                textAlign: TextAlign.center,
+                style: AppTextStyles.bodySmall.copyWith(color: AppColors.grey),
               ),
               const SizedBox(height: AppSpacing.xl),
               AppTextField(
@@ -155,6 +170,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               TextButton(
                 onPressed: auth.isLoading ? null : _goToSignUp,
                 child: Text(l10n.authGoToSignUp),
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              SecondaryButton(
+                label: l10n.authContinueAsGuest,
+                onPressed: auth.isLoading ? null : _continueAsGuest,
               ),
             ],
           ),

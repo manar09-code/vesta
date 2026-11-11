@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
+import '../../core/router/app_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_dimens.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/app_avatar.dart';
 import '../../core/widgets/app_states.dart';
+import '../../core/widgets/rtl_helpers.dart';
+import '../../core/widgets/price_text.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../auth/require_sign_in.dart';
+import '../listings/listing.dart';
 import 'chat_controller.dart';
 import 'chat_models.dart';
 import 'chat_repository.dart';
@@ -131,12 +136,11 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
 
     return Column(
       children: [
-        _Header(
-          name: otherName ?? l10n.chatUnknownUser,
-          listingTitle: listingAsync.isLoading
-              ? ''
-              : (listing?.title ?? l10n.chatListingRemoved),
-        ),
+        _Header(name: otherName ?? l10n.chatUnknownUser),
+        if (listing != null)
+          _ListingStrip(listing: listing)
+        else if (!listingAsync.isLoading)
+          _ListingRemovedStrip(text: l10n.chatListingRemoved),
         Expanded(
           child: messages.when(
             loading: () => const LoadingView(),
@@ -157,10 +161,27 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                     reverse: true,
                     padding: const EdgeInsets.all(AppSpacing.lg),
                     itemCount: list.length,
-                    itemBuilder: (context, index) => _Bubble(
-                      message: list[index],
-                      mine: list[index].senderId == myUid,
-                    ),
+                    itemBuilder: (context, index) {
+                      final message = list[index];
+                      // The list is newest-first: the next index is older.
+                      final older = index + 1 < list.length
+                          ? list[index + 1]
+                          : null;
+                      final showDay =
+                          message.createdAt != null &&
+                          (older?.createdAt == null ||
+                              !_sameDay(message.createdAt!, older!.createdAt!));
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (showDay) _DaySeparator(date: message.createdAt!),
+                          _Bubble(
+                            message: message,
+                            mine: message.senderId == myUid,
+                          ),
+                        ],
+                      );
+                    },
                   ),
           ),
         ),
@@ -175,11 +196,137 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   }
 }
 
+bool _sameDay(DateTime a, DateTime b) {
+  final x = a.toLocal();
+  final y = b.toLocal();
+  return x.year == y.year && x.month == y.month && x.day == y.day;
+}
+
+class _DaySeparator extends StatelessWidget {
+  const _DaySeparator({required this.date});
+
+  final DateTime date;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).toString();
+    final day = date.toLocal();
+    final now = DateTime.now();
+    final String label;
+    if (_sameDay(day, now)) {
+      label = l10n.chatToday;
+    } else if (_sameDay(day, now.subtract(const Duration(days: 1)))) {
+      label = l10n.chatYesterday;
+    } else {
+      label = DateFormat.yMMMd(locale).format(day);
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+      child: Center(
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: 4,
+          ),
+          decoration: BoxDecoration(
+            color: AppColors.sand,
+            borderRadius: BorderRadius.circular(AppRadius.pill),
+          ),
+          child: Text(
+            label,
+            style: AppTextStyles.small.copyWith(color: AppColors.grey),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// The listing this conversation is about: title and price, opens the listing.
+class _ListingStrip extends StatelessWidget {
+  const _ListingStrip({required this.listing});
+
+  final Listing listing;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.sand,
+      child: InkWell(
+        onTap: () => context.push(AppRoutes.listingDetailPath(listing.id)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg,
+            vertical: AppSpacing.sm,
+          ),
+          child: Row(
+            children: [
+              const Icon(
+                Icons.sensor_door_outlined,
+                size: 20,
+                color: AppColors.primary,
+              ),
+              const SizedBox(width: AppSpacing.md),
+              Expanded(
+                child: Text(
+                  listing.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.bodySmall.copyWith(
+                    color: AppColors.navy,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              const SizedBox(width: AppSpacing.md),
+              PriceText(
+                price: listing.price,
+                currency: listing.currency,
+                period: listing.rentPeriod,
+                priceStyle: AppTextStyles.bodySmall.copyWith(
+                  color: AppColors.primary,
+                  fontWeight: FontWeight.w700,
+                ),
+                unitStyle: AppTextStyles.small.copyWith(color: AppColors.grey),
+              ),
+              const DirectionalIcon(
+                Icons.chevron_right,
+                color: AppColors.grey,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ListingRemovedStrip extends StatelessWidget {
+  const _ListingRemovedStrip({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppColors.sand,
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.lg,
+        vertical: AppSpacing.sm,
+      ),
+      child: Text(
+        text,
+        style: AppTextStyles.bodySmall.copyWith(color: AppColors.grey),
+      ),
+    );
+  }
+}
+
 class _Header extends StatelessWidget {
-  const _Header({required this.name, required this.listingTitle});
+  const _Header({required this.name});
 
   final String name;
-  final String listingTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -207,15 +354,6 @@ class _Header extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                if (listingTitle.isNotEmpty)
-                  Text(
-                    listingTitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.caption.copyWith(
-                      color: AppColors.primary,
-                    ),
-                  ),
               ],
             ),
           ),

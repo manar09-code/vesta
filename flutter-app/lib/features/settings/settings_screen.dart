@@ -16,6 +16,7 @@ import '../../core/widgets/rtl_helpers.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../auth/auth_controller.dart';
 import '../auth/delete_account_dialog.dart';
+import '../auth/forgot_password_dialog.dart';
 
 /// Settings opened from the Profile tab (VST-95): language, about, sign out,
 /// delete account (VST-84).
@@ -92,6 +93,27 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ],
         ),
+        if (signedIn) ...[
+          _SectionTitle(l10n.settingsAccount),
+          _SettingsCard(
+            children: [
+              _SettingsRow(
+                title: l10n.settingsChangePassword,
+                chevron: true,
+                onTap: () => showForgotPasswordDialog(
+                  context,
+                  initialEmail:
+                      ref.read(authStateProvider).value?.email ?? '',
+                ),
+              ),
+              _SettingsRow(
+                title: l10n.notificationsTitle,
+                chevron: true,
+                onTap: () => context.push(AppRoutes.notifications),
+              ),
+            ],
+          ),
+        ],
         _SectionTitle(l10n.settingsAbout),
         _SettingsCard(
           children: [

@@ -513,6 +513,27 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsContact => 'اتصل بينا';
 
   @override
+  String get authWelcomeTitle => 'مرحبا بيك في Vesta';
+
+  @override
+  String get authWelcomeSubtitle => 'ادخل باش تتصل بالمالكين، تحفظ المفضلة وتنشر عقارك.';
+
+  @override
+  String get authContinueAsGuest => 'كمّل كضيف';
+
+  @override
+  String get chatToday => 'اليوم';
+
+  @override
+  String get chatYesterday => 'البارح';
+
+  @override
+  String get settingsAccount => 'الحساب';
+
+  @override
+  String get settingsChangePassword => 'بدّل كلمة السر';
+
+  @override
   String get settingsDeleteAccount => 'فسخ حسابي';
 
   @override

@@ -519,6 +519,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsContact => 'Contact us';
 
   @override
+  String get authWelcomeTitle => 'Welcome to Vesta';
+
+  @override
+  String get authWelcomeSubtitle => 'Sign in to contact owners, save favorites and publish your own place.';
+
+  @override
+  String get authContinueAsGuest => 'Continue as guest';
+
+  @override
+  String get chatToday => 'Today';
+
+  @override
+  String get chatYesterday => 'Yesterday';
+
+  @override
+  String get settingsAccount => 'Account';
+
+  @override
+  String get settingsChangePassword => 'Change password';
+
+  @override
   String get settingsDeleteAccount => 'Delete my account';
 
   @override

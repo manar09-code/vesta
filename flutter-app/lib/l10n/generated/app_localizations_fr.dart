@@ -526,6 +526,27 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsContact => 'Nous contacter';
 
   @override
+  String get authWelcomeTitle => 'Bienvenue sur Vesta';
+
+  @override
+  String get authWelcomeSubtitle => 'Connectez-vous pour contacter les propriétaires, enregistrer vos favoris et publier votre bien.';
+
+  @override
+  String get authContinueAsGuest => 'Continuer en tant qu\'invité';
+
+  @override
+  String get chatToday => 'Aujourd\'hui';
+
+  @override
+  String get chatYesterday => 'Hier';
+
+  @override
+  String get settingsAccount => 'Compte';
+
+  @override
+  String get settingsChangePassword => 'Changer le mot de passe';
+
+  @override
   String get settingsDeleteAccount => 'Supprimer mon compte';
 
   @override
