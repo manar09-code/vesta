@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import '../auth/auth_controller.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,12 +25,13 @@ class SearchFiltersNotifier extends Notifier<SearchFilters> {
   Timer? _debounce;
 
   @override
-SearchFilters build() {
-  // New user, new search: start again with empty filters.
-  ref.watch(authStateProvider.select((a) => a.value?.uid));
-  ref.onDispose(() => _debounce?.cancel());
-  return const SearchFilters();
-}
+  SearchFilters build() {
+    // New user, new search: start again with empty filters.
+    ref.watch(authStateProvider.select((a) => a.value?.uid));
+    ref.onDispose(() => _debounce?.cancel());
+    return const SearchFilters();
+  }
+
   /// Called on every keystroke: only the last one, 400 ms later, counts.
   void setCity(String text) {
     _debounce?.cancel();

@@ -58,7 +58,16 @@ void main() {
   List<String> ids(SearchFilters f) => f.apply(all).map((l) => l.id).toList();
 
   test('no filter keeps the available listings, in the same order', () {
-    expect(ids(const SearchFilters()), ['a', 'b', 'c', 'd', 'e', 'g', 'h', 'i']);
+    expect(ids(const SearchFilters()), [
+      'a',
+      'b',
+      'c',
+      'd',
+      'e',
+      'g',
+      'h',
+      'i',
+    ]);
   });
 
   test('price range', () {
@@ -84,12 +93,18 @@ void main() {
   });
 
   test('offer type: a stay is not a rent', () {
-    expect(ids(const SearchFilters(offerType: OfferType.rent)), ['a', 'c', 'h']);
+    expect(ids(const SearchFilters(offerType: OfferType.rent)), [
+      'a',
+      'c',
+      'h',
+    ]);
     expect(ids(const SearchFilters(offerType: OfferType.stay)), ['e']);
-    expect(
-      ids(const SearchFilters(offerType: OfferType.sale)),
-      ['b', 'd', 'g', 'i'],
-    );
+    expect(ids(const SearchFilters(offerType: OfferType.sale)), [
+      'b',
+      'd',
+      'g',
+      'i',
+    ]);
   });
 
   test('property type', () {
@@ -147,23 +162,23 @@ void main() {
   });
 
   test('filters reset when the signed-in user changes', () async {
-  final auth = StreamController<User?>();
-  addTearDown(auth.close);
-  final container = ProviderContainer(
-    overrides: [authStateProvider.overrideWith((ref) => auth.stream)],
-  );
-  addTearDown(container.dispose);
+    final auth = StreamController<User?>();
+    addTearDown(auth.close);
+    final container = ProviderContainer(
+      overrides: [authStateProvider.overrideWith((ref) => auth.stream)],
+    );
+    addTearDown(container.dispose);
 
-  container.listen(searchFiltersProvider, (_, _) {});
-  auth.add(_FakeUser('a'));
-  await Future<void>.delayed(const Duration(milliseconds: 10));
-  container.read(searchFiltersProvider.notifier).setOfferType(OfferType.rent);
-  expect(container.read(searchFiltersProvider).offerType, OfferType.rent);
+    container.listen(searchFiltersProvider, (_, _) {});
+    auth.add(_FakeUser('a'));
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    container.read(searchFiltersProvider.notifier).setOfferType(OfferType.rent);
+    expect(container.read(searchFiltersProvider).offerType, OfferType.rent);
 
-  auth.add(_FakeUser('b'));
-  await Future<void>.delayed(const Duration(milliseconds: 10));
-  expect(container.read(searchFiltersProvider).offerType, isNull);
-});
+    auth.add(_FakeUser('b'));
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    expect(container.read(searchFiltersProvider).offerType, isNull);
+  });
 }
 
 class _FakeUser extends Fake implements User {
