@@ -249,4 +249,27 @@ export default {
   profileStatusSheetTitle: 'Changer le statut',
   profileStatusUpdated: 'Statut mis à jour',
   profilePublishFirst: 'Publier votre première annonce',
+  publishFieldPhone: 'Téléphone',
+  publishWhatsapp: 'Disponible sur WhatsApp',
+  listingErrorPhoneInvalid: 'Entrez un numéro tunisien valide',
+  offerSale: 'À vendre',
+  offerRent: 'À louer',
+  offerStay: 'Séjour',
+  unitNight: '/ nuit',
+  unitMonth: '/ mois',
+  unitYear: '/ an',
+  commonRetry: 'Réessayer',
+  commonOffline:
+    'Vous êtes hors ligne. Certains contenus peuvent ne pas s’afficher.',
+  contactCall: 'Appeler',
+  contactWhatsapp: 'WhatsApp',
+  contactSignInToSee: 'Connectez-vous pour voir le contact',
+  contactNoWhatsapp: 'WhatsApp n’est pas installé sur ce téléphone',
+  contactCallError: 'Impossible d’ouvrir l’application Téléphone',
+  contactMessageSale:
+    'Bonjour, je suis intéressé par l’achat de {{title}} sur Vesta',
+  contactMessageRent:
+    'Bonjour, je suis intéressé par la location de {{title}} sur Vesta',
+  contactMessageStay:
+    'Bonjour, je suis intéressé par un séjour à {{title}} sur Vesta',
 };

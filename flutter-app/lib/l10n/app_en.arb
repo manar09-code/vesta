@@ -249,5 +249,45 @@
   "profileStatusHidden": "Hidden",
   "profileStatusSheetTitle": "Change the status",
   "profileStatusUpdated": "Status updated",
-  "profilePublishFirst": "Publish your first listing"
+  "profilePublishFirst": "Publish your first listing",
+  "publishFieldPhone": "Phone",
+  "publishWhatsapp": "Available on WhatsApp",
+  "listingErrorPhoneInvalid": "Enter a valid Tunisian phone number",
+  "offerSale": "For sale",
+  "offerRent": "For rent",
+  "offerStay": "Stay",
+  "unitNight": "/ night",
+  "unitMonth": "/ month",
+  "unitYear": "/ year",
+  "commonRetry": "Try again",
+  "commonOffline": "You are offline. Some content may not load.",
+  "contactCall": "Call",
+  "contactWhatsapp": "WhatsApp",
+  "contactSignInToSee": "Sign in to see the contact",
+  "contactNoWhatsapp": "WhatsApp is not installed on this phone",
+  "contactCallError": "Could not open the phone app",
+  "contactMessageSale": "Hello, I am interested in buying {title} on Vesta",
+  "@contactMessageSale": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageRent": "Hello, I am interested in renting {title} on Vesta",
+  "@contactMessageRent": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageStay": "Hello, I am interested in staying at {title} on Vesta",
+  "@contactMessageStay": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  }
 }

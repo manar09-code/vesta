@@ -249,5 +249,45 @@
   "profileStatusHidden": "مخفي",
   "profileStatusSheetTitle": "بدّل حالة الإعلان",
   "profileStatusUpdated": "تبدّلت حالة الإعلان",
-  "profilePublishFirst": "انشر أول إعلان ليك"
+  "profilePublishFirst": "انشر أول إعلان ليك",
+  "publishFieldPhone": "رقم الهاتف",
+  "publishWhatsapp": "متاح على واتساب",
+  "listingErrorPhoneInvalid": "أدخل رقم هاتف تونسي صحيح",
+  "offerSale": "للبيع",
+  "offerRent": "للكراء",
+  "offerStay": "إقامة",
+  "unitNight": "/ ليلة",
+  "unitMonth": "/ شهر",
+  "unitYear": "/ سنة",
+  "commonRetry": "عاود جرّب",
+  "commonOffline": "ما عندكش إنترنت. ممكن شوية محتوى ما يظهرش.",
+  "contactCall": "اتصل",
+  "contactWhatsapp": "واتساب",
+  "contactSignInToSee": "سجّل الدخول باش تشوف رقم التواصل",
+  "contactNoWhatsapp": "واتساب موش مثبّت على التليفون هذا",
+  "contactCallError": "ما نجمناش نحلّو تطبيق الهاتف",
+  "contactMessageSale": "عسلامة، مهتم بشراء {title} على Vesta",
+  "@contactMessageSale": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageRent": "عسلامة، مهتم بكراء {title} على Vesta",
+  "@contactMessageRent": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "contactMessageStay": "عسلامة، مهتم بالإقامة في {title} على Vesta",
+  "@contactMessageStay": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  }
 }

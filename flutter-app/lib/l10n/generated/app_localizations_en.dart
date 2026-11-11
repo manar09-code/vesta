@@ -739,4 +739,67 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profilePublishFirst => 'Publish your first listing';
+
+  @override
+  String get publishFieldPhone => 'Phone';
+
+  @override
+  String get publishWhatsapp => 'Available on WhatsApp';
+
+  @override
+  String get listingErrorPhoneInvalid => 'Enter a valid Tunisian phone number';
+
+  @override
+  String get offerSale => 'For sale';
+
+  @override
+  String get offerRent => 'For rent';
+
+  @override
+  String get offerStay => 'Stay';
+
+  @override
+  String get unitNight => '/ night';
+
+  @override
+  String get unitMonth => '/ month';
+
+  @override
+  String get unitYear => '/ year';
+
+  @override
+  String get commonRetry => 'Try again';
+
+  @override
+  String get commonOffline => 'You are offline. Some content may not load.';
+
+  @override
+  String get contactCall => 'Call';
+
+  @override
+  String get contactWhatsapp => 'WhatsApp';
+
+  @override
+  String get contactSignInToSee => 'Sign in to see the contact';
+
+  @override
+  String get contactNoWhatsapp => 'WhatsApp is not installed on this phone';
+
+  @override
+  String get contactCallError => 'Could not open the phone app';
+
+  @override
+  String contactMessageSale(String title) {
+    return 'Hello, I am interested in buying $title on Vesta';
+  }
+
+  @override
+  String contactMessageRent(String title) {
+    return 'Hello, I am interested in renting $title on Vesta';
+  }
+
+  @override
+  String contactMessageStay(String title) {
+    return 'Hello, I am interested in staying at $title on Vesta';
+  }
 }

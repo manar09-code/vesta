@@ -730,4 +730,67 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profilePublishFirst => 'انشر أول إعلان ليك';
+
+  @override
+  String get publishFieldPhone => 'رقم الهاتف';
+
+  @override
+  String get publishWhatsapp => 'متاح على واتساب';
+
+  @override
+  String get listingErrorPhoneInvalid => 'أدخل رقم هاتف تونسي صحيح';
+
+  @override
+  String get offerSale => 'للبيع';
+
+  @override
+  String get offerRent => 'للكراء';
+
+  @override
+  String get offerStay => 'إقامة';
+
+  @override
+  String get unitNight => '/ ليلة';
+
+  @override
+  String get unitMonth => '/ شهر';
+
+  @override
+  String get unitYear => '/ سنة';
+
+  @override
+  String get commonRetry => 'عاود جرّب';
+
+  @override
+  String get commonOffline => 'ما عندكش إنترنت. ممكن شوية محتوى ما يظهرش.';
+
+  @override
+  String get contactCall => 'اتصل';
+
+  @override
+  String get contactWhatsapp => 'واتساب';
+
+  @override
+  String get contactSignInToSee => 'سجّل الدخول باش تشوف رقم التواصل';
+
+  @override
+  String get contactNoWhatsapp => 'واتساب موش مثبّت على التليفون هذا';
+
+  @override
+  String get contactCallError => 'ما نجمناش نحلّو تطبيق الهاتف';
+
+  @override
+  String contactMessageSale(String title) {
+    return 'عسلامة، مهتم بشراء $title على Vesta';
+  }
+
+  @override
+  String contactMessageRent(String title) {
+    return 'عسلامة، مهتم بكراء $title على Vesta';
+  }
+
+  @override
+  String contactMessageStay(String title) {
+    return 'عسلامة، مهتم بالإقامة في $title على Vesta';
+  }
 }
