@@ -276,7 +276,10 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
             suffixIcon: const Icon(Icons.search),
           ),
           onChanged: (_) => setState(() {}),
-          validator: (v) => fieldValidator(v, validateCity),
+          validator: (v) {
+            final e = validateCity(v);
+            return e == null ? null : _fieldError(l, e);
+          },
         );
       },
       optionsViewBuilder: (context, onSelected, options) {
