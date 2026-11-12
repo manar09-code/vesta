@@ -31,6 +31,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notificationsTitle => 'الإشعارات';
 
   @override
+  String get notificationsEmptyTitle => 'ما فما حتى إشعار جديد';
+
+  @override
+  String get notificationsEmptyBody => 'الرسائل الجداد تظهر هوني حتى تقراهم.';
+
+  @override
   String get chatTitle => 'الرسائل';
 
   @override

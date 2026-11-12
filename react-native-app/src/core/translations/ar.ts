@@ -6,6 +6,8 @@ export default {
   tabFavorites: 'المفضلة',
   tabProfile: 'حسابي',
   notificationsTitle: 'الإشعارات',
+  notificationsEmptyTitle: 'ما فما حتى إشعار جديد',
+  notificationsEmptyBody: 'الرسائل الجداد تظهر هوني حتى تقراهم.',
   chatTitle: 'الرسائل',
   loginTitle: 'تسجيل الدخول',
   comingSoon: 'قريبا',

@@ -6,6 +6,9 @@ export default {
   tabFavorites: 'Favoris',
   tabProfile: 'Profil',
   notificationsTitle: 'Notifications',
+  notificationsEmptyTitle: 'Aucune nouvelle notification',
+  notificationsEmptyBody:
+    'Les nouveaux messages apparaissent ici tant que vous ne les avez pas lus.',
   chatTitle: 'Messages',
   loginTitle: 'Connexion',
   comingSoon: 'Bientôt disponible',
