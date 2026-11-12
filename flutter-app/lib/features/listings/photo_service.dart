@@ -99,11 +99,7 @@ class PhotoService {
       throw const PhotoFailure(PhotoError.tooManyPhotos);
     }
     final picked = remaining == 1
-        ? [
-            if (await _picker.pickImage(source: ImageSource.gallery)
-                case final one?)
-              one,
-          ]
+        ? [?await _picker.pickImage(source: ImageSource.gallery)]
         : await _picker.pickMultiImage(limit: remaining);
     final result = <String>[];
     for (final file in picked.take(remaining)) {
