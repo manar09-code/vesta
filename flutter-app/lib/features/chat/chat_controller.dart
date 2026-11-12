@@ -37,6 +37,17 @@ final unreadTotalProvider = Provider<int>((ref) {
   return conversations == null ? 0 : totalUnread(conversations, uid);
 });
 
+/// Number of conversations with something unread: the number shown on the
+/// bell icon, and the number of tiles in the notification center (VST-99).
+/// Same source as [unreadTotalProvider], so no second Firestore listener.
+final notificationCountProvider = Provider<int>((ref) {
+  final uid = ref.watch(myUidProvider);
+  if (uid == null) return 0;
+  final conversations = ref.watch(conversationsProvider).value;
+  if (conversations == null) return 0;
+  return unreadConversations(conversations, uid).length;
+});
+
 /// Public name of a user, for the conversation list and the chat header.
 final userNameProvider =
     FutureProvider.autoDispose.family<String?, String>((ref, uid) {

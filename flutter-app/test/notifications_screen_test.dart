@@ -56,6 +56,34 @@ Future<void> _pump(
 }
 
 void main() {
+  test('notificationCountProvider counts conversations with unread', () async {
+    final container = ProviderContainer(
+      overrides: [
+        myUidProvider.overrideWithValue('buyer1'),
+        conversationsProvider.overrideWith(
+          (ref) => Stream.value([
+            _conversation('a', unreadForMe: 3),
+            _conversation('b'),
+            _conversation('c', unreadForMe: 1),
+          ]),
+        ),
+      ],
+    );
+    addTearDown(container.dispose);
+    await container.read(conversationsProvider.future);
+    expect(container.read(notificationCountProvider), 2);
+    // The message badge counts messages, the bell counts conversations.
+    expect(container.read(unreadTotalProvider), 4);
+  });
+
+  test('notificationCountProvider is 0 for a guest', () {
+    final container = ProviderContainer(
+      overrides: [myUidProvider.overrideWithValue(null)],
+    );
+    addTearDown(container.dispose);
+    expect(container.read(notificationCountProvider), 0);
+  });
+
   test('unreadConversations keeps only what I have not read, in order', () {
     final shown = unreadConversations([
       _conversation('a', unreadForMe: 2),
