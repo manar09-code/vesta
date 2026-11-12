@@ -7,7 +7,7 @@ What I built in Vesta, how to find it, how to test it, and what is still open. O
 - **Foundations:** monorepo and branch protection (VST-16), Jira (VST-17), Firebase project and Auth (VST-18, 32, 34), Flutter skeleton with theme, navigation, i18n (VST-62), logo and app icon (VST-65), C4 levels 1-2 and README (VST-25, 26, 69).
 - **Product and data:** offer types spec (VST-100, 103), data model v2 and Firestore rules (VST-74), guest browsing (VST-72), absurd-price bug (VST-104).
 - **Features (Flutter):** chat (VST-44), map and geolocation (VST-42), settings and language switcher (VST-95), onboarding, part 1 of VST-99.
-- **Design pass 1 (VST-109, PR #76):** login (welcome text, "Continue as guest"), sign up, onboarding, settings (Account card: change password, notifications), notifications empty state, chat list, chat room (listing strip, date separators), map price pins and preview card. Search now matches the listing title as well as the city.
+- **Design pass 1 (VST-109, PR #76, still in review):** login (welcome text, "Continue as guest"), sign up, onboarding, settings (Account card: change password, notifications), notifications empty state, chat list, chat room (listing strip, date separators), map price pins and preview card. Search now matches the listing title as well as the city.
 - **Security (VST-101):** the 3 Firebase API keys are restricted to the 25 Firebase APIs. See `firebase/README.md`.
 - **Release and process:** debug app id so `flutter run` does not remove the Play test build (VST-102), Play test log (VST-76), search filters reset bug (VST-124, PR #72).
 
@@ -19,7 +19,7 @@ What I built in Vesta, how to find it, how to test it, and what is still open. O
 | Map | `flutter-app/lib/features/map/` (`map_screen`, `map_controller`, `location_service`, `map_listing_preview`) |
 | Onboarding | `flutter-app/lib/features/onboarding/` |
 | Rules and tests | `firebase/firestore.rules`, `firebase/tests/`, `docs/data-model.md` |
-| Theme and CI | `lib/core/theme/app_colors.dart`, `docs/brand/design-tokens.md`, `tools/check-colors.js`, `.github/workflows/check-colors.yml` |
+| Theme and CI | `flutter-app/lib/core/theme/app_colors.dart`, `docs/brand/design-tokens.md`, `tools/check-colors.js`, `.github/workflows/check-colors.yml` |
 
 ## Data I use
 
