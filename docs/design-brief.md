@@ -39,8 +39,8 @@ Light tints of primary (about 15%) are used for the selected tab and for photo p
 
 - Screen side margin: 16 px. Space between cards: 12 px.
 - Card: white, radius about 16 px, no strong shadow.
-- Input: white, border 1 px, radius about 12 px; focused border in primary.
-- Primary button: full width, filled primary, white text, fully rounded ("pill"), height about 52 px.
+- Input: white, border 1 px, radius 10 px (`AppRadius.field`); focused border in primary.
+- Primary button: full width, filled primary, white text, fully rounded ("pill"), height 52 px (`minimumSize` in the theme).
 - Chips and segmented controls: fully rounded; selected = filled primary with white text, unselected = white with border.
 - Bottom bar: 5 tabs (Explorer, Recherche, Carte, Favoris, Profil), white, selected tab has a light primary pill.
 - App bar: background color, title centered, chat and bell icons on the right on the main tabs.
