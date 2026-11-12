@@ -7,6 +7,8 @@ What I built in Vesta, how to find it, how to test it, and what is still open. O
 - **Foundations:** monorepo and branch protection (VST-16), Jira (VST-17), Firebase project and Auth (VST-18, 32, 34), Flutter skeleton with theme, navigation, i18n (VST-62), logo and app icon (VST-65), C4 levels 1-2 and README (VST-25, 26, 69).
 - **Product and data:** offer types spec (VST-100, 103), data model v2 and Firestore rules (VST-74), guest browsing (VST-72), absurd-price bug (VST-104).
 - **Features (Flutter):** chat (VST-44), map and geolocation (VST-42), settings and language switcher (VST-95), onboarding, part 1 of VST-99.
+- **Design pass 1 (VST-109, PR #76):** login (welcome text, "Continue as guest"), sign up, onboarding, settings (Account card: change password, notifications), notifications empty state, chat list, chat room (listing strip, date separators), map price pins and preview card. Search now matches the listing title as well as the city.
+- **Security (VST-101):** the 3 Firebase API keys are restricted to the 25 Firebase APIs. See `firebase/README.md`.
 - **Release and process:** debug app id so `flutter run` does not remove the Play test build (VST-102), Play test log (VST-76), search filters reset bug (VST-124, PR #72).
 
 ## Where the code is
@@ -30,6 +32,7 @@ What I built in Vesta, how to find it, how to test it, and what is still open. O
 ## How to test
 
 1. `cd flutter-app; flutter analyze; flutter test; node ../tools/check-colors.js`.
+   Design: open the app in English, French and Arabic and check login, settings, chat and the map.
 2. Chat: two accounts on two phones. Contact the owner from a listing, send messages both ways, check the unread badge, then open the chat and check it goes to 0.
 3. Map: open Carte, tap a pin (preview card), tap "my location" and allow, then deny, and check the map still works.
 4. Onboarding: clear the app data, open the app, check the 3 screens appear once.
@@ -40,6 +43,9 @@ What I built in Vesta, how to find it, how to test it, and what is still open. O
 - Notification center (second half of VST-99) is not started, it needs chat, alerts and booking events first.
 - No server push: no Cloud Functions on the free plan. Alerts are in-app and local only.
 - The map and the search read only the 100 newest listings.
+- The map shows no price pins until a listing has `latitude` and `longitude`: the publish form has no location picker yet (VST-39, Ahmed).
+- The Android API key has no application restriction yet (it needs the Play App Signing SHA-1 from Mahmoud, see `firebase/README.md`). Apple and Google sign-in are not done (Apple needs a paid developer account).
+- Listings are in one `listings` collection with `listingType` (sale, rent) and `rentPeriod`. Splitting them into separate collections (sales, rentals) was suggested; it would change the rules, both apps and the data, so it is future work.
 - The Arabic text of the onboarding needs a native read.
 - React Native map (VST-43) not started: `react-native-maps` does not display in Expo Go on Android.
 
