@@ -427,7 +427,7 @@ abstract class AppLocalizations {
   /// No description provided for @publishPhotosTitle.
   ///
   /// In en, this message translates to:
-  /// **'Photos (up to 5)'**
+  /// **'Photos (up to 10)'**
   String get publishPhotosTitle;
 
   /// No description provided for @publishAddFromGallery.
@@ -499,8 +499,14 @@ abstract class AppLocalizations {
   /// No description provided for @listingErrorTooManyPhotos.
   ///
   /// In en, this message translates to:
-  /// **'You can add up to 5 photos'**
+  /// **'You can add up to 10 photos'**
   String get listingErrorTooManyPhotos;
+
+  /// No description provided for @publishPhotosDuplicates.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate photos were not added'**
+  String get publishPhotosDuplicates;
 
   /// No description provided for @listingErrorNoNetwork.
   ///

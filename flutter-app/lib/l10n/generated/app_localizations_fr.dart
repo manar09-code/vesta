@@ -174,7 +174,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get propertyGuestHouse => 'Maison d\'hôtes';
 
   @override
-  String get publishPhotosTitle => 'Photos (jusqu\'à 5)';
+  String get publishPhotosTitle => 'Photos (jusqu\'à 10)';
 
   @override
   String get publishAddFromGallery => 'Galerie';
@@ -212,7 +212,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get listingErrorTooManyPhotos =>
-      'Vous pouvez ajouter 5 photos au maximum';
+      'Vous pouvez ajouter 10 photos au maximum';
+
+  @override
+  String get publishPhotosDuplicates =>
+      'Les photos en double n\'ont pas été ajoutées';
 
   @override
   String get listingErrorNoNetwork => 'Pas de connexion internet';

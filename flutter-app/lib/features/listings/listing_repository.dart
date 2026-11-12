@@ -20,8 +20,10 @@ class ListingFailure implements Exception {
   final ListingError error;
 }
 
-/// Maximum photos per listing (ids p0 to p4, see docs/data-model.md).
-const int maxListingPhotos = 5;
+/// Maximum photos per listing (ids p0 to p9, see docs/data-model.md).
+/// Keep it at 10 or less: photos are read sorted by id, and `p10` would
+/// sort before `p2`.
+const int maxListingPhotos = 10;
 
 /// Values allowed by the rules and the data model.
 const List<String> listingTypes = ['sale', 'rent'];
@@ -106,7 +108,7 @@ class ListingRepository {
   FirebaseAuth get _auth => FirebaseAuth.instance;
 
   /// Creates the listing and its photos in ONE batch write.
-  /// [photosBase64] holds 1 to 5 already compressed base64 strings.
+  /// [photosBase64] holds 1 to 10 already compressed base64 strings.
   /// Returns the id of the new listing.
   Future<String> createListing({
     required NewListing listing,

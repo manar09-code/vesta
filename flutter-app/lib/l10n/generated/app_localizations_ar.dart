@@ -173,7 +173,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get propertyGuestHouse => 'دار ضيافة';
 
   @override
-  String get publishPhotosTitle => 'الصور (حتى 5)';
+  String get publishPhotosTitle => 'الصور (حتى 10)';
 
   @override
   String get publishAddFromGallery => 'المعرض';
@@ -209,7 +209,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get listingErrorNoPhotos => 'زيد صورة على الأقل';
 
   @override
-  String get listingErrorTooManyPhotos => 'تنجم تزيد 5 صور كحد أقصى';
+  String get listingErrorTooManyPhotos => 'تنجم تزيد 10 صور كحد أقصى';
+
+  @override
+  String get publishPhotosDuplicates => 'الصور المكررة ما تزادتش';
 
   @override
   String get listingErrorNoNetwork => 'ما فماش اتصال بالإنترنت';
