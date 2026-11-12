@@ -67,15 +67,27 @@ class ChatRepository {
   Stream<List<ChatMessage>> watchMessages(
     String conversationId, {
     int limit = messagesPageSize,
-  }) {
-    return _conversations
-        .doc(conversationId)
-        .collection('messages')
-        .orderBy('createdAt', descending: true)
-        .limit(limit)
-        .snapshots()
-        .map((snapshot) => snapshot.docs.map(ChatMessage.fromDoc).toList())
-        .handleError(_rethrowAsFailure);
+  }) async* {
+    final conversation = _conversations.doc(conversationId);
+
+    // A new conversation does not exist until the first message is sent, and
+    // the rules refuse to read the messages of a conversation that does not
+    // exist. So the screen shows an empty list now, and the messages are
+    // listened to only once the conversation has been created.
+    try {
+      await for (final snapshot in conversation.snapshots()) {
+        if (snapshot.exists) break;
+        yield const <ChatMessage>[];
+      }
+      yield* conversation
+          .collection('messages')
+          .orderBy('createdAt', descending: true)
+          .limit(limit)
+          .snapshots()
+          .map((snapshot) => snapshot.docs.map(ChatMessage.fromDoc).toList());
+    } catch (error) {
+      _rethrowAsFailure(error);
+    }
   }
 
   /// Sends [text] from the signed-in user. The user is either the buyer or
