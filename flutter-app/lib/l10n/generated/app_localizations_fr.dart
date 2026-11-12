@@ -372,27 +372,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsContact => 'Nous contacter';
 
   @override
-  String get authWelcomeTitle => 'Bienvenue sur Vesta';
-
-  @override
-  String get authWelcomeSubtitle => 'Connectez-vous pour contacter les propriétaires, enregistrer vos favoris et publier votre bien.';
-
-  @override
-  String get authContinueAsGuest => 'Continuer en tant qu\'invité';
-
-  @override
-  String get chatToday => 'Aujourd\'hui';
-
-  @override
-  String get chatYesterday => 'Hier';
-
-  @override
-  String get settingsAccount => 'Compte';
-
-  @override
-  String get settingsChangePassword => 'Changer le mot de passe';
-
-  @override
   String get settingsDeleteAccount => 'Supprimer mon compte';
 
   @override
@@ -432,6 +411,16 @@ class AppLocalizationsFr extends AppLocalizations {
       'Trop de tentatives, réessayez dans quelques minutes';
 
   @override
+  String get authWelcomeTitle => 'Bienvenue sur Vesta';
+
+  @override
+  String get authWelcomeSubtitle =>
+      'Connectez-vous pour contacter les propriétaires, enregistrer vos favoris et publier votre bien.';
+
+  @override
+  String get authContinueAsGuest => 'Continuer en tant qu\'invité';
+
+  @override
   String get loading => 'Chargement…';
 
   @override
@@ -447,6 +436,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get languageAr => 'العربية';
+
+  @override
+  String get settingsAccount => 'Compte';
+
+  @override
+  String get settingsChangePassword => 'Changer le mot de passe';
 
   @override
   String get listingDetailNotFound => 'Annonce introuvable';
@@ -628,6 +623,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chatSendFailed => 'Message non envoyé, réessayez';
+
+  @override
+  String get chatToday => 'Aujourd\'hui';
+
+  @override
+  String get chatYesterday => 'Hier';
 
   @override
   String get listingDetailAtAGlance => 'En un coup d\'œil';

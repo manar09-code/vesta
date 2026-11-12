@@ -368,27 +368,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsContact => 'Contact us';
 
   @override
-  String get authWelcomeTitle => 'Welcome to Vesta';
-
-  @override
-  String get authWelcomeSubtitle => 'Sign in to contact owners, save favorites and publish your own place.';
-
-  @override
-  String get authContinueAsGuest => 'Continue as guest';
-
-  @override
-  String get chatToday => 'Today';
-
-  @override
-  String get chatYesterday => 'Yesterday';
-
-  @override
-  String get settingsAccount => 'Account';
-
-  @override
-  String get settingsChangePassword => 'Change password';
-
-  @override
   String get settingsDeleteAccount => 'Delete my account';
 
   @override
@@ -428,6 +407,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'Too many attempts, please try again in a few minutes';
 
   @override
+  String get authWelcomeTitle => 'Welcome to Vesta';
+
+  @override
+  String get authWelcomeSubtitle =>
+      'Sign in to contact owners, save favorites and publish your own place.';
+
+  @override
+  String get authContinueAsGuest => 'Continue as guest';
+
+  @override
   String get loading => 'Loading…';
 
   @override
@@ -443,6 +432,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languageAr => 'العربية';
+
+  @override
+  String get settingsAccount => 'Account';
+
+  @override
+  String get settingsChangePassword => 'Change password';
 
   @override
   String get listingDetailNotFound => 'Listing not found';
@@ -619,6 +614,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chatSendFailed => 'Message not sent, try again';
+
+  @override
+  String get chatToday => 'Today';
+
+  @override
+  String get chatYesterday => 'Yesterday';
 
   @override
   String get listingDetailAtAGlance => 'At a glance';
