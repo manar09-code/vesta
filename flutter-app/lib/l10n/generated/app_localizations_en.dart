@@ -554,6 +554,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapNoListings => 'No listing with a location yet';
 
   @override
+  String get mapPickerTitle => 'Choose the location';
+
+  @override
+  String get mapPickerHint => 'Tap the map to place the pin';
+
+  @override
+  String get mapPickerConfirm => 'Use this location';
+
+  @override
   String get chatEmptyTitle => 'No conversations yet';
 
   @override
@@ -745,6 +754,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get publishWhatsapp => 'Available on WhatsApp';
+
+  @override
+  String get publishCityHelper => 'Start typing: Tunis, Sousse, Tozeur…';
+
+  @override
+  String get publishLocationSet => 'Set the exact location on the map';
+
+  @override
+  String get publishLocationChange => 'Change the location on the map';
+
+  @override
+  String get publishLocationHint =>
+      'Without it, your listing appears near the city center on the map.';
+
+  @override
+  String get publishLocationSaved => 'Exact location saved';
+
+  @override
+  String get publishLocationRemove => 'Remove';
 
   @override
   String get listingErrorPhoneInvalid => 'Enter a valid Tunisian phone number';

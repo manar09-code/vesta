@@ -548,6 +548,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mapNoListings => 'لا توجد إعلانات بموقع حتى الآن';
 
   @override
+  String get mapPickerTitle => 'اختار الموقع';
+
+  @override
+  String get mapPickerHint => 'اضغط على الخريطة باش تحط الدبوس';
+
+  @override
+  String get mapPickerConfirm => 'استعمل هذا الموقع';
+
+  @override
   String get chatEmptyTitle => 'ما عندكش محادثات توا';
 
   @override
@@ -736,6 +745,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get publishWhatsapp => 'متاح على واتساب';
+
+  @override
+  String get publishCityHelper => 'ابدا اكتب: تونس، سوسة، توزر…';
+
+  @override
+  String get publishLocationSet => 'حدّد الموقع بالضبط على الخريطة';
+
+  @override
+  String get publishLocationChange => 'بدّل الموقع على الخريطة';
+
+  @override
+  String get publishLocationHint =>
+      'من غير هذا، إعلانك باش يظهر قريب من وسط المدينة على الخريطة.';
+
+  @override
+  String get publishLocationSaved => 'الموقع بالضبط تسجّل';
+
+  @override
+  String get publishLocationRemove => 'امسح';
 
   @override
   String get listingErrorPhoneInvalid => 'أدخل رقم هاتف تونسي صحيح';

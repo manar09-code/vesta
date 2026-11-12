@@ -95,7 +95,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final listings = ref.watch(mapListingsProvider);
-    final items = listings.value ?? const <Listing>[];
+    final items = listings.value ?? const <MapPin>[];
     final selected = _selected;
 
     return Stack(
@@ -120,19 +120,19 @@ class _MapScreenState extends ConsumerState<MapScreen> {
             ),
             MarkerLayer(
               markers: [
-                for (final listing in items)
+                for (final pin in items)
                   Marker(
-                    point: LatLng(listing.latitude!, listing.longitude!),
+                    point: pin.point,
                     width: 44,
                     height: 44,
                     // The tip of the pin is on the position.
                     alignment: Alignment.topCenter,
                     child: GestureDetector(
-                      onTap: () => setState(() => _selected = listing),
+                      onTap: () => setState(() => _selected = pin.listing),
                       child: Icon(
                         Icons.location_on,
                         size: 40,
-                        color: listing.id == selected?.id
+                        color: pin.listing.id == selected?.id
                             ? AppColors.primary
                             : AppColors.terracotta,
                       ),

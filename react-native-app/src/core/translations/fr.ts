@@ -185,6 +185,9 @@ export default {
   mapOpenSettings: 'Paramètres',
   mapViewDetails: 'Voir les détails',
   mapNoListings: 'Aucune annonce avec une position pour le moment',
+  mapPickerTitle: 'Choisir l’emplacement',
+  mapPickerHint: 'Touchez la carte pour placer l’épingle',
+  mapPickerConfirm: 'Utiliser cet emplacement',
   chatEmptyTitle: 'Aucune conversation',
   chatEmptyBody:
     'Ouvrez une annonce et touchez « Contacter le propriétaire » pour commencer.',
@@ -251,6 +254,13 @@ export default {
   profilePublishFirst: 'Publier votre première annonce',
   publishFieldPhone: 'Téléphone',
   publishWhatsapp: 'Disponible sur WhatsApp',
+  publishCityHelper: 'Commencez à taper : Tunis, Sousse, Tozeur…',
+  publishLocationSet: 'Placer l’emplacement exact sur la carte',
+  publishLocationChange: 'Modifier l’emplacement sur la carte',
+  publishLocationHint:
+    'Sans cela, votre annonce apparaît près du centre de la ville sur la carte.',
+  publishLocationSaved: 'Emplacement exact enregistré',
+  publishLocationRemove: 'Retirer',
   listingErrorPhoneInvalid: 'Entrez un numéro tunisien valide',
   offerSale: 'À vendre',
   offerRent: 'À louer',
