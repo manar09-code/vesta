@@ -1,19 +1,19 @@
 # Handover: Ahmed (VST-111)
 
-What I built in Vesta, how to find it, how to test it, and what is still open. Written 11 Nov 2026.
+What I built in Vesta, how to find it, how to test it, and what is still open. Updated 12 Nov 2026.
 
 ## Tickets done
 
 - **Quality and process:** test plan with 60 test cases for both apps (VST-52, PR #39), design-system colors check with a GitHub Action (VST-78, PR #48).
 - **React Native:** authentication (VST-37, PR #53, merged 5 Nov): login, sign up, session kept after restart, log out.
 - **Flutter:** shared UI kit with the 4 listing widgets of VST-100 (VST-93, PR #52, merged; `flutter analyze` and `flutter test` pass, 116 tests).
-- **Translations:** one master file and one script for both apps (VST-70, PR #54, in review).
-- **React Native language default:** start in Arabic when the phone language is not English, French or Arabic (VST-105, fix written, see "Still open").
+- **Translations:** one master file and one script for both apps (VST-70, PR #54, merged 12 Nov).
+- **React Native language default:** start in Arabic when the phone language is not English, French or Arabic (VST-105, PR #77, merged 12 Nov).
+- **React Native navigation and packages:** bottom tabs with placeholder screens (PR #78) and the image packages `expo-image-picker` and `expo-image-manipulator` (PR #79), both merged 12 Nov.
+- **Screens:** React Native login, sign up and the 5-tab shell; Flutter UI kit debug screen (`/ui-kit`).
 - **Design:** Sprint 0 mockups (Figma `Vesta-mockups` is the reference for the palette only).
 
 ## Where the code is
-
-Paths marked (PR) are on the PR branch until the PR is merged.
 
 | Feature | Folder / file |
 |---|---|
@@ -22,13 +22,14 @@ Paths marked (PR) are on the PR branch until the PR is merged.
 | RN auth | `react-native-app/src/features/auth/` (`LoginScreen`, `SignUpScreen`, `authController.tsx`), `src/data/repositories/authRepository.ts`, `authErrors.ts`, `authValidation.ts`, `src/data/firebase.ts`, `src/types/firebase-auth.d.ts`, guard in `App.tsx` |
 | UI kit | `flutter-app/lib/core/widgets/`, `lib/core/theme/` (`app_dimens.dart`, `app_text_styles.dart`), `lib/features/listings/listing_card.dart`, `docs/ui-kit.md`, `flutter-app/test/ui_kit_test.dart` |
 | UI kit debug screen | route `/ui-kit`: Profile > Settings > "UI kit (debug only)" |
-| Translations (PR #54) | `docs/translations.csv` (master), `scripts/translations.js`, `docs/translations.md`, `.github/workflows/translations.yml` |
-| RN language default | `react-native-app/src/core/language.ts`, `config.ts`, `i18n.ts`, `__tests__/language.test.ts` (not on develop yet) |
+| Translations | `docs/translations.csv` (master), `scripts/translations.js`, `docs/translations.md`, `.github/workflows/translations.yml` |
+| RN language default | `react-native-app/src/core/language.ts`, `config.ts`, `i18n.ts`, `__tests__/language.test.ts` |
+| RN navigation | `react-native-app/src/navigation/` (`MainStack.tsx`, `MainTabs.tsx`, `PlaceholderScreen.tsx`) |
 
 ## Data I use
 
 - **RN auth:** `LoginScreen` / `SignUpScreen` call `AuthController` (`useAuth()` gives `user`, `isInitializing`, `isSignedIn`, `isLoading`, `error`, `signIn`, `signUp`, `signOut`, `clearError`), which calls `AuthRepository`, which calls Firebase Auth. No Firebase call in a screen. Sign up writes `users/{uid}` (`displayName`, `createdAt`) and `users/{uid}/private/contact` (`email`) in one batch, sends the verification mail, and deletes the new Auth account if the batch fails (same as Flutter). The session is kept with AsyncStorage. Password minimum is 8 characters. Guest browsing, forgot password and the email banner are a separate ticket after the RN MVP. The Log out button on `HomeScreen` is temporary (it can move to Profile, VST-49).
-- **Texts:** after PR #54 nobody edits `app_en/fr/ar.arb` or the React Native `en/fr/ar.ts` by hand. Add a row in `docs/translations.csv` (key, en, fr, ar, screen, note), then `node scripts/translations.js build`. CI runs `--self-test` and `check`. Keys are dotted in the CSV (`auth.login.button`) and camelCase in code (`authLoginButton`). A number placeholder is `{count:int}`; without `:int` the ARB gets a String and `flutter analyze` fails. A French or Arabic text equal to English needs `same` in the note. Never translate `Vesta` or `TND`. The Flutter generated files (`lib/l10n/generated/`) are committed: run `flutter gen-l10n` and commit them. If `develop` moved and the generated files conflict, do not resolve them by hand: keep both sides in the `.arb` files, regenerate with `flutter gen-l10n`.
+- **Texts:** nobody edits `app_en/fr/ar.arb` or the React Native `en/fr/ar.ts` by hand. Add a row in `docs/translations.csv` (key, en, fr, ar, screen, note), then `node scripts/translations.js build`. CI runs `--self-test` and `check`. Keys are dotted in the CSV (`auth.login.button`) and camelCase in code (`authLoginButton`). A number placeholder is `{count:int}`; without `:int` the ARB gets a String and `flutter analyze` fails. A French or Arabic text equal to English needs `same` in the note. Never translate `Vesta` or `TND`. The Flutter generated files (`lib/l10n/generated/`) are committed: run `flutter gen-l10n` and commit them. If `develop` moved and the generated files conflict, do not resolve them by hand: keep both sides in the `.arb` files, regenerate with `flutter gen-l10n`.
 - **Colors:** only theme tokens (`app_colors.dart` in Flutter, `src/core/theme.ts` in React Native). Background is `#FAF8F4`, error is `#A33B32`. `node tools/check-colors.js` must pass (the Action scans `react-native-app/src` and `App.tsx` too).
 - **UI kit:** use `lib/core/widgets` before writing a new widget (`PrimaryButton`, `AppTextField`, `LoadingView`, `EmptyState`, `ErrorState`, `ListingCard`, ...). Right-to-left helpers: `isRtl`, `DirectionalIcon`, `LtrText`. Full list in `docs/ui-kit.md`.
 - **Prices and offers:** `formatPrice` gives `TND 120,000`, always left-to-right. Units `/ night`, `/ month`, `/ year`. `offerTypeOf(listing)` decides sale (terracotta), rent (navy) or stay (blue): sale = sale, rent = rent + month/year, stay = rent + night.
@@ -54,20 +55,18 @@ Paths marked (PR) are on the PR branch until the PR is merged.
 - Offline publish: a Firestore batch commit made offline waits instead of failing, so it can hang and publish later.
 - VST-70: the Arabic and French review by two readers and the right-to-left check on a real phone are not done (final check 13 Nov). The ticket says the RN files are `.json`; they are `.ts`.
 - Text review points not changed yet: 5 French `favorites.*` texts use "tu" while the rest uses "vous"; 9 Arabic `favorites.*` and `listings.empty` texts are formal Arabic while `docs/i18n/glossary-ar-TN.md` prefers Tunisian; 8 texts exist under two keys.
-- React Native is a reduced MVP: no AI assistant, bookings, reviews, Explore Tunisia home or message alerts. RN has no bottom tabs yet (`MainStack` has one `Home` screen).
+- React Native is a reduced MVP: no AI assistant, bookings, reviews, Explore Tunisia home or message alerts. RN has 5 bottom tabs (PR #78); Explore is the home screen and some tabs are still placeholders.
 - Test plan question NTF-01 (notification permission dialog, no real push in the MVP) is open.
 
 ## Still open
 
-- **VST-105:** the fix is written and passes `tsc`, `eslint` and 24 `jest` tests in a sandbox. Branch `feature/VST-105-rn-default-arabic` from `develop` after #54, PR title `VST-105: RN starts in Arabic like Flutter`. Target 12 Nov.
-- **VST-39 (RN listings), not started, no PR.** Plan: PR 1 = publish form with the 3 offer types and photos (`expo-image-picker`, `expo-image-manipulator`, one `writeBatch` for the listing, photos and `contact/info`, `status: 'available'`, city as text because the RN map picker is not available); PR 2 = list with ribbon and price unit, and details with gallery. Reuse and extend Mahmoud's merged files from PR #58 (`src/data/models/listing.ts`, `listingCategory.ts`, `src/data/repositories/listingsRepository.ts`, `src/features/listings/ListingCard.tsx`): add `offerTypeOf`, the price unit, the ribbon and a `getListing(id)`. The two Expo packages are not installed yet (`npx expo install expo-image-picker expo-image-manipulator`).
+- **VST-39 (RN listings), not started, no PR.** Plan: PR 1 = publish form with the 3 offer types and photos (`expo-image-picker`, `expo-image-manipulator`, one `writeBatch` for the listing, photos and `contact/info`, `status: 'available'`, city as text because the RN map picker is not available); PR 2 = list with ribbon and price unit, and details with gallery. Reuse and extend Mahmoud's merged files from PR #58 (`src/data/models/listing.ts`, `listingCategory.ts`, `src/data/repositories/listingsRepository.ts`, `src/features/listings/ListingCard.tsx`): add `offerTypeOf`, the price unit, the ribbon and a `getListing(id)`. The two Expo packages are installed (PR #79). Manar also asked for a latitude and longitude step (or "use my location") so the map shows pins.
 - **VST-82 (details and amenities in RN), not started.** The ticket says `governorate`, `checkInTime`, `checkOutTime`; `docs/data-model.md` says `city`, `checkIn`, `checkOut` and at most 10 amenities. The Flutter code is the source of truth.
-- **VST-70:** add the keys of the contact feature (#66) to the CSV, the final check by 13 Nov (`check` plus a search for texts written directly in screens, see `docs/translations.md`), and the right-to-left check with one Jira ticket per problem named `RTL: <screen>: <problem> (Flutter|React Native)` with a screenshot.
-- **Merge order:** #52 is merged. #54 needs `develop` merged into it first (the `.arb` files changed in #52, #66 and #67), then it can merge. Code freeze is 17 Nov.
+- **VST-70:** the final check by 13 Nov (`check` plus a search for texts written directly in screens, see `docs/translations.md`), and the right-to-left check with one Jira ticket per problem named `RTL: <screen>: <problem> (Flutter|React Native)` with a screenshot.
+- **Merge order:** nothing pending, #52, #54, #77, #78 and #79 are merged. Code freeze is 17 Nov.
 
 ## 3 questions a teammate could ask
 
 1. **Why one master CSV for the texts?** Two apps and three languages meant six files to keep in sync by hand. The script generates all of them and CI blocks a missing or inconsistent key.
 2. **Why does the UI kit use the code colors and not the mockup colors?** The colors check fails on any color outside `AppColors`. Changing the tokens is a decision for Manar, not part of the kit.
 3. **Why does React Native start in Arabic when the phone language is not English, French or Arabic?** Flutter does the same, and the test plan (LNG-01) expects the same behavior in both apps.
-4. **Why are photos stored as base64 in Firestore?** The project has no Firebase Storage. Each photo is resized to about 800 px and kept under about 270000 characters so it fits the Firestore document limit.
