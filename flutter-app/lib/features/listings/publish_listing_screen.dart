@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/phone_utils.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'listing_controller.dart';
 import 'listing_labels.dart';
@@ -29,12 +30,14 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
   final _bedrooms = TextEditingController();
   final _bathrooms = TextEditingController();
   final _area = TextEditingController();
+  final _phone = TextEditingController();
   final _guests = TextEditingController();
   final _photoService = PhotoService();
 
   String _listingType = 'sale';
   String? _rentPeriod;
   String _propertyType = 'apartment';
+  bool _whatsapp = false;
   final List<String> _photos = []; // base64 strings, index 0 = cover
   final Set<String> _amenities = {};
   final Set<String> _houseRules = {};
@@ -53,6 +56,7 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
       _bedrooms,
       _bathrooms,
       _area,
+      _phone,
       _guests,
     ]) {
       c.dispose();
@@ -212,6 +216,8 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
       bedrooms: _optional(_bedrooms),
       bathrooms: _optional(_bathrooms),
       areaSqm: _optional(_area),
+      contactPhone: normalizeTunisianPhone(_phone.text),
+      whatsappEnabled: _whatsapp,
       maxGuests: _optional(_guests),
       // Keep the order of amenityKeys / houseRuleKeys, whatever the taps.
       amenities: [
@@ -359,6 +365,25 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
                 controller: _city,
                 decoration: InputDecoration(labelText: l.publishFieldCity),
                 validator: (v) => fieldValidator(v, validateCity),
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                controller: _phone,
+                keyboardType: TextInputType.phone,
+                textDirection: TextDirection.ltr,
+                decoration: InputDecoration(
+                  labelText: l.publishFieldPhone,
+                  prefixText: '+216 ',
+                ),
+                validator: (v) => isValidTunisianPhone(v ?? '')
+                    ? null
+                    : l.listingErrorPhoneInvalid,
+              ),
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l.publishWhatsapp),
+                value: _whatsapp,
+                onChanged: (v) => setState(() => _whatsapp = v),
               ),
               const SizedBox(height: 12),
               TextFormField(
@@ -562,4 +587,3 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
     );
   }
 }
-

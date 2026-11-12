@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/config/app_config.dart';
 import '../../core/router/app_router.dart';
 import '../../l10n/generated/app_localizations.dart';
+import 'contact_buttons.dart';
 import '../auth/require_sign_in.dart';
 import '../chat/chat_controller.dart';
 import '../chat/chat_repository.dart';
@@ -174,8 +175,9 @@ class _DetailBody extends ConsumerWidget {
                   // SLOT: favorite heart (VST-46, Mahmoud)
                 ],
               ),
-              // SLOT: Call and WhatsApp buttons under the price (VST-79,
-              // Mahmoud). A guest must sign in first (requireSignIn).
+              // Call and WhatsApp buttons under the price (VST-79). A guest
+              // sees "Sign in to see the contact" (requireSignIn).
+              ContactButtons(listing: listing),
               if (!isOwner) ...[
                 const SizedBox(height: 12),
                 FilledButton.icon(

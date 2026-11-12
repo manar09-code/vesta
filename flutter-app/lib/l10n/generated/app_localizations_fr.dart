@@ -22,34 +22,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tabMap => 'Carte';
 
   @override
-  String get mapMyLocation => 'Ma position';
-
-  @override
-  String get mapLocationDenied =>
-      'Permission de localisation refusée. La carte fonctionne quand même.';
-
-  @override
-  String get mapLocationDeniedForever =>
-      'La localisation est bloquée pour Vesta. Activez-la dans les paramètres de l’application.';
-
-  @override
-  String get mapLocationServiceOff =>
-      'Activez la localisation (GPS) de votre téléphone pour voir où vous êtes.';
-
-  @override
-  String get mapLocationError =>
-      'Impossible de trouver votre position. Réessayez.';
-
-  @override
-  String get mapOpenSettings => 'Paramètres';
-
-  @override
-  String get mapViewDetails => 'Voir les détails';
-
-  @override
-  String get mapNoListings => 'Aucune annonce avec une position pour le moment';
-
-  @override
   String get tabFavorites => 'Favoris';
 
   @override
@@ -60,54 +32,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chatTitle => 'Messages';
-
-  @override
-  String get chatEmptyTitle => 'Aucune conversation';
-
-  @override
-  String get chatEmptyBody =>
-      'Ouvrez une annonce et touchez « Contacter le propriétaire » pour commencer.';
-
-  @override
-  String get chatContactOwner => 'Contacter le propriétaire';
-
-  @override
-  String get chatOwnListing => 'Votre propre annonce';
-
-  @override
-  String get chatContactError =>
-      'Impossible d\'ouvrir la conversation, réessayez';
-
-  @override
-  String get chatUnknownUser => 'Utilisateur Vesta';
-
-  @override
-  String get chatLoadError => 'Impossible de charger vos messages';
-
-  @override
-  String get chatRetry => 'Réessayer';
-
-  @override
-  String get chatListingRemoved => 'Annonce plus disponible';
-
-  @override
-  String get chatMessageHint => 'Écrivez un message';
-
-  @override
-  String get chatSend => 'Envoyer';
-
-  @override
-  String get chatSending => 'Envoi…';
-
-  @override
-  String get chatNoMessages => 'Aucun message. Dites bonjour !';
-
-  @override
-  String get chatSendError =>
-      'Pas encore envoyé. Il partira dès que vous serez de nouveau en ligne.';
-
-  @override
-  String get chatSendFailed => 'Message non envoyé, réessayez';
 
   @override
   String get loginTitle => 'Connexion';
@@ -308,48 +232,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get photoErrorReadFailed => 'Impossible de lire cette photo';
 
   @override
-  String get listingDetailNotFound => 'Annonce introuvable';
-
-  @override
-  String get listingDetailLoadError => 'Impossible de charger cette annonce.';
-
-  @override
-  String get listingDetailRetry => 'Réessayer';
-
-  @override
-  String get listingDetailNoPhoto => 'Aucune photo';
-
-  @override
-  String get listingDetailBedrooms => 'Chambres';
-
-  @override
-  String get listingDetailBathrooms => 'Salles de bain';
-
-  @override
-  String get listingDetailArea => 'Surface (m²)';
-
-  @override
-  String get listingDetailPerNight => '/ nuit';
-
-  @override
-  String get listingDetailAtAGlance => 'En un coup d\'œil';
-
-  @override
-  String get listingDetailGuests => 'Invités';
-
-  @override
-  String get listingDetailReadMore => 'Lire la suite';
-
-  @override
-  String get listingDetailReadLess => 'Réduire';
-
-  @override
-  String get listingDetailPerMonth => '/ mois';
-
-  @override
-  String get listingDetailPerYear => '/ an';
-
-  @override
   String get profileEditTitle => 'Modifier le profil';
 
   @override
@@ -493,23 +375,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsDeleteAccount => 'Supprimer mon compte';
 
   @override
-  String get deleteAccountTitle => 'Supprimer votre compte ?';
-
-  @override
-  String get deleteAccountBody =>
-      'Cela supprime définitivement votre compte, votre profil, vos annonces et leurs photos, et vos favoris. Les messages que vous avez envoyés restent dans la conversation de l\'autre personne. Cette action est irréversible.';
-
-  @override
-  String get deleteAccountPassword =>
-      'Saisissez votre mot de passe pour confirmer';
-
-  @override
-  String get deleteAccountConfirm => 'Supprimer';
-
-  @override
-  String get deleteAccountDone => 'Votre compte a été supprimé.';
-
-  @override
   String get settingsLinkError => 'Impossible d’ouvrir le lien';
 
   @override
@@ -546,29 +411,214 @@ class AppLocalizationsFr extends AppLocalizations {
       'Trop de tentatives, réessayez dans quelques minutes';
 
   @override
-  String get offerSale => 'À vendre';
+  String get loading => 'Chargement…';
 
   @override
-  String get offerRent => 'À louer';
+  String homePriceExample(String price) {
+    return 'Exemple de prix : $price';
+  }
 
   @override
-  String get offerStay => 'Séjour';
+  String get languageEn => 'English';
 
   @override
-  String get unitNight => '/ nuit';
+  String get languageFr => 'Français';
 
   @override
-  String get unitMonth => '/ mois';
+  String get languageAr => 'العربية';
 
   @override
-  String get unitYear => '/ an';
+  String get listingDetailNotFound => 'Annonce introuvable';
 
   @override
-  String get commonRetry => 'Réessayer';
+  String get listingDetailLoadError => 'Impossible de charger cette annonce.';
 
   @override
-  String get commonOffline =>
-      'Vous êtes hors ligne. Certains contenus peuvent ne pas s’afficher.';
+  String get listingDetailRetry => 'Réessayer';
+
+  @override
+  String get listingDetailNoPhoto => 'Aucune photo';
+
+  @override
+  String get listingDetailBedrooms => 'Chambres';
+
+  @override
+  String get listingDetailBathrooms => 'Salles de bain';
+
+  @override
+  String get listingDetailArea => 'Surface (m²)';
+
+  @override
+  String get listingDetailPerNight => '/ nuit';
+
+  @override
+  String get listingDetailPerMonth => '/ mois';
+
+  @override
+  String get listingDetailPerYear => '/ an';
+
+  @override
+  String get deleteAccountTitle => 'Supprimer votre compte ?';
+
+  @override
+  String get deleteAccountBody =>
+      'Cela supprime définitivement votre compte, votre profil, vos annonces et leurs photos, et vos favoris. Les messages que vous avez envoyés restent dans la conversation de l\'autre personne. Cette action est irréversible.';
+
+  @override
+  String get deleteAccountPassword =>
+      'Saisissez votre mot de passe pour confirmer';
+
+  @override
+  String get deleteAccountConfirm => 'Supprimer';
+
+  @override
+  String get deleteAccountDone => 'Votre compte a été supprimé.';
+
+  @override
+  String get searchHint => 'Rechercher par ville';
+
+  @override
+  String get searchNoResults =>
+      'Aucune annonce ne correspond à votre recherche';
+
+  @override
+  String get searchFilters => 'Filtres';
+
+  @override
+  String get searchPriceMin => 'Prix min';
+
+  @override
+  String get searchPriceMax => 'Prix max';
+
+  @override
+  String get searchOfferType => 'Type d\'offre';
+
+  @override
+  String get searchPropertyType => 'Type de bien';
+
+  @override
+  String get searchAll => 'Tous';
+
+  @override
+  String get searchTypeSale => 'Vente';
+
+  @override
+  String get searchTypeRent => 'Location';
+
+  @override
+  String get searchTypeStay => 'Séjour';
+
+  @override
+  String get searchApply => 'Appliquer';
+
+  @override
+  String get searchReset => 'Réinitialiser';
+
+  @override
+  String get searchPropApartment => 'Appartement';
+
+  @override
+  String get searchPropHouse => 'Maison';
+
+  @override
+  String get searchPropVilla => 'Villa';
+
+  @override
+  String get searchPropStudio => 'Studio';
+
+  @override
+  String get searchPropRiad => 'Riad';
+
+  @override
+  String get searchPropGuestHouse => 'Maison d\'hôtes';
+
+  @override
+  String get mapMyLocation => 'Ma position';
+
+  @override
+  String get mapLocationDenied =>
+      'Permission de localisation refusée. La carte fonctionne quand même.';
+
+  @override
+  String get mapLocationDeniedForever =>
+      'La localisation est bloquée pour Vesta. Activez-la dans les paramètres de l’application.';
+
+  @override
+  String get mapLocationServiceOff =>
+      'Activez la localisation (GPS) de votre téléphone pour voir où vous êtes.';
+
+  @override
+  String get mapLocationError =>
+      'Impossible de trouver votre position. Réessayez.';
+
+  @override
+  String get mapOpenSettings => 'Paramètres';
+
+  @override
+  String get mapViewDetails => 'Voir les détails';
+
+  @override
+  String get mapNoListings => 'Aucune annonce avec une position pour le moment';
+
+  @override
+  String get chatEmptyTitle => 'Aucune conversation';
+
+  @override
+  String get chatEmptyBody =>
+      'Ouvrez une annonce et touchez « Contacter le propriétaire » pour commencer.';
+
+  @override
+  String get chatContactOwner => 'Contacter le propriétaire';
+
+  @override
+  String get chatOwnListing => 'Votre propre annonce';
+
+  @override
+  String get chatContactError =>
+      'Impossible d\'ouvrir la conversation, réessayez';
+
+  @override
+  String get chatUnknownUser => 'Utilisateur Vesta';
+
+  @override
+  String get chatLoadError => 'Impossible de charger vos messages';
+
+  @override
+  String get chatRetry => 'Réessayer';
+
+  @override
+  String get chatListingRemoved => 'Annonce plus disponible';
+
+  @override
+  String get chatMessageHint => 'Écrivez un message';
+
+  @override
+  String get chatSend => 'Envoyer';
+
+  @override
+  String get chatSending => 'Envoi…';
+
+  @override
+  String get chatNoMessages => 'Aucun message. Dites bonjour !';
+
+  @override
+  String get chatSendError =>
+      'Pas encore envoyé. Il partira dès que vous serez de nouveau en ligne.';
+
+  @override
+  String get chatSendFailed => 'Message non envoyé, réessayez';
+
+  @override
+  String get listingDetailAtAGlance => 'En un coup d\'œil';
+
+  @override
+  String get listingDetailGuests => 'Invités';
+
+  @override
+  String get listingDetailReadMore => 'Lire la suite';
+
+  @override
+  String get listingDetailReadLess => 'Réduire';
 
   @override
   String get listingErrorGuestsInvalid =>
@@ -643,64 +693,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get ruleQuietHours => 'Heures de calme';
 
   @override
-  String get searchHint => 'Rechercher par ville';
-
-  @override
-  String get searchNoResults =>
-      'Aucune annonce ne correspond à votre recherche';
-
-  @override
-  String get searchFilters => 'Filtres';
-
-  @override
-  String get searchPriceMin => 'Prix min';
-
-  @override
-  String get searchPriceMax => 'Prix max';
-
-  @override
-  String get searchOfferType => 'Type d\'offre';
-
-  @override
-  String get searchPropertyType => 'Type de bien';
-
-  @override
-  String get searchAll => 'Tous';
-
-  @override
-  String get searchTypeSale => 'Vente';
-
-  @override
-  String get searchTypeRent => 'Location';
-
-  @override
-  String get searchTypeStay => 'Séjour';
-
-  @override
-  String get searchApply => 'Appliquer';
-
-  @override
-  String get searchReset => 'Réinitialiser';
-
-  @override
-  String get searchPropApartment => 'Appartement';
-
-  @override
-  String get searchPropHouse => 'Maison';
-
-  @override
-  String get searchPropVilla => 'Villa';
-
-  @override
-  String get searchPropStudio => 'Studio';
-
-  @override
-  String get searchPropRiad => 'Riad';
-
-  @override
-  String get searchPropGuestHouse => 'Maison d\'hôtes';
-
-  @override
   String get onboardingSkip => 'Passer';
 
   @override
@@ -729,6 +721,98 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get onboardingBody3 =>
       'Ajoutez votre annonce avec des photos en quelques minutes.';
+
+  @override
+  String get profileStatusAvailable => 'Disponible';
+
+  @override
+  String get profileStatusReserved => 'Réservé';
+
+  @override
+  String get profileStatusSold => 'Vendu';
+
+  @override
+  String get profileStatusRented => 'Loué';
+
+  @override
+  String get profileStatusUnavailable => 'Indisponible';
+
+  @override
+  String get profileStatusHidden => 'Masqué';
+
+  @override
+  String get profileStatusSheetTitle => 'Changer le statut';
+
+  @override
+  String get profileStatusUpdated => 'Statut mis à jour';
+
+  @override
+  String get profilePublishFirst => 'Publier votre première annonce';
+
+  @override
+  String get publishFieldPhone => 'Téléphone';
+
+  @override
+  String get publishWhatsapp => 'Disponible sur WhatsApp';
+
+  @override
+  String get listingErrorPhoneInvalid => 'Entrez un numéro tunisien valide';
+
+  @override
+  String get offerSale => 'À vendre';
+
+  @override
+  String get offerRent => 'À louer';
+
+  @override
+  String get offerStay => 'Séjour';
+
+  @override
+  String get unitNight => '/ nuit';
+
+  @override
+  String get unitMonth => '/ mois';
+
+  @override
+  String get unitYear => '/ an';
+
+  @override
+  String get commonRetry => 'Réessayer';
+
+  @override
+  String get commonOffline =>
+      'Vous êtes hors ligne. Certains contenus peuvent ne pas s’afficher.';
+
+  @override
+  String get contactCall => 'Appeler';
+
+  @override
+  String get contactWhatsapp => 'WhatsApp';
+
+  @override
+  String get contactSignInToSee => 'Connectez-vous pour voir le contact';
+
+  @override
+  String get contactNoWhatsapp =>
+      'WhatsApp n’est pas installé sur ce téléphone';
+
+  @override
+  String get contactCallError => 'Impossible d’ouvrir l’application Téléphone';
+
+  @override
+  String contactMessageSale(String title) {
+    return 'Bonjour, je suis intéressé par l’achat de $title sur Vesta';
+  }
+
+  @override
+  String contactMessageRent(String title) {
+    return 'Bonjour, je suis intéressé par la location de $title sur Vesta';
+  }
+
+  @override
+  String contactMessageStay(String title) {
+    return 'Bonjour, je suis intéressé par un séjour à $title sur Vesta';
+  }
 
   @override
   String get favoritesEmptyAction => 'Explorer les annonces';

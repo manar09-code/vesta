@@ -42,13 +42,11 @@ Shared building blocks of the Flutter app. A screen uses these widgets and token
 
 ## Screenshots (real phone)
 
-Debug build on a real phone, screen **UI kit**, one set per language.
+Debug build on a real phone, screen **UI kit**.
 
-| English | Français | العربية |
-|---|---|---|
-| ![English 1](ui-kit/en-1.png) | ![Français 1](ui-kit/fr-1.png) | ![Arabic 1](ui-kit/ar-1.png) |
-| ![English 2](ui-kit/en-2.png) | ![Français 2](ui-kit/fr-2.png) | ![Arabic 2](ui-kit/ar-2.png) |
-| ![English 3](ui-kit/en-3.png) | ![Français 3](ui-kit/fr-3.png) | ![Arabic 3](ui-kit/ar-3.png) |
+| Arabic (right-to-left) | Français |
+|---|---|
+| ![UI kit in Arabic](ui-kit/ar-1.png) | ![UI kit in French](ui-kit/fr-1.png) |
 
 ## Not in this kit
 
