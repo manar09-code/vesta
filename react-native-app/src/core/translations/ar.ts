@@ -58,6 +58,7 @@ export default {
   publishAddFromGallery: 'المعرض',
   publishAddFromCamera: 'الكاميرا',
   publishRemovePhoto: 'احذف الصورة',
+  publishErrorBanner: 'صلّح الـ {{count}} حقول الحمر باش تنشر.',
   listingErrorTitleRequired: 'أدخل العنوان',
   listingErrorDescriptionRequired: 'أدخل الوصف',
   listingErrorPriceInvalid: 'أدخل سوم بين 1 و50,000,000',

@@ -185,6 +185,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get publishRemovePhoto => 'احذف الصورة';
 
   @override
+  String publishErrorBanner(int count) {
+    return 'صلّح الـ $count حقول الحمر باش تنشر.';
+  }
+
+  @override
   String get listingErrorTitleRequired => 'أدخل العنوان';
 
   @override

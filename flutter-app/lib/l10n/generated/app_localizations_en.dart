@@ -186,6 +186,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get publishRemovePhoto => 'Remove photo';
 
   @override
+  String publishErrorBanner(int count) {
+    return 'Fix the $count fields in red to publish.';
+  }
+
+  @override
   String get listingErrorTitleRequired => 'Enter a title';
 
   @override

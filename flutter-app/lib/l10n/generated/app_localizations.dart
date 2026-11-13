@@ -448,6 +448,12 @@ abstract class AppLocalizations {
   /// **'Remove photo'**
   String get publishRemovePhoto;
 
+  /// No description provided for @publishErrorBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the {count} fields in red to publish.'**
+  String publishErrorBanner(int count);
+
   /// No description provided for @listingErrorTitleRequired.
   ///
   /// In en, this message translates to:

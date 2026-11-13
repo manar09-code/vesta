@@ -58,6 +58,7 @@ export default {
   publishAddFromGallery: 'Galerie',
   publishAddFromCamera: 'Appareil photo',
   publishRemovePhoto: 'Supprimer la photo',
+  publishErrorBanner: 'Corrigez les {{count}} champs en rouge pour publier.',
   listingErrorTitleRequired: 'Entrez un titre',
   listingErrorDescriptionRequired: 'Entrez une description',
   listingErrorPriceInvalid: 'Entrez un prix entre 1 et 50 000 000',

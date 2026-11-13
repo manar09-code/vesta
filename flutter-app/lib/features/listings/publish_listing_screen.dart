@@ -6,7 +6,13 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_dimens.dart';
+import '../../core/theme/app_text_styles.dart';
 import '../../core/utils/phone_utils.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/app_text_field.dart';
+import '../../core/widgets/app_top_bar.dart';
+import '../../core/widgets/filter_tag.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'listing_controller.dart';
 import 'listing_labels.dart';
@@ -22,7 +28,6 @@ class PublishListingScreen extends ConsumerStatefulWidget {
 }
 
 class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
-  final _formKey = GlobalKey<FormState>();
   final _title = TextEditingController();
   final _description = TextEditingController();
   final _price = TextEditingController();
@@ -45,6 +50,10 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
   TimeOfDay? _checkOut;
   String? _photoMessage;
   bool _rentPeriodMissing = false;
+
+  /// Field key -> error text, filled when the user taps Publish.
+  Map<String, String> _errors = {};
+  int _bannerCount = 0;
 
   @override
   void dispose() {
@@ -187,6 +196,36 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
     }
   }
 
+  // ---- validation ----
+  Map<String, String> _validate(AppLocalizations l) {
+    final errors = <String, String>{};
+    void check(
+      String key,
+      TextEditingController c,
+      ListingFieldError? Function(String?) validator,
+    ) {
+      final e = validator(c.text);
+      if (e != null) errors[key] = _fieldError(l, e);
+    }
+
+    check('title', _title, validateTitle);
+    check('description', _description, validateDescription);
+    check('price', _price, validatePrice);
+    check('city', _city, validateCity);
+    check('guests', _guests, validateGuests);
+    check('bedrooms', _bedrooms, validateRooms);
+    check('bathrooms', _bathrooms, validateRooms);
+    check('area', _area, validateOptionalNumber);
+    if (!isValidTunisianPhone(_phone.text)) {
+      errors['phone'] = l.listingErrorPhoneInvalid;
+    }
+    return errors;
+  }
+
+  void _clearError(String key) {
+    if (_errors.containsKey(key)) setState(() => _errors.remove(key));
+  }
+
   // ---- submit ----
   num? _optional(TextEditingController c) {
     final text = c.text.trim();
@@ -197,13 +236,17 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
     final l = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
 
-    final formOk = _formKey.currentState!.validate();
+    final errors = _validate(l);
     final periodMissing = validateRentPeriod(_listingType, _rentPeriod) != null;
+    final noPhotos = _photos.isEmpty;
     setState(() {
+      _errors = errors;
       _rentPeriodMissing = periodMissing;
-      if (_photos.isEmpty) _photoMessage = l.listingErrorNoPhotos;
+      if (noPhotos) _photoMessage = l.listingErrorNoPhotos;
+      _bannerCount =
+          errors.length + (periodMissing ? 1 : 0) + (noPhotos ? 1 : 0);
     });
-    if (!formOk || periodMissing || _photos.isEmpty) return;
+    if (_bannerCount > 0) return;
 
     final listing = NewListing(
       title: _title.text.trim(),
@@ -244,344 +287,374 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
     }
   }
 
-  Widget _timeTile({
+  // ---- small builders ----
+  Widget _section(String text) => Padding(
+    padding: const EdgeInsets.only(top: AppSpacing.xl, bottom: AppSpacing.sm),
+    child: Text(
+      text,
+      style: AppTextStyles.subtitle.copyWith(color: AppColors.navy),
+    ),
+  );
+
+  Widget _label(String text) => Padding(
+    padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+    child: Text(
+      text,
+      style: AppTextStyles.caption.copyWith(color: AppColors.grey),
+    ),
+  );
+
+  Widget _errorText(String text) => Padding(
+    padding: const EdgeInsets.only(top: AppSpacing.xs),
+    child: Text(
+      text,
+      style: AppTextStyles.caption.copyWith(color: AppColors.error),
+    ),
+  );
+
+  Widget _gap() => const SizedBox(height: AppSpacing.md);
+
+  Widget _field({
+    required String keyName,
+    required String label,
+    required TextEditingController controller,
+    TextInputType? keyboardType,
+    int maxLines = 1,
+    bool ltr = false,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSpacing.md),
+      child: AppTextField(
+        label: label,
+        controller: controller,
+        keyboardType: keyboardType,
+        maxLines: maxLines,
+        ltr: ltr,
+        errorText: _errors[keyName],
+        onChanged: (_) => _clearError(keyName),
+      ),
+    );
+  }
+
+  Widget _banner(AppLocalizations l) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: AppSpacing.lg),
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: AppColors.error.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(AppRadius.field),
+        border: Border.all(color: AppColors.error),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.error_outline, color: AppColors.error),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Text(
+              l.publishErrorBanner(_bannerCount),
+              style: AppTextStyles.bodySmall.copyWith(color: AppColors.error),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _timeButton({
     required String label,
     required TimeOfDay? value,
     required String emptyLabel,
     required VoidCallback onTap,
   }) {
     return Expanded(
-      child: OutlinedButton.icon(
+      child: SecondaryButton(
+        icon: Icons.schedule,
+        label: '$label: ${value == null ? emptyLabel : value.format(context)}',
         onPressed: onTap,
-        icon: const Icon(Icons.schedule),
-        label: Text(
-          '$label: ${value == null ? emptyLabel : value.format(context)}',
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
       ),
+    );
+  }
+
+  Widget _tags({
+    required List<String> keys,
+    required Set<String> selected,
+    required String Function(String) labelOf,
+  }) {
+    return Wrap(
+      spacing: AppSpacing.sm,
+      runSpacing: AppSpacing.sm,
+      children: [
+        for (final key in keys)
+          FilterTag(
+            label: labelOf(key),
+            selected: selected.contains(key),
+            onTap: () => setState(() {
+              if (!selected.remove(key)) selected.add(key);
+            }),
+          ),
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
-    final theme = Theme.of(context);
     final state = ref.watch(listingControllerProvider);
     final loading = state.isLoading;
 
-    String? fieldValidator(
-      String? v,
-      ListingFieldError? Function(String?) check,
-    ) {
-      final e = check(v);
-      return e == null ? null : _fieldError(l, e);
-    }
-
     return Scaffold(
-      appBar: AppBar(title: Text(l.publishTitle)),
+      appBar: AppTopBar(title: l.publishTitle),
       body: AbsorbPointer(
         absorbing: loading,
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            padding: const EdgeInsets.all(16),
-            children: [
-              TextFormField(
-                controller: _title,
-                decoration: InputDecoration(labelText: l.publishFieldTitle),
-                validator: (v) => fieldValidator(v, validateTitle),
-              ),
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: _description,
-                maxLines: 4,
-                decoration: InputDecoration(
-                  labelText: l.publishFieldDescription,
+        child: ListView(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          children: [
+            if (_bannerCount > 0) _banner(l),
+            _field(
+              keyName: 'title',
+              label: l.publishFieldTitle,
+              controller: _title,
+            ),
+            _field(
+              keyName: 'description',
+              label: l.publishFieldDescription,
+              controller: _description,
+              maxLines: 4,
+            ),
+            _label(l.publishListingType),
+            Row(
+              children: [
+                FilterTag(
+                  label: l.publishTypeSale,
+                  selected: _listingType == 'sale',
+                  onTap: () => setState(() {
+                    _listingType = 'sale';
+                    _rentPeriod = null;
+                    _rentPeriodMissing = false;
+                  }),
                 ),
-                validator: (v) => fieldValidator(v, validateDescription),
-              ),
-              const SizedBox(height: 12),
-              SegmentedButton<String>(
-                segments: [
-                  ButtonSegment(value: 'sale', label: Text(l.publishTypeSale)),
-                  ButtonSegment(value: 'rent', label: Text(l.publishTypeRent)),
-                ],
-                selected: {_listingType},
-                onSelectionChanged: (s) => setState(() {
-                  _listingType = s.first;
-                  if (_listingType == 'sale') _rentPeriod = null;
-                  _rentPeriodMissing = false;
-                }),
-              ),
-              if (_listingType == 'rent') ...[
-                const SizedBox(height: 12),
-                DropdownButtonFormField<String>(
-                  initialValue: _rentPeriod,
-                  decoration: InputDecoration(
-                    labelText: l.publishRentPeriod,
-                    errorText: _rentPeriodMissing
-                        ? l.listingErrorRentPeriodRequired
-                        : null,
-                  ),
-                  items: [
-                    for (final p in rentPeriods)
-                      DropdownMenuItem(
-                        value: p,
-                        child: Text(_periodLabel(l, p)),
-                      ),
-                  ],
-                  onChanged: (v) => setState(() {
-                    _rentPeriod = v;
+                const SizedBox(width: AppSpacing.sm),
+                FilterTag(
+                  label: l.publishTypeRent,
+                  selected: _listingType == 'rent',
+                  onTap: () => setState(() {
+                    _listingType = 'rent';
                     _rentPeriodMissing = false;
                   }),
                 ),
               ],
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: _price,
-                keyboardType: const TextInputType.numberWithOptions(
-                  decimal: true,
-                ),
-                decoration: InputDecoration(labelText: l.publishFieldPrice),
-                validator: (v) => fieldValidator(v, validatePrice),
-              ),
-              const SizedBox(height: 12),
-              DropdownButtonFormField<String>(
-                initialValue: _propertyType,
-                decoration: InputDecoration(labelText: l.publishPropertyType),
-                items: [
-                  for (final t in propertyTypes)
-                    DropdownMenuItem(
-                      value: t,
-                      child: Text(_propertyLabel(l, t)),
-                    ),
-                ],
-                onChanged: (v) =>
-                    setState(() => _propertyType = v ?? _propertyType),
-              ),
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: _city,
-                decoration: InputDecoration(labelText: l.publishFieldCity),
-                validator: (v) => fieldValidator(v, validateCity),
-              ),
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: _phone,
-                keyboardType: TextInputType.phone,
-                textDirection: TextDirection.ltr,
-                decoration: InputDecoration(
-                  labelText: l.publishFieldPhone,
-                  prefixText: '+216 ',
-                ),
-                validator: (v) => isValidTunisianPhone(v ?? '')
-                    ? null
-                    : l.listingErrorPhoneInvalid,
-              ),
-              SwitchListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(l.publishWhatsapp),
-                value: _whatsapp,
-                onChanged: (v) => setState(() => _whatsapp = v),
-              ),
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: _guests,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: l.publishFieldGuests),
-                validator: (v) => fieldValidator(v, validateGuests),
-              ),
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: _bedrooms,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: l.publishFieldBedrooms,
-                ),
-                validator: (v) => fieldValidator(v, validateRooms),
-              ),
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: _bathrooms,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: l.publishFieldBathrooms,
-                ),
-                validator: (v) => fieldValidator(v, validateRooms),
-              ),
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: _area,
-                keyboardType: const TextInputType.numberWithOptions(
-                  decimal: true,
-                ),
-                decoration: InputDecoration(labelText: l.publishFieldArea),
-                validator: (v) => fieldValidator(v, validateOptionalNumber),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      l.publishAmenitiesTitle,
-                      style: theme.textTheme.titleMedium,
-                    ),
-                  ),
-                  Text(l.publishAmenitiesCounter(_amenities.length)),
-                ],
-              ),
-              const SizedBox(height: 8),
+            ),
+            if (_listingType == 'rent') ...[
+              _gap(),
+              _label(l.publishRentPeriod),
               Wrap(
-                spacing: 8,
-                runSpacing: 8,
+                spacing: AppSpacing.sm,
+                runSpacing: AppSpacing.sm,
                 children: [
-                  for (final key in amenityKeys)
-                    FilterChip(
-                      avatar: Icon(amenityIcon(key), size: 18),
-                      label: Text(amenityLabel(l, key)),
-                      selected: _amenities.contains(key),
-                      onSelected: (on) => setState(() {
-                        if (on) {
-                          _amenities.add(key);
-                        } else {
-                          _amenities.remove(key);
-                        }
+                  for (final p in rentPeriods)
+                    FilterTag(
+                      label: _periodLabel(l, p),
+                      selected: _rentPeriod == p,
+                      onTap: () => setState(() {
+                        _rentPeriod = p;
+                        _rentPeriodMissing = false;
                       }),
                     ),
                 ],
               ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  _timeTile(
-                    label: l.publishCheckIn,
-                    value: _checkIn,
-                    emptyLabel: l.publishTimeNotSet,
-                    onTap: () => _pickTime(checkIn: true),
-                  ),
-                  const SizedBox(width: 12),
-                  _timeTile(
-                    label: l.publishCheckOut,
-                    value: _checkOut,
-                    emptyLabel: l.publishTimeNotSet,
-                    onTap: () => _pickTime(checkIn: false),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Text(l.publishRulesTitle, style: theme.textTheme.titleMedium),
-              const SizedBox(height: 8),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final key in houseRuleKeys)
-                    FilterChip(
-                      avatar: Icon(houseRuleIcon(key), size: 18),
-                      label: Text(houseRuleLabel(l, key)),
-                      selected: _houseRules.contains(key),
-                      onSelected: (on) => setState(() {
-                        if (on) {
-                          _houseRules.add(key);
-                        } else {
-                          _houseRules.remove(key);
-                        }
-                      }),
-                    ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Text(
-                '${l.publishPhotosTitle}  ${_photos.length}/$maxListingPhotos',
-                style: theme.textTheme.titleMedium,
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  OutlinedButton.icon(
-                    onPressed: () => _addPhoto(ImageSource.gallery),
-                    icon: const Icon(Icons.photo_library_outlined),
-                    label: Text(l.publishAddFromGallery),
-                  ),
-                  const SizedBox(width: 12),
-                  OutlinedButton.icon(
-                    onPressed: () => _addPhoto(ImageSource.camera),
-                    icon: const Icon(Icons.photo_camera_outlined),
-                    label: Text(l.publishAddFromCamera),
-                  ),
-                ],
-              ),
-              if (_photoMessage != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    _photoMessage!,
-                    style: TextStyle(color: theme.colorScheme.error),
-                  ),
-                ),
-              const SizedBox(height: 8),
-              SizedBox(
-                height: 96,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _photos.length,
-                  separatorBuilder: (_, _) => const SizedBox(width: 8),
-                  itemBuilder: (context, i) => Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.memory(
-                          base64Decode(_photos[i]),
-                          width: 96,
-                          height: 96,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      PositionedDirectional(
-                        top: 0,
-                        end: 0,
-                        child: IconButton(
-                          tooltip: l.publishRemovePhoto,
-                          iconSize: 18,
-                          color: AppColors.white,
-                          style: IconButton.styleFrom(
-                            backgroundColor: AppColors.navy.withValues(
-                              alpha: 0.6,
-                            ),
-                          ),
-                          icon: const Icon(Icons.close),
-                          onPressed: () => setState(() {
-                            _photos.removeAt(i);
-                            _photoMessage = null;
-                          }),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              if (state.error != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 12),
-                  child: Text(
-                    _listingError(l, state.error!),
-                    style: TextStyle(color: theme.colorScheme.error),
-                  ),
-                ),
-              const SizedBox(height: 24),
-              FilledButton(
-                onPressed: loading ? null : _submit,
-                child: loading
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : Text(l.publishSubmit),
-              ),
+              if (_rentPeriodMissing)
+                _errorText(l.listingErrorRentPeriodRequired),
             ],
-          ),
+            _gap(),
+            _field(
+              keyName: 'price',
+              label: l.publishFieldPrice,
+              controller: _price,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              ltr: true,
+            ),
+            _label(l.publishPropertyType),
+            Wrap(
+              spacing: AppSpacing.sm,
+              runSpacing: AppSpacing.sm,
+              children: [
+                for (final t in propertyTypes)
+                  FilterTag(
+                    label: _propertyLabel(l, t),
+                    selected: _propertyType == t,
+                    onTap: () => setState(() => _propertyType = t),
+                  ),
+              ],
+            ),
+            _gap(),
+            _field(
+              keyName: 'city',
+              label: l.publishFieldCity,
+              controller: _city,
+            ),
+            _field(
+              keyName: 'phone',
+              label: l.publishFieldPhone,
+              controller: _phone,
+              keyboardType: TextInputType.phone,
+              ltr: true,
+            ),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(l.publishWhatsapp),
+              value: _whatsapp,
+              onChanged: (v) => setState(() => _whatsapp = v),
+            ),
+            _gap(),
+            _field(
+              keyName: 'guests',
+              label: l.publishFieldGuests,
+              controller: _guests,
+              keyboardType: TextInputType.number,
+              ltr: true,
+            ),
+            _field(
+              keyName: 'bedrooms',
+              label: l.publishFieldBedrooms,
+              controller: _bedrooms,
+              keyboardType: TextInputType.number,
+              ltr: true,
+            ),
+            _field(
+              keyName: 'bathrooms',
+              label: l.publishFieldBathrooms,
+              controller: _bathrooms,
+              keyboardType: TextInputType.number,
+              ltr: true,
+            ),
+            _field(
+              keyName: 'area',
+              label: l.publishFieldArea,
+              controller: _area,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              ltr: true,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    l.publishAmenitiesTitle,
+                    style: AppTextStyles.subtitle.copyWith(
+                      color: AppColors.navy,
+                    ),
+                  ),
+                ),
+                Text(
+                  l.publishAmenitiesCounter(_amenities.length),
+                  style: AppTextStyles.caption.copyWith(color: AppColors.grey),
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            _tags(
+              keys: amenityKeys,
+              selected: _amenities,
+              labelOf: (k) => amenityLabel(l, k),
+            ),
+            const SizedBox(height: AppSpacing.xl),
+            Row(
+              children: [
+                _timeButton(
+                  label: l.publishCheckIn,
+                  value: _checkIn,
+                  emptyLabel: l.publishTimeNotSet,
+                  onTap: () => _pickTime(checkIn: true),
+                ),
+                const SizedBox(width: AppSpacing.md),
+                _timeButton(
+                  label: l.publishCheckOut,
+                  value: _checkOut,
+                  emptyLabel: l.publishTimeNotSet,
+                  onTap: () => _pickTime(checkIn: false),
+                ),
+              ],
+            ),
+            _section(l.publishRulesTitle),
+            _tags(
+              keys: houseRuleKeys,
+              selected: _houseRules,
+              labelOf: (k) => houseRuleLabel(l, k),
+            ),
+            _section(
+              '${l.publishPhotosTitle}  ${_photos.length}/$maxListingPhotos',
+            ),
+            Wrap(
+              spacing: AppSpacing.md,
+              runSpacing: AppSpacing.sm,
+              children: [
+                SecondaryButton(
+                  icon: Icons.photo_library_outlined,
+                  label: l.publishAddFromGallery,
+                  expanded: false,
+                  onPressed: () => _addPhoto(ImageSource.gallery),
+                ),
+                SecondaryButton(
+                  icon: Icons.photo_camera_outlined,
+                  label: l.publishAddFromCamera,
+                  expanded: false,
+                  onPressed: () => _addPhoto(ImageSource.camera),
+                ),
+              ],
+            ),
+            if (_photoMessage != null) _errorText(_photoMessage!),
+            const SizedBox(height: AppSpacing.sm),
+            SizedBox(
+              height: 96,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: _photos.length,
+                separatorBuilder: (_, _) => const SizedBox(width: AppSpacing.sm),
+                itemBuilder: (context, i) => Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(AppRadius.thumb),
+                      child: Image.memory(
+                        base64Decode(_photos[i]),
+                        width: 96,
+                        height: 96,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    PositionedDirectional(
+                      top: 0,
+                      end: 0,
+                      child: IconButton(
+                        tooltip: l.publishRemovePhoto,
+                        iconSize: 18,
+                        color: AppColors.white,
+                        style: IconButton.styleFrom(
+                          backgroundColor: AppColors.navy.withValues(
+                            alpha: 0.6,
+                          ),
+                        ),
+                        icon: const Icon(Icons.close),
+                        onPressed: () => setState(() {
+                          _photos.removeAt(i);
+                          _photoMessage = null;
+                        }),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            if (state.error != null) _errorText(_listingError(l, state.error!)),
+            const SizedBox(height: AppSpacing.xl),
+            PrimaryButton(
+              label: l.publishSubmit,
+              loading: loading,
+              onPressed: _submit,
+            ),
+          ],
         ),
       ),
     );

@@ -58,6 +58,7 @@ export default {
   publishAddFromGallery: 'Gallery',
   publishAddFromCamera: 'Camera',
   publishRemovePhoto: 'Remove photo',
+  publishErrorBanner: 'Fix the {{count}} fields in red to publish.',
   listingErrorTitleRequired: 'Enter a title',
   listingErrorDescriptionRequired: 'Enter a description',
   listingErrorPriceInvalid: 'Enter a price between 1 and 50,000,000',
