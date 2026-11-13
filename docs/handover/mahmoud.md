@@ -44,7 +44,7 @@
 2. Appuyer sur Appeler puis WhatsApp : le numéro normalisé s'ouvre dans l'application du téléphone.
 3. Publier une annonce avec un numéro valide, puis avec un numéro invalide : le formulaire refuse l'invalide.
 4. Ouvrir Profil et Favoris, ajouter puis retirer un favori.
-5. Lancer `flutter analyze`, `flutter test` ([À VÉRIFIER] tests) et `node tools/check-colors.js`.
+5. Lancer `flutter analyze`, `flutter test` (tous les tests passent) et `node tools/check-colors.js`.
 6. Tester sur un téléphone Android réel : appel, WhatsApp, langue arabe (écran inversé, numéros restant de gauche à droite).
 
 ## Limites connues
@@ -56,4 +56,11 @@
 
 ## Questions de VST-113
 
-[À VÉRIFIER] Les 3 questions demandées dans le ticket VST-113 : à compléter avec le texte du ticket.
+1. **Pourquoi le numéro est-il dans `listings/{id}/contact/info` et pas dans le document de l'annonce ?**
+   Le document de l'annonce est public. `contact/info` a sa propre règle : lisible seulement par un utilisateur connecté (`signedIn()`). Un visiteur non connecté est bloqué (test automatisé).
+
+2. **Un compte anonyme peut-il lire le numéro ?**
+   Oui aujourd'hui, car `signedIn()` compte un compte Firebase anonyme comme connecté. La règle `notAnonymous()` a été écrite et testée dans la PR #44 (jamais mergée). Elle reste à reporter dans `develop` avec ses tests, dans une PR séparée. Les règles sont déployées par Manar.
+
+3. **Comment le numéro est-il validé et utilisé ?**
+   `phone_utils.dart` accepte `+216`, `00216`, `216` ou 8 chiffres (premier chiffre 2, 3, 4, 5, 7 ou 9) et renvoie `+216XXXXXXXX`, ou `null` si invalide. Appeler ouvre `tel:`, WhatsApp ouvre `wa.me` avec un message selon le type d'offre. Les `queries` d'`AndroidManifest.xml` autorisent ces lancements.
