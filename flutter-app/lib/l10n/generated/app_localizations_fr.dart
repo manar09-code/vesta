@@ -309,11 +309,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profilePhotoErrorRead => 'Impossible de lire cette photo';
 
   @override
-  String get favoritesEmptyTitle => 'Aucun favori pour l\'instant';
+  String get favoritesEmptyTitle => 'Aucun favori pour le moment';
 
   @override
   String get favoritesEmptyBody =>
-      'Appuie sur le cœur d\'une annonce pour la retrouver ici.';
+      'Touchez le cœur sur une annonce pour la retrouver ici.';
 
   @override
   String get favoritesUnavailable => 'Cette annonce n\'est plus disponible';
@@ -355,6 +355,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get favoritesFilterEmpty => 'Aucun favori dans cette catégorie';
+
+  @override
+  String get favoritesEmptyAction => 'Explorer les annonces';
 
   @override
   String get settingsTitle => 'Paramètres';

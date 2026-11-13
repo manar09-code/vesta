@@ -113,6 +113,7 @@ export default {
   favoritesFilterRent: 'Rent',
   favoritesFilterStay: 'Stay',
   favoritesFilterEmpty: 'No favorites in this category',
+  favoritesEmptyAction: 'Explore listings',
   settingsTitle: 'Settings',
   settingsAbout: 'About Vesta',
   settingsVersion: 'Version',

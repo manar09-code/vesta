@@ -353,6 +353,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get favoritesFilterEmpty => 'No favorites in this category';
 
   @override
+  String get favoritesEmptyAction => 'Explore listings';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override
