@@ -44,12 +44,13 @@
 2. Appuyer sur Appeler puis WhatsApp : le numéro normalisé s'ouvre dans l'application du téléphone.
 3. Publier une annonce avec un numéro valide, puis avec un numéro invalide : le formulaire refuse l'invalide.
 4. Ouvrir Profil et Favoris, ajouter puis retirer un favori.
-5. Lancer `flutter analyze`, `flutter test` (tous les tests passent) et `node tools/check-colors.js`.
+5. Lancer `flutter analyze`, `flutter test` (117 tests passent) et `node tools/check-colors.js`.
 6. Tester sur un téléphone Android réel : appel, WhatsApp, langue arabe (écran inversé, numéros restant de gauche à droite).
 
 ## Limites connues
 
 - **Règle `notAnonymous` pas encore déployée** : dans `firestore.rules` de `develop`, `contact/info` utilise `signedIn()`. Un visiteur non connecté est bloqué (test automatisé), mais un compte Firebase **anonyme** compte comme connecté et peut lire le numéro. La règle `notAnonymous()` a été écrite et testée sur une ancienne branche (PR #44), jamais mergée. Elle reste à reporter dans `develop` (les règles sont déployées par Manar).
+- **Preuve que le numéro est protégé** : la règle est `allow read: if signedIn();` sur `listings/{id}/contact/info` (`firestore.rules`, ligne 160). Le test `assertFails(getDoc(contactRef(anon())))` dans `rules.test.js` (ligne 568) prouve qu'un visiteur sans compte ne peut pas le lire. L'application ne connecte jamais personne en anonyme, donc le risque ne vient que d'un appel direct à Firebase par un compte anonyme créé hors de l'application.
 - Pas de téléphone Android réel utilisé pour mes tests : validés sur Chrome, et sur la tablette de Manar.
 - Clé d'upload Google Play détenue par Manar : je ne peux pas signer un nouveau build seul.
 - Éditer une annonce existante : pas d'écran.
@@ -60,7 +61,7 @@
    Le document de l'annonce est public. `contact/info` a sa propre règle : lisible seulement par un utilisateur connecté (`signedIn()`). Un visiteur non connecté est bloqué (test automatisé).
 
 2. **Un compte anonyme peut-il lire le numéro ?**
-   Oui aujourd'hui, car `signedIn()` compte un compte Firebase anonyme comme connecté. La règle `notAnonymous()` a été écrite et testée dans la PR #44 (jamais mergée). Elle reste à reporter dans `develop` avec ses tests, dans une PR séparée. Les règles sont déployées par Manar.
+   Techniquement oui, car `signedIn()` compte un compte Firebase anonyme comme connecté. Mais l'application ne crée jamais de compte anonyme : le risque existe seulement pour quelqu'un qui appelle Firebase directement, en dehors de l'application. La règle `notAnonymous()` a été écrite et testée dans la PR #44 (jamais mergée). Elle reste à reporter dans `develop`, dans une PR séparée. Les règles sont déployées par Manar.
 
 3. **Comment le numéro est-il validé et utilisé ?**
    `phone_utils.dart` accepte `+216`, `00216`, `216` ou 8 chiffres (premier chiffre 2, 3, 4, 5, 7 ou 9) et renvoie `+216XXXXXXXX`, ou `null` si invalide. Appeler ouvre `tel:`, WhatsApp ouvre `wa.me` avec un message selon le type d'offre. Les `queries` d'`AndroidManifest.xml` autorisent ces lancements.
