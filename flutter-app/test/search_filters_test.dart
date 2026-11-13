@@ -78,6 +78,8 @@ void main() {
 
   test('city: contains, case-insensitive', () {
     expect(ids(const SearchFilters(city: 'sou')), ['a', 'c']);
+    // The text also matches the title ('td' is the title of listing d).
+    expect(ids(const SearchFilters(city: 'td')), ['d']);
     expect(ids(const SearchFilters(city: '  TUN ')), ['b']);
   });
 
