@@ -12,6 +12,8 @@ export default {
   languageLabel: 'اللغة',
   authEmailLabel: 'البريد الإلكتروني',
   authPasswordLabel: 'كلمة السر',
+  authShowPassword: 'أظهر كلمة السر',
+  authHidePassword: 'أخفي كلمة السر',
   authDisplayNameLabel: 'الاسم الكامل',
   authLoginButton: 'دخول',
   authSignUpTitle: 'إنشاء حساب',
