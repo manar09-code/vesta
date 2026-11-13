@@ -874,6 +874,24 @@ abstract class AppLocalizations {
   /// **'Too many attempts, please try again in a few minutes'**
   String get authErrorTooManyRequests;
 
+  /// No description provided for @authWelcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Vesta'**
+  String get authWelcomeTitle;
+
+  /// No description provided for @authWelcomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to contact owners, save favorites and publish your own place.'**
+  String get authWelcomeSubtitle;
+
+  /// No description provided for @authContinueAsGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue as guest'**
+  String get authContinueAsGuest;
+
   /// No description provided for @loading.
   ///
   /// In en, this message translates to:
@@ -903,6 +921,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'العربية'**
   String get languageAr;
+
+  /// No description provided for @settingsAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get settingsAccount;
+
+  /// No description provided for @settingsChangePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get settingsChangePassword;
 
   /// No description provided for @listingDetailNotFound.
   ///
@@ -1245,6 +1275,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Message not sent, try again'**
   String get chatSendFailed;
+
+  /// No description provided for @chatToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get chatToday;
+
+  /// No description provided for @chatYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get chatYesterday;
 
   /// No description provided for @listingDetailAtAGlance.
   ///
