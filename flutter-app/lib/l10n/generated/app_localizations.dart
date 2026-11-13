@@ -772,6 +772,12 @@ abstract class AppLocalizations {
   /// **'No favorites in this category'**
   String get favoritesFilterEmpty;
 
+  /// No description provided for @favoritesEmptyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore listings'**
+  String get favoritesEmptyAction;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
@@ -1629,12 +1635,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hello, I am interested in staying at {title} on Vesta'**
   String contactMessageStay(String title);
-
-  /// No description provided for @favoritesEmptyAction.
-  ///
-  /// In en, this message translates to:
-  /// **'Explore listings'**
-  String get favoritesEmptyAction;
 }
 
 class _AppLocalizationsDelegate

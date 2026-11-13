@@ -353,6 +353,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get favoritesFilterEmpty => 'No favorites in this category';
 
   @override
+  String get favoritesEmptyAction => 'Explore listings';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override
@@ -802,7 +805,4 @@ class AppLocalizationsEn extends AppLocalizations {
   String contactMessageStay(String title) {
     return 'Hello, I am interested in staying at $title on Vesta';
   }
-
-  @override
-  String get favoritesEmptyAction => 'Explore listings';
 }

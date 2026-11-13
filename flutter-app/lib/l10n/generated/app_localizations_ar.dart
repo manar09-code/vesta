@@ -349,6 +349,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get favoritesFilterEmpty => 'لا توجد مفضلة في هذه الفئة';
 
   @override
+  String get favoritesEmptyAction => 'استكشف الإعلانات';
+
+  @override
   String get settingsTitle => 'الإعدادات';
 
   @override
@@ -793,7 +796,4 @@ class AppLocalizationsAr extends AppLocalizations {
   String contactMessageStay(String title) {
     return 'عسلامة، مهتم بالإقامة في $title على Vesta';
   }
-
-  @override
-  String get favoritesEmptyAction => 'استكشف الإعلانات';
 }
