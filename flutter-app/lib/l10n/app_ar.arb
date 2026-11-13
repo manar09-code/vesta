@@ -112,6 +112,7 @@
   "favoritesFilterRent": "كراء",
   "favoritesFilterStay": "إقامة",
   "favoritesFilterEmpty": "لا توجد مفضلة في هذه الفئة",
+  "favoritesEmptyAction": "اكتشف الإعلانات",
   "settingsTitle": "الإعدادات",
   "settingsAbout": "على Vesta",
   "settingsVersion": "الإصدار",

@@ -357,6 +357,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get favoritesFilterEmpty => 'Aucun favori dans cette catégorie';
 
   @override
+  String get favoritesEmptyAction => 'Explorer les annonces';
+
+  @override
   String get settingsTitle => 'Paramètres';
 
   @override

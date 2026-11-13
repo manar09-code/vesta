@@ -114,6 +114,7 @@ export default {
   favoritesFilterRent: 'Louer',
   favoritesFilterStay: 'Séjourner',
   favoritesFilterEmpty: 'Aucun favori dans cette catégorie',
+  favoritesEmptyAction: 'Explorer les annonces',
   settingsTitle: 'Paramètres',
   settingsAbout: 'À propos de Vesta',
   settingsVersion: 'Version',

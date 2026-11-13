@@ -772,6 +772,12 @@ abstract class AppLocalizations {
   /// **'No favorites in this category'**
   String get favoritesFilterEmpty;
 
+  /// No description provided for @favoritesEmptyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore listings'**
+  String get favoritesEmptyAction;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
