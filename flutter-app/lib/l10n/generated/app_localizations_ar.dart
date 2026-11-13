@@ -352,6 +352,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get favoritesFilterEmpty => 'لا توجد مفضلة في هذه الفئة';
 
   @override
+  String get favoritesEmptyAction => 'استكشف الإعلانات';
+
+  @override
   String get settingsTitle => 'الإعدادات';
 
   @override
@@ -405,6 +408,16 @@ class AppLocalizationsAr extends AppLocalizations {
       'برشا محاولات، عاود جرّب بعد شوية دقايق';
 
   @override
+  String get authWelcomeTitle => 'مرحبا بيك في Vesta';
+
+  @override
+  String get authWelcomeSubtitle =>
+      'ادخل باش تتصل بالمالكين، تحفظ المفضلة وتنشر عقارك.';
+
+  @override
+  String get authContinueAsGuest => 'كمّل كضيف';
+
+  @override
   String get loading => 'جارٍ التحميل…';
 
   @override
@@ -420,6 +433,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get languageAr => 'العربية';
+
+  @override
+  String get settingsAccount => 'الحساب';
+
+  @override
+  String get settingsChangePassword => 'بدّل كلمة السر';
 
   @override
   String get listingDetailNotFound => 'الإعلان غير موجود';
@@ -594,6 +613,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get chatSendFailed => 'الرسالة ما تبعثتش، عاود جرّب';
+
+  @override
+  String get chatToday => 'اليوم';
+
+  @override
+  String get chatYesterday => 'البارح';
 
   @override
   String get listingDetailAtAGlance => 'نظرة سريعة';
