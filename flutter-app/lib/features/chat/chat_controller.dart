@@ -27,7 +27,8 @@ final conversationsProvider =
   return ref.watch(chatRepositoryProvider).watchConversations();
 });
 
-/// Number of unread messages, for the badge on the chat icon. 0 for a guest
+/// Number of unread messages, for the badge on the chat icon and on the bell
+/// (the bell opens the conversations that hold these messages, VST-99). 0 for a guest
 /// or while the list is loading. It reuses [conversationsProvider], so no
 /// second Firestore listener is opened.
 final unreadTotalProvider = Provider<int>((ref) {
@@ -35,17 +36,6 @@ final unreadTotalProvider = Provider<int>((ref) {
   if (uid == null) return 0;
   final conversations = ref.watch(conversationsProvider).value;
   return conversations == null ? 0 : totalUnread(conversations, uid);
-});
-
-/// Number of conversations with something unread: the number shown on the
-/// bell icon, and the number of tiles in the notification center (VST-99).
-/// Same source as [unreadTotalProvider], so no second Firestore listener.
-final notificationCountProvider = Provider<int>((ref) {
-  final uid = ref.watch(myUidProvider);
-  if (uid == null) return 0;
-  final conversations = ref.watch(conversationsProvider).value;
-  if (conversations == null) return 0;
-  return unreadConversations(conversations, uid).length;
 });
 
 /// Public name of a user, for the conversation list and the chat header.

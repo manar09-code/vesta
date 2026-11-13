@@ -225,7 +225,6 @@ class _MainShell extends ConsumerWidget {
     ];
 
     final unread = ref.watch(unreadTotalProvider);
-    final notifications = ref.watch(notificationCountProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -242,10 +241,10 @@ class _MainShell extends ConsumerWidget {
             onPressed: () => _openAccountPage(context, ref, AppRoutes.chat),
           ),
           IconButton(
-            // Same red number as the chat icon: conversations to read.
+            // Same red number as the chat icon: messages to read.
             icon: Badge(
-              isLabelVisible: notifications > 0,
-              label: Text(notifications > 99 ? '99+' : '$notifications'),
+              isLabelVisible: unread > 0,
+              label: Text(unread > 99 ? '99+' : '$unread'),
               child: const Icon(Icons.notifications_none),
             ),
             tooltip: l10n.notificationsTitle,

@@ -56,7 +56,8 @@ Future<void> _pump(
 }
 
 void main() {
-  test('notificationCountProvider counts conversations with unread', () async {
+  test('the bell and the chat icon use the same number of unread messages',
+      () async {
     final container = ProviderContainer(
       overrides: [
         myUidProvider.overrideWithValue('buyer1'),
@@ -71,17 +72,8 @@ void main() {
     );
     addTearDown(container.dispose);
     await container.read(conversationsProvider.future);
-    expect(container.read(notificationCountProvider), 2);
-    // The message badge counts messages, the bell counts conversations.
+    // 3 + 1 messages (2 conversations): both icons show 4.
     expect(container.read(unreadTotalProvider), 4);
-  });
-
-  test('notificationCountProvider is 0 for a guest', () {
-    final container = ProviderContainer(
-      overrides: [myUidProvider.overrideWithValue(null)],
-    );
-    addTearDown(container.dispose);
-    expect(container.read(notificationCountProvider), 0);
   });
 
   test('unreadConversations keeps only what I have not read, in order', () {
