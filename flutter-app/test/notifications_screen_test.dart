@@ -56,7 +56,7 @@ Future<void> _pump(
 }
 
 void main() {
-  test('the bell and the chat icon use the same number of unread messages',
+  test('the unread total (chat icon and bell) counts all unread messages',
       () async {
     final container = ProviderContainer(
       overrides: [
@@ -71,6 +71,9 @@ void main() {
       ],
     );
     addTearDown(container.dispose);
+    // The provider is autoDispose: listen to keep it alive while we wait.
+    final subscription = container.listen(conversationsProvider, (_, _) {});
+    addTearDown(subscription.close);
     await container.read(conversationsProvider.future);
     // 3 + 1 messages (2 conversations): both icons show 4.
     expect(container.read(unreadTotalProvider), 4);
