@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_dimens.dart';
+import '../../core/widgets/app_states.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../auth/require_sign_in.dart';
 import '../chat/chat_controller.dart';
@@ -31,77 +34,43 @@ class NotificationsScreen extends ConsumerWidget {
 
     final conversations = ref.watch(conversationsProvider);
     return conversations.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, stackTrace) => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(l10n.chatLoadError, textAlign: TextAlign.center),
-              const SizedBox(height: 16),
-              FilledButton(
-                onPressed: () => ref.invalidate(conversationsProvider),
-                child: Text(l10n.chatRetry),
-              ),
-            ],
-          ),
-        ),
+      loading: () => const LoadingView(),
+      error: (error, stackTrace) => ErrorState(
+        message: l10n.chatLoadError,
+        onRetry: () => ref.invalidate(conversationsProvider),
       ),
       data: (list) {
         final unread = unreadConversations(list, myUid);
         if (unread.isEmpty) {
-          return _EmptyNotifications(
+          return EmptyState(
+            icon: Icons.notifications_none,
             title: l10n.notificationsEmptyTitle,
-            body: l10n.notificationsEmptyBody,
+            message: l10n.notificationsEmptyBody,
           );
         }
-        return ListView.separated(
-          itemCount: unread.length,
-          separatorBuilder: (_, _) => const Divider(height: 1),
-          itemBuilder: (context, index) =>
-              ConversationTile(conversation: unread[index], myUid: myUid),
-        );
-      },
-    );
-  }
-}
-
-class _EmptyNotifications extends StatelessWidget {
-  const _EmptyNotifications({required this.title, required this.body});
-
-  final String title;
-  final String body;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        return ListView(
+          padding: const EdgeInsets.all(AppSpacing.lg),
           children: [
-            Icon(
-              Icons.notifications_none,
-              size: 56,
-              color: theme.colorScheme.primary,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              title,
-              style: theme.textTheme.titleLarge,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              body,
-              style: theme.textTheme.bodyMedium,
-              textAlign: TextAlign.center,
+            // Same white card as the conversation list.
+            Material(
+              color: AppColors.white,
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppRadius.card),
+              ),
+              child: Column(
+                children: [
+                  for (var i = 0; i < unread.length; i++) ...[
+                    if (i > 0)
+                      const Divider(height: 1, color: AppColors.border),
+                    ConversationTile(conversation: unread[i], myUid: myUid),
+                  ],
+                ],
+              ),
             ),
           ],
-        ),
-      ),
+        );
+      },
     );
   }
 }
