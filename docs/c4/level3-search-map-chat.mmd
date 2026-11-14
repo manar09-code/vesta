@@ -1,0 +1,68 @@
+%% C4 level 3: Search, Map and Chat components of the Flutter app (VST-29)
+%% Rule: Screen -> Controller -> Repository -> Firebase. A screen never talks to Firebase directly.
+flowchart TB
+  OSM["<b>OpenStreetMap</b><br/>[External system]<br/>Map tiles"]
+
+  subgraph APP["Vesta Flutter app: Search, Map and Chat modules"]
+    direction TB
+    subgraph MAPM["Map"]
+      direction TB
+      MapScreen["<b>MapScreen</b><br/>[Component: Flutter screen]<br/>Map with the listings, shows © OpenStreetMap contributors"]
+      MapC["<b>MapController</b><br/>[Component: Riverpod controller]<br/>Loads the listings with coordinates and the user position"]
+      Location["<b>LocationService</b><br/>[Component: Phone-side service]<br/>Asks the GPS permission and gets the position"]
+    end
+    subgraph SEARCHM["Search"]
+      direction TB
+      SearchScreen["<b>SearchScreen</b><br/>[Component: Flutter screen]<br/>Search box and list of results"]
+      Filters["<b>SearchFilters</b><br/>[Component: Flutter widget]<br/>Price range, location, property type, sale or rent"]
+      SearchC["<b>SearchFiltersController</b><br/>[Component: Riverpod controller]<br/>Keeps the filters and loads the results"]
+    end
+    subgraph CHATM["Chat"]
+      direction TB
+      ChatListScreen["<b>ChatListScreen</b><br/>[Component: Flutter screen]<br/>Lists my conversations"]
+      ChatScreen["<b>ChatScreen</b><br/>[Component: Flutter screen]<br/>Messages of one conversation"]
+      ChatC["<b>ChatController</b><br/>[Component: Riverpod controller]<br/>Loads conversations and messages, sends a message"]
+      ChatR["<b>ChatRepository</b><br/>[Component: Repository]<br/>Reads and writes conversations and messages, listens to Firestore in real time"]
+      Notif["<b>NotificationService</b><br/>[Component: Phone-side service]<br/>Shows a badge and a local notification for each new message (app open or in background)"]
+    end
+    ListR["<b>ListingRepository</b><br/>[Component: Repository]<br/>Reads the listings collection (search and map)"]
+    Shared["<b>Shared helpers</b><br/>[Component: Shared helper]<br/>formatPrice (TND), app config (map center: Tunis) and the translation layer (en, fr, ar)"]
+  end
+
+  GPS["<b>Phone GPS</b><br/>[External system]<br/>Position and permission"]
+  FStore["<b>Firestore</b><br/>[External system, Firebase free plan]<br/>listings<br/>conversations<br/>conversations/{id}/messages"]
+  PhoneNotif["<b>Phone notifications</b><br/>[External system]<br/>Local notification and badge (no server push in the MVP)"]
+
+  Legend["<b>Legend</b><br/>Blue box: [Component: ...] part of the Flutter app<br/>Beige box: [External system] we do not build<br/>Arrow: who calls whom"]
+
+  MapScreen -->|"load map tiles"| OSM
+  MapScreen -->|"load listings and position"| MapC
+  MapC -->|"get position"| Location
+  SearchScreen -->|"show filters"| Filters
+  Filters -->|"set filters"| SearchC
+  SearchScreen -->|"load results"| SearchC
+  ChatListScreen -->|"load conversations"| ChatC
+  ChatScreen -->|"load and send messages"| ChatC
+
+  MapC -->|"read listings with coordinates"| ListR
+  SearchC -->|"search listings"| ListR
+  ChatC -->|"read and write chat, real-time listener"| ChatR
+  ChatC -->|"new message"| Notif
+
+  Location -->|"GPS permission and position"| GPS
+  ListR -->|"Firestore SDK"| FStore
+  ChatR -->|"Firestore SDK"| FStore
+  Notif -->|"local notification and badge"| PhoneNotif
+
+  FStore ~~~ Legend
+
+  classDef component fill:#e8e8fb,stroke:#5b5bd6,stroke-width:1.5px,color:#1c1c4a;
+  classDef external fill:#f1eee8,stroke:#8a8578,stroke-width:1.5px,color:#2a2a2a;
+  classDef legend fill:#ffffff,stroke:#999999,stroke-width:1px,color:#333333;
+  class SearchScreen,MapScreen,ChatListScreen,ChatScreen,Shared,Filters,SearchC,MapC,ChatC,Location,ListR,ChatR,Notif component;
+  class OSM,GPS,FStore,PhoneNotif external;
+  class Legend legend;
+  style APP fill:#ffffff,stroke:#5b5bd6,stroke-width:1.5px,stroke-dasharray:6 4;
+  style MAPM fill:#fbfbff,stroke:#b9b9ea,stroke-dasharray:3 3;
+  style SEARCHM fill:#fbfbff,stroke:#b9b9ea,stroke-dasharray:3 3;
+  style CHATM fill:#fbfbff,stroke:#b9b9ea,stroke-dasharray:3 3;
