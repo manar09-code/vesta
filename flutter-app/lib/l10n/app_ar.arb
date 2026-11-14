@@ -58,7 +58,7 @@
   "publishAddFromGallery": "المعرض",
   "publishAddFromCamera": "الكاميرا",
   "publishRemovePhoto": "احذف الصورة",
-  "publishErrorBanner": "صلّح الـ {count} حقول الحمر باش تنشر.",
+  "publishErrorBanner": "صلّح الحقول الحمر ({count}) باش تنشر.",
   "@publishErrorBanner": {
     "placeholders": {
       "count": {

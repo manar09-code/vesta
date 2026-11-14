@@ -186,7 +186,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String publishErrorBanner(int count) {
-    return 'صلّح الـ $count حقول الحمر باش تنشر.';
+    return 'صلّح الحقول الحمر ($count) باش تنشر.';
   }
 
   @override
