@@ -172,18 +172,38 @@ class _PublishListingScreenState extends ConsumerState<PublishListingScreen> {
   }
 
   // ---- photos ----
+  /// Gallery: several photos at once. Camera: one photo.
+  /// A photo already in the list is not added twice.
   Future<void> _addPhoto(ImageSource source) async {
     final l = AppLocalizations.of(context);
     try {
-      final encoded = await _photoService.pickPhoto(
-        source: source,
-        currentCount: _photos.length,
-        maxPhotos: maxListingPhotos,
+      final remaining = maxListingPhotos - _photos.length;
+      final List<String> picked;
+      if (source == ImageSource.gallery) {
+        picked = await _photoService.pickPhotos(remaining: remaining);
+      } else {
+        final one = await _photoService.pickPhoto(
+          source: source,
+          currentCount: _photos.length,
+          maxPhotos: maxListingPhotos,
+        );
+        picked = [?one];
+      }
+      if (picked.isEmpty || !mounted) return;
+      final added = addUniquePhotos(
+        _photos,
+        picked,
+        max: maxListingPhotos,
       );
-      if (encoded == null || !mounted) return;
       setState(() {
-        _photos.add(encoded);
-        _photoMessage = null;
+        _photos
+          ..clear()
+          ..addAll(added.photos);
+        _photoMessage = added.duplicates
+            ? l.publishPhotosDuplicates
+            : added.overLimit
+                ? l.listingErrorTooManyPhotos
+                : null;
       });
     } on PhotoFailure catch (e) {
       if (!mounted) return;
