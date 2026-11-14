@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/config/app_config.dart';
 import '../../core/router/app_router.dart';
+import '../../core/widgets/offer_type_badge.dart';
+import '../../core/widgets/price_text.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'contact_buttons.dart';
 import '../auth/require_sign_in.dart';
@@ -91,17 +92,20 @@ class _DetailBody extends ConsumerWidget {
     if (!await requireSignIn(context, ref)) return;
     if (!context.mounted) return;
     try {
-      final id =
-          ref.read(chatRepositoryProvider).conversationIdForListing(data.listing);
+      final id = ref
+          .read(chatRepositoryProvider)
+          .conversationIdForListing(data.listing);
       context.push(AppRoutes.chatRoomPath(id));
     } on ChatFailure catch (e) {
-      messenger.showSnackBar(SnackBar(
-        content: Text(
-          e.error == ChatError.ownListing
-              ? l10n.chatOwnListing
-              : l10n.chatContactError,
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text(
+            e.error == ChatError.ownListing
+                ? l10n.chatOwnListing
+                : l10n.chatContactError,
+          ),
         ),
-      ));
+      );
     }
   }
 
@@ -163,13 +167,24 @@ class _DetailBody extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              OfferTypeBadge(type: offerTypeOf(listing)),
+              const SizedBox(height: 8),
               Row(
                 children: [
                   Expanded(
-                    child: Text(
-                      _priceText(l10n, listing),
-                      style: theme.textTheme.headlineSmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
+                    child: Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: PriceText(
+                        price: listing.price,
+                        currency: listing.currency,
+                        period: offerTypeOf(listing) == OfferType.sale
+                            ? null
+                            : listing.rentPeriod,
+                        priceStyle: theme.textTheme.headlineSmall?.copyWith(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                   // SLOT: favorite heart (VST-46, Mahmoud)
@@ -318,8 +333,9 @@ class _FactTile extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           fact.value,
-          style: theme.textTheme.titleMedium
-              ?.copyWith(fontWeight: FontWeight.bold),
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(
           fact.label,
@@ -412,7 +428,9 @@ class _ExpandableTextState extends State<_ExpandableText> {
               widget.text,
               style: style,
               maxLines: _expanded ? null : _collapsedLines,
-              overflow: _expanded ? TextOverflow.visible : TextOverflow.ellipsis,
+              overflow: _expanded
+                  ? TextOverflow.visible
+                  : TextOverflow.ellipsis,
             ),
             if (overflows)
               TextButton(
@@ -423,28 +441,6 @@ class _ExpandableTextState extends State<_ExpandableText> {
         );
       },
     );
-  }
-}
-
-/// formatPrice is the only function that formats a price. The unit is added
-/// for a stay (night) and for a rental (month or year). The offer type comes
-/// from offerTypeOf: the rule is not written a second time here.
-String _priceText(AppLocalizations l10n, Listing listing) {
-  final price = formatPrice(listing.price, currency: listing.currency);
-  switch (offerTypeOf(listing)) {
-    case OfferType.sale:
-      return price;
-    case OfferType.stay:
-      return '$price ${l10n.listingDetailPerNight}';
-    case OfferType.rent:
-      switch (listing.rentPeriod) {
-        case 'year':
-          return '$price ${l10n.listingDetailPerYear}';
-        case 'month':
-          return '$price ${l10n.listingDetailPerMonth}';
-        default:
-          return price;
-      }
   }
 }
 
@@ -515,8 +511,10 @@ class _PhotoGalleryState extends State<_PhotoGallery> {
               bottom: 8,
               end: 8,
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: theme.colorScheme.surface.withValues(alpha: 0.85),
                   borderRadius: BorderRadius.circular(12),
