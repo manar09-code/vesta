@@ -142,6 +142,18 @@ abstract class AppLocalizations {
   /// **'Notifications'**
   String get notificationsTitle;
 
+  /// No description provided for @notificationsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No new notifications'**
+  String get notificationsEmptyTitle;
+
+  /// No description provided for @notificationsEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'New messages appear here until you read them.'**
+  String get notificationsEmptyBody;
+
   /// No description provided for @chatTitle.
   ///
   /// In en, this message translates to:

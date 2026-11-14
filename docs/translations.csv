@@ -6,6 +6,8 @@ tab.map,Map,Carte,الخريطة,Tabs,
 tab.favorites,Favorites,Favoris,المفضلة,Tabs,
 tab.profile,Profile,Profil,حسابي,Tabs,
 notifications.title,Notifications,Notifications,الإشعارات,Notifications,same in en and fr
+notifications.empty.title,No new notifications,Aucune nouvelle notification,ما فما حتى إشعار جديد,Notifications,
+notifications.empty.body,New messages appear here until you read them.,Les nouveaux messages apparaissent ici tant que vous ne les avez pas lus.,الرسائل الجداد تظهر هوني حتى تقراهم.,Notifications,
 chat.title,Messages,Messages,الرسائل,Chat,same in en and fr
 login.title,Sign in,Connexion,تسجيل الدخول,Auth,
 coming.soon,Coming soon,Bientôt disponible,قريبا,Common,

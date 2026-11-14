@@ -31,6 +31,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationsTitle => 'Notifications';
 
   @override
+  String get notificationsEmptyTitle => 'No new notifications';
+
+  @override
+  String get notificationsEmptyBody =>
+      'New messages appear here until you read them.';
+
+  @override
   String get chatTitle => 'Messages';
 
   @override
