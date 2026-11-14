@@ -55,7 +55,7 @@ property.villa,Villa,Villa,فيلا,Publish listing,same in en and fr
 property.studio,Studio,Studio,ستوديو,Publish listing,same in en and fr
 property.riad,Riad,Riad,رياض,Publish listing,same in en and fr
 property.guest.house,Guest house,Maison d'hôtes,دار ضيافة,Publish listing,
-publish.photos.title,Photos (up to 5),Photos (jusqu'à 5),الصور (حتى 5),Publish listing,
+publish.photos.title,Photos (up to 10),Photos (jusqu'à 10),الصور (حتى 10),Publish listing,
 publish.add.from.gallery,Gallery,Galerie,المعرض,Publish listing,
 publish.add.from.camera,Camera,Appareil photo,الكاميرا,Publish listing,
 publish.remove.photo,Remove photo,Supprimer la photo,احذف الصورة,Publish listing,
@@ -67,7 +67,8 @@ listing.error.rent.period.required,Choose a rent period,Choisissez une période 
 listing.error.number.invalid,Enter a valid number,Entrez un nombre valide,أدخل رقم صحيح,Listings,
 listing.error.not.signed.in,Please sign in first,Connectez-vous d'abord,سجّل الدخول قبل,Listings,
 listing.error.no.photos,Add at least one photo,Ajoutez au moins une photo,زيد صورة على الأقل,Listings,
-listing.error.too.many.photos,You can add up to 5 photos,Vous pouvez ajouter 5 photos au maximum,تنجم تزيد 5 صور كحد أقصى,Listings,
+listing.error.too.many.photos,You can add up to 10 photos,Vous pouvez ajouter 10 photos au maximum,تنجم تزيد 10 صور كحد أقصى,Listings,
+publish.photos.duplicates,Duplicate photos were not added,Les photos en double n'ont pas été ajoutées,الصور المكررة ما تزادتش,Publish listing,
 listing.error.no.network,No internet connection,Pas de connexion internet,ما فماش اتصال بالإنترنت,Listings,
 listing.error.permission.denied,You are not allowed to do this,Vous n'avez pas le droit de faire cela,ما عندكش الصلاحية باش تعمل هذا,Listings,
 listing.error.unknown,"Something went wrong, please try again","Une erreur est survenue, réessayez",صار مشكل، عاود جرّب,Listings,
