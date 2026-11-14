@@ -1204,6 +1204,24 @@ abstract class AppLocalizations {
   /// **'No listing with a location yet'**
   String get mapNoListings;
 
+  /// No description provided for @mapPickerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the location'**
+  String get mapPickerTitle;
+
+  /// No description provided for @mapPickerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the map to place the pin'**
+  String get mapPickerHint;
+
+  /// No description provided for @mapPickerConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this location'**
+  String get mapPickerConfirm;
+
   /// No description provided for @chatEmptyTitle.
   ///
   /// In en, this message translates to:
@@ -1587,6 +1605,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Available on WhatsApp'**
   String get publishWhatsapp;
+
+  /// No description provided for @publishCityHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Start typing: Tunis, Sousse, Tozeur…'**
+  String get publishCityHelper;
+
+  /// No description provided for @publishLocationSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the exact location on the map'**
+  String get publishLocationSet;
+
+  /// No description provided for @publishLocationChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change the location on the map'**
+  String get publishLocationChange;
+
+  /// No description provided for @publishLocationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Without it, your listing appears near the city center on the map.'**
+  String get publishLocationHint;
+
+  /// No description provided for @publishLocationSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Exact location saved'**
+  String get publishLocationSaved;
+
+  /// No description provided for @publishLocationRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get publishLocationRemove;
 
   /// No description provided for @listingErrorPhoneInvalid.
   ///

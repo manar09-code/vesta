@@ -587,6 +587,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get mapNoListings => 'Aucune annonce avec une position pour le moment';
 
   @override
+  String get mapPickerTitle => 'Choisir l’emplacement';
+
+  @override
+  String get mapPickerHint => 'Touchez la carte pour placer l’épingle';
+
+  @override
+  String get mapPickerConfirm => 'Utiliser cet emplacement';
+
+  @override
   String get chatEmptyTitle => 'Aucune conversation';
 
   @override
@@ -786,6 +795,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get publishWhatsapp => 'Disponible sur WhatsApp';
+
+  @override
+  String get publishCityHelper => 'Commencez à taper : Tunis, Sousse, Tozeur…';
+
+  @override
+  String get publishLocationSet => 'Placer l’emplacement exact sur la carte';
+
+  @override
+  String get publishLocationChange => 'Modifier l’emplacement sur la carte';
+
+  @override
+  String get publishLocationHint =>
+      'Sans cela, votre annonce apparaît près du centre de la ville sur la carte.';
+
+  @override
+  String get publishLocationSaved => 'Emplacement exact enregistré';
+
+  @override
+  String get publishLocationRemove => 'Retirer';
 
   @override
   String get listingErrorPhoneInvalid => 'Entrez un numéro tunisien valide';

@@ -79,6 +79,8 @@ class NewListing {
     this.checkIn,
     this.checkOut,
     this.houseRules = const [],
+    this.latitude,
+    this.longitude,
   });
 
   final String title;
@@ -98,6 +100,8 @@ class NewListing {
   final String? checkIn; // 'HH:mm'
   final String? checkOut; // 'HH:mm'
   final List<String> houseRules; // keys of houseRuleKeys
+  final double? latitude; // exact position chosen on the map (optional)
+  final double? longitude;
 }
 
 /// Only place that talks to the `listings` collection and its photos.
@@ -147,6 +151,10 @@ class ListingRepository {
         if (listing.checkIn != null) 'checkIn': listing.checkIn,
         if (listing.checkOut != null) 'checkOut': listing.checkOut,
         if (listing.houseRules.isNotEmpty) 'houseRules': listing.houseRules,
+        if (listing.latitude != null && listing.longitude != null) ...{
+          'latitude': listing.latitude,
+          'longitude': listing.longitude,
+        },
         'photoCount': photosBase64.length,
         'createdAt': FieldValue.serverTimestamp(),
         'updatedAt': FieldValue.serverTimestamp(),
