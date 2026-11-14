@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/router/app_router.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/app_states.dart';
 import '../../core/widgets/offer_type_badge.dart';
 import '../../core/widgets/price_text.dart';
 import '../../l10n/generated/app_localizations.dart';
@@ -31,11 +33,10 @@ class ListingDetailScreen extends ConsumerWidget {
     final detail = ref.watch(listingDetailProvider(listingId));
 
     return detail.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, stackTrace) => _Message(
-        text: l10n.listingDetailLoadError,
-        actionLabel: l10n.listingDetailRetry,
-        onAction: () => ref.invalidate(listingDetailProvider(listingId)),
+      loading: () => const LoadingView(),
+      error: (error, stackTrace) => ErrorState(
+        message: l10n.listingDetailLoadError,
+        onRetry: () => ref.invalidate(listingDetailProvider(listingId)),
       ),
       data: (data) => data == null
           ? _Message(text: l10n.listingDetailNotFound)
@@ -45,27 +46,16 @@ class ListingDetailScreen extends ConsumerWidget {
 }
 
 class _Message extends StatelessWidget {
-  const _Message({required this.text, this.actionLabel, this.onAction});
+  const _Message({required this.text});
 
   final String text;
-  final String? actionLabel;
-  final VoidCallback? onAction;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(text, textAlign: TextAlign.center),
-            if (actionLabel != null && onAction != null) ...[
-              const SizedBox(height: 16),
-              FilledButton(onPressed: onAction, child: Text(actionLabel!)),
-            ],
-          ],
-        ),
+        child: Text(text, textAlign: TextAlign.center),
       ),
     );
   }
@@ -195,10 +185,10 @@ class _DetailBody extends ConsumerWidget {
               ContactButtons(listing: listing),
               if (!isOwner) ...[
                 const SizedBox(height: 12),
-                FilledButton.icon(
+                PrimaryButton(
+                  label: l10n.chatContactOwner,
+                  icon: Icons.chat_bubble_outline,
                   onPressed: () => _contactOwner(context, ref),
-                  icon: const Icon(Icons.chat_bubble_outline),
-                  label: Text(l10n.chatContactOwner),
                 ),
               ],
               const SizedBox(height: 8),
