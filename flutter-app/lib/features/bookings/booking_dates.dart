@@ -1,4 +1,3 @@
-import 'package:intl/intl.dart';
 
 /// A night is the evening of a day. A stay from 12 Dec to 15 Dec has 3 nights:
 /// 12, 13 and 14 (the check-out day is not a night).
