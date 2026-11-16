@@ -910,4 +910,62 @@ class AppLocalizationsFr extends AppLocalizations {
   String contactMessageStay(String title) {
     return 'Bonjour, je suis intéressé par un séjour à $title sur Vesta';
   }
+
+  @override
+  String get bookingRequestButton => 'Demander à réserver';
+
+  @override
+  String get bookingRequestTitle => 'Demande de réservation';
+
+  @override
+  String get bookingDatesLabel => 'Dates';
+
+  @override
+  String get bookingDatesSelect => 'Choisissez vos dates';
+
+  @override
+  String get bookingDatesRequired =>
+      'Choisissez les dates d\'arrivée et de départ';
+
+  @override
+  String get bookingGuestsLabel => 'Invités';
+
+  @override
+  String bookingGuestsMax(int count) {
+    return '$count invités maximum';
+  }
+
+  @override
+  String get bookingMessageLabel => 'Message à l\'hôte (optionnel)';
+
+  @override
+  String get bookingSummaryNights => 'Nuits';
+
+  @override
+  String get bookingSummaryPriceNight => 'Prix par nuit';
+
+  @override
+  String get bookingSummaryTotal => 'Total';
+
+  @override
+  String get bookingPayNote =>
+      'Vous payez l\'hôte directement. Vesta ne prend aucun paiement.';
+
+  @override
+  String get bookingSubmit => 'Envoyer la demande';
+
+  @override
+  String get bookingSent => 'Demande envoyée';
+
+  @override
+  String get bookingErrorOwnListing =>
+      'Vous ne pouvez pas réserver votre propre annonce';
+
+  @override
+  String get bookingErrorNightTaken =>
+      'Certaines de ces nuits sont déjà prises. Choisissez d\'autres dates.';
+
+  @override
+  String get bookingErrorGeneric =>
+      'Impossible d\'envoyer la demande. Réessayez.';
 }

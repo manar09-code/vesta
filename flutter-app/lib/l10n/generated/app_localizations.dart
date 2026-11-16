@@ -1809,6 +1809,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hello, I am interested in staying at {title} on Vesta'**
   String contactMessageStay(String title);
+
+  /// No description provided for @bookingRequestButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Request to book'**
+  String get bookingRequestButton;
+
+  /// No description provided for @bookingRequestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Request to book'**
+  String get bookingRequestTitle;
+
+  /// No description provided for @bookingDatesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Dates'**
+  String get bookingDatesLabel;
+
+  /// No description provided for @bookingDatesSelect.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your dates'**
+  String get bookingDatesSelect;
+
+  /// No description provided for @bookingDatesRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the check-in and check-out dates'**
+  String get bookingDatesRequired;
+
+  /// No description provided for @bookingGuestsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Guests'**
+  String get bookingGuestsLabel;
+
+  /// No description provided for @bookingGuestsMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum {count} guests'**
+  String bookingGuestsMax(int count);
+
+  /// No description provided for @bookingMessageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Message to the host (optional)'**
+  String get bookingMessageLabel;
+
+  /// No description provided for @bookingSummaryNights.
+  ///
+  /// In en, this message translates to:
+  /// **'Nights'**
+  String get bookingSummaryNights;
+
+  /// No description provided for @bookingSummaryPriceNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Price per night'**
+  String get bookingSummaryPriceNight;
+
+  /// No description provided for @bookingSummaryTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get bookingSummaryTotal;
+
+  /// No description provided for @bookingPayNote.
+  ///
+  /// In en, this message translates to:
+  /// **'You pay the host directly. Vesta does not take any payment.'**
+  String get bookingPayNote;
+
+  /// No description provided for @bookingSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Send request'**
+  String get bookingSubmit;
+
+  /// No description provided for @bookingSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Request sent'**
+  String get bookingSent;
+
+  /// No description provided for @bookingErrorOwnListing.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot book your own listing'**
+  String get bookingErrorOwnListing;
+
+  /// No description provided for @bookingErrorNightTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'Some of these nights are already taken. Choose other dates.'**
+  String get bookingErrorNightTaken;
+
+  /// No description provided for @bookingErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not send your request. Please try again.'**
+  String get bookingErrorGeneric;
 }
 
 class _AppLocalizationsDelegate

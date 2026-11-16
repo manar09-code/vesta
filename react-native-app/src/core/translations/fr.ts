@@ -306,4 +306,23 @@ export default {
     'Bonjour, je suis intéressé par la location de {{title}} sur Vesta',
   contactMessageStay:
     'Bonjour, je suis intéressé par un séjour à {{title}} sur Vesta',
+  bookingRequestButton: 'Demander à réserver',
+  bookingRequestTitle: 'Demande de réservation',
+  bookingDatesLabel: 'Dates',
+  bookingDatesSelect: 'Choisissez vos dates',
+  bookingDatesRequired: "Choisissez les dates d'arrivée et de départ",
+  bookingGuestsLabel: 'Invités',
+  bookingGuestsMax: '{{count}} invités maximum',
+  bookingMessageLabel: "Message à l'hôte (optionnel)",
+  bookingSummaryNights: 'Nuits',
+  bookingSummaryPriceNight: 'Prix par nuit',
+  bookingSummaryTotal: 'Total',
+  bookingPayNote:
+    "Vous payez l'hôte directement. Vesta ne prend aucun paiement.",
+  bookingSubmit: 'Envoyer la demande',
+  bookingSent: 'Demande envoyée',
+  bookingErrorOwnListing: 'Vous ne pouvez pas réserver votre propre annonce',
+  bookingErrorNightTaken:
+    "Certaines de ces nuits sont déjà prises. Choisissez d'autres dates.",
+  bookingErrorGeneric: "Impossible d'envoyer la demande. Réessayez.",
 };

@@ -319,5 +319,29 @@
         "type": "String"
       }
     }
-  }
+  },
+  "bookingRequestButton": "اطلب حجز",
+  "bookingRequestTitle": "طلب حجز",
+  "bookingDatesLabel": "التواريخ",
+  "bookingDatesSelect": "اختار التواريخ",
+  "bookingDatesRequired": "اختار تاريخ الوصول وتاريخ الخروج",
+  "bookingGuestsLabel": "الضيوف",
+  "bookingGuestsMax": "أقصى عدد ضيوف: {count}",
+  "@bookingGuestsMax": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bookingMessageLabel": "رسالة للمضيف (اختياري)",
+  "bookingSummaryNights": "الليالي",
+  "bookingSummaryPriceNight": "السوم لليلة",
+  "bookingSummaryTotal": "المجموع",
+  "bookingPayNote": "تخلّص مباشرة للمضيف. Vesta ما تاخذ حتى فلوس.",
+  "bookingSubmit": "ابعث الطلب",
+  "bookingSent": "الطلب تبعث",
+  "bookingErrorOwnListing": "ما تنجمش تحجز إعلانك",
+  "bookingErrorNightTaken": "بعض الليالي محجوزة. اختار تواريخ أخرى.",
+  "bookingErrorGeneric": "ما نجّمناش نبعثو الطلب. عاود جرّب."
 }

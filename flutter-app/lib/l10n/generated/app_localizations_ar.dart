@@ -886,4 +886,57 @@ class AppLocalizationsAr extends AppLocalizations {
   String contactMessageStay(String title) {
     return 'عسلامة، مهتم بالإقامة في $title على Vesta';
   }
+
+  @override
+  String get bookingRequestButton => 'اطلب حجز';
+
+  @override
+  String get bookingRequestTitle => 'طلب حجز';
+
+  @override
+  String get bookingDatesLabel => 'التواريخ';
+
+  @override
+  String get bookingDatesSelect => 'اختار التواريخ';
+
+  @override
+  String get bookingDatesRequired => 'اختار تاريخ الوصول وتاريخ الخروج';
+
+  @override
+  String get bookingGuestsLabel => 'الضيوف';
+
+  @override
+  String bookingGuestsMax(int count) {
+    return 'أقصى عدد ضيوف: $count';
+  }
+
+  @override
+  String get bookingMessageLabel => 'رسالة للمضيف (اختياري)';
+
+  @override
+  String get bookingSummaryNights => 'الليالي';
+
+  @override
+  String get bookingSummaryPriceNight => 'السوم لليلة';
+
+  @override
+  String get bookingSummaryTotal => 'المجموع';
+
+  @override
+  String get bookingPayNote => 'تخلّص مباشرة للمضيف. Vesta ما تاخذ حتى فلوس.';
+
+  @override
+  String get bookingSubmit => 'ابعث الطلب';
+
+  @override
+  String get bookingSent => 'الطلب تبعث';
+
+  @override
+  String get bookingErrorOwnListing => 'ما تنجمش تحجز إعلانك';
+
+  @override
+  String get bookingErrorNightTaken => 'بعض الليالي محجوزة. اختار تواريخ أخرى.';
+
+  @override
+  String get bookingErrorGeneric => 'ما نجّمناش نبعثو الطلب. عاود جرّب.';
 }

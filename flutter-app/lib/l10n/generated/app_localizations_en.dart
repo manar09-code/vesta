@@ -896,4 +896,60 @@ class AppLocalizationsEn extends AppLocalizations {
   String contactMessageStay(String title) {
     return 'Hello, I am interested in staying at $title on Vesta';
   }
+
+  @override
+  String get bookingRequestButton => 'Request to book';
+
+  @override
+  String get bookingRequestTitle => 'Request to book';
+
+  @override
+  String get bookingDatesLabel => 'Dates';
+
+  @override
+  String get bookingDatesSelect => 'Choose your dates';
+
+  @override
+  String get bookingDatesRequired => 'Choose the check-in and check-out dates';
+
+  @override
+  String get bookingGuestsLabel => 'Guests';
+
+  @override
+  String bookingGuestsMax(int count) {
+    return 'Maximum $count guests';
+  }
+
+  @override
+  String get bookingMessageLabel => 'Message to the host (optional)';
+
+  @override
+  String get bookingSummaryNights => 'Nights';
+
+  @override
+  String get bookingSummaryPriceNight => 'Price per night';
+
+  @override
+  String get bookingSummaryTotal => 'Total';
+
+  @override
+  String get bookingPayNote =>
+      'You pay the host directly. Vesta does not take any payment.';
+
+  @override
+  String get bookingSubmit => 'Send request';
+
+  @override
+  String get bookingSent => 'Request sent';
+
+  @override
+  String get bookingErrorOwnListing => 'You cannot book your own listing';
+
+  @override
+  String get bookingErrorNightTaken =>
+      'Some of these nights are already taken. Choose other dates.';
+
+  @override
+  String get bookingErrorGeneric =>
+      'We could not send your request. Please try again.';
 }
