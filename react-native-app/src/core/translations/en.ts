@@ -312,4 +312,23 @@ export default {
   loginWelcomeTitle: 'Welcome to Vesta',
   loginWelcomeSubtitle:
     'Sign in to contact owners, save favorites and publish your own place.',
-};
+    bookingRequestButton: 'Request to book',
+  bookingRequestTitle: 'Request to book',
+  bookingDatesLabel: 'Dates',
+  bookingDatesSelect: 'Choose your dates',
+  bookingDatesRequired: 'Choose the check-in and check-out dates',
+  bookingGuestsLabel: 'Guests',
+  bookingGuestsMax: 'Maximum {{count}} guests',
+  bookingMessageLabel: 'Message to the host (optional)',
+  bookingSummaryNights: 'Nights',
+  bookingSummaryPriceNight: 'Price per night',
+  bookingSummaryTotal: 'Total',
+  bookingPayNote:
+    'You pay the host directly. Vesta does not take any payment.',
+  bookingSubmit: 'Send request',
+  bookingSent: 'Request sent',
+  bookingErrorOwnListing: 'You cannot book your own listing',
+  bookingErrorNightTaken:
+    'Some of these nights are already taken. Choose other dates.',
+  bookingErrorGeneric: 'We could not send your request. Please try again.',
+  };

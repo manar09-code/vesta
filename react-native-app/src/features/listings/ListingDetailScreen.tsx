@@ -12,6 +12,7 @@ import { MainStackParamList } from '../../navigation/MainStack';
 import { ContactButtons } from './ContactButtons';
 import { PhotoGallery } from './PhotoGallery';
 import { useListingDetail } from './useListingDetail';
+import { auth } from '../../data/firebase';
 
 type Props = NativeStackScreenProps<MainStackParamList, 'ListingDetails'>;
 
@@ -20,7 +21,7 @@ type Props = NativeStackScreenProps<MainStackParamList, 'ListingDetails'>;
  * city and description. Read only. Key facts, amenities, check-in/out and
  * house rules come with VST-82; contact and chat with their own tickets.
  */
-export function ListingDetailScreen({ route }: Props): React.JSX.Element {
+export function ListingDetailScreen({ route, navigation }: Props): React.JSX.Element {
   const { state, retry } = useListingDetail(route.params.listingId);
 
   if (state.status === 'loading') {
@@ -39,6 +40,12 @@ export function ListingDetailScreen({ route }: Props): React.JSX.Element {
 
   const { listing, photos } = state;
   const offerType = offerTypeOf(listing);
+    const user = auth.currentUser;
+  const canRequestBooking =
+    offerType === 'stay' &&
+    !isUnavailable(listing) &&
+    user !== null &&
+    user.uid !== listing.ownerId;
   return (
     <ScrollView style={styles.screen}>
       <PhotoGallery photos={photos} />
@@ -61,6 +68,14 @@ export function ListingDetailScreen({ route }: Props): React.JSX.Element {
         <Text style={styles.title}>{listing.title}</Text>
         <Text style={styles.city}>{listing.city}</Text>
         <ContactButtons listing={listing} onSignInPress={() => undefined} />
+                {canRequestBooking ? (
+          <PrimaryButton
+            labelKey="bookingRequestButton"
+            onPress={() =>
+              navigation.navigate('BookingRequest', { listingId: listing.id })
+            }
+          />
+        ) : null}
         <Text style={styles.description}>{listing.description}</Text>
       </View>
     </ScrollView>
