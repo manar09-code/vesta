@@ -5,6 +5,7 @@ export type BookingFailureCode =
   | 'tooManyGuests'
   | 'messageTooLong'
   | 'nightTaken'
+  | 'notPending'
   | 'permissionDenied'
   | 'unknown';
 

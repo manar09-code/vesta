@@ -2,16 +2,27 @@ import {
   collection,
   doc,
   getDocs,
+  onSnapshot,
+  query,
   serverTimestamp,
   setDoc,
   Timestamp,
+  Unsubscribe,
+  where,
+  writeBatch,
 } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { errorCodeOf } from './authErrors';
 import { BookingFailure, mapBookingCode } from './bookingErrors';
-import { bookingIdFor, maxBookingMessageLength } from '../models/booking';
+import {
+  Booking,
+  bookingFromData,
+  bookingIdFor,
+  maxBookingMessageLength,
+} from '../models/booking';
 import {
   hasBlockedNight,
+  nightKey,
   nightsOf,
   totalPrice,
 } from '../../features/bookings/bookingDates';
@@ -30,6 +41,24 @@ export type BookingInput = {
   guests: number;
   message: string;
 };
+
+/** Newest first. A booking whose time is still null was just written here. */
+function newestFirst(bookings: Booking[]): Booking[] {
+  return [...bookings].sort((a, b) => {
+    const ta = a.createdAt;
+    const tb = b.createdAt;
+    if (ta === null && tb === null) {
+      return 0;
+    }
+    if (ta === null) {
+      return -1;
+    }
+    if (tb === null) {
+      return 1;
+    }
+    return tb.getTime() - ta.getTime();
+  });
+}
 
 /** Only place that talks to `bookings` and `listings/{id}/blockedNights` (VST-85). */
 export class BookingRepository {
@@ -93,6 +122,141 @@ export class BookingRepository {
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
       });
+    } catch (error) {
+      throw new BookingFailure(mapBookingCode(errorCodeOf(error)));
+    }
+  }
+
+  /** Live list of the trips of the signed-in guest, newest first. */
+  watchMyTrips(
+    onData: (bookings: Booking[]) => void,
+    onError: (failure: BookingFailure) => void,
+  ): Unsubscribe {
+    return this.watch('guestId', onData, onError);
+  }
+
+  /** Live list of the requests received by the signed-in owner, newest first. */
+  watchRequests(
+    onData: (bookings: Booking[]) => void,
+    onError: (failure: BookingFailure) => void,
+  ): Unsubscribe {
+    return this.watch('ownerId', onData, onError);
+  }
+
+  private watch(
+    field: 'guestId' | 'ownerId',
+    onData: (bookings: Booking[]) => void,
+    onError: (failure: BookingFailure) => void,
+  ): Unsubscribe {
+    const user = auth.currentUser;
+    if (user === null) {
+      onData([]);
+      return () => {};
+    }
+    // Sorted here (not in the query) so no Firestore index is needed.
+    const bookings = query(
+      collection(db, 'bookings'),
+      where(field, '==', user.uid),
+    );
+    return onSnapshot(
+      bookings,
+      snapshot => {
+        onData(
+          newestFirst(
+            snapshot.docs.map(item => bookingFromData(item.id, item.data())),
+          ),
+        );
+      },
+      error => onError(new BookingFailure(mapBookingCode(errorCodeOf(error)))),
+    );
+  }
+
+  /**
+   * The owner accepts or declines a pending request. Accepting writes the
+   * blocked nights in the same batch, so the status and the nights never
+   * disagree.
+   */
+  async decide(
+    booking: Booking,
+    decision: 'accepted' | 'declined',
+  ): Promise<void> {
+    const user = auth.currentUser;
+    if (user === null) {
+      throw new BookingFailure('notSignedIn');
+    }
+    if (user.uid !== booking.ownerId) {
+      throw new BookingFailure('permissionDenied');
+    }
+    if (booking.status !== 'pending') {
+      throw new BookingFailure('notPending');
+    }
+    if (booking.checkIn === null || booking.checkOut === null) {
+      throw new BookingFailure('datesRequired');
+    }
+
+    const nights = nightsOf(booking.checkIn, booking.checkOut);
+    if (decision === 'accepted') {
+      const blocked = await this.getBlockedNights(booking.listingId);
+      if (hasBlockedNight(booking.checkIn, booking.checkOut, blocked)) {
+        throw new BookingFailure('nightTaken');
+      }
+    }
+
+    const batch = writeBatch(db);
+    batch.update(doc(db, 'bookings', booking.id), {
+      status: decision,
+      updatedAt: serverTimestamp(),
+    });
+    if (decision === 'accepted') {
+      for (const night of nights) {
+        batch.set(
+          doc(db, 'listings', booking.listingId, 'blockedNights', nightKey(night)),
+          {
+            bookingId: booking.id,
+            guestId: booking.guestId,
+            createdAt: serverTimestamp(),
+          },
+        );
+      }
+    }
+    try {
+      await batch.commit();
+    } catch (error) {
+      throw new BookingFailure(mapBookingCode(errorCodeOf(error)));
+    }
+  }
+
+  /** The guest cancels a pending or accepted request (frees the nights). */
+  async cancel(booking: Booking): Promise<void> {
+    const user = auth.currentUser;
+    if (user === null) {
+      throw new BookingFailure('notSignedIn');
+    }
+    if (user.uid !== booking.guestId) {
+      throw new BookingFailure('permissionDenied');
+    }
+    if (booking.status !== 'pending' && booking.status !== 'accepted') {
+      throw new BookingFailure('notPending');
+    }
+
+    const batch = writeBatch(db);
+    batch.update(doc(db, 'bookings', booking.id), {
+      status: 'cancelled',
+      updatedAt: serverTimestamp(),
+    });
+    if (
+      booking.status === 'accepted' &&
+      booking.checkIn !== null &&
+      booking.checkOut !== null
+    ) {
+      for (const night of nightsOf(booking.checkIn, booking.checkOut)) {
+        batch.delete(
+          doc(db, 'listings', booking.listingId, 'blockedNights', nightKey(night)),
+        );
+      }
+    }
+    try {
+      await batch.commit();
     } catch (error) {
       throw new BookingFailure(mapBookingCode(errorCodeOf(error)));
     }

@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { auth } from '../../data/firebase';
+import { chatRepository } from '../../data/repositories/chatRepository';
 import {
   ActivityIndicator,
   Alert,
@@ -183,6 +185,26 @@ export function BookingRequestScreen({
         guests,
         message,
       });
+
+      const uid = auth.currentUser?.uid;
+      if (uid !== undefined) {
+        try {
+          await chatRepository.sendMessage({
+            listingId: listing.id,
+            buyerId: uid,
+            ownerId: listing.ownerId,
+            text: t('bookingChatRequest', {
+              title: listing.title,
+              checkIn: start,
+              checkOut: end,
+              guests,
+            }),
+          });
+        } catch {
+          // The request is saved. The chat message is only a bonus.
+        }
+      }
+
       Alert.alert(t('bookingSent'));
       navigation.goBack();
     } catch (error) {
