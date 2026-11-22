@@ -108,7 +108,25 @@ service cloud.firestore {
       return d.email is string
         && (!('phone' in d) || d.phone is string);
     }
+        function validBookingData(d) {
+      return d.listingId is string
+        && d.guestId == request.auth.uid
+        && d.ownerId == get(listingPath(d.listingId)).data.ownerId
+        && d.ownerId != request.auth.uid
+        && d.status == 'pending'
+        && d.checkIn is timestamp && d.checkOut is timestamp
+        && d.checkOut > d.checkIn
+        && d.guests is int && d.guests >= 1
+        && d.nights is int && d.nights >= 1
+        && d.total is number && d.total >= 0
+        && d.currency is string && d.currency.size() == 3
+        && d.message is string && d.message.size() <= 500;
+    }
 
+    function statusOnlyChange() {
+      return request.resource.data.diff(resource.data).affectedKeys()
+        .hasOnly(['status', 'updatedAt']);
+    }
     match /users/{uid} {
       allow read: if signedIn();
       allow create: if isUser(uid)
@@ -162,6 +180,16 @@ service cloud.firestore {
           && validListingContact(request.resource.data);
         allow delete: if isUser(get(listingPath(listingId)).data.ownerId);
       }
+            match /blockedNights/{night} {
+        allow read: if signedIn();
+        allow create: if night.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+          && isUser(get(listingPath(listingId)).data.ownerId)
+          && request.resource.data.keys().hasOnly(['bookingId', 'guestId', 'createdAt']);
+        allow update: if false;
+        allow delete: if signedIn()
+          && (isUser(get(listingPath(listingId)).data.ownerId)
+              || resource.data.guestId == request.auth.uid);
+      }
     }
 
     match /favorites/{favId} {
@@ -172,7 +200,35 @@ service cloud.firestore {
         && isUser(request.resource.data.userId)
         && favId == request.auth.uid + '_' + request.resource.data.listingId;
     }
+        match /bookings/{bookingId} {
+      allow read: if signedIn()
+        && (request.auth.uid == resource.data.guestId
+            || request.auth.uid == resource.data.ownerId);
 
+      allow create: if signedIn()
+        && bookingId == request.resource.data.listingId + '_' + request.auth.uid
+        && validBookingData(request.resource.data);
+
+      allow update: if signedIn() && (
+        // the owner accepts or declines a pending request
+        (request.auth.uid == resource.data.ownerId
+          && resource.data.status == 'pending'
+          && request.resource.data.status in ['accepted', 'declined']
+          && statusOnlyChange())
+        // the guest cancels a pending or accepted request
+        || (request.auth.uid == resource.data.guestId
+          && resource.data.status in ['pending', 'accepted']
+          && request.resource.data.status == 'cancelled'
+          && statusOnlyChange())
+        // the guest sends a new request after a decline or a cancel
+        || (request.auth.uid == resource.data.guestId
+          && resource.data.status in ['declined', 'cancelled']
+          && bookingId == request.resource.data.listingId + '_' + request.auth.uid
+          && validBookingData(request.resource.data))
+      );
+
+      allow delete: if false;
+    }
     match /conversations/{convId} {
       allow read: if signedIn()
         && (resource == null || request.auth.uid in resource.data.participantIds);
