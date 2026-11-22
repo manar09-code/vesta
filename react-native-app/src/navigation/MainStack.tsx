@@ -10,9 +10,10 @@ import { ListingDetailScreen } from '../features/listings/ListingDetailScreen';
 import { PublishListingScreen } from '../features/listings/PublishListingScreen';
 import { MainTabs } from './MainTabs';
 import { BookingRequestScreen } from '../features/bookings/BookingRequestScreen';
-
+import { BookingsScreen } from '../features/bookings/BookingsScreen';
 export type MainStackParamList = {
-    BookingRequest: { listingId: string };
+    Bookings: undefined;
+  BookingRequest: { listingId: string };
   Tabs: undefined;
   ChatList: undefined;
   ChatRoom: { conversationId: string };
@@ -76,6 +77,11 @@ export function MainStack(): React.JSX.Element {
         name="BookingRequest"
         component={BookingRequestScreen}
         options={{ headerShown: true, title: t('bookingRequestTitle') }}
+      />
+            <Stack.Screen
+        name="Bookings"
+        component={BookingsScreen}
+        options={{ headerShown: true, title: t('bookingsTitle') }}
       />
     </Stack.Navigator>
   );

@@ -105,6 +105,11 @@ export function HomeScreen(): React.JSX.Element {
         labelKey="chatTitle"
         onPress={() => navigation.navigate('ChatList')}
       />
+            {/* Temporary: opens the bookings until the profile screen exists. */}
+      <PrimaryButton
+        labelKey="bookingsTitle"
+        onPress={() => navigation.navigate('Bookings')}
+      />
       {/* Temporary: the profile and settings screens will own Log out. */}
       <PrimaryButton labelKey="authLogoutButton" onPress={() => signOut()} />
     </View>
